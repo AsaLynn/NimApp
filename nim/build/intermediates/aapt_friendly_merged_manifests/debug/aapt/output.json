@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "applicationId": "com.netease.nim.demo",
+  "applicationId": "com.zxn.nim",
   "variantType": "LIBRARY",
   "elements": [
     {
@@ -19,7 +19,7 @@
       },
       "path": "AndroidManifest.xml",
       "properties": {
-        "packageId": "com.netease.nim.demo",
+        "packageId": "com.zxn.nim",
         "split": ""
       }
     }

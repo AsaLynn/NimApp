@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:900632994543:android:76b9643af8e5a4ce",
         "android_client_info": {
-          "package_name": "com.netease.nim.demo"
+          "package_name": "com.zxn.nim"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "900632994543-rh9lldpckuenprfat1cva20pfcapi61t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.netease.nim.demo",
+            "package_name": "com.zxn.nim",
             "certificate_hash": "b6f474d0fd4e624c015c7396d837c926d9e109bb"
           }
         },

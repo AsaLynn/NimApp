@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.netease.nim.demo"
+    package="com.zxn.nim"
     android:installLocation="auto">
 
     <!-- 加入应用需要的权限 -->
@@ -46,20 +46,20 @@
     <!-- 8.0 系统上需要-->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <!-- SDK权限申明, 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
+    <!-- SDK权限申明, 第三方APP接入时，请将com.zxn.nim替换为自己的包名 -->
     <!-- 和下面的uses-permission一起加入到你的AndroidManifest文件中。 -->
     <permission
-        android:name="com.netease.nim.demo.permission.RECEIVE_MSG"
+        android:name="com.zxn.nim.permission.RECEIVE_MSG"
         android:protectionLevel="signature" />
 
-    <!-- 接受SDK消息广播权限， 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
-    <uses-permission android:name="com.netease.nim.demo.permission.RECEIVE_MSG" />
+    <!-- 接受SDK消息广播权限， 第三方APP接入时，请将com.zxn.nim替换为自己的包名 -->
+    <uses-permission android:name="com.zxn.nim.permission.RECEIVE_MSG" />
 
     <!-- 小米推送 -->
     <permission
-        android:name="com.netease.nim.demo.permission.MIPUSH_RECEIVE"
+        android:name="com.zxn.nim.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.netease.nim.demo.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.zxn.nim.permission.MIPUSH_RECEIVE" />
 
     <uses-sdk tools:overrideLibrary="com.huawei.android.hms.base,com.huawei.android.hms.push" />
     <!--魅族推送-->
@@ -67,26 +67,21 @@
     <!-- 兼容 Flyme5 以下版本，魅族内部接入 PushSDK 必填，不然无法收到消息-->
     <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
     <permission
-        android:name="com.netease.nim.demo.push.permission.MESSAGE"
+        android:name="com.zxn.nim.push.permission.MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.netease.nim.demo.push.permission.MESSAGE" />
+    <uses-permission android:name="com.zxn.nim.push.permission.MESSAGE" />
     <!-- 兼容 Flyme3 配置权限-->
     <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
     <permission
-        android:name="com.netease.nim.demo.permission.C2D_MESSAGE"
+        android:name="com.zxn.nim.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.netease.nim.demo.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.zxn.nim.permission.C2D_MESSAGE" />
 
     <!--  oppo推送配置权限-->
     <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE" />
     <uses-permission android:name="com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE" />
 
-    <!--
-    android:name="com.netease.nim.demo.NimApplication"
-    android:icon="@drawable/ic_logo"
-    android:label="@string/app_name"
-     android:theme="@style/AppTheme.NoActionBar"
-    -->
+
     <application
         android:allowBackup="true"
         android:usesCleartextTraffic="true">
@@ -96,9 +91,9 @@
             android:name="com.amap.api.v2.apikey"
             android:value="${AMAP_KEY}" />
 
-        <meta-data
-            android:name="com.netease.nim.appKey"
-            android:value="9618233d6a978618bc59a0734b38a879" />
+<!--        <meta-data
+            android:name="com.zxn.nim.appKey"
+            android:value="40b5f5ff9dc3e53d5568bfd5531ba085" />-->
 
         <uses-library
             android:name="com.google.android.maps"
@@ -117,7 +112,7 @@
 
         <!-- 多端登录管理 -->
         <activity
-            android:name=".main.activity.MultiportActivity"
+            android:name="com.zxn.nim.main.activity.MultiportActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -125,7 +120,7 @@
 
         <!-- 登录界面 -->
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.zxn.nim.login.LoginActivity"
             android:configChanges="orientation"
             android:label="@string/login"
             android:screenOrientation="portrait"
@@ -134,7 +129,7 @@
 
         <!-- 关于 -->
         <activity
-            android:name=".main.activity.AboutActivity"
+            android:name="com.zxn.nim.main.activity.AboutActivity"
             android:configChanges="orientation"
             android:label="@string/about"
             android:screenOrientation="portrait"
@@ -142,49 +137,49 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
-            android:name=".main.activity.SettingsActivity"
+            android:name="com.zxn.nim.main.activity.SettingsActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".main.activity.RecentSessionActivity"
+            android:name="com.zxn.nim.main.activity.RecentSessionActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".main.activity.NoDisturbActivity"
+            android:name="com.zxn.nim.main.activity.NoDisturbActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
-            android:name=".contact.activity.UserProfileActivity"
+            android:name="com.zxn.nim.contact.activity.UserProfileActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
-            android:name=".contact.activity.UserProfileSettingActivity"
+            android:name="com.zxn.nim.contact.activity.UserProfileSettingActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
-            android:name=".contact.activity.UserProfileEditItemActivity"
+            android:name="com.zxn.nim.contact.activity.UserProfileEditItemActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
-            android:name=".contact.activity.BlackListActivity"
+            android:name="com.zxn.nim.contact.activity.BlackListActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -192,7 +187,7 @@
 
         <!-- 文件管理器 -->
         <activity
-            android:name="com.netease.nim.demo.file.browser.FileBrowserActivity"
+            android:name="com.zxn.nim.file.browser.FileBrowserActivity"
             android:configChanges="orientation"
             android:label="@string/file_browser"
             android:screenOrientation="portrait"
@@ -201,46 +196,46 @@
 
 
         <activity
-            android:name=".main.activity.CustomNotificationActivity"
+            android:name="com.zxn.nim.main.activity.CustomNotificationActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".main.activity.AvchatListActivity"
+            android:name="com.zxn.nim.main.activity.AvchatListActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".session.activity.MessageHistoryActivity"
+            android:name="com.zxn.nim.session.activity.MessageHistoryActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".session.activity.MessageInfoActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <activity
-            android:name=".team.activity.AdvancedTeamSearchActivity"
+            android:name="com.zxn.nim.session.activity.MessageInfoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:name=".team.activity.AdvancedTeamJoinActivity"
+            android:name="com.zxn.nim.team.activity.AdvancedTeamSearchActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:name=".main.activity.TeamListActivity"
+            android:name="com.zxn.nim.team.activity.AdvancedTeamJoinActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name="com.zxn.nim.main.activity.TeamListActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -248,46 +243,46 @@
 
         <!-- 全局搜索 -->
         <activity
-            android:name=".main.activity.GlobalSearchActivity"
+            android:name="com.zxn.nim.main.activity.GlobalSearchActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="behind"
             android:theme="@style/global_search_bg"
             android:windowSoftInputMode="stateUnspecified" />
 
         <activity
-            android:name=".main.activity.GlobalSearchDetailActivity"
+            android:name="com.zxn.nim.main.activity.GlobalSearchDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".main.activity.GlobalSearchDetailActivity2"
+            android:name="com.zxn.nim.main.activity.GlobalSearchDetailActivity2"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- 查看合并转发消息 -->
 <!--        <activity
-            android:name="com.netease.nim.demo.com.netease.nim.demo.session.activity.WatchMultiRetweetActivity"
+            android:name="com.zxn.nim.com.zxn.nim.session.activity.WatchMultiRetweetActivity"
             android:configChanges="keyboardHidden"
             android:launchMode="standard"
             android:theme="@style/AppTheme.NoActionBar" />-->
 
         <!-- 下载文件 -->
 <!--        <activity
-            android:name="com.netease.nim.demo.com.netease.nim.demo.session.activity.FileDownloadActivity"
+            android:name="com.zxn.nim.com.zxn.nim.session.activity.FileDownloadActivity"
             android:configChanges="keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar" />-->
 
         <!-- map -->
         <activity
-            android:name="com.netease.nim.demo.location.activity.LocationAmapActivity"
+            android:name="com.zxn.nim.location.activity.LocationAmapActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/location_map"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.netease.nim.demo.location.activity.NavigationAmapActivity"
+            android:name="com.zxn.nim.location.activity.NavigationAmapActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/location_navigate"
             android:screenOrientation="portrait"
@@ -295,14 +290,14 @@
 
         <!-- 消息历史搜索 -->
         <activity
-            android:name=".session.search.SearchMessageActivity"
+            android:name="com.zxn.nim.session.search.SearchMessageActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="behind"
             android:theme="@style/global_search_bg"
             android:windowSoftInputMode="adjustPan|stateUnspecified" />
 
         <activity
-            android:name=".session.search.DisplayMessageActivity"
+            android:name="com.zxn.nim.session.search.DisplayMessageActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -310,19 +305,19 @@
 
         <!-- 聊天室 -->
         <activity
-            android:name="com.netease.nim.demo.com.live.yinyu.mvvm.view.im.ChatRoomActivity"
+            android:name="com.zxn.nim.chatroom.ChatRoomActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:name="com.netease.nim.demo.com.live.yinyu.mvvm.view.im.ChatRoomIndependentActivity"
+            android:name="com.zxn.nim.chatroom.ChatRoomIndependentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:name="com.netease.nim.demo.jsbridge.JsBridgeActivity"
+            android:name="com.zxn.nim.jsbridge.JsBridgeActivity"
             android:label="@string/js_bridge"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -330,29 +325,29 @@
 
         <!-- 机器人 -->
         <activity
-            android:name=".main.activity.RobotListActivity"
+            android:name="com.zxn.nim.main.activity.RobotListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- 已读回执 -->
         <activity
-            android:name=".session.activity.SendAckMsgActivity"
+            android:name="com.zxn.nim.session.activity.SendAckMsgActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- 已读回执详情 -->
         <activity
-            android:name=".session.activity.AckMsgInfoActivity"
+            android:name="com.zxn.nim.session.activity.AckMsgInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".contact.activity.RobotProfileActivity"
+            android:name="com.zxn.nim.contact.activity.RobotProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".main.activity.PrivatizationConfigActivity"
+            android:name="com.zxn.nim.main.activity.PrivatizationConfigActivity"
             android:configChanges="orientation"
             android:label="@string/privatization_config"
             android:screenOrientation="portrait"
@@ -360,7 +355,7 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
-            android:name=".main.activity.PublicConfigActivity"
+            android:name="com.zxn.nim.main.activity.PublicConfigActivity"
             android:configChanges="orientation"
             android:label="@string/privatization_config"
             android:screenOrientation="portrait"
@@ -368,7 +363,7 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
-            android:name=".main.activity.MsgMigrationActivity"
+            android:name="com.zxn.nim.main.activity.MsgMigrationActivity"
             android:configChanges="orientation"
             android:label="@string/local_db_migration"
             android:screenOrientation="portrait"
@@ -411,17 +406,17 @@
         <service android:name="com.netease.nimlib.service.ResponseService" />
 
         <!-- 云信进程间通信provider -->
-        <!-- android:authorities="{包名}.ipc.provider", 请将com.netease.nim.demo替换为自己的包名 -->
+        <!-- android:authorities="{包名}.ipc.provider", 请将com.zxn.nim替换为自己的包名 -->
 <!--        <provider
             android:name="com.netease.nimlib.ipc.NIMContentProvider"
-            android:authorities="com.netease.nim.demo.ipc.provider"
+            android:authorities="com.zxn.nim.ipc.provider"
             android:exported="false"
             android:process=":core" />-->
 
         <!-- 云信内部使用的进程间通信provider -->
 <!--        <provider
             android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
-            android:authorities="com.netease.nim.demo.ipc.provider.preference"
+            android:authorities="com.zxn.nim.ipc.provider.preference"
             android:exported="false" />-->
 
         <!-- 小米推送配置 -->
@@ -485,7 +480,7 @@
         </service>
 
         <activity
-            android:name=".main.activity.MixPushActivity"
+            android:name="com.zxn.nim.main.activity.MixPushActivity"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -537,7 +532,7 @@
                 <action android:name="com.meizu.c2dm.intent.REGISTRATION" />
                 <action android:name="com.meizu.c2dm.intent.RECEIVE" />
 
-                <category android:name="com.netease.nim.demo" />
+                <category android:name="com.zxn.nim" />
             </intent-filter>
         </receiver>
 
