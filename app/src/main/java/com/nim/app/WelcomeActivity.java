@@ -10,10 +10,11 @@ import com.alibaba.fastjson.JSON;
 import com.netease.nim.avchatkit.activity.AVChatActivity;
 import com.netease.nim.avchatkit.constant.AVChatExtras;
 import com.zxn.nim.DemoCache;
+import com.zxn.nim.NimMainActivity;
 import com.zxn.nim.R;
 import com.zxn.nim.common.util.sys.SysInfoUtil;
 import com.zxn.nim.config.preference.Preferences;
-import com.zxn.nim.login.LoginActivity;
+import com.nim.app.login.LoginActivity;
 import com.zxn.nim.mixpush.DemoMixPushMessageHandler;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.common.activity.UI;
@@ -203,7 +204,7 @@ public class WelcomeActivity extends UI {
     }
 
     private void showMainActivity(Intent intent) {
-        //NimMainActivity.start(WelcomeActivity.this, intent);
+        NimMainActivity.start(WelcomeActivity.this, intent);
         finish();
     }
 

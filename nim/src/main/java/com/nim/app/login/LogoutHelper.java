@@ -1,4 +1,4 @@
-package com.zxn.nim.login;
+package com.nim.app.login;
 
 import com.zxn.nim.DemoCache;
 

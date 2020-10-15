@@ -5,10 +5,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.zxn.nim.R;
 import com.zxn.nim.config.preference.Preferences;
-import com.zxn.nim.login.LoginActivity;
-import com.zxn.nim.login.LogoutHelper;
+import com.nim.app.login.LoginActivity;
+import com.nim.app.login.LogoutHelper;
 import com.zxn.nim.main.activity.MultiportActivity;
 import com.zxn.nim.main.reminder.ReminderManager;
 import com.zxn.nim.session.SessionHelper;

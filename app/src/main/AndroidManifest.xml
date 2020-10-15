@@ -11,6 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
+        <!-- 登录界面 -->
+        <activity
+            android:name="com.nim.app.login.LoginActivity"
+            android:configChanges="orientation"
+            android:label="@string/login"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
         <meta-data
             android:name="com.nim.app.appKey"
             android:value="40b5f5ff9dc3e53d5568bfd5531ba085" />

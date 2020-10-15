@@ -128,15 +128,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
-        <!-- 登录界面 -->
-        <activity
-            android:name="com.zxn.nim.login.LoginActivity"
-            android:configChanges="orientation"
-            android:label="@string/login"
-            android:screenOrientation="portrait"
-            android:theme="@style/LoginTheme"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-
         <!-- 关于 -->
         <activity
             android:name="com.zxn.nim.main.activity.AboutActivity"

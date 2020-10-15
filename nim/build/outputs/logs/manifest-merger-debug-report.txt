@@ -7,26 +7,26 @@ INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:90:9-92:43
 	android:name
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:91:13-50
 manifest
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
-INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
-INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
-INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
-INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
-INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
-INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
+INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
+INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
+INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
+INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
+INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
+INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
 	package
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:4:5-26
 		INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml
 		INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
 		INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-587:12
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:1-580:12
 		INJECTED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:2:11-69
@@ -201,7 +201,7 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:82:5-85
 	android:name
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:82:22-82
 application
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:85:5-585:19
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:85:5-578:19
 	android:allowBackup
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:86:9-35
 	android:usesCleartextTraffic
@@ -236,35 +236,33 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:114:9-119:70
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:118:13-56
 	android:name
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:115:13-71
-activity#com.zxn.nim.login.LoginActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:122:9-128:70
-	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:126:13-49
-	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:125:13-42
-	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:128:13-67
-	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:124:13-48
-	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:127:13-46
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:123:13-59
 activity#com.zxn.nim.main.activity.AboutActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:131:9-137:75
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:124:9-130:75
+	android:screenOrientation
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:128:13-49
+	android:label
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:127:13-42
+	android:windowSoftInputMode
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:130:13-72
+	android:configChanges
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:126:13-48
+	android:theme
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:129:13-56
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:125:13-67
+activity#com.zxn.nim.main.activity.SettingsActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:132:9-137:63
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:135:13-49
-	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:134:13-42
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:137:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:137:13-60
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:133:13-48
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:134:13-48
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:136:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:132:13-67
-activity#com.zxn.nim.main.activity.SettingsActivity
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:133:13-70
+activity#com.zxn.nim.main.activity.RecentSessionActivity
 ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:139:9-144:63
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:142:13-49
@@ -275,20 +273,20 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:139:9-144:63
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:143:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:140:13-70
-activity#com.zxn.nim.main.activity.RecentSessionActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:146:9-151:63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:140:13-75
+activity#com.zxn.nim.main.activity.NoDisturbActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:146:9-151:75
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:149:13-49
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:151:13-60
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:151:13-72
 	android:configChanges
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:148:13-48
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:150:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:147:13-75
-activity#com.zxn.nim.main.activity.NoDisturbActivity
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:147:13-71
+activity#com.zxn.nim.contact.activity.UserProfileActivity
 ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:153:9-158:75
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:156:13-49
@@ -299,8 +297,8 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:153:9-158:75
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:157:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:154:13-71
-activity#com.zxn.nim.contact.activity.UserProfileActivity
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:154:13-76
+activity#com.zxn.nim.contact.activity.UserProfileSettingActivity
 ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:160:9-165:75
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:163:13-49
@@ -311,8 +309,8 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:160:9-165:75
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:164:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:161:13-76
-activity#com.zxn.nim.contact.activity.UserProfileSettingActivity
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:161:13-83
+activity#com.zxn.nim.contact.activity.UserProfileEditItemActivity
 ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:167:9-172:75
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:170:13-49
@@ -323,8 +321,8 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:167:9-172:75
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:171:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:168:13-83
-activity#com.zxn.nim.contact.activity.UserProfileEditItemActivity
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:168:13-84
+activity#com.zxn.nim.contact.activity.BlackListActivity
 ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:174:9-179:75
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:177:13-49
@@ -335,70 +333,70 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:174:9-179:75
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:178:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:175:13-84
-activity#com.zxn.nim.contact.activity.BlackListActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:181:9-186:75
-	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:184:13-49
-	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:186:13-72
-	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:183:13-48
-	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:185:13-56
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:182:13-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:175:13-74
 activity#com.zxn.nim.file.browser.FileBrowserActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:189:9-195:75
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:182:9-188:75
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:193:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:186:13-49
 	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:192:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:185:13-49
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:195:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:188:13-72
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:191:13-48
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:184:13-48
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:194:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:187:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:190:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:183:13-72
 activity#com.zxn.nim.main.activity.CustomNotificationActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:198:9-203:70
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:191:9-196:70
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:201:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:194:13-49
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:203:13-67
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:196:13-67
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:200:13-63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:193:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:202:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:195:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:199:13-80
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:192:13-80
 activity#com.zxn.nim.main.activity.AvchatListActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:204:9-209:57
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:197:9-202:57
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:207:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:200:13-49
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:209:13-54
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:202:13-54
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:206:13-63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:199:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:208:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:201:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:205:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:198:13-72
 activity#com.zxn.nim.session.activity.MessageHistoryActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:210:9-215:70
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:203:9-208:70
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:213:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:206:13-49
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:215:13-67
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:208:13-67
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:212:13-63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:205:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:214:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:207:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:211:13-79
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:204:13-79
 activity#com.zxn.nim.session.activity.MessageInfoActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:209:9-214:70
+	android:screenOrientation
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:212:13-49
+	android:windowSoftInputMode
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:214:13-67
+	android:configChanges
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:211:13-63
+	android:theme
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:213:13-56
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:210:13-76
+activity#com.zxn.nim.team.activity.AdvancedTeamSearchActivity
 ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:216:9-221:70
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:219:13-49
@@ -409,8 +407,8 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:216:9-221:70
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:220:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:217:13-76
-activity#com.zxn.nim.team.activity.AdvancedTeamSearchActivity
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:217:13-80
+activity#com.zxn.nim.team.activity.AdvancedTeamJoinActivity
 ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:223:9-228:70
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:226:13-49
@@ -421,512 +419,500 @@ ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:223:9-228:70
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:227:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:224:13-80
-activity#com.zxn.nim.team.activity.AdvancedTeamJoinActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:230:9-235:70
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:224:13-78
+activity#com.zxn.nim.main.activity.TeamListActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:230:9-235:67
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:233:13-49
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:235:13-67
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:235:13-64
 	android:configChanges
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:232:13-63
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:234:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:231:13-78
-activity#com.zxn.nim.main.activity.TeamListActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:237:9-242:67
-	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:240:13-49
-	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:242:13-64
-	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:239:13-63
-	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:241:13-56
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:238:13-70
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:231:13-70
 activity#com.zxn.nim.main.activity.GlobalSearchActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:245:9-250:62
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:238:9-243:62
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:248:13-47
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:241:13-47
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:250:13-59
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:243:13-59
+	android:configChanges
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:240:13-63
+	android:theme
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:242:13-52
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:239:13-74
+activity#com.zxn.nim.main.activity.GlobalSearchDetailActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:245:9-249:59
+	android:screenOrientation
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:248:13-49
 	android:configChanges
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:247:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:249:13-52
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:249:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:246:13-74
-activity#com.zxn.nim.main.activity.GlobalSearchDetailActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:252:9-256:59
-	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:255:13-49
-	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:254:13-63
-	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:256:13-56
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:253:13-80
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:246:13-80
 activity#com.zxn.nim.main.activity.GlobalSearchDetailActivity2
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:258:9-262:59
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:251:9-255:59
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:261:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:254:13-49
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:260:13-63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:253:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:262:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:255:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:259:13-81
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:252:13-81
 activity#com.zxn.nim.location.activity.LocationAmapActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:278:9-283:59
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:271:9-276:59
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:282:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:275:13-49
 	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:281:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:274:13-49
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:280:13-63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:273:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:283:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:276:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:279:13-78
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:272:13-78
 activity#com.zxn.nim.location.activity.NavigationAmapActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:284:9-289:59
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:277:9-282:59
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:288:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:281:13-49
 	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:287:13-54
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:280:13-54
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:286:13-63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:279:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:289:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:282:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:285:13-80
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:278:13-80
 activity#com.zxn.nim.session.search.SearchMessageActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:292:9-297:72
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:285:9-290:72
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:295:13-47
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:288:13-47
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:297:13-69
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:290:13-69
+	android:configChanges
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:287:13-63
+	android:theme
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:289:13-52
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:286:13-76
+activity#com.zxn.nim.session.search.DisplayMessageActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:292:9-297:70
+	android:screenOrientation
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:295:13-49
+	android:windowSoftInputMode
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:297:13-67
 	android:configChanges
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:294:13-63
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:296:13-52
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:296:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:293:13-76
-activity#com.zxn.nim.session.search.DisplayMessageActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:299:9-304:70
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:293:13-77
+activity#com.zxn.nim.chatroom.ChatRoomActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:300:9-304:70
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:302:13-49
 	android:windowSoftInputMode
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:304:13-67
-	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:301:13-63
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:303:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:300:13-77
-activity#com.zxn.nim.chatroom.ChatRoomActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:307:9-311:70
-	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:309:13-49
-	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:311:13-67
-	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:310:13-56
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:308:13-65
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:301:13-65
 activity#com.zxn.nim.chatroom.ChatRoomIndependentActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:313:9-317:70
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:306:9-310:70
+	android:screenOrientation
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:308:13-49
+	android:windowSoftInputMode
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:310:13-67
+	android:theme
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:309:13-56
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:307:13-76
+activity#com.zxn.nim.jsbridge.JsBridgeActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:312:9-317:75
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:315:13-49
+	android:label
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:314:13-46
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:317:13-67
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:317:13-72
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:316:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:314:13-76
-activity#com.zxn.nim.jsbridge.JsBridgeActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:319:9-324:75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:313:13-65
+activity#com.zxn.nim.main.activity.RobotListActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:320:9-323:59
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:322:13-49
-	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:321:13-46
-	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:324:13-72
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:323:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:320:13-65
-activity#com.zxn.nim.main.activity.RobotListActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:327:9-330:59
-	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:329:13-49
-	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:330:13-56
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:328:13-71
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:321:13-71
 activity#com.zxn.nim.session.activity.SendAckMsgActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:333:9-336:59
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:326:9-329:59
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:335:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:328:13-49
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:336:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:329:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:334:13-75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:327:13-75
 activity#com.zxn.nim.session.activity.AckMsgInfoActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:339:9-342:59
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:332:9-335:59
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:341:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:334:13-49
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:342:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:335:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:340:13-75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:333:13-75
 activity#com.zxn.nim.contact.activity.RobotProfileActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:344:9-347:59
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:337:9-340:59
+	android:screenOrientation
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:339:13-49
+	android:theme
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:340:13-56
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:338:13-77
+activity#com.zxn.nim.main.activity.PrivatizationConfigActivity
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:342:9-348:75
 	android:screenOrientation
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:346:13-49
+	android:label
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:345:13-57
+	android:windowSoftInputMode
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:348:13-72
+	android:configChanges
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:344:13-48
 	android:theme
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:347:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:345:13-77
-activity#com.zxn.nim.main.activity.PrivatizationConfigActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:349:9-355:75
-	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:353:13-49
-	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:352:13-57
-	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:355:13-72
-	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:351:13-48
-	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:354:13-56
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:350:13-81
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:343:13-81
 activity#com.zxn.nim.main.activity.PublicConfigActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:357:9-363:75
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:350:9-356:75
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:361:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:354:13-49
 	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:360:13-57
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:353:13-57
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:363:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:356:13-72
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:359:13-48
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:352:13-48
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:362:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:355:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:358:13-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:351:13-74
 activity#com.zxn.nim.main.activity.MsgMigrationActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:365:9-371:75
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:358:9-364:75
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:369:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:362:13-49
 	android:label
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:368:13-55
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:361:13-55
 	android:windowSoftInputMode
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:371:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:364:13-72
 	android:configChanges
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:367:13-48
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:360:13-48
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:370:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:363:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:366:13-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:359:13-74
 service#com.netease.nimlib.service.NimService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:375:9-377:39
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:368:9-370:39
 	android:process
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:377:13-36
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:370:13-36
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:376:13-65
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:369:13-65
 service#com.netease.nimlib.service.NimService$Aux
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:380:9-382:39
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:373:9-375:39
+	android:process
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:375:13-36
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:374:13-69
+service#com.netease.nimlib.job.NIMJobService
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:378:9-382:39
 	android:process
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:382:13-36
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:381:13-69
-service#com.netease.nimlib.job.NIMJobService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:385:9-389:39
-	android:process
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:389:13-36
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:387:13-36
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:380:13-36
 	android:permission
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:388:13-69
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:381:13-69
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:386:13-64
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:379:13-64
 receiver#com.netease.nimlib.service.NimReceiver
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:392:9-400:20
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:385:9-393:20
 	android:process
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:395:13-36
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:388:13-36
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:394:13-37
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:387:13-37
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:393:13-66
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:386:13-66
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.net.conn.CONNECTIVITY_CHANGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:396:13-399:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:389:13-392:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:397:17-79
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:390:17-79
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:397:25-76
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:390:25-76
 action#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:398:17-79
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:391:17-79
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:398:25-76
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:391:25-76
 receiver#com.netease.nimlib.service.ResponseReceiver
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:403:9-80
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:396:9-80
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:403:19-77
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:396:19-77
 service#com.netease.nimlib.service.ResponseService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:406:9-78
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:399:9-78
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:406:18-75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:399:18-75
 service#com.xiaomi.push.service.XMJobService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:423:9-428:42
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:416:9-421:42
 	android:process
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:428:13-39
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:421:13-39
+	android:enabled
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:418:13-35
+	android:exported
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:419:13-37
+	android:permission
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:420:13-69
+	android:name
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:417:13-64
+service#com.xiaomi.push.service.XMPushService
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:423:9-426:42
+	android:process
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:426:13-39
 	android:enabled
 		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:425:13-35
-	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:426:13-37
-	android:permission
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:427:13-69
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:424:13-64
-service#com.xiaomi.push.service.XMPushService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:430:9-433:42
-	android:process
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:433:13-39
-	android:enabled
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:432:13-35
-	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:431:13-65
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:424:13-65
 receiver#com.xiaomi.push.service.receivers.PingReceiver
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:435:9-442:20
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:428:9-435:20
 	android:process
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:438:13-39
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:431:13-39
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:437:13-37
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:430:13-37
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:436:13-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:429:13-74
 intent-filter#action:name:com.xiaomi.push.PING_TIMER
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:439:13-441:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:432:13-434:29
 action#com.xiaomi.push.PING_TIMER
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:440:17-69
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:433:17-69
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:440:25-66
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:433:25-66
 receiver#com.xiaomi.push.service.receivers.NetworkStatusReceiver
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:444:9-451:20
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:437:9-444:20
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:446:13-36
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:439:13-36
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:445:13-83
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:438:13-83
 intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE+category:name:android.intent.category.DEFAULT
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:447:13-450:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:440:13-443:29
 category#android.intent.category.DEFAULT
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:449:17-76
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:442:17-76
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:449:27-73
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:442:27-73
 service#com.xiaomi.mipush.sdk.PushMessageHandler
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:453:9-456:39
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:446:9-449:39
 	android:enabled
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:455:13-35
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:448:13-35
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:456:13-36
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:449:13-36
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:454:13-68
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:447:13-68
 service#com.xiaomi.mipush.sdk.MessageHandleService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:458:9-460:38
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:451:9-453:38
 	android:enabled
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:460:13-35
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:453:13-35
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:459:13-70
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:452:13-70
 receiver#com.netease.nimlib.mixpush.mi.MiPushReceiver
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:462:9-470:20
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:455:9-463:20
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:464:13-36
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:457:13-36
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:463:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:456:13-72
 intent-filter#action:name:com.xiaomi.mipush.ERROR+action:name:com.xiaomi.mipush.MESSAGE_ARRIVED+action:name:com.xiaomi.mipush.RECEIVE_MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:465:13-469:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:458:13-462:29
 	android:priority
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:465:28-57
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:458:28-57
 action#com.xiaomi.mipush.RECEIVE_MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:466:17-76
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:459:17-76
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:466:25-73
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:459:25-73
 action#com.xiaomi.mipush.MESSAGE_ARRIVED
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:467:17-76
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:460:17-76
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:467:25-73
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:460:25-73
 action#com.xiaomi.mipush.ERROR
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:468:17-66
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:461:17-66
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:468:25-63
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:461:25-63
 service#com.netease.nimlib.mixpush.hw.HWPushService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:473:9-480:19
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:466:9-473:19
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:475:13-37
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:468:13-37
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:474:13-71
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:467:13-71
 intent-filter#action:name:com.huawei.push.action.MESSAGING_EVENT
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:476:13-478:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:469:13-471:29
 action#com.huawei.push.action.MESSAGING_EVENT
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:477:17-81
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:470:17-81
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:477:25-78
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:470:25-78
 activity#com.zxn.nim.main.activity.MixPushActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:482:9-500:20
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:475:9-493:20
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:484:13-59
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:477:13-59
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:483:13-69
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:476:13-69
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:com.huawei.codelabpush+data:path:/deeplink+data:scheme:pushscheme
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:485:13-495:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:478:13-488:29
 action#android.intent.action.VIEW
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:486:17-69
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:479:17-69
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:486:25-66
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:479:25-66
 category#android.intent.category.BROWSABLE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:489:17-78
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:482:17-78
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:489:27-75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:482:27-75
 data
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:491:17-494:51
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:484:17-487:51
 	android:path
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:493:21-45
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:486:21-45
 	android:host
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:492:21-58
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:485:21-58
 	android:scheme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:494:21-48
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:487:21-48
 intent-filter#action:name:com.oppo.codelabpush.intent.action.test+category:name:android.intent.category.DEFAULT
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:496:13-499:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:489:13-492:29
 action#com.oppo.codelabpush.intent.action.test
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:497:17-82
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:490:17-82
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:497:25-79
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:490:25-79
 service#com.amap.api.location.APSService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:503:9-68
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:496:9-68
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:503:18-65
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:496:18-65
 service#com.netease.nimlib.mixpush.fcm.FCMTokenService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:506:9-512:19
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:499:9-505:19
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:508:13-37
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:501:13-37
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:507:13-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:500:13-74
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:509:13-511:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:502:13-504:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:510:17-78
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:503:17-78
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:510:25-75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:503:25-75
 meta-data#com.google.firebase.messaging.default_notification_icon
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:515:9-517:63
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:508:9-510:63
 	android:resource
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:517:13-60
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:510:13-60
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:516:13-83
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:509:13-83
 meta-data#com.google.firebase.messaging.default_notification_color
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:518:9-520:59
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:511:9-513:59
 	android:resource
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:520:13-56
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:513:13-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:519:13-84
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:512:13-84
 receiver#com.netease.nimlib.mixpush.mz.MZPushReceiver
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:523:9-537:20
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:516:9-530:20
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:523:19-78
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:516:19-78
 intent-filter#action:name:com.meizu.c2dm.intent.RECEIVE+action:name:com.meizu.c2dm.intent.REGISTRATION+action:name:com.meizu.flyme.push.intent.MESSAGE+action:name:com.meizu.flyme.push.intent.REGISTER.FEEDBACK+action:name:com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK+category:name:com.zxn.nim
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:524:13-536:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:517:13-529:29
 	android:priority
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:524:28-57
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:517:28-57
 action#com.meizu.flyme.push.intent.MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:526:17-78
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:519:17-78
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:526:25-75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:519:25-75
 action#com.meizu.flyme.push.intent.REGISTER.FEEDBACK
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:528:17-88
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:521:17-88
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:528:25-85
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:521:25-85
 action#com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:530:17-90
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:523:17-90
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:530:25-87
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:523:25-87
 action#com.meizu.c2dm.intent.REGISTRATION
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:532:17-77
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:525:17-77
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:532:25-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:525:25-74
 action#com.meizu.c2dm.intent.RECEIVE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:533:17-72
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:526:17-72
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:533:25-69
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:526:25-69
 category#com.zxn.nim
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:535:17-56
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:528:17-56
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:535:27-53
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:528:27-53
 service#com.vivo.push.sdk.service.CommandClientService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:540:9-542:39
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:533:9-535:39
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:542:13-36
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:535:13-36
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:541:13-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:534:13-74
 activity#com.vivo.push.sdk.LinkProxyClientActivity
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:543:9-547:75
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:536:9-540:75
 	android:screenOrientation
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:546:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:539:13-49
 	android:exported
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:545:13-37
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:538:13-37
 	android:theme
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:547:13-72
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:540:13-72
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:544:13-69
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:537:13-69
 meta-data#com.vivo.push.api_key
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:549:9-551:68
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:542:9-544:68
 	android:value
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:551:13-65
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:544:13-65
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:550:13-49
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:543:13-49
 meta-data#com.vivo.push.app_id
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:552:9-554:37
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:545:9-547:37
 	android:value
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:554:13-34
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:547:13-34
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:553:13-48
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:546:13-48
 receiver#com.netease.nimlib.mixpush.vivo.VivoPushReceiver
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:556:9-561:20
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:549:9-554:20
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:556:19-82
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:549:19-82
 intent-filter#action:name:com.vivo.pushclient.action.RECEIVE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:557:13-560:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:550:13-553:29
 action#com.vivo.pushclient.action.RECEIVE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:559:17-77
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:552:17-77
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:559:25-74
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:552:25-74
 service#com.netease.nimlib.mixpush.oppo.OppoPushService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:564:9-571:19
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:557:9-564:19
 	android:permission
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:567:13-77
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:560:13-77
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:565:13-75
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:558:13-75
 intent-filter#action:name:com.coloros.mcs.action.RECEIVE_MCS_MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:568:13-570:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:561:13-563:29
 action#com.coloros.mcs.action.RECEIVE_MCS_MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:569:17-85
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:562:17-85
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:569:25-82
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:562:25-82
 service#com.netease.nimlib.mixpush.oppo.OppoAppPushService
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:573:9-583:19
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:566:9-576:19
 	android:permission
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:576:13-77
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:569:13-77
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:574:13-78
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:567:13-78
 intent-filter#action:name:com.heytap.mcs.action.RECEIVE_MCS_MESSAGE+action:name:com.heytap.msp.push.RECEIVE_MCS_MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:578:13-582:29
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:571:13-575:29
 action#com.heytap.mcs.action.RECEIVE_MCS_MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:579:17-84
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:572:17-84
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:579:25-81
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:572:25-81
 action#com.heytap.msp.push.RECEIVE_MCS_MESSAGE
-ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:581:17-82
+ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:574:17-82
 	android:name
-		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:581:25-79
+		ADDED from D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:574:25-79

@@ -1,4 +1,4 @@
-package com.zxn.nim.login;
+package com.nim.app.login;
 
 import android.Manifest;
 import android.content.Context;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.TextView;
 
+import com.zxn.nim.NimMainActivity;
 import com.zxn.nim.contact.ContactHttpClient;
 import com.zxn.nim.DemoCache;
 import com.zxn.nim.DemoPrivatizationConfig;
@@ -54,7 +55,6 @@ import com.netease.nimlib.sdk.auth.LoginInfo;
  * <p/>
  * Created by huangjun on 2015/2/1.
  */
-@Deprecated
 public class LoginActivity extends UI implements OnKeyListener {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -322,7 +322,7 @@ public class LoginActivity extends UI implements OnKeyListener {
                                               // 初始化消息提醒配置
                                               initNotificationConfig();
                                               // 进入主界面
-                                              //NimMainActivity.start(LoginActivity.this, null);
+                                              NimMainActivity.start(LoginActivity.this, null);
                                               finish();
                                           }
 
@@ -539,7 +539,7 @@ public class LoginActivity extends UI implements OnKeyListener {
         // 设置uikit
         NimUIKit.loginSuccess(account);
         // 进入主界面，此时可以查询数据（最近联系人列表、本地消息历史、群资料等都可以查询，但当云信服务器发起请求会返回408超时）
-        //NimMainActivity.start(LoginActivity.this, null);
+        NimMainActivity.start(LoginActivity.this, null);
         // 演示15s后手动登录，登录成功后，可以正常收发数据
         getHandler().postDelayed(() -> {
             loginRequest = NIMClient.getService(AuthService.class).login(

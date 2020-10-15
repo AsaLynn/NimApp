@@ -88,6 +88,8 @@ class YinYu : Application() {
 
         //NIMClientHelper.instance().init(this)
         val sdkOptions: SDKOptions = NimSDKOptionConfig.getSDKOptions(this)
+        sdkOptions.appKey = "40b5f5ff9dc3e53d5568bfd5531ba085"
+        sdkOptions.useXLog = true
         NIMClient.init(this, getLoginInfo(), sdkOptions);
 
         AppCrashHandler.getInstance(this)
