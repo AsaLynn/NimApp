@@ -1,0 +1,1042 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.netease.nim.demo"
+5    android:installLocation="auto"
+6    android:versionCode="140"
+7    android:versionName="8.0.0" >
+8
+9    <uses-sdk
+9-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:64:5-97
+10        android:minSdkVersion="22"
+10-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:64:5-97
+11        android:targetSdkVersion="28"
+11-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:64:5-97
+12        tools:overrideLibrary="com.huawei.android.hms.base,com.huawei.android.hms.push" />
+12-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:64:15-94
+13
+14    <!-- 加入应用需要的权限 -->
+15    <!-- 网络相关 -->
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:9:5-67
+16-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:9:22-64
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:10:5-79
+17-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:10:22-76
+18    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+18-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:11:5-76
+18-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:11:22-73
+19    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+19-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:12:5-76
+19-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:12:22-73
+20
+21    <!-- 读写文件 -->
+22    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+22-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:15:5-80
+22-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:15:22-77
+23    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+23-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:16:5-81
+23-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:16:22-78
+24
+25    <!-- 定位相关 -->
+26    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+26-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:19:5-79
+26-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:19:22-76
+27    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+27-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:20:5-81
+27-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:20:22-78
+28    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+28-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:21:5-89
+28-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:21:22-86
+29
+30    <!-- 多媒体 -->
+31    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+31-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:24:5-75
+31-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:24:22-72
+32    <uses-permission android:name="android.permission.CAMERA" />
+32-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:25:5-65
+32-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:25:22-62
+33    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+33-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:26:5-71
+33-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:26:22-68
+34    <uses-permission android:name="android.permission.BLUETOOTH" />
+34-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:27:5-68
+34-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:27:22-65
+35    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+35-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:28:5-74
+35-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:28:22-71
+36
+37    <!-- 手机状态 -->
+38    <uses-permission android:name="android.permission.GET_TASKS" />
+38-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:31:5-68
+38-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:31:22-65
+39    <uses-permission android:name="android.permission.FLASHLIGHT" />
+39-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:32:5-69
+39-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:32:22-66
+40    <uses-permission android:name="android.permission.VIBRATE" />
+40-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:33:5-66
+40-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:33:22-63
+41    <uses-permission
+41-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:34:5-36:47
+42        android:name="android.permission.CHANGE_CONFIGURATION"
+42-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:35:9-63
+43        tools:ignore="ProtectedPermissions" />
+43-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:36:9-44
+44    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+44-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:37:5-80
+44-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:37:22-77
+45    <uses-permission
+45-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:38:5-40:47
+46        android:name="android.permission.WRITE_SETTINGS"
+46-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:39:9-57
+47        tools:ignore="ProtectedPermissions" />
+47-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:40:9-44
+48    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+48-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:42:5-75
+48-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:42:22-72
+49    <uses-permission android:name="android.permission.WAKE_LOCK" />
+49-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:43:5-68
+49-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:43:22-65
+50
+51    <!-- 8.0 系统上需要 -->
+52    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+52-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:47:5-77
+52-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:47:22-74
+53
+54    <!-- SDK权限申明, 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
+55    <!-- 和下面的uses-permission一起加入到你的AndroidManifest文件中。 -->
+56    <permission
+56-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:51:5-53:47
+57        android:name="com.netease.nim.demo.permission.RECEIVE_MSG"
+57-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:52:9-67
+58        android:protectionLevel="signature" />
+58-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:53:9-44
+59
+60    <!-- 接受SDK消息广播权限， 第三方APP接入时，请将com.netease.nim.demo替换为自己的包名 -->
+61    <uses-permission android:name="com.netease.nim.demo.permission.RECEIVE_MSG" />
+61-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:56:5-83
+61-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:56:22-80
+62
+63    <!-- 小米推送 -->
+64    <permission
+64-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:59:5-61:47
+65        android:name="com.netease.nim.demo.permission.MIPUSH_RECEIVE"
+65-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:60:9-70
+66        android:protectionLevel="signature" />
+66-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:61:9-44
+67
+68    <uses-permission android:name="com.netease.nim.demo.permission.MIPUSH_RECEIVE" />
+68-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:62:5-86
+68-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:62:22-83
+69    <!-- 魅族推送 -->
+70
+71
+72    <!-- 兼容 Flyme5 以下版本，魅族内部接入 PushSDK 必填，不然无法收到消息 -->
+73    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+73-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:68:5-79
+73-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:68:22-76
+74
+75    <permission
+75-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:69:5-71:47
+76        android:name="com.netease.nim.demo.push.permission.MESSAGE"
+76-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:70:9-68
+77        android:protectionLevel="signature" />
+77-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:71:9-44
+78
+79    <uses-permission android:name="com.netease.nim.demo.push.permission.MESSAGE" />
+79-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:72:5-84
+79-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:72:22-81
+80    <!-- 兼容 Flyme3 配置权限 -->
+81    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
+81-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:74:5-73
+81-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:74:22-70
+82
+83    <permission
+83-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:75:5-77:47
+84        android:name="com.netease.nim.demo.permission.C2D_MESSAGE"
+84-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:76:9-67
+85        android:protectionLevel="signature" />
+85-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:77:9-44
+86
+87    <uses-permission android:name="com.netease.nim.demo.permission.C2D_MESSAGE" />
+87-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:78:5-83
+87-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:78:22-80
+88
+89    <!-- oppo推送配置权限 -->
+90    <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE" />
+90-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:81:5-86
+90-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:81:22-83
+91    <uses-permission android:name="com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE" />
+91-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:82:5-85
+91-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:82:22-82
+92
+93    <!--
+94    android:name="com.netease.nim.demo.NimApplication"
+95    android:icon="@drawable/ic_logo"
+96    android:label="@string/app_name"
+97     android:theme="@style/AppTheme.NoActionBar"
+98    -->
+99    <application
+99-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:90:5-590:19
+100        android:allowBackup="true"
+100-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:91:9-35
+101        android:usesCleartextTraffic="true" >
+101-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:92:9-44
+102
+103        <!-- 如果IDE是Eclipse，此处可将build.gradle中的AMAP_KEY定义拷贝过来。 -->
+104        <meta-data
+105            android:name="com.amap.api.v2.apikey"
+105-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:96:13-50
+106            android:value="09fd4efd3e28e9bf1f449ecec7d34bfe" />
+106-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:97:13-40
+107        <meta-data
+107-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:99:9-101:64
+108            android:name="com.netease.nim.appKey"
+108-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:100:13-50
+109            android:value="9618233d6a978618bc59a0734b38a879" />
+109-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:101:13-61
+110
+111        <uses-library
+111-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:103:9-105:40
+112            android:name="com.google.android.maps"
+112-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:104:13-51
+113            android:required="false" />
+113-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:105:13-37
+114
+115        <!-- 金融魔方SDK 渠道id以及红包名称 -->
+116        <meta-data
+116-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:108:9-110:49
+117            android:name="JRMF_PARTNER_NAME"
+117-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:109:13-45
+118            android:value="yunxin_red_packet" />
+118-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:110:13-46
+119
+120        <!-- 全面屏配置 -->
+121        <meta-data
+121-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:113:9-115:35
+122            android:name="android.max_aspect"
+122-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:114:13-46
+123            android:value="2.1" />
+123-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:115:13-32
+124
+125        <!-- 多端登录管理 -->
+126        <activity
+126-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:119:9-124:70
+127            android:name="com.netease.nim.demo.main.activity.MultiportActivity"
+127-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:120:13-60
+128            android:configChanges="keyboardHidden|orientation"
+128-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:121:13-63
+129            android:screenOrientation="portrait"
+129-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:122:13-49
+130            android:theme="@style/AppTheme.NoActionBar"
+130-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:123:13-56
+131            android:windowSoftInputMode="adjustResize|stateHidden" />
+131-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:124:13-67
+132
+133        <!-- 登录界面 -->
+134        <activity
+134-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:127:9-133:70
+135            android:name="com.netease.nim.demo.login.LoginActivity"
+135-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:128:13-48
+136            android:configChanges="orientation"
+136-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:129:13-48
+137            android:label="@string/login"
+137-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:130:13-42
+138            android:screenOrientation="portrait"
+138-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:131:13-49
+139            android:theme="@style/LoginTheme"
+139-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:132:13-46
+140            android:windowSoftInputMode="adjustResize|stateHidden" />
+140-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:133:13-67
+141
+142        <!-- 关于 -->
+143        <activity
+143-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:136:9-142:75
+144            android:name="com.netease.nim.demo.main.activity.AboutActivity"
+144-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:137:13-56
+145            android:configChanges="orientation"
+145-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:138:13-48
+146            android:label="@string/about"
+146-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:139:13-42
+147            android:screenOrientation="portrait"
+147-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:140:13-49
+148            android:theme="@style/AppTheme.NoActionBar"
+148-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:141:13-56
+149            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+149-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:142:13-72
+150        <activity
+150-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:144:9-149:63
+151            android:name="com.netease.nim.demo.main.activity.SettingsActivity"
+151-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:145:13-59
+152            android:configChanges="orientation"
+152-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:146:13-48
+153            android:screenOrientation="portrait"
+153-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:147:13-49
+154            android:theme="@style/AppTheme.NoActionBar"
+154-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:148:13-56
+155            android:windowSoftInputMode="stateAlwaysHidden" />
+155-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:149:13-60
+156        <activity
+156-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:151:9-156:63
+157            android:name="com.netease.nim.demo.main.activity.RecentSessionActivity"
+157-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:152:13-64
+158            android:configChanges="orientation"
+158-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:153:13-48
+159            android:screenOrientation="portrait"
+159-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:154:13-49
+160            android:theme="@style/AppTheme.NoActionBar"
+160-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:155:13-56
+161            android:windowSoftInputMode="stateAlwaysHidden" />
+161-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:156:13-60
+162        <activity
+162-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:158:9-163:75
+163            android:name="com.netease.nim.demo.main.activity.NoDisturbActivity"
+163-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:159:13-60
+164            android:configChanges="orientation"
+164-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:160:13-48
+165            android:screenOrientation="portrait"
+165-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:161:13-49
+166            android:theme="@style/AppTheme.NoActionBar"
+166-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:162:13-56
+167            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+167-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:163:13-72
+168        <activity
+168-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:165:9-170:75
+169            android:name="com.netease.nim.demo.contact.activity.UserProfileActivity"
+169-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:166:13-65
+170            android:configChanges="orientation"
+170-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:167:13-48
+171            android:screenOrientation="portrait"
+171-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:168:13-49
+172            android:theme="@style/AppTheme.NoActionBar"
+172-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:169:13-56
+173            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+173-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:170:13-72
+174        <activity
+174-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:172:9-177:75
+175            android:name="com.netease.nim.demo.contact.activity.UserProfileSettingActivity"
+175-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:173:13-72
+176            android:configChanges="orientation"
+176-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:174:13-48
+177            android:screenOrientation="portrait"
+177-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:175:13-49
+178            android:theme="@style/AppTheme.NoActionBar"
+178-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:176:13-56
+179            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+179-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:177:13-72
+180        <activity
+180-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:179:9-184:75
+181            android:name="com.netease.nim.demo.contact.activity.UserProfileEditItemActivity"
+181-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:180:13-73
+182            android:configChanges="orientation"
+182-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:181:13-48
+183            android:screenOrientation="portrait"
+183-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:182:13-49
+184            android:theme="@style/AppTheme.NoActionBar"
+184-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:183:13-56
+185            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+185-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:184:13-72
+186        <activity
+186-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:186:9-191:75
+187            android:name="com.netease.nim.demo.contact.activity.BlackListActivity"
+187-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:187:13-63
+188            android:configChanges="orientation"
+188-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:188:13-48
+189            android:screenOrientation="portrait"
+189-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:189:13-49
+190            android:theme="@style/AppTheme.NoActionBar"
+190-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:190:13-56
+191            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+191-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:191:13-72
+192
+193        <!-- 文件管理器 -->
+194        <activity
+194-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:194:9-200:75
+195            android:name="com.netease.nim.demo.file.browser.FileBrowserActivity"
+195-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:195:13-81
+196            android:configChanges="orientation"
+196-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:196:13-48
+197            android:label="@string/file_browser"
+197-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:197:13-49
+198            android:screenOrientation="portrait"
+198-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:198:13-49
+199            android:theme="@style/AppTheme.NoActionBar"
+199-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:199:13-56
+200            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+200-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:200:13-72
+201        <activity
+201-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:203:9-208:70
+202            android:name="com.netease.nim.demo.main.activity.CustomNotificationActivity"
+202-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:204:13-69
+203            android:configChanges="keyboardHidden|orientation"
+203-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:205:13-63
+204            android:screenOrientation="portrait"
+204-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:206:13-49
+205            android:theme="@style/AppTheme.NoActionBar"
+205-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:207:13-56
+206            android:windowSoftInputMode="stateHidden|adjustResize" />
+206-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:208:13-67
+207        <activity
+207-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:209:9-214:57
+208            android:name="com.netease.nim.demo.main.activity.AvchatListActivity"
+208-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:210:13-61
+209            android:configChanges="keyboardHidden|orientation"
+209-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:211:13-63
+210            android:screenOrientation="portrait"
+210-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:212:13-49
+211            android:theme="@style/AppTheme.NoActionBar"
+211-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:213:13-56
+212            android:windowSoftInputMode="stateHidden" />
+212-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:214:13-54
+213        <activity
+213-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:215:9-220:70
+214            android:name="com.netease.nim.demo.session.activity.MessageHistoryActivity"
+214-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:216:13-68
+215            android:configChanges="keyboardHidden|orientation"
+215-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:217:13-63
+216            android:screenOrientation="portrait"
+216-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:218:13-49
+217            android:theme="@style/AppTheme.NoActionBar"
+217-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:219:13-56
+218            android:windowSoftInputMode="stateHidden|adjustResize" />
+218-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:220:13-67
+219        <activity
+219-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:221:9-226:70
+220            android:name="com.netease.nim.demo.session.activity.MessageInfoActivity"
+220-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:222:13-65
+221            android:configChanges="keyboardHidden|orientation"
+221-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:223:13-63
+222            android:screenOrientation="portrait"
+222-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:224:13-49
+223            android:theme="@style/AppTheme.NoActionBar"
+223-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:225:13-56
+224            android:windowSoftInputMode="stateHidden|adjustResize" />
+224-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:226:13-67
+225        <activity
+225-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:228:9-233:70
+226            android:name="com.netease.nim.demo.team.activity.AdvancedTeamSearchActivity"
+226-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:229:13-69
+227            android:configChanges="keyboardHidden|orientation"
+227-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:230:13-63
+228            android:screenOrientation="portrait"
+228-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:231:13-49
+229            android:theme="@style/AppTheme.NoActionBar"
+229-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:232:13-56
+230            android:windowSoftInputMode="stateHidden|adjustResize" />
+230-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:233:13-67
+231        <activity
+231-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:235:9-240:70
+232            android:name="com.netease.nim.demo.team.activity.AdvancedTeamJoinActivity"
+232-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:236:13-67
+233            android:configChanges="keyboardHidden|orientation"
+233-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:237:13-63
+234            android:screenOrientation="portrait"
+234-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:238:13-49
+235            android:theme="@style/AppTheme.NoActionBar"
+235-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:239:13-56
+236            android:windowSoftInputMode="stateHidden|adjustResize" />
+236-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:240:13-67
+237        <activity
+237-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:242:9-247:67
+238            android:name="com.netease.nim.demo.main.activity.TeamListActivity"
+238-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:243:13-59
+239            android:configChanges="keyboardHidden|orientation"
+239-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:244:13-63
+240            android:screenOrientation="portrait"
+240-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:245:13-49
+241            android:theme="@style/AppTheme.NoActionBar"
+241-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:246:13-56
+242            android:windowSoftInputMode="stateHidden|adjustPan" />
+242-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:247:13-64
+243
+244        <!-- 全局搜索 -->
+245        <activity
+245-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:250:9-255:62
+246            android:name="com.netease.nim.demo.main.activity.GlobalSearchActivity"
+246-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:251:13-63
+247            android:configChanges="keyboardHidden|orientation"
+247-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:252:13-63
+248            android:screenOrientation="behind"
+248-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:253:13-47
+249            android:theme="@style/global_search_bg"
+249-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:254:13-52
+250            android:windowSoftInputMode="stateUnspecified" />
+250-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:255:13-59
+251        <activity
+251-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:257:9-261:59
+252            android:name="com.netease.nim.demo.main.activity.GlobalSearchDetailActivity"
+252-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:258:13-69
+253            android:configChanges="keyboardHidden|orientation"
+253-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:259:13-63
+254            android:screenOrientation="portrait"
+254-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:260:13-49
+255            android:theme="@style/AppTheme.NoActionBar" />
+255-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:261:13-56
+256        <activity
+256-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:263:9-267:59
+257            android:name="com.netease.nim.demo.main.activity.GlobalSearchDetailActivity2"
+257-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:264:13-70
+258            android:configChanges="keyboardHidden|orientation"
+258-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:265:13-63
+259            android:screenOrientation="portrait"
+259-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:266:13-49
+260            android:theme="@style/AppTheme.NoActionBar" />
+260-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:267:13-56
+261
+262        <!-- 查看合并转发消息 -->
+263        <!--
+264            <activity
+265            android:name="com.netease.nim.demo.com.netease.nim.demo.session.activity.WatchMultiRetweetActivity"
+266            android:configChanges="keyboardHidden"
+267            android:launchMode="standard"
+268            android:theme="@style/AppTheme.NoActionBar" />
+269        -->
+270
+271
+272        <!-- 下载文件 -->
+273        <!--
+274            <activity
+275            android:name="com.netease.nim.demo.com.netease.nim.demo.session.activity.FileDownloadActivity"
+276            android:configChanges="keyboardHidden"
+277            android:theme="@style/AppTheme.NoActionBar" />
+278        -->
+279
+280
+281        <!-- map -->
+282        <activity
+282-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:283:9-288:59
+283            android:name="com.netease.nim.demo.location.activity.LocationAmapActivity"
+283-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:284:13-87
+284            android:configChanges="keyboardHidden|orientation"
+284-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:285:13-63
+285            android:label="@string/location_map"
+285-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:286:13-49
+286            android:screenOrientation="portrait"
+286-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:287:13-49
+287            android:theme="@style/AppTheme.NoActionBar" />
+287-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:288:13-56
+288        <activity
+288-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:289:9-294:59
+289            android:name="com.netease.nim.demo.location.activity.NavigationAmapActivity"
+289-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:290:13-89
+290            android:configChanges="keyboardHidden|orientation"
+290-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:291:13-63
+291            android:label="@string/location_navigate"
+291-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:292:13-54
+292            android:screenOrientation="portrait"
+292-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:293:13-49
+293            android:theme="@style/AppTheme.NoActionBar" />
+293-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:294:13-56
+294
+295        <!-- 消息历史搜索 -->
+296        <activity
+296-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:297:9-302:72
+297            android:name="com.netease.nim.demo.session.search.SearchMessageActivity"
+297-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:298:13-65
+298            android:configChanges="keyboardHidden|orientation"
+298-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:299:13-63
+299            android:screenOrientation="behind"
+299-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:300:13-47
+300            android:theme="@style/global_search_bg"
+300-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:301:13-52
+301            android:windowSoftInputMode="adjustPan|stateUnspecified" />
+301-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:302:13-69
+302        <activity
+302-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:304:9-309:70
+303            android:name="com.netease.nim.demo.session.search.DisplayMessageActivity"
+303-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:305:13-66
+304            android:configChanges="keyboardHidden|orientation"
+304-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:306:13-63
+305            android:screenOrientation="portrait"
+305-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:307:13-49
+306            android:theme="@style/AppTheme.NoActionBar"
+306-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:308:13-56
+307            android:windowSoftInputMode="stateHidden|adjustResize" />
+307-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:309:13-67
+308
+309        <!-- 聊天室 -->
+310        <activity
+310-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:312:9-316:70
+311            android:name="com.netease.nim.demo.com.live.yinyu.mvvm.view.im.ChatRoomActivity"
+311-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:313:13-93
+312            android:screenOrientation="portrait"
+312-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:314:13-49
+313            android:theme="@style/AppTheme.NoActionBar"
+313-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:315:13-56
+314            android:windowSoftInputMode="stateHidden|adjustResize" />
+314-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:316:13-67
+315        <activity
+315-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:318:9-322:70
+316            android:name="com.netease.nim.demo.com.live.yinyu.mvvm.view.im.ChatRoomIndependentActivity"
+316-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:319:13-104
+317            android:screenOrientation="portrait"
+317-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:320:13-49
+318            android:theme="@style/AppTheme.NoActionBar"
+318-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:321:13-56
+319            android:windowSoftInputMode="stateHidden|adjustResize" />
+319-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:322:13-67
+320        <activity
+320-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:324:9-329:75
+321            android:name="com.netease.nim.demo.jsbridge.JsBridgeActivity"
+321-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:325:13-74
+322            android:label="@string/js_bridge"
+322-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:326:13-46
+323            android:screenOrientation="portrait"
+323-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:327:13-49
+324            android:theme="@style/AppTheme.NoActionBar"
+324-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:328:13-56
+325            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+325-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:329:13-72
+326
+327        <!-- 机器人 -->
+328        <activity
+328-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:332:9-335:59
+329            android:name="com.netease.nim.demo.main.activity.RobotListActivity"
+329-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:333:13-60
+330            android:screenOrientation="portrait"
+330-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:334:13-49
+331            android:theme="@style/AppTheme.NoActionBar" />
+331-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:335:13-56
+332
+333        <!-- 已读回执 -->
+334        <activity
+334-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:338:9-341:59
+335            android:name="com.netease.nim.demo.session.activity.SendAckMsgActivity"
+335-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:339:13-64
+336            android:screenOrientation="portrait"
+336-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:340:13-49
+337            android:theme="@style/AppTheme.NoActionBar" />
+337-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:341:13-56
+338
+339        <!-- 已读回执详情 -->
+340        <activity
+340-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:344:9-347:59
+341            android:name="com.netease.nim.demo.session.activity.AckMsgInfoActivity"
+341-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:345:13-64
+342            android:screenOrientation="portrait"
+342-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:346:13-49
+343            android:theme="@style/AppTheme.NoActionBar" />
+343-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:347:13-56
+344        <activity
+344-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:349:9-352:59
+345            android:name="com.netease.nim.demo.contact.activity.RobotProfileActivity"
+345-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:350:13-66
+346            android:screenOrientation="portrait"
+346-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:351:13-49
+347            android:theme="@style/AppTheme.NoActionBar" />
+347-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:352:13-56
+348        <activity
+348-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:354:9-360:75
+349            android:name="com.netease.nim.demo.main.activity.PrivatizationConfigActivity"
+349-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:355:13-70
+350            android:configChanges="orientation"
+350-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:356:13-48
+351            android:label="@string/privatization_config"
+351-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:357:13-57
+352            android:screenOrientation="portrait"
+352-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:358:13-49
+353            android:theme="@style/AppTheme.NoActionBar"
+353-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:359:13-56
+354            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+354-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:360:13-72
+355        <activity
+355-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:362:9-368:75
+356            android:name="com.netease.nim.demo.main.activity.PublicConfigActivity"
+356-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:363:13-63
+357            android:configChanges="orientation"
+357-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:364:13-48
+358            android:label="@string/privatization_config"
+358-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:365:13-57
+359            android:screenOrientation="portrait"
+359-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:366:13-49
+360            android:theme="@style/AppTheme.NoActionBar"
+360-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:367:13-56
+361            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+361-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:368:13-72
+362        <activity
+362-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:370:9-376:75
+363            android:name="com.netease.nim.demo.main.activity.MsgMigrationActivity"
+363-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:371:13-63
+364            android:configChanges="orientation"
+364-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:372:13-48
+365            android:label="@string/local_db_migration"
+365-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:373:13-55
+366            android:screenOrientation="portrait"
+366-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:374:13-49
+367            android:theme="@style/AppTheme.NoActionBar"
+367-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:375:13-56
+368            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+368-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:376:13-72
+369
+370        <!-- 声明云信后台服务 -->
+371        <service
+371-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:380:9-382:39
+372            android:name="com.netease.nimlib.service.NimService"
+372-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:381:13-65
+373            android:process=":core" />
+373-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:382:13-36
+374
+375        <!-- 运行后台辅助服务 -->
+376        <service
+376-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:385:9-387:39
+377            android:name="com.netease.nimlib.service.NimService$Aux"
+377-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:386:13-69
+378            android:process=":core" />
+378-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:387:13-36
+379
+380        <!-- 声明云信后台辅助服务 -->
+381        <service
+381-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:390:9-394:39
+382            android:name="com.netease.nimlib.job.NIMJobService"
+382-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:391:13-64
+383            android:exported="true"
+383-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:392:13-36
+384            android:permission="android.permission.BIND_JOB_SERVICE"
+384-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:393:13-69
+385            android:process=":core" />
+385-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:394:13-36
+386
+387        <!-- 云信SDK的监视系统启动和网络变化的广播接收器，用户开机自启动以及网络变化时候重新登录 -->
+388        <receiver
+388-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:397:9-405:20
+389            android:name="com.netease.nimlib.service.NimReceiver"
+389-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:398:13-66
+390            android:exported="false"
+390-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:399:13-37
+391            android:process=":core" >
+391-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:400:13-36
+392            <intent-filter>
+392-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:401:13-404:29
+393                <action android:name="android.intent.action.BOOT_COMPLETED" />
+393-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:402:17-79
+393-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:402:25-76
+394                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+394-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:403:17-79
+394-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:403:25-76
+395            </intent-filter>
+396        </receiver>
+397
+398        <!-- 云信进程间通信receiver -->
+399        <receiver android:name="com.netease.nimlib.service.ResponseReceiver" />
+399-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:408:9-80
+399-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:408:19-77
+400
+401        <!-- 云信进程间通信service -->
+402        <service android:name="com.netease.nimlib.service.ResponseService" />
+402-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:411:9-78
+402-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:411:18-75
+403
+404        <!-- 云信进程间通信provider -->
+405        <!-- android:authorities="{包名}.ipc.provider", 请将com.netease.nim.demo替换为自己的包名 -->
+406        <!--
+407            <provider
+408            android:name="com.netease.nimlib.ipc.NIMContentProvider"
+409            android:authorities="com.netease.nim.demo.ipc.provider"
+410            android:exported="false"
+411            android:process=":core" />
+412        -->
+413
+414
+415        <!-- 云信内部使用的进程间通信provider -->
+416        <!--
+417            <provider
+418            android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
+419            android:authorities="com.netease.nim.demo.ipc.provider.preference"
+420            android:exported="false" />
+421        -->
+422
+423
+424        <!-- 小米推送配置 -->
+425        <service
+425-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:428:9-433:42
+426            android:name="com.xiaomi.push.service.XMJobService"
+426-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:429:13-64
+427            android:enabled="true"
+427-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:430:13-35
+428            android:exported="false"
+428-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:431:13-37
+429            android:permission="android.permission.BIND_JOB_SERVICE"
+429-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:432:13-69
+430            android:process=":mixpush" />
+430-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:433:13-39
+431        <service
+431-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:435:9-438:42
+432            android:name="com.xiaomi.push.service.XMPushService"
+432-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:436:13-65
+433            android:enabled="true"
+433-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:437:13-35
+434            android:process=":mixpush" />
+434-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:438:13-39
+435
+436        <receiver
+436-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:440:9-447:20
+437            android:name="com.xiaomi.push.service.receivers.PingReceiver"
+437-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:441:13-74
+438            android:exported="false"
+438-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:442:13-37
+439            android:process=":mixpush" >
+439-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:443:13-39
+440            <intent-filter>
+440-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:444:13-446:29
+441                <action android:name="com.xiaomi.push.PING_TIMER" />
+441-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:445:17-69
+441-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:445:25-66
+442            </intent-filter>
+443        </receiver>
+444        <receiver
+444-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:449:9-456:20
+445            android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
+445-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:450:13-83
+446            android:exported="true" >
+446-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:451:13-36
+447            <intent-filter>
+447-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:452:13-455:29
+448                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+448-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:403:17-79
+448-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:403:25-76
+449
+450                <category android:name="android.intent.category.DEFAULT" />
+450-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:454:17-76
+450-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:454:27-73
+451            </intent-filter>
+452        </receiver>
+453
+454        <service
+454-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:458:9-461:39
+455            android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
+455-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:459:13-68
+456            android:enabled="true"
+456-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:460:13-35
+457            android:exported="true" />
+457-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:461:13-36
+458        <service
+458-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:463:9-465:38
+459            android:name="com.xiaomi.mipush.sdk.MessageHandleService"
+459-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:464:13-70
+460            android:enabled="true" />
+460-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:465:13-35
+461
+462        <receiver
+462-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:467:9-475:20
+463            android:name="com.netease.nimlib.mixpush.mi.MiPushReceiver"
+463-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:468:13-72
+464            android:exported="true" >
+464-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:469:13-36
+465            <intent-filter android:priority="0x7fffffff" >
+465-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:470:13-474:29
+465-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:470:28-57
+466                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+466-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:471:17-76
+466-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:471:25-73
+467                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+467-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:472:17-76
+467-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:472:25-73
+468                <action android:name="com.xiaomi.mipush.ERROR" />
+468-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:473:17-66
+468-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:473:25-63
+469            </intent-filter>
+470        </receiver>
+471
+472        <!-- 华为推送配置 -->
+473        <service
+473-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:478:9-485:19
+474            android:name="com.netease.nimlib.mixpush.hw.HWPushService"
+474-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:479:13-71
+475            android:exported="false" >
+475-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:480:13-37
+476            <intent-filter>
+476-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:481:13-483:29
+477                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+477-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:482:17-81
+477-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:482:25-78
+478            </intent-filter>
+479        </service>
+480
+481        <activity
+481-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:487:9-505:20
+482            android:name="com.netease.nim.demo.main.activity.MixPushActivity"
+482-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:488:13-58
+483            android:theme="@android:style/Theme.NoDisplay" >
+483-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:489:13-59
+484            <intent-filter>
+484-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:490:13-500:29
+485                <action android:name="android.intent.action.VIEW" />
+485-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:491:17-69
+485-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:491:25-66
+486
+487                <category android:name="android.intent.category.DEFAULT" />
+487-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:454:17-76
+487-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:454:27-73
+488                <category android:name="android.intent.category.BROWSABLE" />
+488-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:494:17-78
+488-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:494:27-75
+489
+490                <data
+490-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:496:17-499:51
+491                    android:host="com.huawei.codelabpush"
+491-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:497:21-58
+492                    android:path="/deeplink"
+492-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:498:21-45
+493                    android:scheme="pushscheme" />
+493-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:499:21-48
+494            </intent-filter>
+495            <intent-filter>
+495-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:501:13-504:29
+496                <action android:name="com.oppo.codelabpush.intent.action.test" />
+496-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:502:17-82
+496-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:502:25-79
+497
+498                <category android:name="android.intent.category.DEFAULT" />
+498-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:454:17-76
+498-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:454:27-73
+499            </intent-filter>
+500        </activity>
+501
+502        <!-- 高德地图 -->
+503        <service android:name="com.amap.api.location.APSService" />
+503-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:508:9-68
+503-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:508:18-65
+504
+505        <!-- fcm -->
+506        <service
+506-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:511:9-517:19
+507            android:name="com.netease.nimlib.mixpush.fcm.FCMTokenService"
+507-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:512:13-74
+508            android:exported="false" >
+508-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:513:13-37
+509            <intent-filter>
+509-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:514:13-516:29
+510                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+510-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:515:17-78
+510-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:515:25-75
+511            </intent-filter>
+512        </service>
+513
+514        <!-- 设置收到 fcm 通知展示的图标和颜色 -->
+515        <meta-data
+515-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:520:9-522:63
+516            android:name="com.google.firebase.messaging.default_notification_icon"
+516-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:521:13-83
+517            android:resource="@drawable/ic_stat_notify_msg" />
+517-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:522:13-60
+518        <meta-data
+518-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:523:9-525:59
+519            android:name="com.google.firebase.messaging.default_notification_color"
+519-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:524:13-84
+520            android:resource="@color/color_blue_3a9efb" />
+520-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:525:13-56
+521
+522        <!-- 魅族推送配置项 -->
+523        <receiver android:name="com.netease.nimlib.mixpush.mz.MZPushReceiver" >
+523-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:528:9-542:20
+523-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:528:19-78
+524            <intent-filter android:priority="0x7fffffff" >
+524-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:529:13-541:29
+524-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:529:28-57
+525
+526                <!-- 接收 push 消息 -->
+527                <action android:name="com.meizu.flyme.push.intent.MESSAGE" />
+527-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:531:17-78
+527-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:531:25-75
+528                <!-- 接收 register 消息 -->
+529                <action android:name="com.meizu.flyme.push.intent.REGISTER.FEEDBACK" />
+529-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:533:17-88
+529-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:533:25-85
+530                <!-- 接收 unregister 消息 -->
+531                <action android:name="com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK" />
+531-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:535:17-90
+531-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:535:25-87
+532                <!-- 兼容低版本 Flyme3 推送服务配置 -->
+533                <action android:name="com.meizu.c2dm.intent.REGISTRATION" />
+533-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:537:17-77
+533-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:537:25-74
+534                <action android:name="com.meizu.c2dm.intent.RECEIVE" />
+534-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:538:17-72
+534-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:538:25-69
+535
+536                <category android:name="com.netease.nim.demo" />
+536-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:540:17-65
+536-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:540:27-62
+537            </intent-filter>
+538        </receiver>
+539
+540        <!-- Vivo推送配置项 -->
+541        <service
+541-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:545:9-547:39
+542            android:name="com.vivo.push.sdk.service.CommandClientService"
+542-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:546:13-74
+543            android:exported="true" />
+543-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:547:13-36
+544
+545        <activity
+545-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:548:9-552:75
+546            android:name="com.vivo.push.sdk.LinkProxyClientActivity"
+546-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:549:13-69
+547            android:exported="false"
+547-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:550:13-37
+548            android:screenOrientation="portrait"
+548-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:551:13-49
+549            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+549-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:552:13-72
+550
+551        <meta-data
+551-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:554:9-556:68
+552            android:name="com.vivo.push.api_key"
+552-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:555:13-49
+553            android:value="2e8c38a8-604a-4c96-9bc0-e102f72728e9" />
+553-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:556:13-65
+554        <meta-data
+554-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:557:9-559:37
+555            android:name="com.vivo.push.app_id"
+555-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:558:13-48
+556            android:value="17757" />
+556-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:559:13-34
+557
+558        <receiver android:name="com.netease.nimlib.mixpush.vivo.VivoPushReceiver" >
+558-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:561:9-566:20
+558-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:561:19-82
+559            <intent-filter>
+559-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:562:13-565:29
+560
+561                <!-- 接收 push 消息 -->
+562                <action android:name="com.vivo.pushclient.action.RECEIVE" />
+562-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:564:17-77
+562-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:564:25-74
+563            </intent-filter>
+564        </receiver>
+565
+566        <!-- Oppo推送配置项 需要配置以下两项 -->
+567        <service
+567-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:569:9-576:19
+568            android:name="com.netease.nimlib.mixpush.oppo.OppoPushService"
+568-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:570:13-75
+569            android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE" >
+569-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:572:13-77
+570            <intent-filter>
+570-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:573:13-575:29
+571                <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE" />
+571-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:574:17-85
+571-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:574:25-82
+572            </intent-filter>
+573        </service> <!-- 兼容Q以下版本 -->
+574
+575        <service
+575-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:578:9-588:19
+576            android:name="com.netease.nimlib.mixpush.oppo.OppoAppPushService"
+576-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:579:13-78
+577            android:permission="com.heytap.mcs.permission.SEND_PUSH_MESSAGE" >
+577-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:581:13-77
+578            <intent-filter>
+578-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:583:13-587:29
+579                <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE" />
+579-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:584:17-84
+579-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:584:25-81
+580                <action android:name="com.heytap.msp.push.RECEIVE_MCS_MESSAGE" />
+580-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:586:17-82
+580-->D:\GitHub\NimApp\nim\src\main\AndroidManifest.xml:586:25-79
+581            </intent-filter>
+582        </service> <!-- 兼容Q版本 -->
+583
+584    </application>
+585
+586</manifest>

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "applicationId": "com.netease.nim.demo",
+  "variantType": "LIBRARY",
+  "elements": [
+    {
+      "outputType": {
+        "type": "MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 140,
+        "versionName": "8.0.0",
+        "outputFile": "nim-debug.aar",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "../../library_manifest/debug/AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.netease.nim.demo",
+        "split": ""
+      }
+    }
+  ]
+}
