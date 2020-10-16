@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\GitHub\\NimApp\\demo\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v29\\values-night-v29.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\zxn\\.gradle\\caches\\transforms-2\\files-2.1\\d66f353c159187f6e28796695731b04a\\jetified-ui-4.0.4.300\\res\\values-night-v29\\values-night-v29.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,107,160",
+                        "endColumns": "51,52,51",
+                        "endOffsets": "102,155,207"
+                    }
+                }
+            ]
+        }
+    ]
+}
