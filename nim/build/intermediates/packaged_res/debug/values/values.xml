@@ -415,7 +415,7 @@
         <item name="android:textColor">@color/color_black_333333</item>
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        
+        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/color_gray_d9d9d9</item>
         <item name="colorAccent">@color/color_green_89fbff</item>
@@ -435,7 +435,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
     <style name="LoginTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        
+        <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/color_blue_3a9efb</item>
@@ -514,17 +514,17 @@
     </declare-styleable>
     <declare-styleable name="TwoTextView">
 
-        
+        <!-- 左边文本内容 -->
         <attr format="string|reference" name="ttLeftText"/>
-        
+        <!-- 右边文本内容 -->
         <attr format="string|reference" name="ttRightText"/>
-        
+        <!-- 左边文本字体大小 -->
         <attr format="dimension" name="ttLeftTextSize"/>
-        
+        <!-- 右边文本字体大小 -->
         <attr format="dimension" name="ttRightTextSize"/>
-        
+        <!-- 左边文本颜色 -->
         <attr format="reference" name="ttLeftTextColor"/>
-        
+        <!-- 右边文本颜色 -->
         <attr format="reference" name="ttRightTextColor"/>
     </declare-styleable>
 </resources>

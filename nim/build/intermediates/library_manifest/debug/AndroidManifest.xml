@@ -98,12 +98,9 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="09fd4efd3e28e9bf1f449ecec7d34bfe" />
-
-        <!--
-            <meta-data
+        <meta-data
             android:name="com.zxn.nim.appKey"
             android:value="40b5f5ff9dc3e53d5568bfd5531ba085" />
-        -->
 
         <uses-library
             android:name="com.google.android.maps"
@@ -118,242 +115,6 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
-
-        <!-- 多端登录管理 -->
-        <activity
-            android:name="com.zxn.nim.main.activity.MultiportActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-
-        <!-- 关于 -->
-        <activity
-            android:name="com.zxn.nim.main.activity.AboutActivity"
-            android:configChanges="orientation"
-            android:label="@string/about"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.main.activity.SettingsActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.zxn.nim.main.activity.RecentSessionActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.zxn.nim.main.activity.NoDisturbActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.contact.activity.UserProfileActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.contact.activity.UserProfileSettingActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.contact.activity.UserProfileEditItemActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.contact.activity.BlackListActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-
-        <!-- 文件管理器 -->
-        <activity
-            android:name="com.zxn.nim.file.browser.FileBrowserActivity"
-            android:configChanges="orientation"
-            android:label="@string/file_browser"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.main.activity.CustomNotificationActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name="com.zxn.nim.main.activity.AvchatListActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.zxn.nim.session.activity.MessageHistoryActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name="com.zxn.nim.session.activity.MessageInfoActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name="com.zxn.nim.team.activity.AdvancedTeamSearchActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name="com.zxn.nim.team.activity.AdvancedTeamJoinActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name="com.zxn.nim.main.activity.TeamListActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <!-- 全局搜索 -->
-        <activity
-            android:name="com.zxn.nim.main.activity.GlobalSearchActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="behind"
-            android:theme="@style/global_search_bg"
-            android:windowSoftInputMode="stateUnspecified" />
-        <activity
-            android:name="com.zxn.nim.main.activity.GlobalSearchDetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.zxn.nim.main.activity.GlobalSearchDetailActivity2"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 查看合并转发消息 -->
-        <!--
-            <activity
-            android:name="com.zxn.nim.com.zxn.nim.session.activity.WatchMultiRetweetActivity"
-            android:configChanges="keyboardHidden"
-            android:launchMode="standard"
-            android:theme="@style/AppTheme.NoActionBar" />
-        -->
-
-
-        <!-- 下载文件 -->
-        <!--
-            <activity
-            android:name="com.zxn.nim.com.zxn.nim.session.activity.FileDownloadActivity"
-            android:configChanges="keyboardHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
-        -->
-
-
-        <!-- map -->
-        <activity
-            android:name="com.zxn.nim.location.activity.LocationAmapActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:label="@string/location_map"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.zxn.nim.location.activity.NavigationAmapActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:label="@string/location_navigate"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 消息历史搜索 -->
-        <activity
-            android:name="com.zxn.nim.session.search.SearchMessageActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="behind"
-            android:theme="@style/global_search_bg"
-            android:windowSoftInputMode="adjustPan|stateUnspecified" />
-        <activity
-            android:name="com.zxn.nim.session.search.DisplayMessageActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-
-        <!-- 聊天室 -->
-        <activity
-            android:name="com.zxn.nim.chatroom.ChatRoomActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name="com.zxn.nim.chatroom.ChatRoomIndependentActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name="com.zxn.nim.jsbridge.JsBridgeActivity"
-            android:label="@string/js_bridge"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-
-        <!-- 机器人 -->
-        <activity
-            android:name="com.zxn.nim.main.activity.RobotListActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 已读回执 -->
-        <activity
-            android:name="com.zxn.nim.session.activity.SendAckMsgActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 已读回执详情 -->
-        <activity
-            android:name="com.zxn.nim.session.activity.AckMsgInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.zxn.nim.contact.activity.RobotProfileActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.zxn.nim.main.activity.PrivatizationConfigActivity"
-            android:configChanges="orientation"
-            android:label="@string/privatization_config"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.main.activity.PublicConfigActivity"
-            android:configChanges="orientation"
-            android:label="@string/privatization_config"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        <activity
-            android:name="com.zxn.nim.main.activity.MsgMigrationActivity"
-            android:configChanges="orientation"
-            android:label="@string/local_db_migration"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <!-- 声明云信后台服务 -->
         <service
@@ -392,20 +153,20 @@
         <!-- 云信进程间通信provider -->
         <!-- android:authorities="{包名}.ipc.provider", 请将com.zxn.nim替换为自己的包名 -->
         <!--
-            <provider
-            android:name="com.netease.nimlib.ipc.NIMContentProvider"
-            android:authorities="com.zxn.nim.ipc.provider"
-            android:exported="false"
-            android:process=":core" />
+                    <provider
+                    android:name="com.netease.nimlib.ipc.NIMContentProvider"
+                    android:authorities="com.zxn.nim.ipc.provider"
+                    android:exported="false"
+                    android:process=":core" />
         -->
 
 
         <!-- 云信内部使用的进程间通信provider -->
         <!--
-            <provider
-            android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
-            android:authorities="com.zxn.nim.ipc.provider.preference"
-            android:exported="false" />
+                    <provider
+                    android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
+                    android:authorities="com.zxn.nim.ipc.provider.preference"
+                    android:exported="false" />
         -->
 
 
@@ -465,30 +226,6 @@
                 <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <activity
-            android:name="com.zxn.nim.main.activity.MixPushActivity"
-            android:theme="@android:style/Theme.NoDisplay" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="com.huawei.codelabpush"
-                    android:path="/deeplink"
-                    android:scheme="pushscheme" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.oppo.codelabpush.intent.action.test" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <!-- 高德地图 -->
-        <service android:name="com.amap.api.location.APSService" />
 
         <!-- fcm -->
         <service

@@ -29,21 +29,20 @@ import com.netease.nimlib.sdk.uinfo.model.UserInfo
 import com.netease.nimlib.sdk.util.NIMUtil
 import com.qiyukf.unicorn.ysfkit.unicorn.api.*
 import com.qiyukf.unicorn.ysfkit.unicorn.api.privatization.UnicornAddress
-import com.zxn.nim.*
-import com.zxn.nim.chatroom.ChatRoomSessionHelper
-import com.zxn.nim.common.util.LogHelper
-import com.zxn.nim.common.util.crash.AppCrashHandler
-import com.zxn.nim.config.preference.Preferences
-import com.zxn.nim.config.preference.UserPreferences
-import com.zxn.nim.contact.ContactHelper
-import com.zxn.nim.event.DemoOnlineStateContentProvider
-import com.zxn.nim.mixpush.DemoMixPushMessageHandler
-import com.zxn.nim.mixpush.DemoPushContentProvider
-import com.zxn.nim.rts.RTSHelper
-import com.zxn.nim.session.NimDemoLocationProvider
-import com.zxn.nim.session.SessionHelper
-import com.zxn.nim.ysf.imageloader.GlideImageLoader
-import com.zxn.nim.ysf.util.YsfHelper
+import com.nim.app.chatroom.ChatRoomSessionHelper
+import com.nim.app.common.util.LogHelper
+import com.nim.app.common.util.crash.AppCrashHandler
+import com.nim.app.config.preference.Preferences
+import com.nim.app.config.preference.UserPreferences
+import com.nim.app.contact.ContactHelper
+import com.nim.app.event.DemoOnlineStateContentProvider
+import com.nim.app.mixpush.DemoMixPushMessageHandler
+import com.nim.app.mixpush.DemoPushContentProvider
+import com.nim.app.rts.RTSHelper
+import com.nim.app.session.NimDemoLocationProvider
+import com.nim.app.session.SessionHelper
+import com.nim.app.ysf.imageloader.GlideImageLoader
+import com.nim.app.ysf.util.YsfHelper
 import com.zxn.utils.UIUtils
 
 

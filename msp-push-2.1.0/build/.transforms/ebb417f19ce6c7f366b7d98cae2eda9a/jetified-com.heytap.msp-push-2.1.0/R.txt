@@ -1,1 +1,0 @@
-int string system_default_channel 0x7f150001

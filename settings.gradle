@@ -1,9 +1,11 @@
 include ':faceunity'
 include ':avchatkit'
 include ':rtskit'
-include ':msp-push-2.1.0'
 include ':nim'
 include ':uikit'
-include ':nim_ysfkit_8.0.0'
 include ':app'
 rootProject.name = "NimApp"
+
+
+//include ':msp-push-2.1.0'
+//include ':nim_ysfkit_8.0.0'

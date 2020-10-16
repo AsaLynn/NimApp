@@ -1,2 +1,0 @@
-com.heytap.mcssdk
-string system_default_channel
