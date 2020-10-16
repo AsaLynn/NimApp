@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
 
-    // 基础功能 (必需)
+    // 基础功能 (必需),nimsdk
     api 'com.netease.nimlib:basesdk:8.0.0'
 
     // 聊天室需要

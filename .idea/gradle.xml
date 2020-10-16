@@ -11,11 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/avchatkit" />
-            <option value="$PROJECT_DIR$/faceunity" />
-            <option value="$PROJECT_DIR$/nim" />
-            <option value="$PROJECT_DIR$/rtskit" />
+            <option value="$PROJECT_DIR$/netease-nimsdk" />
             <option value="$PROJECT_DIR$/uikit" />
           </set>
         </option>
