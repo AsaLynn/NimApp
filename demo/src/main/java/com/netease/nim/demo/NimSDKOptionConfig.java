@@ -5,8 +5,6 @@ import android.graphics.Color;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.netease.nim.demo.R;
-
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.main.activity.WelcomeActivity;
 import com.netease.nim.uikit.api.wrapper.MessageRevokeTip;

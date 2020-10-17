@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.netease.nim.demo.R;
-
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.event.OnlineStateEventManager;
 import com.netease.nim.uikit.common.ToastHelper;

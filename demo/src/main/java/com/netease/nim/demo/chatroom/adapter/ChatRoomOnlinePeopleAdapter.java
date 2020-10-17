@@ -30,7 +30,7 @@ public class ChatRoomOnlinePeopleAdapter extends BaseQuickAdapter<ChatRoomMember
                            boolean isScrolling) {
         // bg selector
         holder.getConvertView().setBackgroundResource(
-                com.netease.nim.uikit.R.drawable.nim_touch_bg);
+                R.drawable.nim_touch_bg);
         // identity image
         ImageView identityImage = holder.getView(R.id.identity_image);
         if (member.getMemberType() == MemberType.CREATOR) {

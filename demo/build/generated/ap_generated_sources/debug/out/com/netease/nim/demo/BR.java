@@ -1,5 +1,0 @@
-package com.netease.nim.demo;
-
-public class BR {
-  public static final int _all = 0;
-}

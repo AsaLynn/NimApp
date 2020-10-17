@@ -44,7 +44,7 @@ public class MsgViewHolderSticker extends MsgViewHolderBase {
         Glide.with(context)
                 .load(StickerManager.getInstance().getStickerUri(attachment.getCatalog(), attachment.getChartlet()))
                 .apply(new RequestOptions()
-                        .error(com.netease.nim.uikit.R.drawable.nim_default_img_failed)
+                        .error(R.drawable.nim_default_img_failed)
                         .diskCacheStrategy(DiskCacheStrategy.NONE))
                 .into(baseView);
     }

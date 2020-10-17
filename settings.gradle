@@ -4,7 +4,6 @@ include ':jrmfRpWalletlib'
 include ':avchatkit'
 include ':rtskit'
 include ':netease-nimsdk'
-include ':uikit'
 rootProject.name = "NimApp"
 
 

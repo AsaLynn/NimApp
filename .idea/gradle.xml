@@ -17,7 +17,6 @@
             <option value="$PROJECT_DIR$/jrmfRpWalletlib" />
             <option value="$PROJECT_DIR$/netease-nimsdk" />
             <option value="$PROJECT_DIR$/rtskit" />
-            <option value="$PROJECT_DIR$/uikit" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

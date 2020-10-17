@@ -8,7 +8,6 @@ import com.netease.nim.demo.chatroom.helper.ChatRoomHelper;
 import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseQuickAdapter;
 import com.netease.nim.uikit.common.ui.recyclerview.holder.BaseViewHolder;
 import com.netease.nimlib.sdk.chatroom.model.ChatRoomInfo;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 /**

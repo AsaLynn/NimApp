@@ -40,7 +40,6 @@ public class AboutActivity extends UI {
 
     private void initViewData() {
         version.setText("Version: " + BuildConfig.VERSION_NAME);
-        versionGit.setText("Git Version: " + BuildConfig.GIT_REVISION);
         versionDate.setText("Build Date:" + BuildConfig.BUILD_DATE);
     }
 }

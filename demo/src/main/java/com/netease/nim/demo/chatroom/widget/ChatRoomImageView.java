@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.netease.nim.uikit.R;
+import com.zxn.netease.nimsdk.R;
 import com.netease.nim.uikit.common.ui.imageview.CircleImageView;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nimlib.sdk.NIMClient;

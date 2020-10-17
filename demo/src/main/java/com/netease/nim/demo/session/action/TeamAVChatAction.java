@@ -172,8 +172,8 @@ public class TeamAVChatAction extends AVChatAction {
         option.teamId = teamId;
         option.maxSelectNum = MAX_INVITE_NUM;
         option.maxSelectNumVisible = true;
-        option.title = NimUIKit.getContext().getString(com.netease.nim.uikit.R.string.invite_member);
-        option.maxSelectedTip = NimUIKit.getContext().getString(com.netease.nim.uikit.R.string.reach_capacity);
+        option.title = NimUIKit.getContext().getString(R.string.invite_member);
+        option.maxSelectedTip = NimUIKit.getContext().getString(R.string.reach_capacity);
         option.itemFilter = new ContactItemFilter() {
             @Override
             public boolean filter(AbsContactItem item) {

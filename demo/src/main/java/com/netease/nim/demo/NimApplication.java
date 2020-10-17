@@ -10,12 +10,11 @@ import android.webkit.WebView;
 import androidx.multidex.MultiDex;
 
 import com.heytap.msp.push.HeytapPushManager;
-import com.huawei.hms.support.common.ActivityMgr;
 import com.netease.nim.avchatkit.AVChatKit;
+import com.netease.nim.avchatkit.ActivityMgr;
 import com.netease.nim.avchatkit.config.AVChatOptions;
 import com.netease.nim.avchatkit.model.ITeamDataProvider;
 import com.netease.nim.avchatkit.model.IUserInfoProvider;
-import com.netease.nim.demo.R;
 
 import com.netease.nim.demo.chatroom.ChatRoomSessionHelper;
 import com.netease.nim.demo.common.util.LogHelper;
@@ -56,7 +55,8 @@ import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.UnicornImageLoader;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.YSFOptions;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.privatization.UnicornAddress;
-import com.squareup.leakcanary.LeakCanary;
+
+import leakcanary.LeakCanary;
 
 public class NimApplication extends Application {
 
@@ -75,10 +75,6 @@ public class NimApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // 内存泄漏检测
-        if (!LeakCanary.isInAnalyzerProcess(this)) {
-//            LeakCanary.install(this);
-        }
         DemoCache.setContext(this);
 
         // 4.6.0 开始，第三方推送配置入口改为 SDKOption#mixPushConfig，旧版配置方式依旧支持。

@@ -10,7 +10,7 @@ android {
         versionName rootProject.ext.versionName
 
 //        renderscriptTargetApi rootProject.ext.compileSdkVersion
-//        renderscriptSupportModeEnabled true
+        renderscriptSupportModeEnabled true
     }
 
     sourceSets {

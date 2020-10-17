@@ -82,7 +82,7 @@ public class MessageInfoActivity extends UI {
 
         ((TextView) findViewById(R.id.create_team_layout).findViewById(R.id.textViewName)).setText(R.string.create_normal_team);
         HeadImageView addImage = (HeadImageView) findViewById(R.id.create_team_layout).findViewById(R.id.imageViewHeader);
-        addImage.setBackgroundResource(com.netease.nim.uikit.R.drawable.nim_team_member_add_selector);
+        addImage.setBackgroundResource(R.drawable.nim_team_member_add_selector);
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
