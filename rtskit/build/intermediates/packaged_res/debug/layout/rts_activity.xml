@@ -159,7 +159,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.zxn.widget.ExpandToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -167,7 +167,7 @@
             app:titleTextAppearance="@style/Toolbar.TitleText">
 
             <include layout="@layout/nim_action_bar_right_clickable_tv" />
-        </androidx.appcompat.widget.Toolbar>
+        </com.zxn.widget.ExpandToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
 </FrameLayout>

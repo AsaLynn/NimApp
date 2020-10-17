@@ -45,7 +45,7 @@ public class WatchMultiRetweetPictureActivity extends UI {
         setContentView(R.layout.activity_watch_multi_retweet_picture);
         ToolBarOptions options = new NimToolBarOptions();
         options.titleString = getString(R.string.picture);
-        options.navigateId = R.drawable.nim_actionbar_dark_back_icon;
+        options.navigateId = R.mipmap.nim_actionbar_dark_back_icon;
         setToolBar(R.id.toolbar, options);
         getExtra();
         initViews();
