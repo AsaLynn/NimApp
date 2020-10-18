@@ -109,9 +109,9 @@ public abstract class BaseMessageActivity extends UI {
         sessionId = intent.getStringExtra(Extras.EXTRA_ACCOUNT);
         customization = (SessionCustomization) intent.getSerializableExtra(Extras.EXTRA_CUSTOMIZATION);
 
-        if (customization != null) {
-            addRightCustomViewOnActionBar(this, customization.buttons);
-        }
+        //if (customization != null) {
+            //addRightCustomViewOnActionBar(this, customization.buttons);
+        //}
     }
 
     // 添加action bar的右侧按钮及响应事件

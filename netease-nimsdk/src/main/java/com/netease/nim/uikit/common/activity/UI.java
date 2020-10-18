@@ -83,14 +83,14 @@ public abstract class UI extends AppCompatActivity {
         if (!TextUtils.isEmpty(options.titleString)) {
             toolbar.setTitle(options.titleString);
         }
-        if (options.logoId != 0) {
-            toolbar.setLogo(options.logoId);
-        }
+//        if (options.logoId != 0) {
+//            toolbar.setLogo(options.logoId);
+//        }
         setSupportActionBar(toolbar);
 
         if (options.isNeedNavigate) {
             toolbar.setNavigationIcon(options.navigateId);
-            toolbar.setContentInsetStartWithNavigation(0);
+            //toolbar.setContentInsetStartWithNavigation(0);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

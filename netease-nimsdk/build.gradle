@@ -53,7 +53,7 @@ dependencies {
     api "me.leolin:ShortcutBadger:1.1.22@aar"
     api 'com.alibaba:fastjson:1.2.74'
     api 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     api 'com.zxn.widget:expand-widget:1.1.9'
 

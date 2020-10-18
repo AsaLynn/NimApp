@@ -3,6 +3,11 @@ package com.netease.nim.uikit.business.session.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+
+import androidx.appcompat.widget.Toolbar;
+
 import com.netease.nim.uikit.common.ToastHelper;
 
 import com.alibaba.fastjson.JSON;
@@ -25,6 +30,7 @@ import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.zxn.widget.ExpandToolbar;
 
 import java.util.List;
 import java.util.Set;
@@ -212,4 +218,6 @@ public class P2PMessageActivity extends BaseMessageActivity {
     protected boolean enableSensor() {
         return true;
     }
+
+
 }
