@@ -79,7 +79,9 @@
     <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE"/>
     <uses-permission android:name="com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE"/>
 
-    <application>
+    <application
+
+        >
         <!-- 声明云信后台服务 -->
         <service
             android:name="com.netease.nimlib.service.NimService"
@@ -136,78 +138,78 @@
             android:name="com.netease.nim.uikit.business.session.activity.P2PMessageActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.session.activity.TeamMessageActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 群聊 -->
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.NormalTeamInfoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamInfoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamMemberActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamAnnounceActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamMemberInfoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamNicknameActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamCreateAnnounceActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.team.activity.TeamPropertySettingActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 联系人选择器 -->
         <activity
             android:name="com.netease.nim.uikit.business.contact.selector.activity.ContactSelectActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/contact_selector"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- @ 选择器 -->
         <activity
             android:name="com.netease.nim.uikit.business.ait.selector.AitContactSelectorActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- 视频 -->
+            android:theme="@style/NimAppNoActionBar" /> <!-- 视频 -->
         <activity
             android:name="com.netease.nim.uikit.business.session.activity.CaptureVideoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/NimAppNoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.netease.nim.uikit.business.session.activity.WatchVideoActivity"

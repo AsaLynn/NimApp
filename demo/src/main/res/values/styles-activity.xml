@@ -1,19 +1,14 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="NimAppTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/color_gray_d9d9d9</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/color_green_89fbff</item>
         <item name="actionBarSize">@dimen/action_bar_height</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
@@ -50,12 +45,12 @@
     </style>
 
     <!-- 全屏主题 -->
-    <style name="FullScreenTheme" parent="AppTheme.NoActionBar">
+    <style name="FullScreenTheme" parent="NimAppNoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
 
     <!-- 欢迎界面主题 -->
-    <style name="WelcomeEntranceActionBarTheme" parent="AppTheme.NoActionBar">
+    <style name="WelcomeEntranceActionBarTheme" parent="NimAppNoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
