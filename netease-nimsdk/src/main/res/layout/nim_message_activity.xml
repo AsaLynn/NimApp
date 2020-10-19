@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/message_fragment_container"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -19,15 +19,26 @@
             android:background="@color/colorPrimary"
             android:theme="@style/AppTheme.AppBarOverlay"
             app:elevation="0dp">
+
             <com.zxn.widget.ExpandToolbar
                 android:id="@+id/toolbar"
-                app:titleTextColor="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
+        <TextView
+            android:id="@+id/tv_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            android:text="@string/text_chat_notice"
+            android:textColor="#6A6A86"
+            android:textSize="@dimen/sp_12" />
+
     </LinearLayout>
-    
+
+
     <FrameLayout
         android:id="@+id/container_snapshot"
         android:layout_width="match_parent"
