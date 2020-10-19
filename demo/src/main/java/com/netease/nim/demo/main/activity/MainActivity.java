@@ -43,6 +43,7 @@ import com.netease.nim.uikit.common.activity.UI;
 import com.netease.nim.uikit.common.ui.dialog.DialogMaker;
 import com.netease.nim.uikit.common.ui.drop.DropManager;
 import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.netease.nim.uikit.impl.cache.FriendDataCache;
 import com.netease.nim.uikit.support.permission.MPermission;
 import com.netease.nim.uikit.support.permission.annotation.OnMPermissionDenied;
 import com.netease.nim.uikit.support.permission.annotation.OnMPermissionGranted;
@@ -100,7 +101,7 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
 
     private Observer<Integer> sysMsgUnreadCountChangedObserver = (Observer<Integer>) unreadCount -> {
         SystemMessageUnreadManager.getInstance().setSysMsgUnreadCount(unreadCount);
-        ReminderManager.getInstance().updateContactUnreadNum(unreadCount);
+        ReminderManager.getInstance().updateContactUnreadNum(unreadCount);//todo:
     };
 
 
