@@ -36,10 +36,10 @@
     </FrameLayout>
 
     <FrameLayout
+        android:layout_centerVertical="true"
         android:id="@+id/audioTextSwitchLayout"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/switchLayout"
         android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
         android:layout_toLeftOf="@+id/emoji_button"
         android:layout_toRightOf="@+id/switchLayout">
@@ -48,22 +48,22 @@
         <Button
             android:id="@+id/audioRecord"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_40"
             android:background="@drawable/nim_message_input_edittext_box"
             android:text="@string/record_audio"
-            android:textColor="@color/color_black_333333"
+            android:textColor="#B0B0BE"
             android:textSize="16sp"
             android:visibility="gone" />
     </FrameLayout>
 
     <EditText
-        android:paddingLeft="@dimen/dp_size_5"
-        android:paddingRight="@dimen/dp_size_5"
+        android:paddingLeft="@dimen/dp_size_15"
+        android:paddingRight="@dimen/dp_size_15"
         android:id="@+id/editTextMessage"
         android:textCursorDrawable="@null"
         android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_40"
         android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
         android:layout_toLeftOf="@+id/emoji_button"
         android:layout_toRightOf="@+id/switchLayout"
@@ -77,7 +77,7 @@
         android:id="@+id/emoji_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/audioTextSwitchLayout"
+        android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
         android:layout_toLeftOf="@+id/sendLayout"
         android:background="@drawable/nim_message_button_bottom_emoji_selector"
@@ -88,7 +88,7 @@
         android:id="@+id/sendLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/audioTextSwitchLayout"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/bottom_component_margin_horizontal">
 

@@ -1,33 +1,33 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:1-10:12
+ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:1-10:12
+INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:1-10:12
+INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:1-10:12
 	package
-		ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:3:5-28
-		INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-		INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:3:5-28
+		INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:11-69
+		ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:1:11-69
 application
-ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:5:5-8:19
+ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:5:5-8:19
 	android:supportsRtl
-		ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:6:9-35
+		ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:6:9-35
 	android:label
-		ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:5:45-77
+		ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:5:45-77
 	android:allowBackup
-		ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:5:18-44
+		ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml:5:18-44
 uses-sdk
-INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-		ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-		INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-		ADDED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
-		INJECTED from C:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		ADDED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml
+		INJECTED from D:\GitHub\NimApp\faceunity\src\main\AndroidManifest.xml

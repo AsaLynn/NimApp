@@ -15,7 +15,7 @@
         android:background="@drawable/nim_bg_message_tip"
         android:paddingLeft="7dip"
         android:paddingRight="7dip"
-        android:textColor="#ffffff"
+        android:textColor="#6A6A86"
         android:textSize="12sp"
         android:textStyle="bold"
         android:visibility="gone" />
