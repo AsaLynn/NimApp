@@ -6,7 +6,7 @@ plugins {
     id 'com.github.dcendents.android-maven'
     id 'com.jfrog.bintray'
 }
-version = "1.0.2"
+version = "1.0.3"
 android {
     compileSdkVersion 30
 
