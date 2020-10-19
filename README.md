@@ -3,5 +3,5 @@
 
 #使用
 ```
-implementation 'com.zxn.netease.nimsdk:netease-nimsdk:1.0.4'
+implementation 'com.zxn.netease.nimsdk:netease-nimsdk:1.0.5'
 ```
