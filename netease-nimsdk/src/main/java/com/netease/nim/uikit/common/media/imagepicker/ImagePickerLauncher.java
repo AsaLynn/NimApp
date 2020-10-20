@@ -55,7 +55,7 @@ public class ImagePickerLauncher {
         dialog.show();
     }
 
-    private static void takePhoto(Activity activity, int requestCode) {
+    public static void takePhoto(Activity activity, int requestCode) {
         ImagePickerOption option = DefaultImagePickerOption.getInstance();
         option.setPickType(ImagePickerOption.PickType.Image).setShowCamera(true).setMultiMode(false).setSelectMax(1)
               .setCrop(true);
