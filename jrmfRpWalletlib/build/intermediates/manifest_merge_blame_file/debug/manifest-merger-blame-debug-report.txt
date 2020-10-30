@@ -6,208 +6,208 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="22"
-8-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml
+8-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="28" />
-9-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml
+9-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-11-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:4:5-81
-11-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:4:22-78
+11-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:4:5-81
+11-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:4:22-78
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:5:5-66
-12-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:5:22-64
+12-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:5:5-66
+12-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:5:22-64
 13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:6:5-78
-13-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:6:22-76
+13-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:6:5-78
+13-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:6:22-76
 14    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-14-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:7:5-75
-14-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:7:22-73
+14-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:7:5-75
+14-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:7:22-73
 15    <!-- 要检查用户权限 -->
 16    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-16-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:9:5-75
-16-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:9:22-72
+16-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:9:5-75
+16-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:9:22-72
 17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-17-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:10:5-80
-17-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:10:22-78
+17-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:10:5-80
+17-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:10:22-78
 18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-18-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:11:5-79
-18-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:11:22-77
+18-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:11:5-79
+18-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:11:22-77
 19
 20    <application>
-20-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:13:5-92:19
+20-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:13:5-92:19
 21
 22        <!-- 红包页面 -->
 23        <activity
-23-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:16:9-19:56
+23-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:16:9-19:56
 24            android:name="com.jrmf360.normallib.rp.ui.OpenRpActivity"
-24-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:17:13-49
+24-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:17:13-49
 25            android:launchMode="singleTask"
-25-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:18:13-44
+25-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:18:13-44
 26            android:theme="@style/Jrmf_b_DialogTheme" />
-26-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:19:13-54
+26-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:19:13-54
 27        <activity
-27-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:21:9-24:51
+27-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:21:9-24:51
 28            android:name="com.jrmf360.normallib.rp.ui.PayTypeActivity"
-28-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:22:13-50
+28-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:22:13-50
 29            android:launchMode="singleTask"
-29-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:23:13-44
+29-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:23:13-44
 30            android:theme="@style/jrmf_b_dialog" />
-30-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:24:13-49
+30-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:24:13-49
 31        <activity
-31-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:25:9-29:57
+31-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:25:9-29:57
 32            android:name="com.jrmf360.normallib.rp.ui.TransPayActivity"
-32-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:26:13-51
+32-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:26:13-51
 33            android:launchMode="singleTask"
-33-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:27:13-44
+33-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:27:13-44
 34            android:theme="@style/jrmf_b_dialog"
-34-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:28:13-49
+34-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:28:13-49
 35            android:windowSoftInputMode="adjustResize" />
-35-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:29:13-55
+35-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:29:13-55
 36        <activity android:name="com.jrmf360.normallib.rp.ui.SendGroupEnvelopesActivity" />
-36-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:30:9-69
-36-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:30:19-67
+36-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:30:9-69
+36-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:30:19-67
 37        <activity android:name="com.jrmf360.normallib.rp.ui.SendSingleEnvelopesActivity" />
-37-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:31:9-70
-37-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:31:19-68
+37-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:31:9-70
+37-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:31:19-68
 38        <activity android:name="com.jrmf360.normallib.rp.ui.RpDetailActivity" />
-38-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:32:9-59
-38-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:32:19-57
+38-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:32:9-59
+38-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:32:19-57
 39        <activity android:name="com.jrmf360.normallib.rp.ui.MyRpActivity" />
-39-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:33:9-55
-39-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:33:19-53
+39-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:33:9-55
+39-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:33:19-53
 40        <activity android:name="com.jrmf360.normallib.rp.ui.ResetPwdActivity" />
-40-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:34:9-59
-40-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:34:19-57
+40-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:34:9-59
+40-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:34:19-57
 41        <activity android:name="com.jrmf360.normallib.rp.ui.CertificationActivity" />
-41-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:35:9-64
-41-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:35:19-62
+41-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:35:9-64
+41-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:35:19-62
 42        <activity android:name="com.jrmf360.normallib.rp.ui.CheckAuthActivity" />
-42-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:36:9-60
-42-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:36:19-58
+42-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:36:9-60
+42-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:36:19-58
 43        <activity android:name="com.jrmf360.normallib.rp.ui.CheckUserInfoActivity" />
-43-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:37:9-64
-43-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:37:19-62
+43-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:37:9-64
+43-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:37:19-62
 44        <activity android:name="com.jrmf360.normallib.rp.ui.EnBrowserActivity" />
-44-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:38:9-60
-44-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:38:19-58
+44-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:38:9-60
+44-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:38:19-58
 45        <activity android:name="com.jrmf360.normallib.rp.ui.SettingPswdActivity" />
-45-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:39:9-62
-45-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:39:19-60
+45-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:39:9-62
+45-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:39:19-60
 46        <activity android:name="com.jrmf360.normallib.rp.ui.TradeDetailActivity" />
-46-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:40:9-62
-46-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:40:19-60
+46-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:40:9-62
+46-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:40:19-60
 47        <activity android:name="com.jrmf360.normallib.rp.ui.TradeHistoryActivity" />
-47-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:41:9-63
-47-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:41:19-61
+47-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:41:9-63
+47-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:41:19-61
 48        <activity android:name="com.jrmf360.normallib.rp.ui.TransAccountActivity" />
-48-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:42:9-63
-48-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:42:19-61
+48-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:42:9-63
+48-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:42:19-61
 49        <activity android:name="com.jrmf360.normallib.rp.ui.BankCardListActivity" />
-49-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:44:9-63
-49-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:44:19-61
+49-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:44:9-63
+49-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:44:19-61
 50        <activity android:name="com.jrmf360.normallib.rp.ui.AddCardActivity" />
-50-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:45:9-58
-50-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:45:19-56
+50-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:45:9-58
+50-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:45:19-56
 51        <activity android:name="com.jrmf360.normallib.rp.ui.AddCardFirsstActivity" />
-51-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:46:9-64
-51-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:46:19-62
+51-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:46:9-64
+51-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:46:19-62
 52        <activity android:name="com.jrmf360.normallib.rp.ui.AddCardSecondActivity" />
-52-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:47:9-64
-52-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:47:19-62
+52-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:47:9-64
+52-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:47:19-62
 53        <activity android:name="com.jrmf360.normallib.rp.ui.TransDetailActivity" />
-53-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:49:9-62
-53-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:49:19-60
+53-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:49:9-62
+53-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:49:19-60
 54        <activity android:name="com.jrmf360.normallib.rp.ui.TransSuccActivity" />
-54-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:50:9-60
-54-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:50:19-58
+54-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:50:9-60
+54-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:50:19-58
 55        <activity android:name="com.jrmf360.normallib.rp.ui.WebViewActivity" />
-55-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:51:9-58
-55-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:51:19-56
+55-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:51:9-58
+55-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:51:19-56
 56
 57        <!-- 钱包页面 -->
 58        <activity android:name="com.jrmf360.normallib.wallet.ui.MyWalletActivity" />
-58-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:54:9-84
-58-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:54:19-82
+58-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:54:9-84
+58-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:54:19-82
 59        <activity android:name="com.jrmf360.normallib.wallet.ui.AccountInfoActivity" />
-59-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:55:9-87
-59-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:55:19-85
+59-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:55:9-87
+59-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:55:19-85
 60        <activity android:name="com.jrmf360.normallib.wallet.ui.TradeHistoryActivity" />
-60-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:56:9-88
-60-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:56:19-86
+60-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:56:9-88
+60-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:56:19-86
 61        <activity android:name="com.jrmf360.normallib.wallet.ui.SecureSettingActivity" />
-61-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:57:9-89
-61-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:57:19-87
+61-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:57:9-89
+61-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:57:19-87
 62        <activity android:name="com.jrmf360.normallib.wallet.ui.SupportBankCardActivity" />
-62-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:58:9-91
-62-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:58:19-89
+62-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:58:9-91
+62-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:58:19-89
 63        <activity android:name="com.jrmf360.normallib.wallet.ui.BankSettingActivity" />
-63-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:59:9-87
-63-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:59:19-85
+63-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:59:9-87
+63-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:59:19-85
 64        <activity android:name="com.jrmf360.normallib.wallet.ui.AddCardSecondActivity" />
-64-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:60:9-89
-64-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:60:19-87
+64-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:60:9-89
+64-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:60:19-87
 65        <activity android:name="com.jrmf360.normallib.wallet.ui.AddCardFirstActivity" />
-65-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:61:9-88
-65-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:61:19-86
+65-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:61:9-88
+65-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:61:19-86
 66        <activity android:name="com.jrmf360.normallib.wallet.ui.GetDepositActivity" />
-66-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:62:9-86
-66-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:62:19-84
+66-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:62:9-86
+66-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:62:19-84
 67        <activity android:name="com.jrmf360.normallib.wallet.ui.IdentityAuthenActivity" />
-67-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:63:9-90
-67-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:63:19-88
+67-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:63:9-90
+67-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:63:19-88
 68        <activity android:name="com.jrmf360.normallib.wallet.ui.MyRpActivity" />
-68-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:64:9-80
-68-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:64:19-78
+68-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:64:9-80
+68-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:64:19-78
 69        <activity android:name="com.jrmf360.normallib.wallet.ui.RechargeActivity" />
-69-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:65:9-84
-69-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:65:19-82
+69-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:65:9-84
+69-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:65:19-82
 70        <activity android:name="com.jrmf360.normallib.wallet.ui.TradeDetailActivity" />
-70-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:66:9-87
-70-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:66:19-85
+70-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:66:9-87
+70-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:66:19-85
 71        <activity android:name="com.jrmf360.normallib.wallet.ui.WebViewActivity" />
-71-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:67:9-83
-71-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:67:19-81
+71-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:67:9-83
+71-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:67:19-81
 72        <activity android:name="com.jrmf360.normallib.wallet.ui.RpDetailActivity" />
-72-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:69:9-84
-72-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:69:19-82
+72-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:69:9-84
+72-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:69:19-82
 73        <activity android:name="com.jrmf360.normallib.wallet.ui.GetPwdActivity" />
-73-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:70:9-82
-73-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:70:19-80
+73-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:70:9-82
+73-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:70:19-80
 74        <activity android:name="com.jrmf360.normallib.wallet.ui.PwdCheckActivity" />
-74-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:71:9-84
-74-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:71:19-82
+74-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:71:9-84
+74-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:71:19-82
 75        <activity android:name="com.jrmf360.normallib.wallet.ui.UpdatePwdActivity" />
-75-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:72:9-85
-75-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:72:19-83
+75-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:72:9-85
+75-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:72:19-83
 76        <activity android:name="com.jrmf360.normallib.wallet.ui.SetPayPwdActivity" />
-76-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:73:9-85
-76-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:73:19-83
+76-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:73:9-85
+76-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:73:19-83
 77
 78        <!-- 支付宝配置开始 -->
 79        <activity
-79-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:77:9-82:69
+79-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:77:9-82:69
 80            android:name="com.alipay.sdk.app.H5PayActivity"
-80-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:78:13-60
+80-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:78:13-60
 81            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
-81-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:79:13-85
+81-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:79:13-85
 82            android:exported="false"
-82-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:80:13-37
+82-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:80:13-37
 83            android:screenOrientation="behind"
-83-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:81:13-47
+83-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:81:13-47
 84            android:windowSoftInputMode="adjustResize|stateHidden" />
-84-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:82:13-67
+84-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:82:13-67
 85        <activity
-85-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:83:9-88:69
+85-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:83:9-88:69
 86            android:name="com.alipay.sdk.app.H5AuthActivity"
-86-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:84:13-61
+86-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:84:13-61
 87            android:configChanges="orientation|keyboardHidden|navigation"
-87-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:85:13-74
+87-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:85:13-74
 88            android:exported="false"
-88-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:86:13-37
+88-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:86:13-37
 89            android:screenOrientation="behind"
-89-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:87:13-47
+89-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:87:13-47
 90            android:windowSoftInputMode="adjustResize|stateHidden" />
-90-->D:\GitHub\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:88:13-67
+90-->D:\GitHub\repositories\NimApp\jrmfRpWalletlib\src\main\AndroidManifest.xml:88:13-67
 91
 92        <!-- 支付宝 配置结束 -->
 93
