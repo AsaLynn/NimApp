@@ -429,18 +429,15 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
      * item长按事件监听
      */
     private void setLongClickListener() {
-        longClickListener = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                // 优先派发给自己处理，
-                if (!onItemLongClick()) {
-                    if (getMsgAdapter().getEventListener() != null) {
-                        getMsgAdapter().getEventListener().onViewHolderLongClick(contentContainer, view, message);
-                        return true;
-                    }
+        longClickListener = v -> {
+            // 优先派发给自己处理，
+            if (!onItemLongClick()) {
+                if (getMsgAdapter().getEventListener() != null) {
+                    getMsgAdapter().getEventListener().onViewHolderLongClick(contentContainer, view, message);
+                    return true;
                 }
-                return false;
             }
+            return false;
         };
         // 消息长按事件响应处理
         contentContainer.setOnLongClickListener(longClickListener);

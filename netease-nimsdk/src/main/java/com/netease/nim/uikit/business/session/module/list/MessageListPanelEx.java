@@ -933,34 +933,34 @@ public class MessageListPanelEx {
             // 1 copy
             longClickItemCopy(selectedItem, alertDialog, msgType);
             // 2 forward
-            if (!NimUIKitImpl.getMsgForwardFilter().shouldIgnore(selectedItem) && !recordOnly) {
+            /*if (!NimUIKitImpl.getMsgForwardFilter().shouldIgnore(selectedItem) && !recordOnly) {
                 // forward to person
                 longClickItemForwardToPerson(selectedItem, alertDialog);
                 // forward to team
                 longClickItemForwardToTeam(selectedItem, alertDialog);
-            }
+            }*/
             // 3 collect
             // 4 pin
             // 5 revoke
-            if (enableRevokeButton(selectedItem)) {
+            /*if (enableRevokeButton(selectedItem)) {
                 longClickRevokeMsg(selectedItem, alertDialog);
-            }
+            }*/
             // 6 delete
-            longClickItemDelete(selectedItem, alertDialog, true);
+            //longClickItemDelete(selectedItem, alertDialog, true);
 
-            longClickItemDelete(selectedItem, alertDialog, false);
+            //longClickItemDelete(selectedItem, alertDialog, false);
 
             // 7 multiple selection
-            longClickItemMultipleSelection(selectedItem, alertDialog);
+            //longClickItemMultipleSelection(selectedItem, alertDialog);
 
             // 8 temp 单向删除
-            longClickItemDeleteSelf(selectedItem, alertDialog);
+            //longClickItemDeleteSelf(selectedItem, alertDialog);
 
             // 9 临时 播放器转换
-            longClickItemEarPhoneMode(alertDialog, msgType);
+            //longClickItemEarPhoneMode(alertDialog, msgType);
 
             // 10 临时 语音转文字
-            longClickItemVoidToText(selectedItem, alertDialog, msgType);
+            //longClickItemVoidToText(selectedItem, alertDialog, msgType);
         }
 
         private boolean enableRevokeButton(IMMessage selectedItem) {
