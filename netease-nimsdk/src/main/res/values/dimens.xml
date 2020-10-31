@@ -193,4 +193,6 @@
     <dimen name="robot_message_link_width">200dp</dimen>
 
     <dimen name="px_size_1">1px</dimen>
+    <dimen name="dp_39">39dp</dimen>
+    <dimen name="dp_38">38dp</dimen>
 </resources>

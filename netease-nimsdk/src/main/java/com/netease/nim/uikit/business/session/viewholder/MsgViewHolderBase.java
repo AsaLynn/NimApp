@@ -3,6 +3,7 @@ package com.netease.nim.uikit.business.session.viewholder;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zxn.netease.nimsdk.R;
 import com.netease.nim.uikit.api.NimUIKit;
@@ -37,6 +39,9 @@ import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.MsgThreadOption;
+import com.zxn.popup.EasyPopup;
+import com.zxn.popup.XGravity;
+import com.zxn.popup.YGravity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +52,15 @@ import java.util.List;
  */
 public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItemFetchLoadAdapter, BaseViewHolder, IMMessage> {
 
+
+
     public MsgViewHolderBase(BaseMultiItemFetchLoadAdapter adapter) {
         super(adapter);
         this.adapter = adapter;
+
     }
+
+
 
     // basic
     protected View view;
@@ -78,7 +88,9 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
     private HeadImageView avatarLeft;
     private HeadImageView avatarRight;
 
-    /** 合并转发用多选框 */
+    /**
+     * 合并转发用多选框
+     */
     private CheckBox multiCheckBox;
 
     public ImageView nameIconView;
@@ -152,7 +164,7 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
     protected String getReplyTip() {
         //thread消息没有回复对象
         if (message.isThread()) {
-           return "";
+            return "";
         }
         MsgThreadOption threadOption = message.getThreadOption();
         String replyFrom = threadOption.getReplyMsgFromAccount();
@@ -432,6 +444,7 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
         longClickListener = v -> {
             // 优先派发给自己处理，
             if (!onItemLongClick()) {
+
                 if (getMsgAdapter().getEventListener() != null) {
                     getMsgAdapter().getEventListener().onViewHolderLongClick(contentContainer, view, message);
                     return true;

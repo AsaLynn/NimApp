@@ -11,6 +11,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +71,9 @@ import com.netease.nimlib.sdk.robot.model.RobotAttachment;
 import com.netease.nimlib.sdk.robot.model.RobotMsgType;
 import com.netease.nimlib.sdk.team.constant.TeamMemberType;
 import com.netease.nimlib.sdk.team.model.TeamMember;
+import com.zxn.popup.EasyPopup;
+import com.zxn.popup.XGravity;
+import com.zxn.popup.YGravity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,40 +96,62 @@ public class MessageListPanelEx {
 
     public static final int REQUEST_CODE_FORWARD_PERSON = 0x01;
     public static final int REQUEST_CODE_FORWARD_TEAM = 0x02;
-    /** MsgSelectActivity的识别码 */
+    /**
+     * MsgSelectActivity的识别码
+     */
     public static final int REQUEST_CODE_FORWARD_MULTI_RETWEET = 0x03;
-    /** WatchMultiRetweetActivity的识别码，用于二次转发*/
+    /**
+     * WatchMultiRetweetActivity的识别码，用于二次转发
+     */
     public static final int REQUEST_CODE_WATCH_MULTI_RETWEET = 0x04;
 
-    /** container */
+    /**
+     * container
+     */
     private Container container;
     private View rootView;
 
-    /** message list view */
+    /**
+     * message list view
+     */
     private RecyclerView messageListView;
     private List<IMMessage> items;
     private MsgAdapter adapter;
     private ImageView ivBackground;
 
-    /** 新消息到达提醒 */
+    /**
+     * 新消息到达提醒
+     */
     private IncomingMsgPrompt incomingMsgPrompt;
     private Handler uiHandler;
 
-    /** 仅显示消息记录，不接收和发送消息 */
+    /**
+     * 仅显示消息记录，不接收和发送消息
+     */
     private boolean recordOnly;
-    /** 从服务器拉取消息记录 */
+    /**
+     * 从服务器拉取消息记录
+     */
     private boolean remote;
 
-    /** 语音转文字 */
+    /**
+     * 语音转文字
+     */
     private VoiceTrans voiceTrans;
 
-    /** 待转发消息 */
+    /**
+     * 待转发消息
+     */
     private IMMessage forwardMessage;
 
-    /** 背景图片缓存 */
+    /**
+     * 背景图片缓存
+     */
     private static Pair<String, Bitmap> background;
 
-    /** 是否忽略缓存记录，拉取消息时存储被清除的消息 */
+    /**
+     * 是否忽略缓存记录，拉取消息时存储被清除的消息
+     */
     private boolean persistClear;
 
     /**
@@ -460,7 +486,7 @@ public class MessageListPanelEx {
             (Observer<List<IMMessage>>) msgList -> deleteItems(msgList, true, false);
 
     private Observer<List<SessionMsgDeleteOption>> deleteSessionHistoryMsgsObserver = (optionList) -> {
-        for (SessionMsgDeleteOption option: optionList) {
+        for (SessionMsgDeleteOption option : optionList) {
             deleteItemsRange(option.getSessionId(), option.getSessionType(), 0, option.getTime());
         }
     };
@@ -845,7 +871,8 @@ public class MessageListPanelEx {
         @Override
         public boolean onViewHolderLongClick(View clickView, View viewHolderView, IMMessage item) {
             if (container.proxy.isLongClickEnabled()) {
-                showLongClickAction(item);
+                //showLongClickAction(item);
+                abovePop(clickView, item);
             }
             return true;
         }
@@ -1187,7 +1214,6 @@ public class MessageListPanelEx {
     }
 
 
-
     private void setEarPhoneMode(boolean earPhoneMode, boolean update) {
         if (update) {
             UserPreferences.setEarPhoneModeEnable(earPhoneMode);
@@ -1386,5 +1412,30 @@ public class MessageListPanelEx {
             return MessageBuilder.createTextMessage(sessionId, sessionTypeEnum, forwardMessage.getContent());
         }
         return null;
+    }
+
+    private EasyPopup mAbovePop;
+
+    private void abovePop(View view, IMMessage item) {
+        MsgTypeEnum msgType = item.getMsgType();
+        if (msgType == MsgTypeEnum.text
+                || (msgType == MsgTypeEnum.robot && item.getAttachment() != null && !((RobotAttachment) item.getAttachment()).isRobotSend())) {
+            if (null == mAbovePop) {
+                mAbovePop = EasyPopup.create()
+                        .setContentView(view.getContext(), R.layout.layout_any)
+                        .setFocusAndOutsideEnable(true)
+                        .apply();
+                mAbovePop.findViewById(R.id.tv_copy).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        mAbovePop.dismiss();
+                        ClipboardUtil.clipboardCopyText(container.activity, item.getContent());
+                        Toast.makeText(v.getContext(), "已复制", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            mAbovePop.showAtAnchorView(view, YGravity.ABOVE, XGravity.CENTER);
+        }
     }
 }

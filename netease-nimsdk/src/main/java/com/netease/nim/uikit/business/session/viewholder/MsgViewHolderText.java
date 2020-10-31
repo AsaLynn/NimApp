@@ -37,12 +37,7 @@ public class MsgViewHolderText extends MsgViewHolderBase {
     @Override
     public void bindContentView() {
         layoutDirection();
-        bodyTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClick();
-            }
-        });
+        bodyTextView.setOnClickListener(v -> onItemClick());
         MoonUtil.identifyFaceExpression(NimUIKit.getContext(), bodyTextView, getDisplayText(), ImageSpan.ALIGN_BOTTOM);
         bodyTextView.setMovementMethod(LinkMovementMethod.getInstance());
         bodyTextView.setOnLongClickListener(longClickListener);
