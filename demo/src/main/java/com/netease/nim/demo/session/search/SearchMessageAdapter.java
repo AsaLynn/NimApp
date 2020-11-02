@@ -10,12 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.business.session.emoji.MoonUtil;
-import com.netease.nim.uikit.business.team.helper.TeamHelper;
-import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
-import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
-import com.netease.nim.uikit.common.util.sys.ScreenUtil;
-import com.netease.nim.uikit.common.util.sys.TimeUtil;
+import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil;
+import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
+import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
+import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 

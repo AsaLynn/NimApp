@@ -14,19 +14,19 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.contact.constant.UserConstant;
 import com.netease.nim.demo.contact.helper.UserUpdateHelper;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.ui.dialog.DialogMaker;
-import com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon;
-import com.netease.nim.uikit.common.util.sys.NetworkUtil;
-import com.netease.nim.uikit.common.util.sys.TimeUtil;
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.ui.dialog.DialogMaker;
+import com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon;
+import com.zxn.netease.nimsdk.common.util.sys.NetworkUtil;
+import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.ResponseCode;

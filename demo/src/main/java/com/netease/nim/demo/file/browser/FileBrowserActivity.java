@@ -11,12 +11,12 @@ import android.widget.ListView;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.file.browser.FileBrowserAdapter.FileManagerItem;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.adapter.TAdapterDelegate;
-import com.netease.nim.uikit.common.adapter.TViewHolder;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.adapter.TAdapterDelegate;
+import com.zxn.netease.nimsdk.common.adapter.TViewHolder;
 
 import java.io.File;
 import java.util.ArrayList;

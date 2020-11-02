@@ -2,7 +2,7 @@ package com.netease.nim.demo.jsbridge;
 
 
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nimlib.jsbridge.annotation.JavaInterface;
 import com.netease.nimlib.jsbridge.annotation.Param;

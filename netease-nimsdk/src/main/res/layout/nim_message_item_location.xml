@@ -3,7 +3,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content">
 
-    <com.netease.nim.uikit.common.ui.imageview.MsgThumbImageView
+    <com.zxn.netease.nimsdk.common.ui.imageview.MsgThumbImageView
         android:id="@+id/message_item_location_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

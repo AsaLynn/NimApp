@@ -12,12 +12,12 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.netease.nim.demo.location.model.NimLocation;
-import com.netease.nim.uikit.common.framework.infra.DefaultTaskManager;
-import com.netease.nim.uikit.common.framework.infra.DefaultTaskWorker;
-import com.netease.nim.uikit.common.framework.infra.ManagedTask;
-import com.netease.nim.uikit.common.framework.infra.TaskExecutor;
-import com.netease.nim.uikit.common.framework.infra.TaskManager;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.framework.infra.DefaultTaskManager;
+import com.zxn.netease.nimsdk.common.framework.infra.DefaultTaskWorker;
+import com.zxn.netease.nimsdk.common.framework.infra.ManagedTask;
+import com.zxn.netease.nimsdk.common.framework.infra.TaskExecutor;
+import com.zxn.netease.nimsdk.common.framework.infra.TaskManager;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;

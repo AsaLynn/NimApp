@@ -3,8 +3,8 @@ package com.netease.nim.demo.redpacket;
 
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
-import com.netease.nim.uikit.business.session.module.ModuleProxy;
-import com.netease.nim.uikit.api.NimUIKit;
+import com.zxn.netease.nimsdk.business.session.module.ModuleProxy;
+import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomMessageConfig;

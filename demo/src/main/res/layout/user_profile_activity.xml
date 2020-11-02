@@ -35,7 +35,7 @@
             android:paddingBottom="13dp"
             android:paddingTop="13dp">
 
-            <com.netease.nim.uikit.common.ui.imageview.HeadImageView
+            <com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView
                 android:id="@+id/user_head_image"
                 android:layout_width="@dimen/avatar_size_in_profile"
                 android:layout_height="@dimen/avatar_size_in_profile"

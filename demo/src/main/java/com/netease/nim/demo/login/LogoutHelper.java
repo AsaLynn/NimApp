@@ -3,7 +3,7 @@ package com.netease.nim.demo.login;
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 
-import com.netease.nim.uikit.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.NimUIKit;
 
 /**
  * 注销帮助类

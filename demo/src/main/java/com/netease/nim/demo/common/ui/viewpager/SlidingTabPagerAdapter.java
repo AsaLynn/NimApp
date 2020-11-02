@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.netease.nim.uikit.common.fragment.TabFragment;
+import com.zxn.netease.nimsdk.common.fragment.TabFragment;
 
 public abstract class SlidingTabPagerAdapter extends FragmentPagerAdapter implements TabFragment.State,
         PagerSlidingTabStrip.OnTabClickListener, PagerSlidingTabStrip.OnTabDoubleTapListener {

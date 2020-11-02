@@ -2,8 +2,8 @@ package com.netease.nim.demo.contact.activity;
 
 import android.content.Context;
 
-import com.netease.nim.uikit.common.adapter.TAdapter;
-import com.netease.nim.uikit.common.adapter.TAdapterDelegate;
+import com.zxn.netease.nimsdk.common.adapter.TAdapter;
+import com.zxn.netease.nimsdk.common.adapter.TAdapterDelegate;
 import com.netease.nimlib.sdk.uinfo.model.UserInfo;
 
 import java.util.List;

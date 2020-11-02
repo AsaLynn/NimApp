@@ -14,12 +14,12 @@ import androidx.annotation.Nullable;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.extension.SnapChatAttachment;
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.fragment.TFragment;
-import com.netease.nim.uikit.common.ui.dialog.CustomAlertDialog;
-import com.netease.nim.uikit.common.ui.imageview.BaseZoomableImageView;
-import com.netease.nim.uikit.common.util.media.BitmapDecoder;
-import com.netease.nim.uikit.common.util.media.ImageUtil;
+import com.zxn.netease.nimsdk.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.fragment.TFragment;
+import com.zxn.netease.nimsdk.common.ui.dialog.CustomAlertDialog;
+import com.zxn.netease.nimsdk.common.ui.imageview.BaseZoomableImageView;
+import com.zxn.netease.nimsdk.common.util.media.BitmapDecoder;
+import com.zxn.netease.nimsdk.common.util.media.ImageUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.msg.MsgService;

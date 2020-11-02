@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.ui.dialog.DialogMaker;
+import com.zxn.netease.nimsdk.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.ui.dialog.DialogMaker;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.msg.MsgService;

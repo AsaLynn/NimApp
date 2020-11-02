@@ -1,8 +1,8 @@
 package com.netease.nim.demo.session.viewholder;
 
 import com.netease.nim.demo.session.extension.DefaultCustomAttachment;
-import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderText;
-import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderText;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
 
 /**
  * Created by zhoujianghua on 2015/8/4.

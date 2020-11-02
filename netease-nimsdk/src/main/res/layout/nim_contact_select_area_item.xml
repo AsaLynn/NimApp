@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <com.netease.nim.uikit.common.ui.imageview.HeadImageView
+    <com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView
         android:id="@+id/contact_select_area_image"
         android:layout_width="@dimen/avatar_size_in_contact"
         android:layout_height="@dimen/avatar_size_in_contact"

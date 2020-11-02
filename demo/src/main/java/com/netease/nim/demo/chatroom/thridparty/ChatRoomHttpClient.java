@@ -10,10 +10,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.DemoPrivatizationConfig;
 import com.netease.nim.demo.config.DemoServers;
-import com.netease.nim.uikit.business.session.helper.MessageHelper;
-import com.netease.nim.uikit.common.http.HttpClientWrapper;
-import com.netease.nim.uikit.common.http.NimHttpClient;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.business.session.helper.MessageHelper;
+import com.zxn.netease.nimsdk.common.http.HttpClientWrapper;
+import com.zxn.netease.nimsdk.common.http.NimHttpClient;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.chatroom.model.ChatRoomInfo;
 
 import java.util.ArrayList;
@@ -178,7 +178,7 @@ public class ChatRoomHttpClient {
         jsonObject.put(REQUEST_KEY_ROOM_ID, roomId);
         jsonObject.put(REQUEST_KEY_UID, account);
         jsonObject.put(REQUEST_KEY_TYPE, 2);
-        HttpClientWrapper.HttpResult<String> result = com.netease.nim.uikit.common.http.HttpClientWrapper
+        HttpClientWrapper.HttpResult<String> result = com.zxn.netease.nimsdk.common.http.HttpClientWrapper
                 .post(url, headers, jsonObject);
         if (result.code == RESULT_CODE_SUCCESS && result.obj != null) {
             try {

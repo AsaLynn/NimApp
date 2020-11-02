@@ -3,9 +3,9 @@ package com.netease.nim.demo.common.util.crash;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.netease.nim.uikit.common.util.storage.StorageType;
-import com.netease.nim.uikit.common.util.storage.StorageUtil;
-import com.netease.nim.uikit.common.util.string.MD5;
+import com.zxn.netease.nimsdk.common.util.storage.StorageType;
+import com.zxn.netease.nimsdk.common.util.storage.StorageUtil;
+import com.zxn.netease.nimsdk.common.util.string.MD5;
 
 import java.io.BufferedWriter;
 import java.io.File;

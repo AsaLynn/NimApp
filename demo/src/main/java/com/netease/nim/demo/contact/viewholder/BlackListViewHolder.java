@@ -6,9 +6,9 @@ import android.widget.TextView;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.contact.activity.BlackListAdapter;
-import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
-import com.netease.nim.uikit.common.adapter.TViewHolder;
-import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.common.adapter.TViewHolder;
+import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
 import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.netease.nimlib.sdk.uinfo.model.UserInfo;
 

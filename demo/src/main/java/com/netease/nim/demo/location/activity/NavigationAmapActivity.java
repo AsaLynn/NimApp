@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.amap.api.maps2d.AMap;
 import com.amap.api.maps2d.AMap.InfoWindowAdapter;
@@ -33,11 +33,11 @@ import com.netease.nim.demo.location.adapter.IconListAdapter;
 import com.netease.nim.demo.location.helper.MapHelper;
 import com.netease.nim.demo.location.helper.NimLocationManager;
 import com.netease.nim.demo.location.model.NimLocation;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.ui.dialog.CustomAlertDialog;
-import com.netease.nim.uikit.common.util.string.StringUtil;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.ui.dialog.CustomAlertDialog;
+import com.zxn.netease.nimsdk.common.util.string.StringUtil;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,9 +15,9 @@ import com.netease.nim.demo.chatroom.fragment.tab.ChatRoomTabFragment;
 import com.netease.nim.demo.chatroom.helper.ChatRoomHelper;
 import com.netease.nim.demo.common.ui.viewpager.FadeInOutPageTransformer;
 import com.netease.nim.demo.common.ui.viewpager.PagerSlidingTabStrip;
-import com.netease.nim.uikit.common.framework.infra.Handlers;
-import com.netease.nim.uikit.common.ui.barrage.BarrageConfig;
-import com.netease.nim.uikit.common.ui.barrage.BarrageSurfaceView;
+import com.zxn.netease.nimsdk.common.framework.infra.Handlers;
+import com.zxn.netease.nimsdk.common.ui.barrage.BarrageConfig;
+import com.zxn.netease.nimsdk.common.ui.barrage.BarrageSurfaceView;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.chatroom.ChatRoomService;
 

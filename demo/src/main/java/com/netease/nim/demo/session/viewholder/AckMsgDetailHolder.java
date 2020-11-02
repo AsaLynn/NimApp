@@ -6,10 +6,10 @@ import android.widget.TextView;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.adapter.AckMsgDetailAdapter;
-import com.netease.nim.uikit.business.team.activity.AdvancedTeamMemberInfoActivity;
-import com.netease.nim.uikit.business.team.helper.TeamHelper;
-import com.netease.nim.uikit.common.adapter.TViewHolder;
-import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
+import com.zxn.netease.nimsdk.business.team.activity.AdvancedTeamMemberInfoActivity;
+import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
+import com.zxn.netease.nimsdk.common.adapter.TViewHolder;
+import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
 
 public class AckMsgDetailHolder extends TViewHolder {
 

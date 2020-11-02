@@ -26,10 +26,10 @@ import com.netease.nim.demo.location.helper.NimGeocoder;
 import com.netease.nim.demo.location.helper.NimLocationManager;
 import com.netease.nim.demo.location.helper.NimLocationManager.NimLocationListener;
 import com.netease.nim.demo.location.model.NimLocation;
-import com.netease.nim.uikit.api.model.location.LocationProvider;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
+import com.zxn.netease.nimsdk.api.model.location.LocationProvider;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
 
 public class LocationAmapActivity extends UI implements OnCameraChangeListener, OnClickListener, NimLocationListener {
 

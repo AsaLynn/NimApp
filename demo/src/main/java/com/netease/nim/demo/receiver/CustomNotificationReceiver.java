@@ -4,12 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.netease.nim.demo.main.helper.CustomNotificationCache;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NimIntent;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
 

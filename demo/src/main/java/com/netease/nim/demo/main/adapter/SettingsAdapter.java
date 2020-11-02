@@ -15,9 +15,9 @@ import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.main.model.SettingTemplate;
 import com.netease.nim.demo.main.model.SettingType;
-import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
-import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
-import com.netease.nim.uikit.common.ui.widget.SwitchButton;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
+import com.zxn.netease.nimsdk.common.ui.widget.SwitchButton;
 
 import java.util.List;
 

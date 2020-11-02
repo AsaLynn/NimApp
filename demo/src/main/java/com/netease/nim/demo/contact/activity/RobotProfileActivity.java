@@ -9,11 +9,11 @@ import android.widget.TextView;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.main.model.Extras;
 import com.netease.nim.demo.session.SessionHelper;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
 import com.netease.nimlib.sdk.robot.model.NimRobotInfo;
 
 /**

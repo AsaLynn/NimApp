@@ -1,11 +1,11 @@
 package com.netease.nim.demo.contact.helper;
 
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.ResponseCode;

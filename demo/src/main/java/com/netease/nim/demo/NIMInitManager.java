@@ -7,7 +7,7 @@ import android.content.IntentFilter;
 
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.event.OnlineStateEventManager;
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.NimStrings;
 import com.netease.nimlib.sdk.Observer;

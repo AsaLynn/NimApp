@@ -9,7 +9,7 @@
         android:id="@+id/top_bar"
         layout="@layout/nim_include_top_bar_select"/>
 
-    <com.netease.nim.uikit.common.media.imagepicker.view.ViewPagerFixed
+    <com.zxn.netease.nimsdk.common.media.imagepicker.view.ViewPagerFixed
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +30,7 @@
             android:paddingTop="@dimen/dp_size_10">
         </androidx.recyclerview.widget.RecyclerView>
 
-        <com.netease.nim.uikit.common.media.imagepicker.view.SuperCheckBox
+        <com.zxn.netease.nimsdk.common.media.imagepicker.view.SuperCheckBox
             android:id="@+id/cb_origin"
             style="@style/SuperCheckboxTheme"
             android:layout_width="wrap_content"

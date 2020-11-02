@@ -35,12 +35,12 @@ import com.netease.nim.demo.ysf.imageloader.GlideImageLoader;
 import com.netease.nim.demo.ysf.util.YsfHelper;
 import com.netease.nim.rtskit.RTSKit;
 import com.netease.nim.rtskit.api.config.RTSOptions;
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.UIKitOptions;
-import com.netease.nim.uikit.business.contact.core.query.PinYin;
-import com.netease.nim.uikit.business.team.helper.TeamHelper;
-import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.UIKitOptions;
+import com.zxn.netease.nimsdk.business.contact.core.query.PinYin;
+import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.auth.LoginInfo;
@@ -55,8 +55,6 @@ import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.UnicornImageLoader;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.YSFOptions;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.privatization.UnicornAddress;
-
-import leakcanary.LeakCanary;
 
 public class NimApplication extends Application {
 

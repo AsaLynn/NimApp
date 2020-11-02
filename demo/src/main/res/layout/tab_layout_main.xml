@@ -23,7 +23,7 @@
         android:src="@drawable/nim_main_tab_new_message_notify"
         android:visibility="gone"/>
 
-    <com.netease.nim.uikit.common.ui.drop.DropFake
+    <com.zxn.netease.nimsdk.common.ui.drop.DropFake
         android:id="@+id/tab_new_msg_label"
         android:layout_width="28dip"
         android:layout_height="28dip"

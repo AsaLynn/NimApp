@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.business.session.module.Container;
-import com.netease.nim.uikit.business.session.module.ModuleProxy;
-import com.netease.nim.uikit.business.session.module.list.MessageListPanelEx;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.business.session.module.Container;
+import com.zxn.netease.nimsdk.business.session.module.ModuleProxy;
+import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 

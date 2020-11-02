@@ -5,11 +5,11 @@ import android.os.Bundle;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.main.model.MainTab;
 import com.netease.nim.demo.main.viewholder.FuncViewHolder;
-import com.netease.nim.uikit.business.contact.ContactsFragment;
-import com.netease.nim.uikit.business.contact.core.item.AbsContactItem;
-import com.netease.nim.uikit.business.contact.core.viewholder.AbsContactViewHolder;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.api.model.contact.ContactsCustomization;
+import com.zxn.netease.nimsdk.business.contact.ContactsFragment;
+import com.zxn.netease.nimsdk.business.contact.core.item.AbsContactItem;
+import com.zxn.netease.nimsdk.business.contact.core.viewholder.AbsContactViewHolder;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.api.model.contact.ContactsCustomization;
 
 import java.util.List;
 

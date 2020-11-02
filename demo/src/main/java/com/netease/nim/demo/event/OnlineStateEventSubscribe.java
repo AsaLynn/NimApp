@@ -4,9 +4,9 @@ import android.os.Handler;
 
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.config.preference.UserPreferences;
-import com.netease.nim.uikit.common.framework.infra.Handlers;
-import com.netease.nim.uikit.common.util.log.LogUtil;
-import com.netease.nim.uikit.api.NimUIKit;
+import com.zxn.netease.nimsdk.common.framework.infra.Handlers;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.ResponseCode;

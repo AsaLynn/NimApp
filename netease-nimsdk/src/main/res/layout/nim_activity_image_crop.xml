@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-         <com.netease.nim.uikit.common.media.imagepicker.view.GlideCropImageView
+         <com.zxn.netease.nimsdk.common.media.imagepicker.view.GlideCropImageView
             android:id="@+id/cv_crop_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

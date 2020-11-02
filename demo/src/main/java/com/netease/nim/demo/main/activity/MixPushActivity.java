@@ -8,7 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.netease.nim.demo.mixpush.DemoMixPushMessageHandler;
-import com.netease.nim.uikit.common.util.log.sdk.wrapper.NimLog;
+import com.zxn.netease.nimsdk.common.util.log.sdk.wrapper.NimLog;
 
 import java.util.HashMap;
 import java.util.Set;

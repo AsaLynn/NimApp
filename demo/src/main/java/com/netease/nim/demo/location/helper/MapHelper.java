@@ -6,11 +6,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.location.model.NimLocation;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;

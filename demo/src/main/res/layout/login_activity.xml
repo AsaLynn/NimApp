@@ -53,7 +53,7 @@
                 android:orientation="vertical"
                 tools:visibility="gone">
 
-                <com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon
+                <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
                     android:id="@+id/edit_login_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
 
-                <com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon
+                <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
                     android:id="@+id/edit_login_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
 
-                <com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon
+                <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
                     android:id="@+id/edit_login_subtype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon
+                <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
                     android:id="@+id/edit_register_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
 
-                <com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon
+                <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
                     android:id="@+id/edit_register_nickname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
 
-                <com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon
+                <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
                     android:id="@+id/edit_register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

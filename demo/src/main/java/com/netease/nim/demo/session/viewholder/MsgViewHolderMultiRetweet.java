@@ -10,11 +10,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.activity.WatchMultiRetweetActivity;
 import com.netease.nim.demo.session.extension.MultiRetweetAttachment;
-import com.netease.nim.uikit.business.session.emoji.EmojiManager;
-import com.netease.nim.uikit.business.session.emoji.MoonUtil;
-import com.netease.nim.uikit.business.session.module.list.MessageListPanelEx;
-import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderBase;
-import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
+import com.zxn.netease.nimsdk.business.session.emoji.EmojiManager;
+import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil;
+import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx;
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 
 import java.util.Locale;

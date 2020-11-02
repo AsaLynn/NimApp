@@ -6,8 +6,8 @@ import android.widget.ImageView;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.chatroom.widget.ChatRoomImageView;
-import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseQuickAdapter;
-import com.netease.nim.uikit.common.ui.recyclerview.holder.BaseViewHolder;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseQuickAdapter;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder;
 import com.netease.nimlib.sdk.chatroom.constant.MemberType;
 import com.netease.nimlib.sdk.chatroom.model.ChatRoomMember;
 

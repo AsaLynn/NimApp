@@ -76,7 +76,7 @@
                 android:text="@string/down_time_enable_notification"
                 android:textSize="15sp"/>
 
-            <com.netease.nim.uikit.common.ui.widget.SwitchButton
+            <com.zxn.netease.nimsdk.common.ui.widget.SwitchButton
                 android:id="@+id/notification_toggle"
                 android:layout_width="58dip"
                 android:layout_height="36.67dip"

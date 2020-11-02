@@ -72,7 +72,7 @@
             android:textSize="14sp" />
 
 
-        <com.netease.nim.uikit.common.ui.widget.SwitchButton
+        <com.zxn.netease.nimsdk.common.ui.widget.SwitchButton
             android:id="@+id/privatization_enable_toggle"
             android:layout_width="58dip"
             android:layout_height="36dip"

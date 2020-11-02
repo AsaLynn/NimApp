@@ -12,7 +12,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.common.util.media.BitmapDecoder;
+import com.zxn.netease.nimsdk.common.util.media.BitmapDecoder;
 
 import java.util.ArrayList;
 import java.util.List;

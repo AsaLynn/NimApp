@@ -2,8 +2,8 @@ package com.netease.nim.demo.session.extension;
 
 import com.alibaba.fastjson.JSONObject;
 import com.netease.nim.demo.DemoCache;
-import com.netease.nim.uikit.business.team.helper.TeamHelper;
-import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 
 public class RedPacketOpenedAttachment extends CustomAttachment {

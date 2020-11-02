@@ -1,7 +1,7 @@
 package com.netease.nim.demo.session.extension;
 
 import com.alibaba.fastjson.JSONObject;
-import com.netease.nim.uikit.common.util.file.FileUtil;
+import com.zxn.netease.nimsdk.common.util.file.FileUtil;
 
 /**
  * Created by zhoujianghua on 2015/7/8.

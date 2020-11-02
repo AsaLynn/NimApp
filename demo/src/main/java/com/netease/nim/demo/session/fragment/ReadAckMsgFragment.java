@@ -16,9 +16,9 @@ import com.netease.nim.demo.session.adapter.AckMsgDetailAdapter;
 import com.netease.nim.demo.session.fragment.tab.AckMsgTabFragment;
 import com.netease.nim.demo.session.model.AckMsgViewModel;
 import com.netease.nim.demo.session.viewholder.AckMsgDetailHolder;
-import com.netease.nim.uikit.business.team.ui.TeamInfoGridView;
-import com.netease.nim.uikit.common.adapter.TAdapterDelegate;
-import com.netease.nim.uikit.common.adapter.TViewHolder;
+import com.zxn.netease.nimsdk.business.team.ui.TeamInfoGridView;
+import com.zxn.netease.nimsdk.common.adapter.TAdapterDelegate;
+import com.zxn.netease.nimsdk.common.adapter.TViewHolder;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.TeamMsgAckInfo;
 

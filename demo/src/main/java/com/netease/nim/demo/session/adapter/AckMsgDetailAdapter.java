@@ -2,8 +2,8 @@ package com.netease.nim.demo.session.adapter;
 
 import android.content.Context;
 
-import com.netease.nim.uikit.common.adapter.TAdapter;
-import com.netease.nim.uikit.common.adapter.TAdapterDelegate;
+import com.zxn.netease.nimsdk.common.adapter.TAdapter;
+import com.zxn.netease.nimsdk.common.adapter.TAdapterDelegate;
 
 import java.util.List;
 

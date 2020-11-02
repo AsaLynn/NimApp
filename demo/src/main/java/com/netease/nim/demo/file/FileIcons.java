@@ -1,7 +1,7 @@
 package com.netease.nim.demo.file;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.common.util.file.FileUtil;
+import com.zxn.netease.nimsdk.common.util.file.FileUtil;
 
 import java.util.HashMap;
 import java.util.Map;

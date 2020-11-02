@@ -1,14 +1,14 @@
 package com.netease.nim.demo.session.action;
 
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.avchatkit.AVChatKit;
 import com.netease.nim.avchatkit.activity.AVChatActivity;
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.business.session.actions.BaseAction;
-import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
-import com.netease.nim.uikit.common.util.sys.NetworkUtil;
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.common.util.sys.NetworkUtil;
 import com.netease.nimlib.sdk.avchat.constant.AVChatType;
 
 /**

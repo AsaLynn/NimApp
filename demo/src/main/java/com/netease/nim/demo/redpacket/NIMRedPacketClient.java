@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.jrmf360.normallib.JrmfClient;
 import com.jrmf360.normallib.base.http.OkHttpModelCallBack;
@@ -14,8 +14,8 @@ import com.jrmf360.normallib.rp.http.model.BaseModel;
 import com.jrmf360.normallib.rp.utils.callback.GrabRpCallBack;
 import com.jrmf360.normallib.wallet.JrmfWalletClient;
 import com.netease.nim.demo.DemoCache;
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;

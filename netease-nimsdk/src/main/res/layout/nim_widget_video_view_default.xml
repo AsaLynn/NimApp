@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.netease.nim.uikit.common.media.imagepicker.video.GLVideoView
+        <com.zxn.netease.nimsdk.common.media.imagepicker.video.GLVideoView
             android:id="@id/widget_video_view_texture"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.netease.nim.uikit.common.media.imagepicker.view.GLBusyIndicatorView
+    <com.zxn.netease.nimsdk.common.media.imagepicker.view.GLBusyIndicatorView
         android:id="@id/widget_video_view_indicator"
         android:layout_gravity="center"
         android:layout_width="wrap_content"

@@ -9,11 +9,11 @@ import com.netease.nim.demo.R;
 import com.netease.nim.demo.redpacket.NIMOpenRpCallback;
 import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.demo.session.extension.RedPacketAttachment;
-import com.netease.nim.uikit.business.chatroom.adapter.ChatRoomMsgAdapter;
-import com.netease.nim.uikit.business.session.module.ModuleProxy;
-import com.netease.nim.uikit.business.session.module.list.MsgAdapter;
-import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderBase;
-import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
+import com.zxn.netease.nimsdk.business.chatroom.adapter.ChatRoomMsgAdapter;
+import com.zxn.netease.nimsdk.business.session.module.ModuleProxy;
+import com.zxn.netease.nimsdk.business.session.module.list.MsgAdapter;
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
 
 public class MsgViewHolderRedPacket extends MsgViewHolderBase {
 

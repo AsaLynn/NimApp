@@ -15,8 +15,8 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.netease.nim.demo.location.model.NimLocation;
-import com.netease.nim.uikit.common.framework.infra.TaskExecutor;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.framework.infra.TaskExecutor;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 
 import java.io.IOException;
 import java.util.List;

@@ -16,7 +16,7 @@
         android:layout_marginLeft="10dp"
         android:contentDescription="@string/empty" />
 
-    <com.netease.nim.uikit.common.ui.imageview.HeadImageView
+    <com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView
         android:id="@+id/img_head"
         android:layout_width="@dimen/avatar_size_in_contact"
         android:layout_height="@dimen/avatar_size_in_contact"

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.netease.nim.avchatkit.AVChatKit;
 import com.netease.nim.rtskit.RTSKit;
-import com.netease.nim.uikit.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 
 /**

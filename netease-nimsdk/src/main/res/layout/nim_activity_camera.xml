@@ -52,7 +52,7 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/ic_capture_btn_1" />
 
-            <com.netease.nim.uikit.common.media.imagepicker.camera.CircleProgressView
+            <com.zxn.netease.nimsdk.common.media.imagepicker.camera.CircleProgressView
                 android:id="@+id/progressView"
                 android:layout_width="@dimen/dp_size_125"
                 android:layout_height="@dimen/dp_size_125"

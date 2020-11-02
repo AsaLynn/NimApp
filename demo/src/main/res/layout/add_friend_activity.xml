@@ -24,7 +24,7 @@
         </com.zxn.widget.ExpandToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.netease.nim.uikit.common.ui.widget.ClearableEditTextWithIcon
+    <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
         android:id="@+id/search_friend_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

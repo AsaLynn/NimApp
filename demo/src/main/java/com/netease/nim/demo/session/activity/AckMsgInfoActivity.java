@@ -16,9 +16,9 @@ import com.netease.nim.demo.main.reminder.ReminderItem;
 import com.netease.nim.demo.session.adapter.AckMsgTabPagerAdapter;
 import com.netease.nim.demo.session.model.AckMsgTab;
 import com.netease.nim.demo.session.model.AckMsgViewModel;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.TeamMsgAckInfo;
 

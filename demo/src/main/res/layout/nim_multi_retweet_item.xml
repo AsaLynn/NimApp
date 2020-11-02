@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_date">
 
-        <com.netease.nim.uikit.common.ui.imageview.HeadImageView
+        <com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView
             android:id="@+id/message_item_portrait_left"
             android:layout_width="@dimen/avatar_size_in_session"
             android:layout_height="@dimen/avatar_size_in_session"

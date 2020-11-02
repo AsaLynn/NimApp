@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.config.preference.Preferences;
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 import com.netease.nimlib.push.net.lbs.IPVersion;
 import com.netease.nimlib.push.packet.asymmetric.AsymmetricType;
 import com.netease.nimlib.push.packet.symmetry.SymmetryType;

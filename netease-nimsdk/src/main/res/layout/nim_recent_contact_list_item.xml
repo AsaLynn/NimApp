@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true">
 
-            <com.netease.nim.uikit.common.ui.imageview.HeadImageView
+            <com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView
                 android:id="@+id/img_head"
                 android:layout_width="@dimen/avatar_size_default"
                 android:layout_height="@dimen/avatar_size_default"
@@ -97,7 +97,7 @@
             android:textColor="@color/color_aaaaaa_content_text"
             android:textSize="@dimen/text_small_size_ten_sp" />
 
-        <com.netease.nim.uikit.common.ui.drop.DropFake
+        <com.zxn.netease.nimsdk.common.ui.drop.DropFake
             android:id="@+id/unread_number_tip"
             android:layout_width="28dip"
             android:layout_height="28dip"

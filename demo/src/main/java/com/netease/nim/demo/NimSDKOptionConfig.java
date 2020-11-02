@@ -7,9 +7,9 @@ import android.text.TextUtils;
 
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.main.activity.WelcomeActivity;
-import com.netease.nim.uikit.api.wrapper.MessageRevokeTip;
-import com.netease.nim.uikit.api.wrapper.NimUserInfoProvider;
-import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderThumbBase;
+import com.zxn.netease.nimsdk.api.wrapper.MessageRevokeTip;
+import com.zxn.netease.nimsdk.api.wrapper.NimUserInfoProvider;
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderThumbBase;
 import com.netease.nimlib.sdk.NosTokenSceneConfig;
 import com.netease.nimlib.sdk.NotificationFoldStyle;
 import com.netease.nimlib.sdk.SDKOptions;

@@ -10,13 +10,13 @@ import android.widget.EditText;
 
 import com.netease.nim.demo.DemoPrivatizationConfig;
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.http.NimHttpClient;
-import com.netease.nim.uikit.common.ui.dialog.EasyProgressDialog;
-import com.netease.nim.uikit.common.ui.widget.SwitchButton;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.http.NimHttpClient;
+import com.zxn.netease.nimsdk.common.ui.dialog.EasyProgressDialog;
+import com.zxn.netease.nimsdk.common.ui.widget.SwitchButton;
 import com.netease.nimlib.sdk.ResponseCode;
 import com.netease.nimlib.sdk.ServerAddresses;
 

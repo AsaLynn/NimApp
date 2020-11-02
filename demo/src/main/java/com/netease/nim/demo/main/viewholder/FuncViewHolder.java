@@ -17,10 +17,10 @@ import com.netease.nim.demo.main.reminder.ReminderId;
 import com.netease.nim.demo.main.reminder.ReminderItem;
 import com.netease.nim.demo.main.reminder.ReminderManager;
 import com.netease.nim.demo.session.SessionHelper;
-import com.netease.nim.uikit.business.contact.core.item.AbsContactItem;
-import com.netease.nim.uikit.business.contact.core.item.ItemTypes;
-import com.netease.nim.uikit.business.contact.core.model.ContactDataAdapter;
-import com.netease.nim.uikit.business.contact.core.viewholder.AbsContactViewHolder;
+import com.zxn.netease.nimsdk.business.contact.core.item.AbsContactItem;
+import com.zxn.netease.nimsdk.business.contact.core.item.ItemTypes;
+import com.zxn.netease.nimsdk.business.contact.core.model.ContactDataAdapter;
+import com.zxn.netease.nimsdk.business.contact.core.viewholder.AbsContactViewHolder;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

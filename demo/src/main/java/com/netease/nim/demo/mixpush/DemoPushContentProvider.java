@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import com.netease.nim.uikit.api.model.main.CustomPushContentProvider;
+import com.zxn.netease.nimsdk.api.model.main.CustomPushContentProvider;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 

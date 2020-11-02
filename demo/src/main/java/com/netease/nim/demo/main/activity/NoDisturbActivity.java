@@ -11,17 +11,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.main.adapter.SettingsAdapter;
 import com.netease.nim.demo.main.model.SettingTemplate;
 import com.netease.nim.demo.main.model.SettingType;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.ui.widget.SwitchButton;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.ui.widget.SwitchButton;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;

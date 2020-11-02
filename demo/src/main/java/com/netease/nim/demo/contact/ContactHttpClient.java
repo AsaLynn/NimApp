@@ -7,9 +7,9 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.config.DemoServers;
-import com.netease.nim.uikit.common.http.NimHttpClient;
-import com.netease.nim.uikit.common.util.log.LogUtil;
-import com.netease.nim.uikit.common.util.string.MD5;
+import com.zxn.netease.nimsdk.common.http.NimHttpClient;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.util.string.MD5;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

@@ -6,10 +6,10 @@ import android.widget.TextView;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.main.helper.MessageHelper;
-import com.netease.nim.uikit.business.uinfo.UserInfoHelper;
-import com.netease.nim.uikit.common.adapter.TViewHolder;
-import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
-import com.netease.nim.uikit.common.util.sys.TimeUtil;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.common.adapter.TViewHolder;
+import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
+import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
 import com.netease.nimlib.sdk.msg.constant.SystemMessageStatus;
 import com.netease.nimlib.sdk.msg.model.SystemMessage;
 

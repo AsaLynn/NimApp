@@ -3,8 +3,8 @@ package com.netease.nim.demo.contact;
 import android.content.Context;
 
 import com.netease.nim.demo.contact.activity.UserProfileActivity;
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.model.contact.ContactEventListener;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.model.contact.ContactEventListener;
 
 /**
  * UIKit联系人列表定制展示类

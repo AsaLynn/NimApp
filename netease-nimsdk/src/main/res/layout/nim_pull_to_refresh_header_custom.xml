@@ -8,7 +8,7 @@
         android:layout_height="fill_parent"
         >
 
-        <com.netease.nim.uikit.common.ui.ptr2.LoadingView
+        <com.zxn.netease.nimsdk.common.ui.ptr2.LoadingView
             android:id="@+id/custom_loading"
             android:layout_width="fill_parent"
             android:layout_height="50dp"

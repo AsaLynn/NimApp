@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.netease.nim.uikit.common.ui.listview.AutoRefreshListView
+    <com.zxn.netease.nimsdk.common.ui.listview.AutoRefreshListView
         android:id="@+id/search_result_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

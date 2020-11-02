@@ -5,9 +5,9 @@ import android.widget.TextView;
 
 import com.netease.nim.demo.BuildConfig;
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
 
 public class AboutActivity extends UI {
 

@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.file.browser.FileBrowserAdapter.FileManagerItem;
-import com.netease.nim.uikit.common.adapter.TViewHolder;
+import com.zxn.netease.nimsdk.common.adapter.TViewHolder;
 
 import java.io.File;
 

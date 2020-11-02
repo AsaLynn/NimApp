@@ -14,7 +14,7 @@
         android:contentDescription="@string/empty"
         android:scaleType="center" />
 
-    <com.netease.nim.uikit.common.ui.imageview.HeadImageView
+    <com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView
         android:id="@+id/head_image"
         android:layout_width="@dimen/avatar_size_default"
         android:layout_height="@dimen/avatar_size_default"
@@ -65,7 +65,7 @@
         android:layout_toEndOf="@+id/title_label"
         android:gravity="end">
 
-        <com.netease.nim.uikit.common.ui.widget.SwitchButton
+        <com.zxn.netease.nimsdk.common.ui.widget.SwitchButton
             android:id="@+id/setting_item_toggle"
             android:layout_width="58dip"
             android:layout_height="36.67dip"

@@ -4,9 +4,9 @@ import android.widget.ImageView;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.extension.GuessAttachment;
-import com.netease.nim.uikit.business.chatroom.viewholder.ChatRoomMsgViewHolderBase;
-import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
-import com.netease.nim.uikit.common.util.sys.ScreenUtil;
+import com.zxn.netease.nimsdk.business.chatroom.viewholder.ChatRoomMsgViewHolderBase;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
+import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
 
 /**
  * Created by hzliuxuanlin on 17/9/15.

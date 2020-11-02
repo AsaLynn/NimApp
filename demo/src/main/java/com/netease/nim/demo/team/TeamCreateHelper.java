@@ -5,13 +5,13 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.main.activity.MainActivity;
 import com.netease.nim.demo.session.SessionHelper;
-import com.netease.nim.uikit.business.team.helper.TeamHelper;
-import com.netease.nim.uikit.common.ui.dialog.DialogMaker;
+import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
+import com.zxn.netease.nimsdk.common.ui.dialog.DialogMaker;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.ResponseCode;

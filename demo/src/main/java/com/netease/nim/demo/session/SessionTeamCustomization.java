@@ -5,15 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.extension.StickerAttachment;
-import com.netease.nim.uikit.api.NimUIKit;
-import com.netease.nim.uikit.api.model.session.SessionCustomization;
-import com.netease.nim.uikit.business.contact.selector.activity.ContactSelectActivity;
-import com.netease.nim.uikit.business.team.model.TeamExtras;
-import com.netease.nim.uikit.business.team.model.TeamRequestCode;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
+import com.zxn.netease.nimsdk.business.contact.selector.activity.ContactSelectActivity;
+import com.zxn.netease.nimsdk.business.team.model.TeamExtras;
+import com.zxn.netease.nimsdk.business.team.model.TeamRequestCode;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.team.model.Team;

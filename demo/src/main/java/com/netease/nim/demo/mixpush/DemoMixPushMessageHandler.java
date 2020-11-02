@@ -10,7 +10,7 @@ import android.util.SparseArray;
 
 import com.netease.nim.avchatkit.AVChatKit;
 import com.netease.nim.demo.DemoCache;
-import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NimIntent;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.mixpush.MixPushMessageHandler;

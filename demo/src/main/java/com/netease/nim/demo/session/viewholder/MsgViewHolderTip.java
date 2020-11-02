@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 //import com.netease.nim.demo.R;
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.business.session.emoji.MoonUtil;
-import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderBase;
-import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
+import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil;
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
 
 import java.util.Map;
 

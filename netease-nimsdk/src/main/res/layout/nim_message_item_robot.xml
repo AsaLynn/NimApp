@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.netease.nim.uikit.business.session.viewholder.robot.RobotContentLinearLayout
+        <com.zxn.netease.nimsdk.business.session.viewholder.robot.RobotContentLinearLayout
             android:id="@+id/robot_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:paddingTop="8dp"
             android:minWidth="64dp"
             android:visibility="visible">
-        </com.netease.nim.uikit.business.session.viewholder.robot.RobotContentLinearLayout>
+        </com.zxn.netease.nimsdk.business.session.viewholder.robot.RobotContentLinearLayout>
 
         <TextView
             android:id="@+id/tv_robot_session_continue"

@@ -2,13 +2,13 @@ package com.netease.nim.demo.session.action;
 
 import android.content.Intent;
 
-import com.netease.nim.uikit.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
 
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.activity.SendAckMsgActivity;
-import com.netease.nim.uikit.business.session.actions.BaseAction;
-import com.netease.nim.uikit.business.session.constant.RequestCode;
-import com.netease.nim.uikit.impl.cache.TeamDataCache;
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
+import com.zxn.netease.nimsdk.business.session.constant.RequestCode;
+import com.zxn.netease.nimsdk.impl.cache.TeamDataCache;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;

@@ -18,7 +18,7 @@
         android:textColor="@color/white"
         android:visibility="gone"></TextView>
 
-    <com.netease.nim.uikit.common.ui.ptr2.PullToRefreshLayout
+    <com.zxn.netease.nimsdk.common.ui.ptr2.PullToRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,6 +28,6 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </com.netease.nim.uikit.common.ui.ptr2.PullToRefreshLayout>
+    </com.zxn.netease.nimsdk.common.ui.ptr2.PullToRefreshLayout>
 
 </RelativeLayout>

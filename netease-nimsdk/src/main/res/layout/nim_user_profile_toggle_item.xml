@@ -15,7 +15,7 @@
         android:textColor="@color/color_black_ff333333"
         android:textSize="16sp" />
 
-    <com.netease.nim.uikit.common.ui.widget.SwitchButton
+    <com.zxn.netease.nimsdk.common.ui.widget.SwitchButton
         android:id="@+id/user_profile_toggle"
         android:layout_width="58dip"
         android:layout_height="36.67dip"

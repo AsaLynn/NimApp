@@ -6,7 +6,7 @@ plugins {
     id 'com.github.dcendents.android-maven'
     id 'com.jfrog.bintray'
 }
-version = "1.0.9"
+version = "1.1.0"
 android {
     compileSdkVersion 30
 
@@ -58,6 +58,7 @@ dependencies {
     api 'com.zxn.utils:common-utils:1.4.7'
     api 'com.zxn.widget:expand-widget:1.1.9'
     api 'com.zxn.popup:easy-popup:1.0.7'
+    api 'com.zxn.fuzzysearch:fuzzysearch:1.0.4'
 //    api 'com.zxn.mvvm:jetpackmvvm:1.0.0'
     // 通过云信来集成小米等厂商推送需要
     api 'com.netease.nimlib:push:8.0.0'

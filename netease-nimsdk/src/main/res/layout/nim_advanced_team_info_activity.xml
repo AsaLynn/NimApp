@@ -45,7 +45,7 @@
                 android:layout_marginRight="15dip"
                 android:layout_marginTop="20dip">
 
-                <com.netease.nim.uikit.common.ui.imageview.HeadImageView
+                <com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView
                     android:id="@+id/team_head_image"
                     android:layout_width="50dip"
                     android:layout_height="50dip" />
@@ -120,7 +120,7 @@
                 android:id="@+id/team_memeber_layout"
                 layout="@layout/nim_advanced_team_info_divider_item" />
 
-            <com.netease.nim.uikit.business.team.ui.TeamInfoGridView
+            <com.zxn.netease.nimsdk.business.team.ui.TeamInfoGridView
                 android:id="@+id/team_member_grid_view"
                 style="@style/grid_view"
                 android:layout_width="fill_parent"
@@ -132,7 +132,7 @@
                 android:paddingLeft="12dip"
                 android:paddingRight="12dip"
                 android:paddingTop="16dip"
-                android:verticalSpacing="16dip"></com.netease.nim.uikit.business.team.ui.TeamInfoGridView>
+                android:verticalSpacing="16dip"></com.zxn.netease.nimsdk.business.team.ui.TeamInfoGridView>
 
             <LinearLayout
                 android:layout_width="wrap_content"

@@ -10,12 +10,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
-import com.netease.nim.uikit.common.activity.ToolBarOptions;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.media.imagepicker.Constants;
-import com.netease.nim.uikit.common.media.imagepicker.ImagePickerLauncher;
-import com.netease.nim.uikit.common.media.model.GLImage;
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.media.imagepicker.Constants;
+import com.zxn.netease.nimsdk.common.media.imagepicker.ImagePickerLauncher;
+import com.zxn.netease.nimsdk.common.media.model.GLImage;
 import com.netease.nimlib.jsbridge.core.NIMJsBridge;
 import com.netease.nimlib.jsbridge.core.NIMJsBridgeBuilder;
 import com.netease.nimlib.jsbridge.extension.ImageInfo;

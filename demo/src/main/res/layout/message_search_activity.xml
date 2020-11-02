@@ -21,7 +21,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.netease.nim.uikit.common.ui.listview.AutoRefreshListView
+    <com.zxn.netease.nimsdk.common.ui.listview.AutoRefreshListView
         android:id="@+id/searchResultList"
         style="@style/list_view"
         android:layout_width="fill_parent"

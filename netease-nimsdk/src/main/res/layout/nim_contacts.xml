@@ -45,7 +45,7 @@
             android:textSize="40.0dip"
             android:visibility="invisible"/>
 
-        <com.netease.nim.uikit.common.ui.liv.LetterIndexView
+        <com.zxn.netease.nimsdk.common.ui.liv.LetterIndexView
             android:id="@+id/liv_index"
             android:layout_width="15dip"
             android:layout_height="fill_parent"

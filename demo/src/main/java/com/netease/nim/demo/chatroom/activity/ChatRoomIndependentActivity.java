@@ -10,9 +10,9 @@ import com.netease.nim.demo.R;
 import com.netease.nim.demo.chatroom.constants.Extras;
 import com.netease.nim.demo.chatroom.constants.EnterMode;
 import com.netease.nim.demo.chatroom.fragment.ChatRoomListFragment;
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.activity.UI;
-import com.netease.nim.uikit.common.util.string.MD5;
+import com.zxn.netease.nimsdk.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.util.string.MD5;
 
 /**
  * Created by hzsunyj on 2019-09-02.
