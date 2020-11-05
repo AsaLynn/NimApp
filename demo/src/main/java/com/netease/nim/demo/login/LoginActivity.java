@@ -122,7 +122,7 @@ public class LoginActivity extends UI implements OnKeyListener {
         options.isNeedNavigate = false;
         options.logoId = R.drawable.actionbar_white_logo_space;
         setToolBar(R.id.toolbar, options);
-        requestBasicPermission();
+        //requestBasicPermission();
         onParseIntent();
         initRightTopBtn();
         initLeftTopBtn();
@@ -136,16 +136,16 @@ public class LoginActivity extends UI implements OnKeyListener {
     private final String[] BASIC_PERMISSIONS = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
 
-    private void requestBasicPermission() {
-        MPermission.with(LoginActivity.this).setRequestCode(BASIC_PERMISSION_REQUEST_CODE)
-                   .permissions(BASIC_PERMISSIONS).request();
-    }
+//    private void requestBasicPermission() {
+//        MPermission.with(LoginActivity.this).setRequestCode(BASIC_PERMISSION_REQUEST_CODE)
+//                   .permissions(BASIC_PERMISSIONS).request();
+//    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        MPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                                           int[] grantResults) {
+//        MPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+//    }
 
     @OnMPermissionGranted(BASIC_PERMISSION_REQUEST_CODE)
     public void onBasicPermissionSuccess() {

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -17,6 +18,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 动态权限申请.
+ * Updated by zxn on 2020/11/5.
+ */
 public class MPermission extends BaseMPermission {
 
     private int requestCode;

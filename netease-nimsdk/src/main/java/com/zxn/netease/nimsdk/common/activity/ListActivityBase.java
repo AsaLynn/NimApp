@@ -14,17 +14,13 @@ import com.zxn.netease.nimsdk.common.ui.recyclerview.listener.OnItemClickListene
 
 import java.util.List;
 
-//import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
-
 /**
  * 列表Activity抽象类
  * <p>
  * Created by huangjun on 2017/6/21.
  */
-
 public abstract class ListActivityBase<T> extends UI {
 
-    // interface
 
     protected abstract String getTitleString();
 

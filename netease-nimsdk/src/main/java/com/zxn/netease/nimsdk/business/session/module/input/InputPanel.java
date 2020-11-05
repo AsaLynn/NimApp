@@ -1,5 +1,6 @@
 package com.zxn.netease.nimsdk.business.session.module.input;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,24 +25,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
-import com.zxn.netease.nimsdk.common.ToastHelper;
-
 import com.alibaba.fastjson.JSONObject;
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.zxn.netease.nimsdk.api.UIKitOptions;
-import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
-import com.zxn.netease.nimsdk.business.ait.AitTextChangeListener;
-import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
-import com.zxn.netease.nimsdk.business.session.emoji.EmoticonPickerView;
-import com.zxn.netease.nimsdk.business.session.emoji.IEmoticonSelectedListener;
-import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil;
-import com.zxn.netease.nimsdk.business.session.module.Container;
-import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialogHelper;
-import com.zxn.netease.nimsdk.common.util.log.LogUtil;
-import com.zxn.netease.nimsdk.common.util.string.StringUtil;
-import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.media.record.AudioRecorder;
 import com.netease.nimlib.sdk.media.record.IAudioRecordCallback;
@@ -53,6 +40,23 @@ import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
 import com.netease.nimlib.sdk.msg.model.CustomNotificationConfig;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.zxn.netease.nimsdk.R;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.UIKitOptions;
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
+import com.zxn.netease.nimsdk.business.ait.AitTextChangeListener;
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
+import com.zxn.netease.nimsdk.business.session.emoji.EmoticonPickerView;
+import com.zxn.netease.nimsdk.business.session.emoji.IEmoticonSelectedListener;
+import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil;
+import com.zxn.netease.nimsdk.business.session.module.Container;
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
+import com.zxn.netease.nimsdk.common.ToastHelper;
+import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialogHelper;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
+import com.zxn.netease.nimsdk.common.util.string.StringUtil;
+import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
+import com.zxn.utils.UIUtils;
 
 import java.io.File;
 import java.util.List;
@@ -61,7 +65,8 @@ import java.util.List;
  * 底部文本编辑，语音等模块
  * Created by hzxuwen on 2015/6/16.
  */
-public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallback, AitTextChangeListener {
+public class InputPanel
+        implements IEmoticonSelectedListener, IAudioRecordCallback, AitTextChangeListener {
 
     private static final String TAG = "MsgSendLayout";
 
@@ -242,26 +247,19 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
         cancelReplyImg.setOnClickListener(clickListener);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initTextEdit() {
         messageEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        messageEditText.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    switchToTextLayout(true);
-                }
-                return false;
+        messageEditText.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                switchToTextLayout(true);
             }
+            return false;
         });
 
-        messageEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                messageEditText.setHint("");
-                checkSendButtonEnable(messageEditText);
-            }
+        messageEditText.setOnFocusChangeListener((v, hasFocus) -> {
+            messageEditText.setHint("");
+            checkSendButtonEnable(messageEditText);
         });
 
         messageEditText.addTextChangedListener(new TextWatcher() {
@@ -352,6 +350,7 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
                 onTextMessageSendButtonPressed();
             } else if (v == switchToAudioButtonInInputBar) {
                 switchToAudioLayout();
+                requestRecordAudioPermission(v.getContext());
             } else if (v == moreFuntionButtonInInputBar) {
                 toggleActionPanelLayout();
             } else if (v == emojiButtonInInputBar) {
@@ -361,6 +360,34 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
             }
         }
     };
+
+    private void requestRecordAudioPermission(Context context) {
+        XXPermissions.with(context)
+                .permission(Permission.RECORD_AUDIO)
+                .permission(Permission.Group.STORAGE)
+                .request(new OnPermission() {
+
+                    @Override
+                    public void hasPermission(List<String> granted, boolean all) {
+                        if (all) {
+                            toast("获取录音权限成功");
+                        } else {
+                            toast("获取录音权限失败");
+                        }
+                    }
+
+                    @Override
+                    public void noPermission(List<String> denied, boolean never) {
+                        if (never) {
+                            toast("被拒绝授权，请手动授予录音");
+                            // 如果是被永久拒绝就跳转到应用权限系统设置页面
+                            XXPermissions.startPermissionActivity(context, denied);
+                        } else {
+                            toast("获取录音权限失败");
+                        }
+                    }
+                });
+    }
 
     // 点击edittext，切换键盘和更多布局
     private void switchToTextLayout(boolean needShowInput) {
@@ -662,27 +689,27 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
     /**
      * ****************************** 语音 ***********************************
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initAudioRecordButton() {
-        audioRecordBtn.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    touched = true;
-                    initAudioRecord();
-                    onStartAudioRecord();
-                } else if (event.getAction() == MotionEvent.ACTION_CANCEL
-                        || event.getAction() == MotionEvent.ACTION_UP) {
-                    touched = false;
-                    onEndAudioRecord(isCancelled(v, event));
-                } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    touched = true;
-                    cancelAudioRecord(isCancelled(v, event));
-                }
-
-                return false;
+        audioRecordBtn.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                touched = true;
+                initAudioRecord();
+                onStartAudioRecord();
+            } else if (event.getAction() == MotionEvent.ACTION_CANCEL
+                    || event.getAction() == MotionEvent.ACTION_UP) {
+                touched = false;
+                onEndAudioRecord(isCancelled(v, event));
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                touched = true;
+                cancelAudioRecord(isCancelled(v, event));
             }
+            return false;
         });
+    }
+
+    private void toast(String text) {
+        UIUtils.toast(text);
     }
 
     // 上滑取消录音判断

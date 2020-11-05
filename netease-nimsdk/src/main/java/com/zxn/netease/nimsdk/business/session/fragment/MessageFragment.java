@@ -8,23 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction;
-import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction;
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.api.UIKitOptions;
-import com.zxn.netease.nimsdk.api.model.main.CustomPushContentProvider;
-import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
-import com.zxn.netease.nimsdk.business.ait.AitManager;
-import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
-import com.zxn.netease.nimsdk.business.session.constant.Extras;
-import com.zxn.netease.nimsdk.business.session.module.Container;
-import com.zxn.netease.nimsdk.business.session.module.ModuleProxy;
-import com.zxn.netease.nimsdk.business.session.module.input.InputPanel;
-import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx;
-import com.zxn.netease.nimsdk.common.CommonUtil;
-import com.zxn.netease.nimsdk.common.fragment.TFragment;
-import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
-
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallback;
@@ -42,6 +25,23 @@ import com.netease.nimlib.sdk.msg.model.MessageReceipt;
 import com.netease.nimlib.sdk.robot.model.NimRobotInfo;
 import com.netease.nimlib.sdk.robot.model.RobotAttachment;
 import com.netease.nimlib.sdk.robot.model.RobotMsgType;
+import com.zxn.netease.nimsdk.R;
+import com.zxn.netease.nimsdk.api.UIKitOptions;
+import com.zxn.netease.nimsdk.api.model.main.CustomPushContentProvider;
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
+import com.zxn.netease.nimsdk.business.ait.AitManager;
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
+import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction;
+import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction;
+import com.zxn.netease.nimsdk.business.session.constant.Extras;
+import com.zxn.netease.nimsdk.business.session.module.Container;
+import com.zxn.netease.nimsdk.business.session.module.ModuleProxy;
+import com.zxn.netease.nimsdk.business.session.module.input.InputPanel;
+import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx;
+import com.zxn.netease.nimsdk.common.CommonUtil;
+import com.zxn.netease.nimsdk.common.fragment.TFragment;
+import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
+import com.zxn.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +75,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         parseIntent();
+        UIUtils.init(getContext());
     }
 
     @Override
@@ -188,12 +189,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
     /**
      * 消息接收观察者
      */
-    Observer<List<IMMessage>> incomingMessageObserver = new Observer<List<IMMessage>>() {
-        @Override
-        public void onEvent(List<IMMessage> messages) {
-            onMessageIncoming(messages);
-        }
-    };
+    Observer<List<IMMessage>> incomingMessageObserver = (Observer<List<IMMessage>>) messages -> onMessageIncoming(messages);
 
     private void onMessageIncoming(List<IMMessage> messages) {
         if (CommonUtil.isEmpty(messages)) {

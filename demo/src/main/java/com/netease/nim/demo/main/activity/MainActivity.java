@@ -149,7 +149,7 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         registerCustomMessageObservers(true);
         requestSystemMessageUnreadCount();
         initUnreadCover();
-        requestBasicPermission();
+        //requestBasicPermission();
     }
 
     private boolean parseIntent() {
@@ -314,11 +314,11 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         });
     }
 
-    private void requestBasicPermission() {
-        MPermission.printMPermissionResult(true, this, BASIC_PERMISSIONS);
-        MPermission.with(MainActivity.this).setRequestCode(BASIC_PERMISSION_REQUEST_CODE)
-                   .permissions(BASIC_PERMISSIONS).request();
-    }
+//    private void requestBasicPermission() {
+//        MPermission.printMPermissionResult(true, this, BASIC_PERMISSIONS);
+//        MPermission.with(MainActivity.this).setRequestCode(BASIC_PERMISSION_REQUEST_CODE)
+//                   .permissions(BASIC_PERMISSIONS).request();
+//    }
 
     private void onLogout() {
         Preferences.saveUserToken("");
@@ -497,32 +497,32 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        MPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+//                                           @NonNull int[] grantResults) {
+//        MPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+//    }
 
-    @OnMPermissionGranted(BASIC_PERMISSION_REQUEST_CODE)
-    public void onBasicPermissionSuccess() {
-        try {
-            ToastHelper.showToast(this, "授权成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        MPermission.printMPermissionResult(false, this, BASIC_PERMISSIONS);
-    }
+//    @OnMPermissionGranted(BASIC_PERMISSION_REQUEST_CODE)
+//    public void onBasicPermissionSuccess() {
+//        try {
+//            ToastHelper.showToast(this, "授权成功");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        MPermission.printMPermissionResult(false, this, BASIC_PERMISSIONS);
+//    }
 
-    @OnMPermissionDenied(BASIC_PERMISSION_REQUEST_CODE)
-    @OnMPermissionNeverAskAgain(BASIC_PERMISSION_REQUEST_CODE)
-    public void onBasicPermissionFailed() {
-        try {
-            ToastHelper.showToast(this, "未全部授权，部分功能可能无法正常运行！");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        MPermission.printMPermissionResult(false, this, BASIC_PERMISSIONS);
-    }
+//    @OnMPermissionDenied(BASIC_PERMISSION_REQUEST_CODE)
+//    @OnMPermissionNeverAskAgain(BASIC_PERMISSION_REQUEST_CODE)
+//    public void onBasicPermissionFailed() {
+//        try {
+//            ToastHelper.showToast(this, "未全部授权，部分功能可能无法正常运行！");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        MPermission.printMPermissionResult(false, this, BASIC_PERMISSIONS);
+//    }
 
     @Override
     protected boolean displayHomeAsUpEnabled() {
