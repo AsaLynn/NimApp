@@ -31,6 +31,9 @@ class ImageLoaderKit(private val context: Context) {
         // 不必清除缓存，并且这个缓存清除比较耗时
         // clear();
         // build self avatar cache
+        if (NimUIKit.getAccount().isNullOrEmpty()) {
+            return
+        }
         asyncLoadAvatarBitmapToCache(NimUIKit.getAccount())
     }
 
@@ -57,7 +60,7 @@ class ImageLoaderKit(private val context: Context) {
     /**
      * 异步加载头像位图到Glide缓存中
      */
-    private fun asyncLoadAvatarBitmapToCache(account: String) {
+    private fun asyncLoadAvatarBitmapToCache(account: String?) {
         NimSingleThreadExecutor.getInstance().execute {
             val userInfo = NimUIKit.getUserInfoProvider().getUserInfo(account)
             if (userInfo != null) {
@@ -70,7 +73,7 @@ class ImageLoaderKit(private val context: Context) {
      * 如果图片是上传到云信服务器，并且用户开启了文件安全功能，那么这里可能是短链，需要先换成源链才能下载。
      * 如果没有使用云信存储或没开启文件安全，那么不用这样做
      */
-    private fun loadAvatarBitmapToCache(url: String) {
+    private fun loadAvatarBitmapToCache(url: String?) {
         if (TextUtils.isEmpty(url)) {
             return
         }
@@ -79,7 +82,7 @@ class ImageLoaderKit(private val context: Context) {
          * 如果图片来源是非网易云信云存储，请不要使用NosThumbImageUtil
          */NIMClient.getService(NosService::class.java).getOriginUrlFromShortUrl(url).setCallback(
             object : RequestCallbackWrapper<String?>() {
-                override fun onResult(code: Int, result: String?, exception: Throwable) {
+                override fun onResult(code: Int, result: String?, exception: Throwable?) {
                     var result = result
                     if (TextUtils.isEmpty(result)) {
                         result = url
