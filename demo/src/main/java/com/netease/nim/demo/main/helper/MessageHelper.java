@@ -178,7 +178,7 @@ public class MessageHelper {
     /**
      * 合并发送消息，并通过ActivityResult回传合并后的消息 (this->上层Activity->MessageListPanelEx)；最后由接收方发送
      */
-    public static void createMultiRetweet(final List<IMMessage> toBeSent, final boolean shouldEncrypt, final CreateMessageCallback callback) {
+    public static void createMultiRetweet(final List<? extends IMMessage> toBeSent, final boolean shouldEncrypt, final CreateMessageCallback callback) {
         if (toBeSent.isEmpty()) {
             return;
         }

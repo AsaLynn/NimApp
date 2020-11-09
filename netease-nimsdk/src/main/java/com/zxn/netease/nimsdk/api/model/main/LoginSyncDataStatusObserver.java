@@ -8,6 +8,7 @@ import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.auth.AuthServiceObserver;
 import com.netease.nimlib.sdk.auth.constant.LoginSyncStatus;
+import com.zxn.netease.nimsdk.common.util.log.sdk.wrapper.AbsNimLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class LoginSyncDataStatusObserver {
      * 调用时机：主进程Application onCreate中
      */
     public void registerLoginSyncDataStatus(boolean register) {
-        LogUtil.i(TAG, "observe login sync data completed event on Application create");
+        AbsNimLog.i(TAG, "observe login sync data completed event on Application create");
         NIMClient.getService(AuthServiceObserver.class).observeLoginSyncDataStatus(loginSyncStatusObserver, register);
         NIMClient.getService(AuthServiceObserver.class).observeLoginSyncTeamMembersCompleteResult(syncTeamMemberObserver, register);
     }

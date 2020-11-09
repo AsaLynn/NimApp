@@ -55,6 +55,7 @@ import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.UnicornImageLoader;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.YSFOptions;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.privatization.UnicornAddress;
+import com.zxn.utils.UIUtils;
 
 public class NimApplication extends Application {
 
@@ -73,6 +74,7 @@ public class NimApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        UIUtils.init(this);
         DemoCache.setContext(this);
 
         // 4.6.0 开始，第三方推送配置入口改为 SDKOption#mixPushConfig，旧版配置方式依旧支持。
@@ -199,6 +201,9 @@ public class NimApplication extends Application {
         UIKitOptions options = new UIKitOptions();
         // 设置app图片/音频/日志等缓存目录
         options.appCacheDir = NimSDKOptionConfig.getAppCacheDir(this) + "/app";
+        options.messageLeftBackground = R.drawable.demo_message_item_left_selector;
+        //messageLeftBackground
+        //options.messageRightBackground = R.drawable.nim_message_item_right_selector;
         return options;
     }
 

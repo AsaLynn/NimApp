@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * 1. 聊天背景 <br>
  * 2. 加号展开后的按钮和动作 <br>
  * 3. ActionBar右侧按钮。
+ * 4.聊天列表顶部温馨提示内容
  */
 public class SessionCustomization implements Serializable {
 
@@ -41,6 +42,11 @@ public class SessionCustomization implements Serializable {
      * ActionBar右侧可定制按钮。默认为空。
      */
     public ArrayList<OptionsButton> buttons;
+
+    /**
+     * 聊天列表顶部温馨提示内容
+     */
+    public int headLayoutId;
 
     /**
      * 如果OptionsButton的点击响应中需要startActivityForResult，可在此函数中处理结果。

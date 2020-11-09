@@ -3,7 +3,6 @@ package com.netease.nim.demo.session;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -14,11 +13,9 @@ import com.netease.nim.demo.contact.activity.RobotProfileActivity;
 import com.netease.nim.demo.contact.activity.UserProfileActivity;
 import com.netease.nim.demo.main.helper.MessageHelper;
 import com.netease.nim.demo.redpacket.NIMRedPacketClient;
-import com.netease.nim.demo.session.action.AVChatAction;
 import com.netease.nim.demo.session.action.AckMessageAction;
 import com.netease.nim.demo.session.action.FileAction;
 import com.netease.nim.demo.session.action.GuessAction;
-import com.netease.nim.demo.session.action.RTSAction;
 import com.netease.nim.demo.session.action.RedPacketAction;
 import com.netease.nim.demo.session.action.SnapChatAction;
 import com.netease.nim.demo.session.action.TeamAVChatAction;
@@ -47,28 +44,6 @@ import com.netease.nim.demo.session.viewholder.MsgViewHolderRedPacket;
 import com.netease.nim.demo.session.viewholder.MsgViewHolderSnapChat;
 import com.netease.nim.demo.session.viewholder.MsgViewHolderSticker;
 import com.netease.nim.demo.session.viewholder.MsgViewHolderTip;
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.zxn.netease.nimsdk.api.model.CreateMessageCallback;
-import com.zxn.netease.nimsdk.api.model.recent.RecentCustomization;
-import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
-import com.zxn.netease.nimsdk.api.model.session.SessionEventListener;
-import com.zxn.netease.nimsdk.api.wrapper.NimMessageRevokeObserver;
-import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
-import com.zxn.netease.nimsdk.business.session.helper.MessageListPanelHelper;
-import com.zxn.netease.nimsdk.business.session.helper.TeamNotificationHelper;
-import com.zxn.netease.nimsdk.business.session.module.IMultiRetweetMsgCreator;
-import com.zxn.netease.nimsdk.business.session.module.MsgForwardFilter;
-import com.zxn.netease.nimsdk.business.session.module.MsgRevokeFilter;
-import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderUnknown;
-import com.zxn.netease.nimsdk.business.team.model.TeamExtras;
-import com.zxn.netease.nimsdk.business.team.model.TeamRequestCode;
-import com.zxn.netease.nimsdk.common.ui.dialog.CustomAlertDialog;
-import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialogHelper;
-import com.zxn.netease.nimsdk.common.ui.popupmenu.NIMPopupMenu;
-import com.zxn.netease.nimsdk.common.ui.popupmenu.PopupMenuItem;
-import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
-import com.zxn.netease.nimsdk.impl.cache.TeamDataCache;
-import com.zxn.netease.nimsdk.impl.customization.DefaultRecentCustomization;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.avchat.constant.AVChatRecordState;
 import com.netease.nimlib.sdk.avchat.constant.AVChatType;
@@ -87,6 +62,28 @@ import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.netease.nimlib.sdk.robot.model.RobotAttachment;
 import com.netease.nimlib.sdk.team.constant.TeamTypeEnum;
 import com.netease.nimlib.sdk.team.model.Team;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.api.model.recent.RecentCustomization;
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
+import com.zxn.netease.nimsdk.api.model.session.SessionEventListener;
+import com.zxn.netease.nimsdk.api.wrapper.NimMessageRevokeObserver;
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
+import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction;
+import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction;
+import com.zxn.netease.nimsdk.business.session.helper.MessageListPanelHelper;
+import com.zxn.netease.nimsdk.business.session.helper.TeamNotificationHelper;
+import com.zxn.netease.nimsdk.business.session.module.IMultiRetweetMsgCreator;
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderUnknown;
+import com.zxn.netease.nimsdk.business.team.model.TeamExtras;
+import com.zxn.netease.nimsdk.business.team.model.TeamRequestCode;
+import com.zxn.netease.nimsdk.common.ui.dialog.CustomAlertDialog;
+import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialogHelper;
+import com.zxn.netease.nimsdk.common.ui.popupmenu.NIMPopupMenu;
+import com.zxn.netease.nimsdk.common.ui.popupmenu.PopupMenuItem;
+import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
+import com.zxn.netease.nimsdk.impl.cache.TeamDataCache;
+import com.zxn.netease.nimsdk.impl.customization.DefaultRecentCustomization;
+import com.zxn.utils.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,7 +181,6 @@ public class SessionHelper {
                 @Override
                 public void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
                     super.onActivityResult(activity, requestCode, resultCode, data);
-
                 }
 
                 @Override
@@ -203,24 +199,27 @@ public class SessionHelper {
                 }
             };
             // 背景
-            //            p2pCustomization.backgroundColor = Color.BLUE;
+            p2pCustomization.backgroundColor = UIUtils.getColor(R.color.colorPrimary);
+            p2pCustomization.headLayoutId = R.layout.msg_notice_header;
             //            p2pCustomization.backgroundUri = "file:///android_asset/xx/bk.jpg";
             //            p2pCustomization.backgroundUri = "file:///sdcard/Pictures/bk.png";
             //            p2pCustomization.backgroundUri = "android.resource://com.netease.nim.demo/drawable/bk"
             // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
             ArrayList<BaseAction> actions = new ArrayList<>();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                actions.add(new AVChatAction(AVChatType.AUDIO));
-                actions.add(new AVChatAction(AVChatType.VIDEO));
-            }
-            actions.add(new RTSAction());
-            actions.add(new SnapChatAction());
-            actions.add(new GuessAction());
-            actions.add(new FileAction());
-            actions.add(new TipAction());
-            if (NIMRedPacketClient.isEnable()) {
-                actions.add(new RedPacketAction());
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+//                actions.add(new AVChatAction(AVChatType.AUDIO));
+//                actions.add(new AVChatAction(AVChatType.VIDEO));
+//            }
+//            actions.add(new RTSAction());
+//            actions.add(new SnapChatAction());
+//            actions.add(new GuessAction());
+//            actions.add(new FileAction());
+//            actions.add(new TipAction());
+//            if (NIMRedPacketClient.isEnable()) {
+//                actions.add(new RedPacketAction());
+//            }
+            actions.add(new SelectImageAction());
+            actions.add(new TakePictureAction());
             p2pCustomization.actions = actions;
             p2pCustomization.withSticker = true;
             // 定制ActionBar右边的按钮，可以加多个
@@ -314,7 +313,7 @@ public class SessionHelper {
             return true;
         }
         LocalAntiSpamResult result = NIMClient.getService(MsgService.class).checkLocalAntiSpam(message.getContent(),
-                                                                                               "**");
+                "**");
         int operator = result == null ? 0 : result.getOperator();
         switch (operator) {
             case 1: // 替换，允许发送
@@ -609,12 +608,9 @@ public class SessionHelper {
         }
     }
 
-    private static void registerMultiRetweetCreator(){
-        IMultiRetweetMsgCreator creator = new IMultiRetweetMsgCreator() {
-            @Override
-            public void create(List<IMMessage> msgList, boolean shouldEncrypt, CreateMessageCallback callback) {
-                MessageHelper.createMultiRetweet(msgList, shouldEncrypt, callback);
-            }
+    private static void registerMultiRetweetCreator() {
+        IMultiRetweetMsgCreator creator = (msgList, shouldEncrypt, callback) -> {
+            MessageHelper.createMultiRetweet(msgList, shouldEncrypt, callback);
         };
         NimUIKit.registerMultiRetweetMsgCreator(creator);
     }
@@ -654,22 +650,18 @@ public class SessionHelper {
      * 消息转发过滤器
      */
     private static void registerMsgForwardFilter() {
-        NimUIKit.setMsgForwardFilter(new MsgForwardFilter() {
-
-            @Override
-            public boolean shouldIgnore(IMMessage message) {
-                if (message.getMsgType() == MsgTypeEnum.custom && message.getAttachment() != null &&
+        NimUIKit.setMsgForwardFilter(message -> {
+            if (message.getMsgType() == MsgTypeEnum.custom && message.getAttachment() != null &&
                     (message.getAttachment() instanceof SnapChatAttachment ||
-                     message.getAttachment() instanceof RTSAttachment ||
-                     message.getAttachment() instanceof RedPacketAttachment)) {
-                    // 白板消息和阅后即焚消息，红包消息 不允许转发
-                    return true;
-                } else if (message.getMsgType() == MsgTypeEnum.robot && message.getAttachment() != null &&
-                           ((RobotAttachment) message.getAttachment()).isRobotSend()) {
-                    return true; // 如果是机器人发送的消息 不支持转发
-                }
-                return false;
+                            message.getAttachment() instanceof RTSAttachment ||
+                            message.getAttachment() instanceof RedPacketAttachment)) {
+                // 白板消息和阅后即焚消息，红包消息 不允许转发
+                return true;
+            } else if (message.getMsgType() == MsgTypeEnum.robot && message.getAttachment() != null &&
+                    ((RobotAttachment) message.getAttachment()).isRobotSend()) {
+                return true; // 如果是机器人发送的消息 不支持转发
             }
+            return false;
         });
     }
 
@@ -677,21 +669,17 @@ public class SessionHelper {
      * 消息撤回过滤器
      */
     private static void registerMsgRevokeFilter() {
-        NimUIKit.setMsgRevokeFilter(new MsgRevokeFilter() {
-
-            @Override
-            public boolean shouldIgnore(IMMessage message) {
-                if (message.getAttachment() != null && (message.getAttachment() instanceof AVChatAttachment ||
-                                                        message.getAttachment() instanceof RTSAttachment ||
-                                                        message.getAttachment() instanceof RedPacketAttachment)) {
-                    // 视频通话消息和白板消息，红包消息 不允许撤回
-                    return true;
-                } else if (DemoCache.getAccount().equals(message.getSessionId())) {
-                    // 发给我的电脑 不允许撤回
-                    return true;
-                }
-                return false;
+        NimUIKit.setMsgRevokeFilter(message -> {
+            if (message.getAttachment() != null && (message.getAttachment() instanceof AVChatAttachment ||
+                    message.getAttachment() instanceof RTSAttachment ||
+                    message.getAttachment() instanceof RedPacketAttachment)) {
+                // 视频通话消息和白板消息，红包消息 不允许撤回
+                return true;
+            } else if (DemoCache.getAccount().equals(message.getSessionId())) {
+                // 发给我的电脑 不允许撤回
+                return true;
             }
+            return false;
         });
     }
 
@@ -719,7 +707,7 @@ public class SessionHelper {
         switch (item.getTag()) {
             case ACTION_HISTORY_QUERY_PERSIST_CLEAR:
                 MessageHistoryActivity.start(context, sessionId,
-                                             sessionType, true); // 漫游消息查询，被清除的消息也入库
+                        sessionType, true); // 漫游消息查询，被清除的消息也入库
                 break;
             case ACTION_HISTORY_QUERY_NOT_PERSIST_CLEAR:
                 MessageHistoryActivity.start(context, sessionId,
@@ -730,45 +718,45 @@ public class SessionHelper {
                 break;
             case ACTION_CLEAR_MESSAGE_RECORD:
                 EasyAlertDialogHelper.createOkCancelDiolag(context, null, "确定要清空吗？", true,
-                                                           new EasyAlertDialogHelper.OnDialogActionListener() {
+                        new EasyAlertDialogHelper.OnDialogActionListener() {
 
-                                                               @Override
-                                                               public void doCancelAction() {
-                                                               }
+                            @Override
+                            public void doCancelAction() {
+                            }
 
-                                                               @Override
-                                                               public void doOkAction() {
-                                                                   NIMClient.getService(MsgService.class)
-                                                                            .clearChattingHistory(
-                                                                                    sessionId,
-                                                                                    sessionType,
-                                                                                    false);
-                                                                   MessageListPanelHelper.getInstance()
-                                                                                         .notifyClearMessages(
-                                                                                                 sessionId);
-                                                               }
-                                                           }).show();
+                            @Override
+                            public void doOkAction() {
+                                NIMClient.getService(MsgService.class)
+                                        .clearChattingHistory(
+                                                sessionId,
+                                                sessionType,
+                                                false);
+                                MessageListPanelHelper.getInstance()
+                                        .notifyClearMessages(
+                                                sessionId);
+                            }
+                        }).show();
                 break;
             case ACTION_CLEAR_MESSAGE_NOT_RECORD:
                 EasyAlertDialogHelper.createOkCancelDiolag(context, null, "确定要清空吗？", true,
-                                                            new EasyAlertDialogHelper.OnDialogActionListener() {
+                        new EasyAlertDialogHelper.OnDialogActionListener() {
 
-                                                                @Override
-                                                                public void doCancelAction() {
-                                                                }
+                            @Override
+                            public void doCancelAction() {
+                            }
 
-                                                                @Override
-                                                                public void doOkAction() {
-                                                                    NIMClient.getService(MsgService.class)
-                                                                            .clearChattingHistory(
-                                                                                    sessionId,
-                                                                                    sessionType,
-                                                                                    true);
-                                                                    MessageListPanelHelper.getInstance()
-                                                                            .notifyClearMessages(
-                                                                                    sessionId);
-                                                                }
-                                                            }).show();
+                            @Override
+                            public void doOkAction() {
+                                NIMClient.getService(MsgService.class)
+                                        .clearChattingHistory(
+                                                sessionId,
+                                                sessionType,
+                                                true);
+                                MessageListPanelHelper.getInstance()
+                                        .notifyClearMessages(
+                                                sessionId);
+                            }
+                        }).show();
                 break;
             case ACTION_CLEAR_MESSAGE:
                 String title = context.getString(R.string.cloud_message_clear_tips);
@@ -796,17 +784,17 @@ public class SessionHelper {
                                                         SessionTypeEnum sessionTypeEnum) {
         List<PopupMenuItem> moreMenuItems = new ArrayList<PopupMenuItem>();
         moreMenuItems.add(new PopupMenuItem(context, ACTION_HISTORY_QUERY_PERSIST_CLEAR, sessionId, sessionTypeEnum,
-                                            DemoCache.getContext().getString(R.string.message_history_query_ingore)));
+                DemoCache.getContext().getString(R.string.message_history_query_ingore)));
         moreMenuItems.add(new PopupMenuItem(context, ACTION_HISTORY_QUERY_NOT_PERSIST_CLEAR, sessionId, sessionTypeEnum,
-                                            DemoCache.getContext().getString(R.string.message_history_query_remember)));
+                DemoCache.getContext().getString(R.string.message_history_query_remember)));
         moreMenuItems.add(new PopupMenuItem(context, ACTION_SEARCH_MESSAGE, sessionId, sessionTypeEnum,
-                                            DemoCache.getContext().getString(R.string.message_search_title)));
+                DemoCache.getContext().getString(R.string.message_search_title)));
         moreMenuItems.add(new PopupMenuItem(context, ACTION_CLEAR_MESSAGE_RECORD, sessionId, sessionTypeEnum,
-                                            DemoCache.getContext().getString(R.string.message_clear_record)));
+                DemoCache.getContext().getString(R.string.message_clear_record)));
         moreMenuItems.add(new PopupMenuItem(context, ACTION_CLEAR_MESSAGE_NOT_RECORD, sessionId, sessionTypeEnum,
-                                            DemoCache.getContext().getString(R.string.message_clear_not_record)));
+                DemoCache.getContext().getString(R.string.message_clear_not_record)));
         moreMenuItems.add(new PopupMenuItem(context, ACTION_CLEAR_MESSAGE, sessionId, sessionTypeEnum,
-                                            DemoCache.getContext().getString(R.string.cloud_message_clear)));
+                DemoCache.getContext().getString(R.string.cloud_message_clear)));
         return moreMenuItems;
     }
 }

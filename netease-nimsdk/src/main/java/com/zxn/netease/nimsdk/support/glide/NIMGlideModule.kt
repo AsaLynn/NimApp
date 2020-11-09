@@ -7,6 +7,7 @@ import com.bumptech.glide.Registry
 import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory
 import com.bumptech.glide.module.GlideModule
 import com.zxn.netease.nimsdk.common.util.log.LogUtil
+import com.zxn.netease.nimsdk.common.util.log.sdk.wrapper.AbsNimLog
 import java.io.File
 
 
@@ -24,7 +25,7 @@ class NIMGlideModule : GlideModule {
                 MAX_DISK_CACHE_SIZE
             )
         )
-        LogUtil.i(
+        AbsNimLog.i(
             TAG,
             "NIMGlideModule apply options, disk cached path=" + context.externalCacheDir + File.pathSeparator + cachedDirName
         )

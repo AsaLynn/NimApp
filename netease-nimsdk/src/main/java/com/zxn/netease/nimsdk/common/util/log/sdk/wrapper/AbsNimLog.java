@@ -12,7 +12,7 @@ import com.zxn.netease.nimsdk.common.util.log.sdk.LogBase;
 
 public abstract class AbsNimLog {
 
-    private static LogBase log;
+    protected static LogBase log;
     private static String process; // 进程标识,体现在tag里
 
     protected static void init(LogBase logImpl, String processName, String logDir, String logFileName,

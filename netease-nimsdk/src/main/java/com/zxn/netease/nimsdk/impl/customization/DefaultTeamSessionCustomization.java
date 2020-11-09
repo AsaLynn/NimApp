@@ -47,6 +47,7 @@ public class DefaultTeamSessionCustomization extends SessionCustomization {
         buttons.add(infoButton);
     }
 
+    @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         if (requestCode == TeamRequestCode.REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {

@@ -49,8 +49,6 @@ import java.util.Map;
 
 /**
  * 聊天界面基类
- * <p/>
- * Created by huangjun on 2015/2/1.
  */
 public class MessageFragment extends TFragment implements ModuleProxy {
 
@@ -136,7 +134,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
         Container container = new Container(getActivity(), sessionId, sessionType, this, true);
 
         if (messageListPanel == null) {
-            messageListPanel = new MessageListPanelEx(container, rootView, anchor, false, false);
+            messageListPanel = new MessageListPanelEx(container, rootView, anchor, false, false,customization);
         } else {
             messageListPanel.reload(container, anchor);
         }
@@ -405,15 +403,15 @@ public class MessageFragment extends TFragment implements ModuleProxy {
     // 操作面板集合
     protected List<BaseAction> getActionList() {
         List<BaseAction> actions = new ArrayList<>();
-        actions.add(new SelectImageAction());
-        actions.add(new TakePictureAction());
-        //actions.add(new ImageAction());
         //actions.add(new ImageAction());
         //actions.add(new VideoAction());
         //actions.add(new LocationAction());
-//        if (customization != null && customization.actions != null) {
-//            actions.addAll(customization.actions);
-//        }
+        if (customization != null && customization.actions != null) {
+            actions.addAll(customization.actions);
+        }else {
+            actions.add(new SelectImageAction());
+            actions.add(new TakePictureAction());
+        }
         return actions;
     }
 

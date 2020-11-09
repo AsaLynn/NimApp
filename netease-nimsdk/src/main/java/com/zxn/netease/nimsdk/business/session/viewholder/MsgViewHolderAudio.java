@@ -25,7 +25,7 @@ import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 /**
- * Created by zhoujianghua on 2015/8/5.
+ * 语音消息展示
  */
 public class MsgViewHolderAudio extends MsgViewHolderBase {
 

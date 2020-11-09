@@ -1,9 +1,8 @@
 package com.zxn.netease.nimsdk.common.ui.recyclerview.adapter;
 
 /**
- * Created by huangjun on 2016/12/8.
+ * 定义条目视图类型.
  */
-
 public interface IRecyclerView {
     /**
      * special view type

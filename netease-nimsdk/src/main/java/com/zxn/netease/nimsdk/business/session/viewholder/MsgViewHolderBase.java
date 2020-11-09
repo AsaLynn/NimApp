@@ -47,15 +47,11 @@ import java.util.List;
  */
 public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItemFetchLoadAdapter, BaseViewHolder, IMMessage> {
 
-
-
     public MsgViewHolderBase(BaseMultiItemFetchLoadAdapter adapter) {
         super(adapter);
         this.adapter = adapter;
 
     }
-
-
 
     // basic
     protected View view;
@@ -412,12 +408,7 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
         }
 
         // 内容区域点击事件响应， 相当于点击了整项
-        contentContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClick();
-            }
-        });
+        contentContainer.setOnClickListener(v -> onItemClick());
 
 
         // 头像点击事件响应
@@ -500,11 +491,11 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
         } else {
             if (isReceivedMessage()) {
                 setGravity(bodyContainer, Gravity.LEFT);
-                contentContainerWithReplyTip.setBackgroundResource(leftBackground());
+                //contentContainerWithReplyTip.setBackgroundResource(leftBackground());
                 replyTipAboveMsg.setTextColor(Color.BLACK);
             } else {
                 setGravity(bodyContainer, Gravity.RIGHT);
-                contentContainerWithReplyTip.setBackgroundResource(rightBackground());
+                //contentContainerWithReplyTip.setBackgroundResource(rightBackground());
                 replyTipAboveMsg.setTextColor(Color.WHITE);
             }
         }

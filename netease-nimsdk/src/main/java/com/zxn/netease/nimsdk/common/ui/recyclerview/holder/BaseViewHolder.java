@@ -61,7 +61,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(View view) {
         super(view);
-        this.views = new SparseArray<View>();
+        this.views = new SparseArray<>();
         this.childClickViewIds = new LinkedHashSet<>();
         this.itemChildLongClickViewIds = new LinkedHashSet<>();
         convertView = view;

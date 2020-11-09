@@ -33,8 +33,6 @@ import java.util.Set;
 
 /**
  * 点对点聊天界面
- * <p/>
- * Created by huangjun on 2015/2/1.
  */
 public class P2PMessageActivity extends BaseMessageActivity {
 
@@ -96,28 +94,22 @@ public class P2PMessageActivity extends BaseMessageActivity {
     /**
      * 命令消息接收观察者
      */
-    private Observer<CustomNotification> commandObserver = new Observer<CustomNotification>() {
-        @Override
-        public void onEvent(CustomNotification message) {
-            if (!sessionId.equals(message.getSessionId()) || message.getSessionType() != SessionTypeEnum.P2P) {
-                return;
-            }
-            showCommandMessage(message);
+    private Observer<CustomNotification> commandObserver = (Observer<CustomNotification>) message -> {
+        if (!sessionId.equals(message.getSessionId()) || message.getSessionType() != SessionTypeEnum.P2P) {
+            return;
         }
+        showCommandMessage(message);
     };
 
 
     /**
      * 用户信息变更观察者
      */
-    private UserInfoObserver userInfoObserver = new UserInfoObserver() {
-        @Override
-        public void onUserInfoChanged(List<String> accounts) {
-            if (!accounts.contains(sessionId)) {
-                return;
-            }
-            requestBuddyInfo();
+    private UserInfoObserver userInfoObserver = accounts -> {
+        if (!accounts.contains(sessionId)) {
+            return;
         }
+        requestBuddyInfo();
     };
 
     /**
@@ -148,15 +140,12 @@ public class P2PMessageActivity extends BaseMessageActivity {
     /**
      * 好友在线状态观察者
      */
-    private OnlineStateChangeObserver onlineStateChangeObserver = new OnlineStateChangeObserver() {
-        @Override
-        public void onlineStateChange(Set<String> accounts) {
-            if (!accounts.contains(sessionId)) {
-                return;
-            }
-            // 按照交互来展示
-            displayOnlineState();
+    private OnlineStateChangeObserver onlineStateChangeObserver = accounts -> {
+        if (!accounts.contains(sessionId)) {
+            return;
         }
+        // 按照交互来展示
+        displayOnlineState();
     };
 
     private void registerObservers(boolean register) {

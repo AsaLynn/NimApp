@@ -2,12 +2,6 @@ package com.zxn.netease.nimsdk.common.ui.recyclerview.adapter;
 
 import android.animation.Animator;
 import android.content.Context;
-import androidx.annotation.IntDef;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.LayoutParams;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +9,14 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
+import androidx.annotation.IntDef;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.LayoutParams;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.AlphaInAnimation;
 import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.BaseAnimation;
@@ -33,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends RecyclerView.Adapter<K> implements IRecyclerView {
 
@@ -627,6 +630,10 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
             return EMPTY_VIEW;
         }
 
+        if (position == 0 && null != mHeaderLayout && mHeaderLayout.getChildCount() != 0) {
+            return HEADER_VIEW;
+        }
+
         // fetch
         autoRequestFetchMoreData(position);
         // load
@@ -667,6 +674,7 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
                 mFetchMoreView.convert(holder);
                 break;
             case EMPTY_VIEW:
+            case HEADER_VIEW:
                 break;
             default:
                 convert(holder, mData.get(holder.getLayoutPosition() - getFetchMoreViewCount()), positions, isScrolling);
@@ -714,6 +722,9 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
         this.mContext = parent.getContext();
         this.mLayoutInflater = LayoutInflater.from(mContext);
         switch (viewType) {
+            case HEADER_VIEW:
+                baseViewHolder = createBaseViewHolder(mHeaderLayout);
+                break;
             case FETCHING_VIEW:
                 baseViewHolder = getFetchingView(parent);
                 break;
@@ -989,4 +1000,62 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
         anim.setDuration(mAnimationDuration).start();
         anim.setInterpolator(mInterpolator);
     }
+
+    /**
+     * Append header to the rear of the mHeaderLayout.
+     *
+     * @param header
+     */
+    public void addHeaderView(View header) {
+        addHeaderView(header, -1);
+    }
+
+    /**
+     * Add header view to mHeaderLayout and set header view position in mHeaderLayout.
+     * When index = -1 or index >= child count in mHeaderLayout,
+     * the effect of this method is the same as that of {@link #addHeaderView(View)}.
+     *
+     * @param header
+     * @param index  the position in mHeaderLayout of this header.
+     *               When index = -1 or index >= child count in mHeaderLayout,
+     *               the effect of this method is the same as that of {@link #addHeaderView(View)}.
+     */
+    public void addHeaderView(View header, int index) {
+        addHeaderView(header, index, LinearLayout.VERTICAL);
+    }
+
+    /**
+     * @param header
+     * @param index
+     * @param orientation
+     */
+    public void addHeaderView(View header, int index, int orientation) {
+        if (mHeaderLayout == null) {
+            mHeaderLayout = new LinearLayout(header.getContext());
+            if (orientation == LinearLayout.VERTICAL) {
+                mHeaderLayout.setOrientation(LinearLayout.VERTICAL);
+                mHeaderLayout.setLayoutParams(new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+            } else {
+                mHeaderLayout.setOrientation(LinearLayout.HORIZONTAL);
+                mHeaderLayout.setLayoutParams(new LayoutParams(WRAP_CONTENT, MATCH_PARENT));
+            }
+        }
+        index = index >= mHeaderLayout.getChildCount() ? -1 : index;
+        mHeaderLayout.addView(header, index);
+        if (mHeaderLayout.getChildCount() == 1) {
+            int position = getHeaderViewPosition();
+            if (position != -1) {
+                notifyItemInserted(position);
+            }
+        }
+    }
+
+    private LinearLayout mHeaderLayout;
+
+    private int getHeaderViewPosition() {
+        //Return to header view notify position
+        return 0;
+    }
+
+
 }
