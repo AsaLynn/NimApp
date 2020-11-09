@@ -1,2 +1,0 @@
-com/jrmf360/normallib/BuildConfig.java
- com.jrmf360.normallib.BuildConfig
