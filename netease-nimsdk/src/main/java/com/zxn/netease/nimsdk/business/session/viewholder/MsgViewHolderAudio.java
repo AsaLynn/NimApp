@@ -24,6 +24,7 @@ import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
 import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
+
 /**
  * 语音消息展示
  */
@@ -285,9 +286,9 @@ public class MsgViewHolderAudio extends MsgViewHolderBase {
 
     private void endPlayAnim() {
         if (isReceivedMessage()) {
-            animationView.setBackgroundResource(R.drawable.nim_audio_animation_list_left_3);
+            animationView.setBackgroundResource(R.mipmap.nim_audio_animation_list_left_1);
         } else {
-            animationView.setBackgroundResource(R.drawable.nim_audio_animation_list_right_3);
+            animationView.setBackgroundResource(R.mipmap.nim_audio_animation_list_left_1);
         }
     }
 
