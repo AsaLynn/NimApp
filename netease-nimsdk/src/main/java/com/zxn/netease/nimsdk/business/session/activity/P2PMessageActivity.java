@@ -3,6 +3,8 @@ package com.zxn.netease.nimsdk.business.session.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.zxn.netease.nimsdk.common.ToastHelper;
 
@@ -202,6 +204,5 @@ public class P2PMessageActivity extends BaseMessageActivity {
     protected boolean enableSensor() {
         return true;
     }
-
 
 }

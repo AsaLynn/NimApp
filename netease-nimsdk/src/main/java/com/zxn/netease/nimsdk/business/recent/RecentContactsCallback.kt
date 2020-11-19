@@ -24,7 +24,7 @@ interface RecentContactsCallback {
      *
      * @param recent 最近联系人
      */
-    fun onItemClick(recent: RecentContact?)
+    fun onItemClick(recent: RecentContact)
 
     /**
      * 设置自定义消息的摘要信息，展示在最近联系人列表的消息缩略栏上.
@@ -33,7 +33,7 @@ interface RecentContactsCallback {
      * @param attachment 消息附件对象
      * @return 消息摘要
      */
-    fun getDigestOfAttachment(recent: RecentContact?, attachment: MsgAttachment?): String?
+    fun getDigestOfAttachment(recent: RecentContact, attachment: MsgAttachment): String?
 
     /**
      * 设置Tip消息的摘要信息，展示在最近联系人列表的消息缩略栏上
@@ -41,5 +41,5 @@ interface RecentContactsCallback {
      * @param recent 最近联系人
      * @return Tip消息摘要
      */
-    fun getDigestOfTipMsg(recent: RecentContact?): String?
+    fun getDigestOfTipMsg(recent: RecentContact): String?
 }

@@ -9,7 +9,7 @@ interface ContactProvider {
      *
      * @return 用户信息集合
      */
-    val userInfoOfMyFriends: List<String?>?
+    val userInfoOfMyFriends: List<String>
 
     /**
      * 返回我的好友数量，提供给通讯录显示所有联系人数量使用
@@ -24,7 +24,7 @@ interface ContactProvider {
      * @param account 账号
      * @return 备注
      */
-    fun getAlias(account: String?): String?
+    fun getAlias(account: String): String
 
     /**
      * 是否是自己的好友
@@ -32,5 +32,5 @@ interface ContactProvider {
      * @param account 账号
      * @return 结果
      */
-    fun isMyFriend(account: String?): Boolean
+    fun isMyFriend(account: String): Boolean
 }

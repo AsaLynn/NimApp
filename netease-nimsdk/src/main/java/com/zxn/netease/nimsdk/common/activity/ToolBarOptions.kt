@@ -19,6 +19,7 @@ open class ToolBarOptions {
     /**
      * toolbar的logo资源id
      */
+    @JvmField
     var logoId = 0
 
     /**

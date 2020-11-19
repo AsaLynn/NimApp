@@ -109,9 +109,9 @@ public abstract class BaseMessageActivity extends UI {
         sessionId = intent.getStringExtra(Extras.EXTRA_ACCOUNT);
         customization = (SessionCustomization) intent.getSerializableExtra(Extras.EXTRA_CUSTOMIZATION);
 
-        //if (customization != null) {
-            //addRightCustomViewOnActionBar(this, customization.buttons);
-        //}
+        if (customization != null) {
+            addRightCustomViewOnActionBar(this, customization.buttons);
+        }
     }
 
     // 添加action bar的右侧按钮及响应事件
@@ -125,19 +125,19 @@ public abstract class BaseMessageActivity extends UI {
             return;
         }
 
-        LinearLayout buttonContainer = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.nim_action_bar_custom_view, null);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        LinearLayout buttonContainer
+                = (LinearLayout) LayoutInflater
+                .from(activity)
+                .inflate(R.layout.nim_action_bar_custom_view, null);
+        LinearLayout.LayoutParams params
+                = new LinearLayout
+                .LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         for (final SessionCustomization.OptionsButton button : buttons) {
             ImageView imageView = new ImageView(activity);
             imageView.setImageResource(button.iconId);
             imageView.setBackgroundResource(R.drawable.nim_nim_action_bar_button_selector);
             imageView.setPadding(ScreenUtil.dip2px(10), 0, ScreenUtil.dip2px(10), 0);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    button.onClick(BaseMessageActivity.this, v, sessionId);
-                }
-            });
+            imageView.setOnClickListener(v -> button.onClick(BaseMessageActivity.this, v, sessionId));
             buttonContainer.addView(imageView, params);
         }
 

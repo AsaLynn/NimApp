@@ -5,15 +5,16 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.zxn.netease.nimsdk.common.fragment.TFragment;
 import com.zxn.netease.nimsdk.common.util.log.LogUtil;
@@ -83,20 +84,15 @@ public abstract class UI extends AppCompatActivity {
         if (!TextUtils.isEmpty(options.titleString)) {
             toolbar.setTitle(options.titleString);
         }
-//        if (options.logoId != 0) {
-//            toolbar.setLogo(options.logoId);
-//        }
+        if (options.logoId != 0) {
+            toolbar.setLogo(options.logoId);
+        }
         setSupportActionBar(toolbar);
 
         if (options.isNeedNavigate) {
             toolbar.setNavigationIcon(options.navigateId);
-            //toolbar.setContentInsetStartWithNavigation(0);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onNavigateUpClicked();
-                }
-            });
+            toolbar.setContentInsetStartWithNavigation(0);
+            toolbar.setNavigationOnClickListener(v -> onNavigateUpClicked());
         }
     }
 

@@ -222,6 +222,7 @@ public class SessionHelper {
             actions.add(new TakePictureAction());
             p2pCustomization.actions = actions;
             p2pCustomization.withSticker = true;
+
             // 定制ActionBar右边的按钮，可以加多个
             ArrayList<SessionCustomization.OptionsButton> buttons = new ArrayList<>();
             SessionCustomization.OptionsButton cloudMsgButton = new SessionCustomization.OptionsButton() {
@@ -232,7 +233,9 @@ public class SessionHelper {
                 }
             };
             cloudMsgButton.iconId = R.drawable.nim_ic_messge_history;
-            SessionCustomization.OptionsButton infoButton = new SessionCustomization.OptionsButton() {
+            buttons.add(cloudMsgButton);
+
+            /*SessionCustomization.OptionsButton infoButton = new SessionCustomization.OptionsButton() {
 
                 @Override
                 public void onClick(Context context, View view, String sessionId) {
@@ -240,8 +243,7 @@ public class SessionHelper {
                 }
             };
             infoButton.iconId = R.drawable.nim_ic_message_actionbar_p2p_add;
-            buttons.add(cloudMsgButton);
-            buttons.add(infoButton);
+            buttons.add(infoButton);*/
             p2pCustomization.buttons = buttons;
         }
         return p2pCustomization;
@@ -362,7 +364,9 @@ public class SessionHelper {
                 }
             };
             cloudMsgButton.iconId = R.drawable.nim_ic_messge_history;
-            SessionCustomization.OptionsButton infoButton = new SessionCustomization.OptionsButton() {
+            buttons.add(cloudMsgButton);
+
+            /*SessionCustomization.OptionsButton infoButton = new SessionCustomization.OptionsButton() {
 
                 @Override
                 public void onClick(Context context, View view, String sessionId) {
@@ -370,8 +374,8 @@ public class SessionHelper {
                 }
             };
             infoButton.iconId = R.drawable.nim_ic_actionbar_robot_info;
-            buttons.add(cloudMsgButton);
-            buttons.add(infoButton);
+            buttons.add(infoButton);*/
+
             robotCustomization.buttons = buttons;
         }
         return robotCustomization;

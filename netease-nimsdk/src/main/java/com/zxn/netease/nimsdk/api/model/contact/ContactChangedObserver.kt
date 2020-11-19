@@ -9,26 +9,26 @@ interface ContactChangedObserver {
      *
      * @param accounts 账号列表
      */
-    fun onAddedOrUpdatedFriends(accounts: List<String?>?)
+    fun onAddedOrUpdatedFriends(accounts: List<String>)
 
     /**
      * 删除好友
      *
      * @param accounts 账号列表
      */
-    fun onDeletedFriends(accounts: List<String?>?)
+    fun onDeletedFriends(accounts: List<String>)
 
     /**
      * 增加到黑名单
      *
      * @param accounts 账号列表
      */
-    fun onAddUserToBlackList(accounts: List<String?>?)
+    fun onAddUserToBlackList(accounts: List<String>)
 
     /**
      * 从黑名单移除
      *
      * @param accounts 账号列表
      */
-    fun onRemoveUserFromBlackList(accounts: List<String?>?)
+    fun onRemoveUserFromBlackList(accounts: List<String>)
 }

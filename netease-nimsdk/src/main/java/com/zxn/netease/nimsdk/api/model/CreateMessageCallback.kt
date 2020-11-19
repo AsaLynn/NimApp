@@ -3,9 +3,9 @@ package com.zxn.netease.nimsdk.api.model
 import com.netease.nimlib.sdk.msg.model.IMMessage
 
 interface CreateMessageCallback {
-    fun onFinished(message: IMMessage?)
+    fun onFinished(message: IMMessage)
     fun onFailed(code: Int)
-    fun onException(exception: Throwable?)
+    fun onException(exception: Throwable)
 
     companion object {
         //不支持的消息类型
