@@ -229,7 +229,7 @@ public class SessionHelper {
 
                 @Override
                 public void onClick(Context context, View view, String sessionId) {
-                    initPopuptWindow(context, view, sessionId, SessionTypeEnum.P2P);
+                    //initPopuptWindow(context, view, sessionId, SessionTypeEnum.P2P);
                 }
             };
             cloudMsgButton.iconId = R.drawable.nim_ic_messge_history;
