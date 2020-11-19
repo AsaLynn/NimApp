@@ -62,9 +62,11 @@ class ImageLoaderKit(private val context: Context) {
      */
     private fun asyncLoadAvatarBitmapToCache(account: String?) {
         NimSingleThreadExecutor.getInstance().execute {
-            val userInfo = NimUIKit.getUserInfoProvider().getUserInfo(account)
-            if (userInfo != null) {
-                loadAvatarBitmapToCache(userInfo.avatar)
+            if (!account.isNullOrEmpty()){
+                val userInfo = NimUIKit.getUserInfoProvider().getUserInfo(account)
+                if (userInfo != null) {
+                    loadAvatarBitmapToCache(userInfo.avatar)
+                }
             }
         }
     }
