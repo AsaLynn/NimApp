@@ -1,5 +1,7 @@
 package com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore;
 
+import android.view.View;
+
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 
@@ -25,22 +27,28 @@ public abstract class LoadMoreView {
     }
 
     public void convert(BaseViewHolder holder) {
-        switch (mLoadMoreStatus) {
-            case STATUS_LOADING:
-                visibleLoading(holder, true);
-                visibleLoadFail(holder, false);
-                visibleLoadEnd(holder, false);
-                break;
-            case STATUS_FAIL:
-                visibleLoading(holder, false);
-                visibleLoadFail(holder, true);
-                visibleLoadEnd(holder, false);
-                break;
-            case STATUS_END:
-                visibleLoading(holder, false);
-                visibleLoadFail(holder, false);
-                visibleLoadEnd(holder, true);
-                break;
+        if (mLoadMoreEndGone){
+            visibleLoading(holder, false);
+            visibleLoadFail(holder, false);
+            visibleLoadEnd(holder, false);
+        }else {
+            switch (mLoadMoreStatus) {
+                case STATUS_LOADING:
+                    visibleLoading(holder, true);
+                    visibleLoadFail(holder, false);
+                    visibleLoadEnd(holder, false);
+                    break;
+                case STATUS_FAIL:
+                    visibleLoading(holder, false);
+                    visibleLoadFail(holder, true);
+                    visibleLoadEnd(holder, false);
+                    break;
+                case STATUS_END:
+                    visibleLoading(holder, false);
+                    visibleLoadFail(holder, false);
+                    visibleLoadEnd(holder, true);
+                    break;
+            }
         }
     }
 
@@ -116,4 +124,10 @@ public abstract class LoadMoreView {
     protected abstract
     @IdRes
     int getLoadEndViewId();
+
+    protected View topView;
+
+    public View getTopView() {
+        return topView;
+    }
 }

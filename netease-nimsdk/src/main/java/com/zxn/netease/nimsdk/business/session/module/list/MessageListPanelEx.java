@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -239,16 +240,22 @@ public class MessageListPanelEx {
                 }
             }
         });
+
         messageListView.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
         // adapter
         items = new ArrayList<>();
         adapter = new MsgAdapter(messageListView, items, container);
-        adapter.setFetchMoreView(new MsgListFetchLoadMoreView());
-        adapter.setLoadMoreView(new MsgListFetchLoadMoreView());
-        if (customization != null && customization.headLayoutId != 0) {
-            adapter.addHeaderView(View.inflate(messageListView.getContext(), customization.headLayoutId, null));
+        if (customization != null && customization.loadMoreView != null) {
+            //View header = LayoutInflater.from(messageListView.getContext()).inflate(customization.headLayoutId, null,false);
+            //adapter.addHeaderView(header);
+            //opView.addHeaderView(header);
+            adapter.setFetchMoreView(customization.loadMoreView);
+        }else {
+            adapter.setFetchMoreView(new MsgListFetchLoadMoreView());
         }
+
+        adapter.setLoadMoreView(new MsgListFetchLoadMoreView());
         adapter.setEventListener(new MsgItemEventListener());
         initFetchLoadListener(anchor);
         messageListView.setAdapter(adapter);

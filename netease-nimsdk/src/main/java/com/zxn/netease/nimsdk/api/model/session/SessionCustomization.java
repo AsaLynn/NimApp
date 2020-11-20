@@ -8,6 +8,7 @@ import android.view.View;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.LoadMoreView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,10 +44,15 @@ public class SessionCustomization implements Serializable {
      */
     public ArrayList<OptionsButton> buttons;
 
+//    /**
+//     * 聊天列表顶部温馨提示内容
+//     */
+//    public int headLayoutId;
+
     /**
      * 聊天列表顶部温馨提示内容
      */
-    public int headLayoutId;
+    public LoadMoreView loadMoreView = null;
 
     /**
      * 如果OptionsButton的点击响应中需要startActivityForResult，可在此函数中处理结果。

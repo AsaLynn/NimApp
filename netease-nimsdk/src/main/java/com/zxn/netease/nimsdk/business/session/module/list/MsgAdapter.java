@@ -349,4 +349,10 @@ public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseVie
     public Container getContainer() {
         return container;
     }
+
+    @Override
+    public void fetchMoreEnd(List<IMMessage> data, boolean gone) {
+        super.fetchMoreEnd(data, gone);
+        //mNextFetchEnable = true;//todo:debugging.2
+    }
 }

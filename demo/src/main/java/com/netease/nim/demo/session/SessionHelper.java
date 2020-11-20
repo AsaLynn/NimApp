@@ -30,6 +30,7 @@ import com.netease.nim.demo.session.extension.RedPacketAttachment;
 import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
 import com.netease.nim.demo.session.extension.SnapChatAttachment;
 import com.netease.nim.demo.session.extension.StickerAttachment;
+import com.netease.nim.demo.session.load.YinYuLoadMoreView;
 import com.netease.nim.demo.session.search.SearchMessageActivity;
 import com.netease.nim.demo.session.viewholder.MsgViewHolderAVChat;
 import com.netease.nim.demo.session.viewholder.MsgViewHolderDefCustom;
@@ -198,7 +199,10 @@ public class SessionHelper {
             };
             // 背景
             p2pCustomization.backgroundColor = UIUtils.getColor(R.color.colorPrimary);
-            p2pCustomization.headLayoutId = R.layout.msg_notice_header;
+            //p2pCustomization.headLayoutId = R.layout.msg_notice_header;
+
+            p2pCustomization.loadMoreView = new YinYuLoadMoreView();
+
             //            p2pCustomization.backgroundUri = "file:///android_asset/xx/bk.jpg";
             //            p2pCustomization.backgroundUri = "file:///sdcard/Pictures/bk.png";
             //            p2pCustomization.backgroundUri = "android.resource://com.netease.nim.demo/drawable/bk"
