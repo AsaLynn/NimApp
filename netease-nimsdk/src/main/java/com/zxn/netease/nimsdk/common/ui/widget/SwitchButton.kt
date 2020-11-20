@@ -51,7 +51,7 @@ class SwitchButton : View, OnTouchListener {
         bg_on = BitmapFactory.decodeResource(resources, R.drawable.nim_slide_toggle_on)
         bg_off = BitmapFactory.decodeResource(resources, R.drawable.nim_slide_toggle_off)
         slip_btn = BitmapFactory.decodeResource(resources, R.drawable.nim_slide_toggle)
-        btn_off = Rect(0, 0, slip_btn!!.width, slip_btn.height)
+        btn_off = Rect(0, 0, slip_btn.width, slip_btn.height)
         btn_on = Rect(
             bg_off.width - slip_btn.width,
             0,
@@ -68,32 +68,32 @@ class SwitchButton : View, OnTouchListener {
         val paint = Paint()
         var x: Float
         // 滑动到前半段与后半段的背景不同,在此做判断
-        if (now_x < bg_on!!.width / 2) {
-            x = now_x - slip_btn!!.width / 2
-            canvas.drawBitmap(bg_off!!, matrix, paint) // 画出关闭时的背景
+        if (now_x < bg_on.width / 2) {
+            x = now_x - slip_btn.width / 2
+            canvas.drawBitmap(bg_off, matrix, paint) // 画出关闭时的背景
         } else {
-            x = bg_on!!.width - slip_btn!!.width / 2.toFloat()
-            canvas.drawBitmap(bg_on!!, matrix, paint) // 画出打开时的背景
+            x = bg_on.width - slip_btn.width / 2.toFloat()
+            canvas.drawBitmap(bg_on, matrix, paint) // 画出打开时的背景
         }
         // 是否是在滑动状态
         if (onSlip) {
-            x = if (now_x >= bg_on!!.width) { // 是否划出指定范围,不能让游标跑到外头,必须做这个判断
-                bg_on!!.width - slip_btn!!.width / 2.toFloat() // 减去游标1/2的长度...
+            x = if (now_x >= bg_on.width) { // 是否划出指定范围,不能让游标跑到外头,必须做这个判断
+                bg_on.width - slip_btn.width / 2.toFloat() // 减去游标1/2的长度...
             } else if (now_x < 0) {
                 0f
             } else {
-                now_x - slip_btn!!.width / 2
+                now_x - slip_btn.width / 2
             }
         } else { // 非滑动状态
             if (isChoose) { // 根据现在的开关状态设置画游标的位置
                 x = btn_on!!.left.toFloat()
-                canvas.drawBitmap(bg_on!!, matrix, paint) // 初始状态为true时应该画出打开状态图片
+                canvas.drawBitmap(bg_on, matrix, paint) // 初始状态为true时应该画出打开状态图片
             } else {
                 x = btn_off!!.left.toFloat()
             }
         }
         if (isChecked) {
-            canvas.drawBitmap(bg_on!!, matrix, paint)
+            canvas.drawBitmap(bg_on, matrix, paint)
             x = btn_on!!.left.toFloat()
             isChecked = !isChecked
         }
@@ -101,10 +101,10 @@ class SwitchButton : View, OnTouchListener {
         // 对游标位置进行异常判断...
         if (x < 0) {
             x = 0f
-        } else if (x > bg_on!!.width - slip_btn!!.width) {
-            x = bg_on!!.width - slip_btn!!.width.toFloat()
+        } else if (x > bg_on.width - slip_btn.width) {
+            x = bg_on.width - slip_btn.width.toFloat()
         }
-        canvas.drawBitmap(slip_btn!!, x, 0f, paint) // 画出游标.
+        canvas.drawBitmap(slip_btn, x, 0f, paint) // 画出游标.
     }
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -112,7 +112,7 @@ class SwitchButton : View, OnTouchListener {
         when (event.action) {
             MotionEvent.ACTION_MOVE -> now_x = event.x
             MotionEvent.ACTION_DOWN -> {
-                if (event.x > bg_on!!.width || event.y > bg_on!!.height) {
+                if (event.x > bg_on.width || event.y > bg_on.height) {
                     return false
                 }
                 onSlip = true
@@ -122,11 +122,11 @@ class SwitchButton : View, OnTouchListener {
             MotionEvent.ACTION_CANCEL -> {
                 onSlip = false
                 val choose = isChoose
-                if (now_x >= bg_on!!.width / 2) {
-                    now_x = bg_on!!.width - slip_btn!!.width / 2.toFloat()
+                if (now_x >= bg_on.width / 2) {
+                    now_x = bg_on.width - slip_btn.width / 2.toFloat()
                     isChoose = true
                 } else {
-                    now_x = now_x - slip_btn!!.width / 2
+                    now_x = now_x - slip_btn.width / 2
                     isChoose = false
                 }
                 if (isChangeOn && choose != isChoose) { // 如果设置了监听器,就调用其方法..
@@ -136,19 +136,19 @@ class SwitchButton : View, OnTouchListener {
             MotionEvent.ACTION_UP -> {
                 onSlip = false
                 val lastChoose = isChoose
-                if (event.x >= bg_on!!.width / 2) {
-                    now_x = bg_on!!.width - slip_btn!!.width / 2.toFloat()
+                if (event.x >= bg_on.width / 2) {
+                    now_x = bg_on.width - slip_btn.width / 2.toFloat()
                     isChoose = true
                 } else {
-                    now_x = now_x - slip_btn!!.width / 2
+                    now_x = now_x - slip_btn.width / 2
                     isChoose = false
                 }
                 if (lastChoose == isChoose) { // 相等表示点击状态未切换，之后切换状态
-                    if (event.x >= bg_on!!.width / 2) {
+                    if (event.x >= bg_on.width / 2) {
                         now_x = 0f
                         isChoose = false
                     } else {
-                        now_x = bg_on!!.width - slip_btn!!.width / 2.toFloat()
+                        now_x = bg_on.width - slip_btn.width / 2.toFloat()
                         isChoose = true
                     }
                 }
