@@ -1,10 +1,11 @@
 include ':faceunity'
 include ':demo'
-include ':jrmfRpWalletlib'
 include ':avchatkit'
 include ':rtskit'
 include ':netease-nimsdk'
 rootProject.name = "NimApp"
+
+
 
 
 

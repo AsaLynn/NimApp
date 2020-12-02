@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.R;
-import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
 import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase;
@@ -118,8 +117,6 @@ public class MsgViewHolderOpenRedPacket extends MsgViewHolderBase {
     private class RpDetailClickableSpan extends ClickableSpan {
         @Override
         public void onClick(View v) {
-            //
-            NIMRedPacketClient.startRpDetailActivity((Activity) context, attachment.getRedPacketId());
         }
 
         @Override

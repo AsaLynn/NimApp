@@ -106,7 +106,6 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation fileTree(include: '*.aar', dir: 'aar-sdk')
-    implementation project(':jrmfRpWalletlib')
     implementation project(':avchatkit')
     implementation project(path: ':rtskit')
     implementation 'com.huawei.hms:push:4.0.4.301'
@@ -122,4 +121,6 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     implementation project(path: ':netease-nimsdk')
+
+    
 }

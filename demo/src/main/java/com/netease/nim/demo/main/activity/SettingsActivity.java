@@ -17,7 +17,6 @@ import com.netease.nim.demo.jsbridge.JsBridgeActivity;
 import com.netease.nim.demo.main.adapter.SettingsAdapter;
 import com.netease.nim.demo.main.model.SettingTemplate;
 import com.netease.nim.demo.main.model.SettingType;
-import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
 import com.zxn.netease.nimsdk.common.ToastHelper;
@@ -255,10 +254,7 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
         items.add(SettingTemplate.addLine());
         items.add(new SettingTemplate(TAG_JS_BRIDGE, getString(R.string.js_bridge_demonstration)));
         items.add(SettingTemplate.makeSeperator());
-        if (NIMRedPacketClient.isEnable()) {
-            items.add(new SettingTemplate(TAG_JRMFWAllET, "我的钱包"));
-            items.add(SettingTemplate.makeSeperator());
-        }
+
         items.add(new SettingTemplate(TAG_PRIVATE_CONFIG,
                                       getString(R.string.setting_private_config)));
         items.add(SettingTemplate.makeSeperator());
@@ -321,7 +317,6 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
                 startActivity(new Intent(SettingsActivity.this, JsBridgeActivity.class));
                 break;
             case TAG_JRMFWAllET:
-                NIMRedPacketClient.startWalletActivity(this);
                 break;
             case TAG_PRIVATE_CONFIG:
                 startActivity(new Intent(this, PrivatizationConfigActivity.class));

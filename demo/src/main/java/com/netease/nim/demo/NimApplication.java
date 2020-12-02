@@ -27,7 +27,6 @@ import com.netease.nim.demo.main.activity.MainActivity;
 import com.netease.nim.demo.main.activity.WelcomeActivity;
 import com.netease.nim.demo.mixpush.DemoMixPushMessageHandler;
 import com.netease.nim.demo.mixpush.DemoPushContentProvider;
-import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.demo.rts.RTSHelper;
 import com.netease.nim.demo.session.NimDemoLocationProvider;
 import com.netease.nim.demo.session.SessionHelper;
@@ -96,8 +95,6 @@ public class NimApplication extends Application {
             // 注册自定义推送消息处理，这个是可选项
             NIMPushClient.registerMixPushMessageHandler(new DemoMixPushMessageHandler());
 
-            // 初始化红包模块，在初始化UIKit模块之前执行
-            NIMRedPacketClient.init(this);
             // init pinyin
             PinYin.init(this);
             PinYin.validate();

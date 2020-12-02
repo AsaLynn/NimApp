@@ -11,7 +11,6 @@ import com.netease.nim.demo.R;
 import com.netease.nim.demo.contact.activity.RobotProfileActivity;
 import com.netease.nim.demo.contact.activity.UserProfileActivity;
 import com.netease.nim.demo.main.helper.MessageHelper;
-import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.demo.session.action.AckMessageAction;
 import com.netease.nim.demo.session.action.FileAction;
 import com.netease.nim.demo.session.action.GuessAction;
@@ -497,9 +496,7 @@ public class SessionHelper {
             actions.add(avChatAction);
             actions.add(new GuessAction());
             actions.add(new FileAction());
-            if (NIMRedPacketClient.isEnable()) {
-                actions.add(new RedPacketAction());
-            }
+
             actions.add(new TipAction());
             SessionTeamCustomization.SessionTeamCustomListener listener = new SessionTeamCustomization.SessionTeamCustomListener() {
 
@@ -542,9 +539,7 @@ public class SessionHelper {
             actions.add(new GuessAction());
             actions.add(new FileAction());
             actions.add(new AckMessageAction());
-            if (NIMRedPacketClient.isEnable()) {
-                actions.add(new RedPacketAction());
-            }
+
             actions.add(new TipAction());
             SessionTeamCustomization.SessionTeamCustomListener listener = new SessionTeamCustomization.SessionTeamCustomListener() {
 
@@ -605,13 +600,8 @@ public class SessionHelper {
     }
 
     private static void registerRedPacketViewHolder() {
-        if (NIMRedPacketClient.isEnable()) {
-            NimUIKit.registerMsgItemViewHolder(RedPacketAttachment.class, MsgViewHolderRedPacket.class);
-            NimUIKit.registerMsgItemViewHolder(RedPacketOpenedAttachment.class, MsgViewHolderOpenRedPacket.class);
-        } else {
-            NimUIKit.registerMsgItemViewHolder(RedPacketAttachment.class, MsgViewHolderUnknown.class);
-            NimUIKit.registerMsgItemViewHolder(RedPacketOpenedAttachment.class, MsgViewHolderUnknown.class);
-        }
+        NimUIKit.registerMsgItemViewHolder(RedPacketAttachment.class, MsgViewHolderUnknown.class);
+        NimUIKit.registerMsgItemViewHolder(RedPacketOpenedAttachment.class, MsgViewHolderUnknown.class);
     }
 
     private static void registerMultiRetweetCreator() {

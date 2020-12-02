@@ -2,10 +2,7 @@ package com.netease.nim.demo.session.action;
 
 import android.app.Activity;
 import android.content.Intent;
-import com.jrmf360.normallib.rp.JrmfRpClient;
-import com.jrmf360.normallib.rp.bean.EnvelopeBean;
 import com.netease.nim.demo.R;
-import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.demo.session.extension.RedPacketAttachment;
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
@@ -32,7 +29,6 @@ public class RedPacketAction extends BaseAction {
         } else {
             return;
         }
-        NIMRedPacketClient.startSendRpActivity(getActivity(), getContainer().sessionType, getAccount(), requestCode);
     }
 
     @Override
@@ -44,15 +40,8 @@ public class RedPacketAction extends BaseAction {
     }
 
     private void sendRpMessage(Intent data) {
-        EnvelopeBean groupRpBean = JrmfRpClient.getEnvelopeInfo(data);
-        if (groupRpBean == null) {
-            return;
-        }
+
         RedPacketAttachment attachment = new RedPacketAttachment();
-        // 红包id，红包信息，红包名称
-        attachment.setRpId(groupRpBean.getEnvelopesID());
-        attachment.setRpContent(groupRpBean.getEnvelopeMessage());
-        attachment.setRpTitle(groupRpBean.getEnvelopeName());
 
         String content = getActivity().getString(R.string.rp_push_content);
         // 不存云消息历史记录

@@ -6,8 +6,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.demo.redpacket.NIMOpenRpCallback;
-import com.netease.nim.demo.redpacket.NIMRedPacketClient;
 import com.netease.nim.demo.session.extension.RedPacketAttachment;
 import com.zxn.netease.nimsdk.business.chatroom.adapter.ChatRoomMsgAdapter;
 import com.zxn.netease.nimsdk.business.session.module.ModuleProxy;
@@ -71,7 +69,6 @@ public class MsgViewHolderRedPacket extends MsgViewHolderBase {
     public void onItemClick() {
         // 拆红包
         RedPacketAttachment attachment = (RedPacketAttachment) message.getAttachment();
-
         BaseMultiItemFetchLoadAdapter adapter = getAdapter();
         ModuleProxy proxy = null;
         if (adapter instanceof MsgAdapter) {
@@ -79,7 +76,5 @@ public class MsgViewHolderRedPacket extends MsgViewHolderBase {
         } else if (adapter instanceof ChatRoomMsgAdapter) {
             proxy = ((ChatRoomMsgAdapter) adapter).getContainer().proxy;
         }
-        NIMOpenRpCallback cb = new NIMOpenRpCallback(message.getFromAccount(), message.getSessionId(), message.getSessionType(), proxy);
-        NIMRedPacketClient.startOpenRpDialog((Activity) context, message.getSessionType(), attachment.getRpId(), cb);
     }
 }
