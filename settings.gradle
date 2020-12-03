@@ -1,5 +1,5 @@
 include ':demo'
-include ':netease-nimsdk'
+//include ':netease-nimsdk'
 rootProject.name = "NimApp"
 
 
