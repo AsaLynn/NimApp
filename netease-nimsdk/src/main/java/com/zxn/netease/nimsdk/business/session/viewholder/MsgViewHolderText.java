@@ -1,0 +1,70 @@
+package com.zxn.netease.nimsdk.business.session.viewholder;
+
+import android.graphics.Color;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ImageSpan;
+import android.widget.TextView;
+
+import com.zxn.netease.nimsdk.R;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil;
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
+import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
+import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
+
+/**
+ * Created by zhoujianghua on 2015/8/4.
+ */
+public class MsgViewHolderText extends MsgViewHolderBase {
+
+    protected TextView bodyTextView;
+
+    public MsgViewHolderText(BaseMultiItemFetchLoadAdapter adapter) {
+        super(adapter);
+    }
+
+    @Override
+    public int getContentResId() {
+        return R.layout.nim_message_item_text;
+    }
+
+    @Override
+    public void inflateContentView() {
+        bodyTextView = findViewById(R.id.nim_message_item_text_body);
+    }
+
+    @Override
+    public void bindContentView() {
+        layoutDirection();
+        bodyTextView.setOnClickListener(v -> onItemClick());
+        MoonUtil.identifyFaceExpression(NimUIKit.getContext(), bodyTextView, getDisplayText(), ImageSpan.ALIGN_BOTTOM);
+        bodyTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        bodyTextView.setOnLongClickListener(longClickListener);
+    }
+
+    private void layoutDirection() {
+        if (isReceivedMessage()) {
+            bodyTextView.setBackgroundResource(NimUIKitImpl.getOptions().messageLeftBackground);
+            bodyTextView.setTextColor(Color.WHITE);
+            bodyTextView.setPadding(ScreenUtil.dip2px(15), ScreenUtil.dip2px(8), ScreenUtil.dip2px(10), ScreenUtil.dip2px(8));
+        } else {
+            bodyTextView.setBackgroundResource(NimUIKitImpl.getOptions().messageRightBackground);
+            bodyTextView.setTextColor(Color.WHITE);
+            bodyTextView.setPadding(ScreenUtil.dip2px(10), ScreenUtil.dip2px(8), ScreenUtil.dip2px(15), ScreenUtil.dip2px(8));
+        }
+    }
+
+    @Override
+    protected int leftBackground() {
+        return R.drawable.nim_message_left_white_bg;
+    }
+
+    @Override
+    protected int rightBackground() {
+        return R.drawable.nim_message_right_blue_bg;
+    }
+
+    protected String getDisplayText() {
+        return message.getContent();
+    }
+}

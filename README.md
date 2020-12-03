@@ -3,6 +3,8 @@
 
 # 使用
 ```
+//仅仅私聊版本.
+implementation 'com.zxn.netease.nimsdk:netease-nimsdk:1.2.0'
 implementation 'com.zxn.netease.nimsdk:netease-nimsdk:1.0.6'
 ```
 
