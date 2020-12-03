@@ -154,7 +154,7 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
                     SessionHelper.startP2PSession(this, message.getSessionId());
                     break;
                 case Team:
-                    SessionHelper.startTeamSession(this, message.getSessionId());
+                    //SessionHelper.startTeamSession(this, message.getSessionId());
                     break;
             }
             return true;

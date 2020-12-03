@@ -286,7 +286,7 @@ class LoginActivity : UI(), View.OnKeyListener {
         // 加载状态栏配置
         var statusBarNotificationConfig = UserPreferences.getStatusConfig()
         if (statusBarNotificationConfig == null) {
-            statusBarNotificationConfig = DemoCache.getNotificationConfig()
+            statusBarNotificationConfig = DemoCache.notificationConfig
             UserPreferences.setStatusConfig(statusBarNotificationConfig)
         }
         // 更新配置

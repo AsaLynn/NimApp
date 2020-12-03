@@ -1,57 +1,41 @@
-package com.netease.nim.demo;
+package com.netease.nim.demo
 
-import android.content.Context;
+import android.content.Context
+import com.netease.nimlib.sdk.StatusBarNotificationConfig
+import com.zxn.netease.nimsdk.api.NimUIKit
 
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.netease.nimlib.sdk.StatusBarNotificationConfig;
+object DemoCache {
+    @JvmStatic
+    var context: Context? = null
+        private set
 
-/**
- * Created by jezhee on 2/20/15.
- */
-public class DemoCache {
+    private var account: String? = null
 
-    private static Context context;
-
-    private static String account;
-
-    private static StatusBarNotificationConfig notificationConfig;
-
-    public static void clear() {
-        account = null;
+    @JvmStatic
+    var notificationConfig: StatusBarNotificationConfig? = null
+    fun clear() {
+        account = null
     }
 
-    public static String getAccount() {
-        return account;
+    @JvmStatic
+    fun getAccount(): String? {
+        return account
     }
 
-    private static boolean mainTaskLaunching;
-
-    public static void setAccount(String account) {
-        DemoCache.account = account;
-        NimUIKit.setAccount(account);
+    private var mainTaskLaunching = false
+    @JvmStatic
+    fun setAccount(account: String?) {
+        DemoCache.account = account
+        NimUIKit.setAccount(account)
     }
 
-    public static void setNotificationConfig(StatusBarNotificationConfig notificationConfig) {
-        DemoCache.notificationConfig = notificationConfig;
+    @JvmStatic
+    fun setContext(context: Context) {
+        DemoCache.context = context.applicationContext
     }
 
-    public static StatusBarNotificationConfig getNotificationConfig() {
-        return notificationConfig;
-    }
-
-    public static Context getContext() {
-        return context;
-    }
-
-    public static void setContext(Context context) {
-        DemoCache.context = context.getApplicationContext();
-    }
-
-    public static void setMainTaskLaunching(boolean mainTaskLaunching) {
-        DemoCache.mainTaskLaunching = mainTaskLaunching;
-    }
-
-    public static boolean isMainTaskLaunching() {
-        return mainTaskLaunching;
+    @JvmStatic
+    fun setMainTaskLaunching(mainTaskLaunching: Boolean) {
+        DemoCache.mainTaskLaunching = mainTaskLaunching
     }
 }

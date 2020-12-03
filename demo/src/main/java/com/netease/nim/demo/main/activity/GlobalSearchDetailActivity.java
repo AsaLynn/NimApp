@@ -117,7 +117,7 @@ public class GlobalSearchDetailActivity extends UI implements OnItemClickListene
                 if (msgIndexRecord.getSessionType() == SessionTypeEnum.P2P) {
                     SessionHelper.startP2PSession(this, msgIndexRecord.getSessionId(), msgIndexRecord.getMessage());
                 } else if (msgIndexRecord.getSessionType() == SessionTypeEnum.Team) {
-                    SessionHelper.startTeamSession(this, msgIndexRecord.getSessionId(), msgIndexRecord.getMessage());
+                    //SessionHelper.startTeamSession(this, msgIndexRecord.getSessionId(), msgIndexRecord.getMessage());
                 }
                 break;
             }

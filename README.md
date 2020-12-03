@@ -16,3 +16,5 @@ git tag -a v1.0.6 -m '发送更多功能完善处理'
 git push origin v1.0.6
 git tag
 ```
+
+https://github.com/netease-im/NIM_Android_UIKit

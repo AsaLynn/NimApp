@@ -190,7 +190,7 @@ public class GlobalSearchActivity extends UI implements OnItemClickListener {
         AbsContactItem item = (AbsContactItem) adapter.getItem(position);
         switch (item.getItemType()) {
             case ItemTypes.TEAM: {
-                SessionHelper.startTeamSession(this, ((ContactItem) item).getContact().getContactId());
+                //SessionHelper.startTeamSession(this, ((ContactItem) item).getContact().getContactId());
                 break;
             }
 

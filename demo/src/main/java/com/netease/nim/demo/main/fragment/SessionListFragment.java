@@ -222,7 +222,7 @@ public class SessionListFragment extends MainTabFragment {
                         SessionHelper.startP2PSession(getActivity(), recent.getContactId());
                         break;
                     case Team:
-                        SessionHelper.startTeamSession(getActivity(), recent.getContactId());
+                        //SessionHelper.startTeamSession(getActivity(), recent.getContactId());
                         break;
                     case SUPER_TEAM:
                         ToastHelper.showToast(getActivity(), "超大群开发者按需实现");

@@ -1,336 +1,163 @@
-package com.netease.nim.demo.session;
+package com.netease.nim.demo.session
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
-import android.view.View;
-
-import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.contact.activity.UserProfileActivity;
-import com.netease.nim.demo.main.helper.MessageHelper;
-import com.netease.nim.demo.session.action.AckMessageAction;
-import com.netease.nim.demo.session.action.FileAction;
-import com.netease.nim.demo.session.action.GuessAction;
-import com.netease.nim.demo.session.action.SnapChatAction;
-import com.netease.nim.demo.session.action.TipAction;
-import com.netease.nim.demo.session.extension.CustomAttachParser;
-import com.netease.nim.demo.session.extension.CustomAttachment;
-import com.netease.nim.demo.session.extension.GuessAttachment;
-import com.netease.nim.demo.session.extension.MultiRetweetAttachment;
-import com.netease.nim.demo.session.extension.RedPacketAttachment;
-import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
-import com.netease.nim.demo.session.extension.SnapChatAttachment;
-import com.netease.nim.demo.session.extension.StickerAttachment;
-import com.netease.nim.demo.session.load.YinYuLoadMoreView;
-import com.netease.nim.demo.session.viewholder.MsgViewHolderDefCustom;
-import com.netease.nim.demo.session.viewholder.MsgViewHolderFile;
-import com.netease.nim.demo.session.viewholder.MsgViewHolderGuess;
-import com.netease.nim.demo.session.viewholder.MsgViewHolderMultiRetweet;
-import com.netease.nim.demo.session.viewholder.MsgViewHolderSticker;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.MsgServiceObserve;
-import com.netease.nimlib.sdk.msg.attachment.FileAttachment;
-import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
-import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
-import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.netease.nimlib.sdk.msg.model.LocalAntiSpamResult;
-import com.netease.nimlib.sdk.msg.model.RecentContact;
-import com.netease.nimlib.sdk.robot.model.RobotAttachment;
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.zxn.netease.nimsdk.api.model.recent.RecentCustomization;
-import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
-import com.zxn.netease.nimsdk.api.model.session.SessionEventListener;
-import com.zxn.netease.nimsdk.api.wrapper.NimMessageRevokeObserver;
-import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
-import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction;
-import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction;
-import com.zxn.netease.nimsdk.business.session.helper.MessageListPanelHelper;
-import com.zxn.netease.nimsdk.business.session.module.IMultiRetweetMsgCreator;
-import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderUnknown;
-import com.zxn.netease.nimsdk.common.ui.dialog.CustomAlertDialog;
-import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialogHelper;
-import com.zxn.netease.nimsdk.impl.customization.DefaultRecentCustomization;
-import com.zxn.utils.UIUtils;
-
-import java.util.ArrayList;
+import android.content.Context
+import android.view.View
+import com.netease.nim.demo.DemoCache.getAccount
+import com.netease.nim.demo.R
+import com.netease.nim.demo.contact.activity.UserProfileActivity
+import com.netease.nim.demo.session.action.FileAction
+import com.netease.nim.demo.session.action.GuessAction
+import com.netease.nim.demo.session.action.SnapChatAction
+import com.netease.nim.demo.session.extension.*
+import com.netease.nim.demo.session.load.YinYuLoadMoreView
+import com.netease.nim.demo.session.viewholder.*
+import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.msg.MsgService
+import com.netease.nimlib.sdk.msg.MsgServiceObserve
+import com.netease.nimlib.sdk.msg.attachment.FileAttachment
+import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum
+import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
+import com.netease.nimlib.sdk.msg.model.IMMessage
+import com.netease.nimlib.sdk.msg.model.RecentContact
+import com.netease.nimlib.sdk.robot.model.RobotAttachment
+import com.zxn.netease.nimsdk.api.NimUIKit
+import com.zxn.netease.nimsdk.api.model.recent.RecentCustomization
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization.OptionsButton
+import com.zxn.netease.nimsdk.api.model.session.SessionEventListener
+import com.zxn.netease.nimsdk.api.wrapper.NimMessageRevokeObserver
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction
+import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction
+import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction
+import com.zxn.netease.nimsdk.business.session.module.MsgRevokeFilter
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderUnknown
+import com.zxn.netease.nimsdk.impl.customization.DefaultRecentCustomization
+import com.zxn.utils.UIUtils
+import java.util.*
 
 /**
  * UIKit自定义消息界面用法展示类
  */
-public class SessionHelper {
+object SessionHelper {
 
-    private static final int ACTION_HISTORY_QUERY_PERSIST_CLEAR = 0;
+    private var p2pCustomization: SessionCustomization = SessionCustomization().apply {
 
-    private static final int ACTION_HISTORY_QUERY_NOT_PERSIST_CLEAR = 1;
+        this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
 
-    private static final int ACTION_SEARCH_MESSAGE = 2;
+        this.loadMoreView = YinYuLoadMoreView()
 
-    private static final int ACTION_CLEAR_MESSAGE_RECORD = 3;
+        this.actions = ArrayList<BaseAction>().apply {
+            add(SelectImageAction())
+            add(TakePictureAction())
+        }
 
-    private static final int ACTION_CLEAR_MESSAGE_NOT_RECORD = 4;
+        this.buttons = ArrayList<OptionsButton>().apply {
+            val cloudMsgButton: OptionsButton = object : OptionsButton() {
+                override fun onClick(context: Context, view: View, sessionId: String) {}
+            }.apply {
+                iconId = R.drawable.nim_ic_messge_history
+            }
+            add(cloudMsgButton)
+        }
 
-    private static final int ACTION_CLEAR_MESSAGE = 5;
+        //定制底部按钮:
 
-    private static SessionCustomization p2pCustomization;
-
-    private static SessionCustomization normalTeamCustomization;
-
-    private static SessionCustomization advancedTeamCustomization;
-
-    private static SessionCustomization myP2pCustomization;
-
-    private static SessionCustomization robotCustomization;
-
-    private static RecentCustomization recentCustomization;
-
-    public static final boolean USE_LOCAL_ANTISPAM = true;
+    }
 
 
-    public static void init() {
+    private var myP2pCustomization: SessionCustomization? = SessionCustomization().apply {
+        // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
+        val actions = ArrayList<BaseAction>()
+        actions.add(SnapChatAction())
+        actions.add(GuessAction())
+        actions.add(FileAction())
+        this.actions = actions
+        this.withSticker = true
+        // 定制ActionBar右边的按钮，可以加多个
+        val buttons = ArrayList<OptionsButton>()
+        val cloudMsgButton: OptionsButton = object : OptionsButton() {
+            override fun onClick(context: Context, view: View, sessionId: String) {}
+        }
+        cloudMsgButton.iconId = R.drawable.nim_ic_messge_history
+        buttons.add(cloudMsgButton)
+        this.buttons = buttons
+    }
+
+    private var recentCustomization: RecentCustomization? = null
+        private get() {
+            if (field == null) {
+                field = object : DefaultRecentCustomization() {
+                    override fun getDefaultDigest(recent: RecentContact): String {
+                        return super.getDefaultDigest(recent)
+                    }
+                }
+            }
+            return field
+        }
+
+    const val USE_LOCAL_ANTISPAM = true
+
+    @JvmStatic
+    fun init() {
         // 注册自定义消息附件解析器
-        NIMClient.getService(MsgService.class).registerCustomAttachmentParser(new CustomAttachParser());
+        NIMClient.getService(MsgService::class.java)
+            .registerCustomAttachmentParser(CustomAttachParser())
         // 注册各种扩展消息类型的显示ViewHolder
-        registerViewHolders();
+        registerViewHolders()
         // 设置会话中点击事件响应处理
-        setSessionListener();
+        setSessionListener()
         // 注册消息转发过滤器
-        registerMsgForwardFilter();
+        registerMsgForwardFilter()
         // 注册消息撤回过滤器
-        registerMsgRevokeFilter();
+        registerMsgRevokeFilter()
         // 注册消息撤回监听器
-        registerMsgRevokeObserver();
-        NimUIKit.setCommonP2PSessionCustomization(getP2pCustomization());
-        NimUIKit.setRecentCustomization(getRecentCustomization());
+        registerMsgRevokeObserver()
+        NimUIKit.setCommonP2PSessionCustomization(p2pCustomization)
+        NimUIKit.setRecentCustomization(recentCustomization)
     }
 
-    public static void startP2PSession(Context context, String account) {
-        startP2PSession(context, account, null);
-    }
-
-    public static void startP2PSession(Context context, String account, IMMessage anchor) {
-        if (!DemoCache.getAccount().equals(account)) {
-
-            NimUIKit.startP2PSession(context, account, anchor);
+    @JvmStatic
+    @JvmOverloads
+    fun startP2PSession(context: Context?, account: String, anchor: IMMessage? = null) {
+        if (getAccount() != account) {
+            NimUIKit.startP2PSession(context, account, anchor)
         } else {
-            NimUIKit.startChatting(context, account, SessionTypeEnum.P2P, getMyP2pCustomization(), anchor);
+            NimUIKit.startChatting(
+                context,
+                account,
+                SessionTypeEnum.P2P,
+                myP2pCustomization,
+                anchor
+            )
         }
     }
 
-    public static void startTeamSession(Context context, String tid) {
-        startTeamSession(context, tid, null);
-    }
-
-    public static void startTeamSession(Context context, String tid, IMMessage anchor) {
-        NimUIKit.startTeamSession(context, tid, getTeamCustomization(tid), anchor);
-    }
-
-    // 打开群聊界面(用于 UIKIT 中部分界面跳转回到指定的页面)
-    public static void startTeamSession(Context context, String tid, Class<? extends Activity> backToClass,
-                                        IMMessage anchor) {
-    }
-
-    // 定制化单聊界面。如果使用默认界面，返回null即可
-    private static SessionCustomization getP2pCustomization() {
-        if (p2pCustomization == null) {
-            p2pCustomization = new SessionCustomization() {
-
-                // 由于需要Activity Result， 所以重载该函数。
-                @Override
-                public void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
-                    super.onActivityResult(activity, requestCode, resultCode, data);
-                }
-
-                @Override
-                public boolean isAllowSendMessage(IMMessage message) {
-                    return checkLocalAntiSpam(message);
-                }
-
-                @Override
-                public MsgAttachment createStickerAttachment(String category, String item) {
-                    return new StickerAttachment(category, item);
-                }
-
-                @Override
-                public String getMessageDigest(IMMessage message) {
-                    return getMsgDigest(message);
-                }
-            };
-            // 背景
-            p2pCustomization.backgroundColor = UIUtils.getColor(R.color.colorPrimary);
-            //p2pCustomization.headLayoutId = R.layout.msg_notice_header;
-
-            p2pCustomization.loadMoreView = new YinYuLoadMoreView();
-
-            //            p2pCustomization.backgroundUri = "file:///android_asset/xx/bk.jpg";
-            //            p2pCustomization.backgroundUri = "file:///sdcard/Pictures/bk.png";
-            //            p2pCustomization.backgroundUri = "android.resource://com.netease.nim.demo/drawable/bk"
-            // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
-            ArrayList<BaseAction> actions = new ArrayList<>();
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//                actions.add(new AVChatAction(AVChatType.AUDIO));
-//                actions.add(new AVChatAction(AVChatType.VIDEO));
-//            }
-//            actions.add(new RTSAction());
-//            actions.add(new SnapChatAction());
-//            actions.add(new GuessAction());
-//            actions.add(new FileAction());
-//            actions.add(new TipAction());
-//            if (NIMRedPacketClient.isEnable()) {
-//                actions.add(new RedPacketAction());
-//            }
-            actions.add(new SelectImageAction());
-            actions.add(new TakePictureAction());
-            p2pCustomization.actions = actions;
-            p2pCustomization.withSticker = true;
-
-            // 定制ActionBar右边的按钮，可以加多个
-            ArrayList<SessionCustomization.OptionsButton> buttons = new ArrayList<>();
-            SessionCustomization.OptionsButton cloudMsgButton = new SessionCustomization.OptionsButton() {
-
-                @Override
-                public void onClick(Context context, View view, String sessionId) {
-                    //initPopuptWindow(context, view, sessionId, SessionTypeEnum.P2P);
-                }
-            };
-            cloudMsgButton.iconId = R.drawable.nim_ic_messge_history;
-            buttons.add(cloudMsgButton);
-
-            /*SessionCustomization.OptionsButton infoButton = new SessionCustomization.OptionsButton() {
-
-                @Override
-                public void onClick(Context context, View view, String sessionId) {
-                    MessageInfoActivity.startActivity(context, sessionId); //打开聊天信息
-                }
-            };
-            infoButton.iconId = R.drawable.nim_ic_message_actionbar_p2p_add;
-            buttons.add(infoButton);*/
-            p2pCustomization.buttons = buttons;
-        }
-        return p2pCustomization;
-    }
-
-    private static SessionCustomization getMyP2pCustomization() {
-        if (myP2pCustomization == null) {
-            myP2pCustomization = new SessionCustomization() {
-
-                // 由于需要Activity Result， 所以重载该函数。
-                @Override
-                public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-
-                }
-
-                @Override
-                public boolean isAllowSendMessage(IMMessage message) {
-                    return checkLocalAntiSpam(message);
-                }
-
-                @Override
-                public MsgAttachment createStickerAttachment(String category, String item) {
-                    return new StickerAttachment(category, item);
-                }
-
-                @Override
-                public String getMessageDigest(IMMessage message) {
-                    return getMsgDigest(message);
-                }
-            };
-            // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
-            ArrayList<BaseAction> actions = new ArrayList<>();
-            actions.add(new SnapChatAction());
-            actions.add(new GuessAction());
-            actions.add(new FileAction());
-            myP2pCustomization.actions = actions;
-            myP2pCustomization.withSticker = true;
-            // 定制ActionBar右边的按钮，可以加多个
-            ArrayList<SessionCustomization.OptionsButton> buttons = new ArrayList<>();
-            SessionCustomization.OptionsButton cloudMsgButton = new SessionCustomization.OptionsButton() {
-
-                @Override
-                public void onClick(Context context, View view, String sessionId) {
-                    initPopuptWindow(context, view, sessionId, SessionTypeEnum.P2P);
-                }
-            };
-            cloudMsgButton.iconId = R.drawable.nim_ic_messge_history;
-            buttons.add(cloudMsgButton);
-            myP2pCustomization.buttons = buttons;
-        }
-        return myP2pCustomization;
-    }
-
-    private static boolean checkLocalAntiSpam(IMMessage message) {
+    private fun checkLocalAntiSpam(message: IMMessage): Boolean {
         if (!USE_LOCAL_ANTISPAM) {
-            return true;
+            return true
         }
-        LocalAntiSpamResult result = NIMClient.getService(MsgService.class).checkLocalAntiSpam(message.getContent(),
-                "**");
-        int operator = result == null ? 0 : result.getOperator();
-        switch (operator) {
-            case 1: // 替换，允许发送
-                message.setContent(result.getContent());
-                return true;
-            case 2: // 拦截，不允许发送
-                return false;
-            case 3: // 允许发送，交给服务器
-                message.setClientAntiSpam(true);
-                return true;
-            case 0:
-            default:
-                break;
+        val result = NIMClient.getService(MsgService::class.java).checkLocalAntiSpam(
+            message.content,
+            "**"
+        )
+        val operator = result?.operator ?: 0
+        when (operator) {
+            1 -> {
+                message.content = result!!.content
+                return true
+            }
+            2 -> return false
+            3 -> {
+                message.setClientAntiSpam(true)
+                return true
+            }
+            0 -> {
+            }
+            else -> {
+            }
         }
-        return true;
-    }
-
-    private static SessionCustomization getRobotCustomization() {
-        if (robotCustomization == null) {
-            robotCustomization = new SessionCustomization() {
-
-                // 由于需要Activity Result， 所以重载该函数。
-                @Override
-                public void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
-                    super.onActivityResult(activity, requestCode, resultCode, data);
-
-                }
-
-                @Override
-                public MsgAttachment createStickerAttachment(String category, String item) {
-                    return null;
-                }
-
-                @Override
-                public String getMessageDigest(IMMessage message) {
-                    return getMsgDigest(message);
-                }
-            };
-            // 定制ActionBar右边的按钮，可以加多个
-            ArrayList<SessionCustomization.OptionsButton> buttons = new ArrayList<>();
-            SessionCustomization.OptionsButton cloudMsgButton = new SessionCustomization.OptionsButton() {
-
-                @Override
-                public void onClick(Context context, View view, String sessionId) {
-                    initPopuptWindow(context, view, sessionId, SessionTypeEnum.P2P);
-                }
-            };
-            cloudMsgButton.iconId = R.drawable.nim_ic_messge_history;
-            buttons.add(cloudMsgButton);
-
-            /*SessionCustomization.OptionsButton infoButton = new SessionCustomization.OptionsButton() {
-
-                @Override
-                public void onClick(Context context, View view, String sessionId) {
-                    RobotProfileActivity.start(context, sessionId); //打开聊天信息
-                }
-            };
-            infoButton.iconId = R.drawable.nim_ic_actionbar_robot_info;
-            buttons.add(infoButton);*/
-
-            robotCustomization.buttons = buttons;
-        }
-        return robotCustomization;
+        return true
     }
 
     /**
@@ -339,162 +166,106 @@ public class SessionHelper {
      * @param msg 消息
      * @return 简述
      */
-    private static String getMsgDigest(IMMessage msg) {
-        switch (msg.getMsgType()) {
-            case avchat:
-            case text:
-            case tip:
-                return msg.getContent();
-            case image:
-                return "[图片]";
-            case video:
-                return "[视频]";
-            case audio:
-                return "[语音消息]";
-            case location:
-                return "[位置]";
-            case file:
-                return "[文件]";
-            case robot:
-                return "[机器人消息]";
-            default:
-                return "[自定义消息] ";
+    private fun getMsgDigest(msg: IMMessage): String {
+        return when (msg.msgType) {
+            MsgTypeEnum.avchat, MsgTypeEnum.text, MsgTypeEnum.tip -> msg.content
+            MsgTypeEnum.image -> "[图片]"
+            MsgTypeEnum.video -> "[视频]"
+            MsgTypeEnum.audio -> "[语音消息]"
+            MsgTypeEnum.location -> "[位置]"
+            MsgTypeEnum.file -> "[文件]"
+            MsgTypeEnum.robot -> "[机器人消息]"
+            else -> "[自定义消息] "
         }
     }
 
-    private static RecentCustomization getRecentCustomization() {
-        if (recentCustomization == null) {
-            recentCustomization = new DefaultRecentCustomization() {
-
-                @Override
-                public String getDefaultDigest(RecentContact recent) {
-                    return super.getDefaultDigest(recent);
-                }
-            };
-        }
-        return recentCustomization;
+    private fun registerViewHolders() {
+        NimUIKit.registerMsgItemViewHolder(
+            FileAttachment::class.java,
+            MsgViewHolderFile::class.java
+        )
+        NimUIKit.registerMsgItemViewHolder(
+            GuessAttachment::class.java,
+            MsgViewHolderGuess::class.java
+        )
+        NimUIKit.registerMsgItemViewHolder(
+            CustomAttachment::class.java,
+            MsgViewHolderDefCustom::class.java
+        )
+        NimUIKit.registerMsgItemViewHolder(
+            StickerAttachment::class.java,
+            MsgViewHolderSticker::class.java
+        )
+        NimUIKit.registerMsgItemViewHolder(
+            MultiRetweetAttachment::class.java,
+            MsgViewHolderMultiRetweet::class.java
+        )
+        registerRedPacketViewHolder()
+        registerMultiRetweetCreator()
     }
 
-    private static SessionCustomization getTeamCustomization(String tid) {
-        if (normalTeamCustomization == null) {
-            // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
-            ArrayList<BaseAction> actions = new ArrayList<>();
-            actions.add(new GuessAction());
-            actions.add(new FileAction());
-
-            actions.add(new TipAction());
-
-
-            normalTeamCustomization.actions = actions;
-        }
-        if (advancedTeamCustomization == null) {
-            // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
-            ArrayList<BaseAction> actions = new ArrayList<>();
-            actions.add(new GuessAction());
-            actions.add(new FileAction());
-            actions.add(new AckMessageAction());
-
-            actions.add(new TipAction());
-
-            advancedTeamCustomization.actions = actions;
-        }
-        if (TextUtils.isEmpty(tid)) {
-            return normalTeamCustomization;
-        }
-        return normalTeamCustomization;
+    private fun registerRedPacketViewHolder() {
+        NimUIKit.registerMsgItemViewHolder(
+            RedPacketAttachment::class.java,
+            MsgViewHolderUnknown::class.java
+        )
+        NimUIKit.registerMsgItemViewHolder(
+            RedPacketOpenedAttachment::class.java,
+            MsgViewHolderUnknown::class.java
+        )
     }
 
-    private static void registerViewHolders() {
-        NimUIKit.registerMsgItemViewHolder(FileAttachment.class, MsgViewHolderFile.class);
-        NimUIKit.registerMsgItemViewHolder(GuessAttachment.class, MsgViewHolderGuess.class);
-        NimUIKit.registerMsgItemViewHolder(CustomAttachment.class, MsgViewHolderDefCustom.class);
-        NimUIKit.registerMsgItemViewHolder(StickerAttachment.class, MsgViewHolderSticker.class);
-        NimUIKit.registerMsgItemViewHolder(MultiRetweetAttachment.class, MsgViewHolderMultiRetweet.class);
-        registerRedPacketViewHolder();
-        registerMultiRetweetCreator();
+    private fun registerMultiRetweetCreator() {
+        /*val creator =
+            IMultiRetweetMsgCreator { msgList: List<IMMessage?>?, shouldEncrypt: Boolean, callback: CreateMessageCallback? ->
+                MessageHelper.createMultiRetweet(
+                    msgList,
+                    shouldEncrypt,
+                    callback
+                )
+            }
+        NimUIKit.registerMultiRetweetMsgCreator(creator)*/
     }
 
-    private static void registerRedPacketViewHolder() {
-        NimUIKit.registerMsgItemViewHolder(RedPacketAttachment.class, MsgViewHolderUnknown.class);
-        NimUIKit.registerMsgItemViewHolder(RedPacketOpenedAttachment.class, MsgViewHolderUnknown.class);
-    }
-
-    private static void registerMultiRetweetCreator() {
-        IMultiRetweetMsgCreator creator = (msgList, shouldEncrypt, callback) -> {
-            MessageHelper.createMultiRetweet(msgList, shouldEncrypt, callback);
-        };
-        NimUIKit.registerMultiRetweetMsgCreator(creator);
-    }
-
-    private static void setSessionListener() {
-        SessionEventListener listener = new SessionEventListener() {
-
-            @Override
-            public void onAvatarClicked(Context context, IMMessage message) {
+    private fun setSessionListener() {
+        val listener: SessionEventListener = object : SessionEventListener {
+            override fun onAvatarClicked(context: Context, message: IMMessage) {
                 // 一般用于打开用户资料页面
-                if (message.getMsgType() == MsgTypeEnum.robot && message.getDirect() == MsgDirectionEnum.In) {
-                    RobotAttachment attachment = (RobotAttachment) message.getAttachment();
-
+                if (message.msgType == MsgTypeEnum.robot && message.direct == MsgDirectionEnum.In) {
+                    val attachment = message.attachment as RobotAttachment
                 }
-                UserProfileActivity.start(context, message.getFromAccount());
+                UserProfileActivity.start(context, message.fromAccount)
             }
 
-            @Override
-            public void onAvatarLongClicked(Context context, IMMessage message) {
+            override fun onAvatarLongClicked(context: Context, message: IMMessage) {
                 // 一般用于群组@功能，或者弹出菜单，做拉黑，加好友等功能
             }
 
-            @Override
-            public void onAckMsgClicked(Context context, IMMessage message) {
-
-            }
-        };
-        NimUIKit.setSessionListener(listener);
+            override fun onAckMsgClicked(context: Context, message: IMMessage) {}
+        }
+        NimUIKit.setSessionListener(listener)
     }
-
 
     /**
      * 消息转发过滤器
      */
-    private static void registerMsgForwardFilter() {
-        NimUIKit.setMsgForwardFilter(message -> {
-            if (message.getMsgType() == MsgTypeEnum.custom && message.getAttachment() != null &&
-                    (message.getAttachment() instanceof SnapChatAttachment ||
-                            message.getAttachment() instanceof RedPacketAttachment)) {
-                // 白板消息和阅后即焚消息，红包消息 不允许转发
-                return true;
-            } else if (message.getMsgType() == MsgTypeEnum.robot && message.getAttachment() != null &&
-                    ((RobotAttachment) message.getAttachment()).isRobotSend()) {
-                return true; // 如果是机器人发送的消息 不支持转发
-            }
-            return false;
-        });
+    private fun registerMsgForwardFilter() {
+
     }
 
     /**
      * 消息撤回过滤器
      */
-    private static void registerMsgRevokeFilter() {
-        NimUIKit.setMsgRevokeFilter(message -> {
-            if (message.getAttachment() != null) {
-                // 视频通话消息和白板消息，红包消息 不允许撤回
-                return true;
-            } else if (DemoCache.getAccount().equals(message.getSessionId())) {
-                // 发给我的电脑 不允许撤回
-                return true;
+    private fun registerMsgRevokeFilter() {
+        NimUIKit.setMsgRevokeFilter(object : MsgRevokeFilter {
+            override fun shouldIgnore(message: IMMessage?): Boolean {
+                return false
             }
-            return false;
-        });
+        })
     }
 
-    private static void registerMsgRevokeObserver() {
-        NIMClient.getService(MsgServiceObserve.class).observeRevokeMessage(new NimMessageRevokeObserver(), true);
+    private fun registerMsgRevokeObserver() {
+        NIMClient.getService(MsgServiceObserve::class.java)
+            .observeRevokeMessage(NimMessageRevokeObserver(), true)
     }
-
-
-    private static void initPopuptWindow(Context context, View view, String sessionId,
-                                         SessionTypeEnum sessionTypeEnum) {
-
-    }
-
 }

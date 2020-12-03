@@ -29,6 +29,9 @@ public class SessionCustomization implements Serializable {
      * file: file:///文件绝对路径
      */
     public String backgroundUri;
+    /**
+     * 聊天背景颜色的资源
+     */
     public int backgroundColor;
 
     // UIKit
@@ -40,14 +43,10 @@ public class SessionCustomization implements Serializable {
     public ArrayList<BaseAction> actions;
 
     /**
-     * ActionBar右侧可定制按钮。默认为空。
+     * ActionBar标题右侧可定制按钮。默认为空。
      */
     public ArrayList<OptionsButton> buttons;
 
-//    /**
-//     * 聊天列表顶部温馨提示内容
-//     */
-//    public int headLayoutId;
 
     /**
      * 聊天列表顶部温馨提示内容
