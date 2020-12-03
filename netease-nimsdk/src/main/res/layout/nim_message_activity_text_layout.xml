@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/textMessageLayout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_size_56"
     android:background="@drawable/nim_message_view_bottom"
-    android:gravity="center_vertical"
     android:paddingTop="@dimen/bottom_component_margin_vertical"
     android:paddingBottom="@dimen/bottom_component_margin_vertical">
 
@@ -12,10 +12,12 @@
         android:id="@+id/switchLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/bottom_component_margin_horizontal"
-        android:layout_marginRight="@dimen/bottom_component_margin_horizontal">
+        android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/buttonAudioMessage"
@@ -35,14 +37,17 @@
             android:scaleType="center" />
     </FrameLayout>
 
+
     <FrameLayout
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
-        android:layout_toLeftOf="@+id/emoji_button"
-        android:layout_toRightOf="@+id/switchLayout">
-
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_toLeftOf="@+id/llInputBtnContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/switchLayout"
+        app:layout_constraintRight_toLeftOf="@id/llInputBtnContainer"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/audioRecord"
@@ -53,43 +58,62 @@
             android:textColor="#B0B0BE"
             android:textSize="16sp"
             android:visibility="gone" />
+
+
     </FrameLayout>
 
     <EditText
         android:id="@+id/editTextMessage"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="@dimen/dp_40"
-        android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
-        android:layout_toLeftOf="@+id/emoji_button"
-        android:layout_toRightOf="@+id/switchLayout"
+        android:layout_marginLeft="@dimen/dp_15"
         android:autoLink="web|email|phone"
         android:background="@drawable/nim_message_input_edittext_box"
-        android:maxHeight="72dip"
+        android:maxHeight="72dp"
         android:maxLines="4"
         android:paddingLeft="@dimen/dp_size_15"
         android:paddingRight="@dimen/dp_size_15"
         android:textColor="@color/white"
         android:textCursorDrawable="@null"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/switchLayout"
+        app:layout_constraintRight_toLeftOf="@id/llInputBtnContainer"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/emoji_button"
+    <LinearLayout
+        android:id="@+id/llInputBtnContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/bottom_component_margin_horizontal"
         android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
-        android:layout_toLeftOf="@+id/sendLayout"
-        android:background="@drawable/nim_message_button_bottom_emoji_selector"
-        android:contentDescription="@string/empty"
-        android:scaleType="center" />
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/sendLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/emoji_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
+            android:background="@drawable/nim_message_button_bottom_emoji_selector"
+            android:contentDescription="@string/empty"
+            android:scaleType="center" />
+
+    </LinearLayout>
+
 
     <FrameLayout
         android:id="@+id/sendLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/bottom_component_margin_horizontal">
+        android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/buttonMoreFuntionInText"
@@ -98,6 +122,7 @@
             android:layout_gravity="center"
             android:background="@drawable/nim_message_button_bottom_add_selector"
             android:contentDescription="@string/empty"
+            android:minHeight="@dimen/dp_25"
             android:scaleType="center" />
 
         <TextView
@@ -108,9 +133,16 @@
             android:background="@drawable/nim_message_button_bottom_send_selector"
             android:contentDescription="@string/empty"
             android:gravity="center"
+            android:minWidth="@dimen/dp_50"
+            android:minHeight="@dimen/dp_25"
             android:text="@string/send"
             android:textColor="@color/white"
             android:textSize="14sp" />
     </FrameLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

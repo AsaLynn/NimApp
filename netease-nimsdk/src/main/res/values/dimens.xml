@@ -55,7 +55,7 @@
 
     <!-- bubble -->
     <dimen name="max_text_bubble_width">222dip</dimen>
-    <dimen name="bottom_component_margin_horizontal">10dip</dimen>
+    <dimen name="bottom_component_margin_horizontal">15dp</dimen>
     <dimen name="bottom_component_margin_vertical">8dip</dimen>
     <dimen name="bubble_time_layout_margin_top">18dip</dimen>
     <dimen name="bubble_time_layout_margin_bottom">8dip</dimen>
