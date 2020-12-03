@@ -26,7 +26,7 @@ public enum NetStateCode {
      */
     _4G(5);
 
-    private int value;
+    private final int value;
 
     NetStateCode(int netState) {
         this.value = netState;

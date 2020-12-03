@@ -4,7 +4,7 @@ public class TaskManager {
     /**
      * task scheduler
      */
-    private TaskScheduler ts;
+    private final TaskScheduler ts;
 
     private boolean shutdown = false;
 

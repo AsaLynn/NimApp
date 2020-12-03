@@ -20,7 +20,6 @@ public abstract class BaseMultiItemQuickAdapter<T, K extends BaseViewHolder> ext
      * viewType->layoutResId
      */
     private SparseArray<Integer> layouts = new SparseArray<>();
-    ;
 
     /**
      * viewType->view holder class

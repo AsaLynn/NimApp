@@ -17,9 +17,9 @@ import com.zxn.netease.nimsdk.R;
  */
 public class StickerAdapter extends BaseAdapter {
 
-    private Context context;
-    private StickerCategory category;
-    private int startIndex;
+    private final Context context;
+    private final StickerCategory category;
+    private final int startIndex;
 
     public StickerAdapter(Context mContext, StickerCategory category, int startIndex) {
         this.context = mContext;
@@ -49,8 +49,8 @@ public class StickerAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = View.inflate(context, R.layout.nim_sticker_picker_view, null);
             viewHolder = new StickerViewHolder();
-            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.sticker_thumb_image);
-            viewHolder.descLabel = (TextView) convertView.findViewById(R.id.sticker_desc_label);
+            viewHolder.imageView = convertView.findViewById(R.id.sticker_thumb_image);
+            viewHolder.descLabel = convertView.findViewById(R.id.sticker_desc_label);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (StickerViewHolder) convertView.getTag();

@@ -6,7 +6,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 
 public class AppCrashHandler {
 
-    private Context context;
+    private final Context context;
 
     private UncaughtExceptionHandler uncaughtExceptionHandler;
 

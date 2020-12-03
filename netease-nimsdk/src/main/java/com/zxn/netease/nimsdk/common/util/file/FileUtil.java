@@ -15,11 +15,7 @@ public class FileUtil {
 
     public static boolean hasExtentsion(String filename) {
         int dot = filename.lastIndexOf('.');
-        if ((dot > -1) && (dot < (filename.length() - 1))) {
-            return true;
-        } else {
-            return false;
-        }
+        return (dot > -1) && (dot < (filename.length() - 1));
     }
 
     // 获取文件扩展名

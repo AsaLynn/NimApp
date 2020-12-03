@@ -9,8 +9,8 @@ public enum StorageType {
     TYPE_VIDEO(DirectoryName.VIDEO_DIRECTORY_NAME),
     TYPE_THUMB_IMAGE(DirectoryName.THUMB_DIRECTORY_NAME),
     TYPE_THUMB_VIDEO(DirectoryName.THUMB_DIRECTORY_NAME),;
-    private DirectoryName storageDirectoryName;
-    private long storageMinSize;
+    private final DirectoryName storageDirectoryName;
+    private final long storageMinSize;
 
     public String getStoragePath() {
         return storageDirectoryName.getPath();
@@ -39,13 +39,13 @@ public enum StorageType {
         THUMB_DIRECTORY_NAME("thumb/"),
         VIDEO_DIRECTORY_NAME("video/"),;
 
-        private String path;
+        private final String path;
 
         public String getPath() {
             return path;
         }
 
-        private DirectoryName(String path) {
+        DirectoryName(String path) {
             this.path = path;
         }
     }

@@ -1,7 +1,7 @@
 package com.zxn.netease.nimsdk.common.framework.infra;
 
 public abstract class ObservableTask extends Task {
-    private TaskObservable observable = new TaskObservable();
+    private final TaskObservable observable = new TaskObservable();
 
     /**
      * register observer

@@ -56,7 +56,7 @@ public class WatchVideoActivity extends UI implements Callback {
 
     // context
 
-    private Handler handlerTimes = new Handler();
+    private final Handler handlerTimes = new Handler();
 
     private ActionBar actionBar;
 
@@ -178,20 +178,20 @@ public class WatchVideoActivity extends UI implements Callback {
         downloadLayout = findViewById(R.id.layoutDownload);
         downloadProgressBackground = findViewById(R.id.downloadProgressBackground);
         downloadProgressForeground = findViewById(R.id.downloadProgressForeground);
-        downloadProgressText = (TextView) findViewById(R.id.downloadProgressText);
+        downloadProgressText = findViewById(R.id.downloadProgressText);
         videoIcon = findViewById(R.id.videoIcon);
 
-        surfaceView = (SurfaceView) findViewById(R.id.videoView);
+        surfaceView = findViewById(R.id.videoView);
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         surfaceHolder.addCallback(this);
 
-        playTimeTextView = (TextView) findViewById(R.id.lblVideoTimes);
+        playTimeTextView = findViewById(R.id.lblVideoTimes);
         playTimeTextView.setVisibility(View.INVISIBLE);
-        fileInfoTextView = (TextView) findViewById(R.id.lblVideoFileInfo);
+        fileInfoTextView = findViewById(R.id.lblVideoFileInfo);
         playTimeTextView.setVisibility(View.INVISIBLE);
 
-        downloadBtn = (ImageView) findViewById(R.id.control_download_btn);
+        downloadBtn = findViewById(R.id.control_download_btn);
         downloadBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -281,7 +281,7 @@ public class WatchVideoActivity extends UI implements Callback {
     /**
      * 处理视频播放时间
      */
-    private Runnable timeRunnable = new Runnable() {
+    private final Runnable timeRunnable = new Runnable() {
         public void run() {
             if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                 playState = PLAY_STATE_PLAYING;
@@ -412,7 +412,7 @@ public class WatchVideoActivity extends UI implements Callback {
         } else {
             long seconds = TimeUtil.getSecondsByMilliseconds(duration);
             fileInfoTextView.setText("大小: " + FileUtil.formatFileSize(fileSize) + ",时长: "
-                    + String.valueOf(seconds) + " 秒");
+                    + seconds + " 秒");
             videoLength = seconds;
         }
     }
@@ -422,7 +422,7 @@ public class WatchVideoActivity extends UI implements Callback {
         NIMClient.getService(MsgServiceObserve.class).observeAttachmentProgress(attachmentProgressObserver, register);
     }
 
-    private Observer<IMMessage> statusObserver = new Observer<IMMessage>() {
+    private final Observer<IMMessage> statusObserver = new Observer<IMMessage>() {
         @Override
         public void onEvent(IMMessage msg) {
             if (!msg.isTheSame(message) || isDestroyedCompatible()) {
@@ -437,7 +437,7 @@ public class WatchVideoActivity extends UI implements Callback {
         }
     };
 
-    private Observer<AttachmentProgress> attachmentProgressObserver = new Observer<AttachmentProgress>() {
+    private final Observer<AttachmentProgress> attachmentProgressObserver = new Observer<AttachmentProgress>() {
         @Override
         public void onEvent(AttachmentProgress p) {
             long total = p.getTotal();
@@ -481,12 +481,8 @@ public class WatchVideoActivity extends UI implements Callback {
     }
 
     private boolean isVideoHasDownloaded(final IMMessage message) {
-        if (message.getAttachStatus() == AttachStatusEnum.transferred &&
-                !TextUtils.isEmpty(((VideoAttachment) message.getAttachment()).getPath())) {
-            return true;
-        }
-
-        return false;
+        return message.getAttachStatus() == AttachStatusEnum.transferred &&
+                !TextUtils.isEmpty(((VideoAttachment) message.getAttachment()).getPath());
     }
 
     private void download() {

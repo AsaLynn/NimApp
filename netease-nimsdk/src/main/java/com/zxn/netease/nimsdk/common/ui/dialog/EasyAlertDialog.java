@@ -29,7 +29,7 @@ import java.util.Map;
  * 特殊布局需求可以自定义布局.
  */
 public class EasyAlertDialog extends Dialog {
-    private Context context;
+    private final Context context;
 
     public static final int NO_TEXT_COLOR = -99999999;
 
@@ -65,7 +65,7 @@ public class EasyAlertDialog extends Dialog {
 
     private View.OnClickListener positiveBtnListener, negativeBtnListener;
 
-    private HashMap<Integer, View.OnClickListener> mViewListener = new HashMap<Integer, View.OnClickListener>();
+    private final HashMap<Integer, View.OnClickListener> mViewListener = new HashMap<Integer, View.OnClickListener>();
 
     public EasyAlertDialog(Context context, int resourceId, int style) {
         super(context, style);
@@ -77,7 +77,7 @@ public class EasyAlertDialog extends Dialog {
         WindowManager.LayoutParams Params = getWindow().getAttributes();
         Params.width = LayoutParams.MATCH_PARENT;
         Params.height = LayoutParams.MATCH_PARENT;
-        getWindow().setAttributes((android.view.WindowManager.LayoutParams) Params);
+        getWindow().setAttributes(Params);
     }
 
     public EasyAlertDialog(Context context, int style) {
@@ -91,7 +91,7 @@ public class EasyAlertDialog extends Dialog {
     }
 
     public void setTitle(CharSequence title) {
-        isTitleVisible = TextUtils.isEmpty(title) ? false : true;
+        isTitleVisible = !TextUtils.isEmpty(title);
         setTitleVisible(isTitleVisible);
         if (null != title) {
             this.title = title;
@@ -214,10 +214,10 @@ public class EasyAlertDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(resourceId);
         try {
-            ViewGroup root = (ViewGroup) findViewById(R.id.easy_alert_dialog_layout);
+            ViewGroup root = findViewById(R.id.easy_alert_dialog_layout);
             if (root != null) {
                 ViewGroup.LayoutParams params = root.getLayoutParams();
-                params.width = (int) ScreenUtil.getDialogWidth();
+                params.width = ScreenUtil.getDialogWidth();
                 root.setLayoutParams(params);
             }
 
@@ -225,11 +225,11 @@ public class EasyAlertDialog extends Dialog {
             if (titleView != null) {
                 setTitleVisible(isTitleVisible);
             }
-            titleBtn = (ImageButton) findViewById(R.id.easy_dialog_title_button);
+            titleBtn = findViewById(R.id.easy_dialog_title_button);
             if (titleBtn != null) {
                 setTitleBtnVisible(isTitleBtnVisible);
             }
-            titleTV = (TextView) findViewById(R.id.easy_dialog_title_text_view);
+            titleTV = findViewById(R.id.easy_dialog_title_text_view);
             if (titleTV != null) {
                 titleTV.setText(title);
                 if (NO_TEXT_COLOR != titleTextColor)
@@ -238,7 +238,7 @@ public class EasyAlertDialog extends Dialog {
                     titleTV.setTextSize(titleTextSize);
             }
 
-            messageTV = (TextView) findViewById(R.id.easy_dialog_message_text_view);
+            messageTV = findViewById(R.id.easy_dialog_message_text_view);
             if (messageTV != null) {
                 messageTV.setText(message);
                 setMessageVisible(isMessageVisble);
@@ -248,13 +248,13 @@ public class EasyAlertDialog extends Dialog {
                     messageTV.setTextSize(msgTextSize);
             }
 
-            message2TV = (TextView) findViewById(R.id.easy_dialog_message_2);
+            message2TV = findViewById(R.id.easy_dialog_message_2);
             if (message2TV != null && !TextUtils.isEmpty(message2)) {
                 message2TV.setVisibility(View.VISIBLE);
                 message2TV.setText(message2);
             }
 
-            positiveBtn = (Button) findViewById(R.id.easy_dialog_positive_btn);
+            positiveBtn = findViewById(R.id.easy_dialog_positive_btn);
             if (isPositiveBtnVisible && positiveBtn != null) {
                 positiveBtn.setVisibility(View.VISIBLE);
                 if (NO_TEXT_COLOR != positiveBtnTitleTextColor) {
@@ -267,7 +267,7 @@ public class EasyAlertDialog extends Dialog {
                 positiveBtn.setOnClickListener(positiveBtnListener);
             }
 
-            negativeBtn = (Button) findViewById(R.id.easy_dialog_negative_btn);
+            negativeBtn = findViewById(R.id.easy_dialog_negative_btn);
             btnDivideView = findViewById(R.id.easy_dialog_btn_divide_view);
             if (isNegativeBtnVisible) {
                 negativeBtn.setVisibility(View.VISIBLE);

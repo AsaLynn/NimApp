@@ -29,12 +29,12 @@ import java.util.Set;
  */
 public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseViewHolder> {
 
-    private Map<Class<? extends MsgViewHolderBase>, Integer> holder2ViewType;
+    private final Map<Class<? extends MsgViewHolderBase>, Integer> holder2ViewType;
 
     private ViewHolderEventListener eventListener;
-    private Map<String, Float> progresses; // 有文件传输，需要显示进度条的消息ID map
+    private final Map<String, Float> progresses; // 有文件传输，需要显示进度条的消息ID map
     private String messageId;
-    private Container container;
+    private final Container container;
 
     public MsgAdapter(RecyclerView recyclerView, List<IMMessage> data, Container container) {
         super(recyclerView, data);
@@ -177,7 +177,7 @@ public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseVie
      * *********************** 时间显示处理 ***********************
      */
 
-    private Set<String> timedItems; // 需要显示消息时间的消息ID
+    private final Set<String> timedItems; // 需要显示消息时间的消息ID
     private IMMessage lastShowTimeItem; // 用于消息时间显示,判断和上条消息间的时间间隔
 
     public boolean needShowTime(IMMessage message) {

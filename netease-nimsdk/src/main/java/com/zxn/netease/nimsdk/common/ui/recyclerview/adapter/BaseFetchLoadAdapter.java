@@ -73,7 +73,7 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
     // animation
     private boolean mAnimationShowFirstOnly = true;
     private boolean mOpenAnimationEnable = false;
-    private Interpolator mInterpolator = new LinearInterpolator();
+    private final Interpolator mInterpolator = new LinearInterpolator();
     private int mAnimationDuration = 200;
     private int mLastPosition = -1;
 

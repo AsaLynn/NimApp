@@ -15,8 +15,8 @@ import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
  */
 
 public class ImageItemDecoration extends RecyclerView.ItemDecoration {
-    private Paint paint = new Paint();
-    private int dividerSize;
+    private final Paint paint = new Paint();
+    private final int dividerSize;
 
     public ImageItemDecoration() {
         super();

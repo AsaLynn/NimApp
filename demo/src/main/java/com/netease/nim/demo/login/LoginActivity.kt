@@ -163,9 +163,9 @@ class LoginActivity : UI(), View.OnKeyListener {
         loginSubtypeEdit = findViewById(R.id.edit_login_subtype)
         loginAccountEdit?.setIconResource(R.drawable.user_account_icon)
         loginPasswordEdit?.setIconResource(R.drawable.user_pwd_lock_icon)
-        loginAccountEdit?.setFilters(arrayOf<InputFilter>(LengthFilter(32)))
-        loginPasswordEdit?.setFilters(arrayOf<InputFilter>(LengthFilter(32)))
-        loginSubtypeEdit?.setFilters(arrayOf<InputFilter>(LengthFilter(32)))
+        loginAccountEdit?.filters = arrayOf<InputFilter>(LengthFilter(32))
+        loginPasswordEdit?.filters = arrayOf<InputFilter>(LengthFilter(32))
+        loginSubtypeEdit?.filters = arrayOf<InputFilter>(LengthFilter(32))
         loginAccountEdit?.addTextChangedListener(textWatcher)
         loginPasswordEdit?.addTextChangedListener(textWatcher)
         loginPasswordEdit?.setOnKeyListener(this)
@@ -180,9 +180,7 @@ class LoginActivity : UI(), View.OnKeyListener {
         loginLayout = findView(R.id.login_layout)
         registerLayout = findView(R.id.register_layout)
         switchModeBtn = findView(R.id.register_login_tip)
-        switchModeBtn?.setVisibility(
-            if (DemoPrivatizationConfig.isPrivateDisable(this)) View.VISIBLE else View.GONE
-        )
+        switchModeBtn?.visibility = if (DemoPrivatizationConfig.isPrivateDisable(this)) View.VISIBLE else View.GONE
         switchModeBtn?.setOnClickListener(View.OnClickListener { v: View? -> switchMode() })
     }
 
@@ -402,9 +400,9 @@ class LoginActivity : UI(), View.OnKeyListener {
             registerAccountEdit?.setIconResource(R.drawable.user_account_icon)
             registerNickNameEdit?.setIconResource(R.drawable.nick_name_icon)
             registerPasswordEdit?.setIconResource(R.drawable.user_pwd_lock_icon)
-            registerAccountEdit?.setFilters(arrayOf<InputFilter>(LengthFilter(20)))
-            registerNickNameEdit?.setFilters(arrayOf<InputFilter>(LengthFilter(10)))
-            registerPasswordEdit?.setFilters(arrayOf<InputFilter>(LengthFilter(20)))
+            registerAccountEdit?.filters = arrayOf<InputFilter>(LengthFilter(20))
+            registerNickNameEdit?.filters = arrayOf<InputFilter>(LengthFilter(10))
+            registerPasswordEdit?.filters = arrayOf<InputFilter>(LengthFilter(20))
             registerAccountEdit?.addTextChangedListener(textWatcher)
             registerNickNameEdit?.addTextChangedListener(textWatcher)
             registerPasswordEdit?.addTextChangedListener(textWatcher)

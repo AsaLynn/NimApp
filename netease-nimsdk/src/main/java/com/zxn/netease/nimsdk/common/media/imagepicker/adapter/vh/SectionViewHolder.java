@@ -28,7 +28,7 @@ public class SectionViewHolder extends BaseViewHolder<SectionModel> {
     public CheckBox chooseAll;
     private SectionModel model;
 
-    private SectionModel.Listener listener = new SectionModel.Listener() {
+    private final SectionModel.Listener listener = new SectionModel.Listener() {
         @Override
         public void onChanged() {
             int position = getAdapterPosition();

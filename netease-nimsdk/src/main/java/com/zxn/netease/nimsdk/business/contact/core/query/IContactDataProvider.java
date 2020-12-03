@@ -9,5 +9,5 @@ import java.util.List;
  * Created by huangjun on 2015/4/2.
  */
 public interface IContactDataProvider {
-    public List<AbsContactItem> provide(TextQuery query);
+    List<AbsContactItem> provide(TextQuery query);
 }

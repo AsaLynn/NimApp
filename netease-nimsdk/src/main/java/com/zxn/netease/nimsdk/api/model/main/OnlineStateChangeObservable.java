@@ -13,8 +13,8 @@ import java.util.Set;
 public class OnlineStateChangeObservable {
 
     // 在线状态变化监听
-    private List<OnlineStateChangeObserver> onlineStateChangeObservers;
-    private Handler uiHandler;
+    private final List<OnlineStateChangeObserver> onlineStateChangeObservers;
+    private final Handler uiHandler;
 
     public OnlineStateChangeObservable(Context context) {
         onlineStateChangeObservers = new LinkedList<>();

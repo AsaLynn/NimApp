@@ -18,7 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ContactSelectAdapter extends ContactDataAdapter {
-    private HashSet<String> selects = new HashSet<String>();
+    private final HashSet<String> selects = new HashSet<String>();
 
     public ContactSelectAdapter(Context context,
                                 ContactGroupStrategy groupStrategy, IContactDataProvider dataProvider) {

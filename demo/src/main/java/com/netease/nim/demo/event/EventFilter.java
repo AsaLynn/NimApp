@@ -13,14 +13,14 @@ import java.util.Map;
 
 public class EventFilter {
 
-    private Map<KeyModel, Long> timeFilter;
+    private final Map<KeyModel, Long> timeFilter;
 
     private EventFilter() {
         timeFilter = new HashMap<>();
     }
 
     private static class Instance {
-        private static EventFilter instance = new EventFilter();
+        private static final EventFilter instance = new EventFilter();
     }
 
     public static EventFilter getInstance() {
@@ -55,7 +55,7 @@ public class EventFilter {
     }
 
     private static class KeyModel {
-        private int eventType;
+        private final int eventType;
         private String id = "";
 
         public KeyModel(int eventType, String id) {

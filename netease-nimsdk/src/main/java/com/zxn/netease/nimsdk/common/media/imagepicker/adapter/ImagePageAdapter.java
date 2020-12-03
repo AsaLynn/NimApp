@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public abstract class ImagePageAdapter extends PagerAdapter {
 
-    private int screenWidth;
-    private int screenHeight;
+    private final int screenWidth;
+    private final int screenHeight;
     protected ArrayList<GLImage> images;
     protected Activity mActivity;
     public PhotoViewClickListener listener;

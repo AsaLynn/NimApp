@@ -9,8 +9,8 @@ import android.widget.EditText;
  * Created by hzxuwen on 2015/5/22.
  */
 public class StringTextWatcher implements TextWatcher {
-    private int length;
-    private EditText editText;
+    private final int length;
+    private final EditText editText;
 
     public StringTextWatcher(int length, EditText editText) {
         this.length = length;

@@ -45,15 +45,15 @@ public class SystemMessageViewHolder extends TViewHolder {
 
     @Override
     protected void inflate() {
-        headImageView = (HeadImageView) view.findViewById(R.id.from_account_head_image);
-        fromAccountText = (TextView) view.findViewById(R.id.from_account_text);
-        contentText = (TextView) view.findViewById(R.id.content_text);
-        postcriptText = (TextView) view.findViewById(R.id.postscript_text);
-        timeText = (TextView) view.findViewById(R.id.notification_time);
+        headImageView = view.findViewById(R.id.from_account_head_image);
+        fromAccountText = view.findViewById(R.id.from_account_text);
+        contentText = view.findViewById(R.id.content_text);
+        postcriptText = view.findViewById(R.id.postscript_text);
+        timeText = view.findViewById(R.id.notification_time);
         operatorLayout = view.findViewById(R.id.operator_layout);
-        agreeButton = (Button) view.findViewById(R.id.agree);
-        rejectButton = (Button) view.findViewById(R.id.reject);
-        operatorResultText = (TextView) view.findViewById(R.id.operator_result);
+        agreeButton = view.findViewById(R.id.agree);
+        rejectButton = view.findViewById(R.id.reject);
+        operatorResultText = view.findViewById(R.id.operator_result);
     }
 
     @Override

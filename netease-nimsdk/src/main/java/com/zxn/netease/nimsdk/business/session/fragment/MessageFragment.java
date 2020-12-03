@@ -122,6 +122,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
         messageListPanel.refreshMessageList();
     }
 
+
     private void parseIntent() {
         Bundle arguments = getArguments();
         sessionId = arguments.getString(Extras.EXTRA_ACCOUNT);
@@ -197,7 +198,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
     /**
      * 已读回执观察者
      */
-    private Observer<List<MessageReceipt>> messageReceiptObserver = new Observer<List<MessageReceipt>>() {
+    private final Observer<List<MessageReceipt>> messageReceiptObserver = new Observer<List<MessageReceipt>>() {
         @Override
         public void onEvent(List<MessageReceipt> messageReceipts) {
             messageListPanel.receiveReceipt();
@@ -382,9 +383,6 @@ public class MessageFragment extends TFragment implements ModuleProxy {
     // 操作面板集合
     protected List<BaseAction> getActionList() {
         List<BaseAction> actions = new ArrayList<>();
-        //actions.add(new ImageAction());
-        //actions.add(new VideoAction());
-        //actions.add(new LocationAction());
         if (customization != null && customization.actions != null) {
             actions.addAll(customization.actions);
         } else {

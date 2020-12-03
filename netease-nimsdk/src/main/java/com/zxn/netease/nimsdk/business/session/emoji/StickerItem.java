@@ -1,8 +1,8 @@
 package com.zxn.netease.nimsdk.business.session.emoji;
 
 public class StickerItem {
-    private String category;//类别名
-    private String name;
+    private final String category;//类别名
+    private final String name;
 
     public StickerItem(String category, String name) {
         this.category = category;

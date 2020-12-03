@@ -15,7 +15,7 @@ import java.util.List;
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
 
     private static final String TAG = "CameraPreview";
-    private SurfaceHolder mHolder;
+    private final SurfaceHolder mHolder;
     private Camera mCamera;
     private boolean isCameraFront;
 

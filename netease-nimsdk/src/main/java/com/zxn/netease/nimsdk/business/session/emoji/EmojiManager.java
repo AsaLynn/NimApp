@@ -33,14 +33,14 @@ public class EmojiManager {
     // max cache size
     private static final int CACHE_MAX_SIZE = 1024;
 
-    private static Pattern pattern;
+    private static final Pattern pattern;
 
     // default entries
     private static final List<Entry> defaultEntries = new ArrayList<Entry>();
     // text to entry
     private static final Map<String, Entry> text2entry = new HashMap<String, Entry>();
     // asset bitmap cache, key: asset path
-    private static LruCache<String, Bitmap> drawableCache;
+    private static final LruCache<String, Bitmap> drawableCache;
 
     static {
         Context context = NimUIKit.getContext();

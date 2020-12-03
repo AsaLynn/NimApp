@@ -43,7 +43,7 @@ public abstract class ListActivityBase<T> extends UI {
         setToolBar(R.id.toolbar, options);
 
         // RecyclerView
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.data_list);
+        RecyclerView recyclerView = findViewById(R.id.data_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         recyclerView.addOnItemTouchListener(new OnItemClickListener<Adapter>() {

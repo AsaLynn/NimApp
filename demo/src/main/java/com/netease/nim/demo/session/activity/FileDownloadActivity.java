@@ -91,11 +91,7 @@ public class FileDownloadActivity extends UI {
     }
 
     private boolean isOriginDataHasDownloaded(final IMMessage message) {
-        if (!TextUtils.isEmpty(((FileAttachment) message.getAttachment()).getPath())) {
-            return true;
-        }
-
-        return false;
+        return !TextUtils.isEmpty(((FileAttachment) message.getAttachment()).getPath());
     }
 
     private void downloadFile() {
@@ -111,7 +107,7 @@ public class FileDownloadActivity extends UI {
         NIMClient.getService(MsgServiceObserve.class).observeMsgStatus(statusObserver, register);
     }
 
-    private Observer<IMMessage> statusObserver = new Observer<IMMessage>() {
+    private final Observer<IMMessage> statusObserver = new Observer<IMMessage>() {
         @Override
         public void onEvent(IMMessage msg) {
             if (!msg.isTheSame(message) || isDestroyedCompatible()) {

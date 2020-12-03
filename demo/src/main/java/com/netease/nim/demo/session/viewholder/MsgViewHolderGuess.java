@@ -27,7 +27,7 @@ public class MsgViewHolderGuess extends MsgViewHolderBase {
 
     @Override
     public void inflateContentView() {
-        imageView = (ImageView) view.findViewById(R.id.rock_paper_scissors_text);
+        imageView = view.findViewById(R.id.rock_paper_scissors_text);
     }
 
     @Override

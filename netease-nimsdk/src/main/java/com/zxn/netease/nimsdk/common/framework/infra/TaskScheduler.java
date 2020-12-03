@@ -10,21 +10,21 @@ public interface TaskScheduler {
      * @param params
      * @return scheduled task
      */
-    public Task schedule(boolean background, String key, Task task, Object... params);
+    Task schedule(boolean background, String key, Task task, Object... params);
 
     /**
      * reschedule
      *
      * @param task
      */
-    public void reschedule(Task task);
+    void reschedule(Task task);
 
     /**
      * unschedule
      *
      * @param task
      */
-    public void unschedule(Task task);
+    void unschedule(Task task);
 
     /**
      * scheduled
@@ -32,17 +32,17 @@ public interface TaskScheduler {
      * @param key
      * @return Task
      */
-    public Task scheduled(String key);
+    Task scheduled(String key);
 
     /**
      * count
      *
      * @return count
      */
-    public int count();
+    int count();
 
     /**
      * cancelAll
      */
-    public void cancelAll();
+    void cancelAll();
 }

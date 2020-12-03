@@ -18,11 +18,11 @@ import com.zxn.netease.nimsdk.R;
  * @author Qijun
  */
 public class EasyProgressDialog extends Dialog {
-    private Context mContext;
+    private final Context mContext;
 
     private String mMessage;
 
-    private int mLayoutId;
+    private final int mLayoutId;
 
     private TextView message;
 
@@ -63,7 +63,7 @@ public class EasyProgressDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(mLayoutId);
-        message = (TextView) findViewById(R.id.easy_progress_dialog_message);
+        message = findViewById(R.id.easy_progress_dialog_message);
         showMessage();
     }
 

@@ -65,7 +65,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
 
     private boolean mFirstOnlyEnable = true;
     private boolean mOpenAnimationEnable = false;
-    private Interpolator mInterpolator = new LinearInterpolator();
+    private final Interpolator mInterpolator = new LinearInterpolator();
     private int mDuration = 300;
     private int mLastPosition = -1;
     //@AnimationType
@@ -625,7 +625,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
         }
     }
 
-    private boolean flag = true;
+    private final boolean flag = true;
     private SpanSizeLookup mSpanSizeLookup;
 
     public interface SpanSizeLookup {

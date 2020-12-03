@@ -20,10 +20,7 @@ public class MsgViewHolderUnknown extends MsgViewHolderBase {
 
     @Override
     protected boolean isShowHeadImage() {
-        if (message.getSessionType() == SessionTypeEnum.ChatRoom) {
-            return false;
-        }
-        return true;
+        return message.getSessionType() != SessionTypeEnum.ChatRoom;
     }
 
     @Override

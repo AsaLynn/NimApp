@@ -19,10 +19,10 @@ import java.util.List;
 
 public class ImageFolderAdapter extends BaseAdapter {
 
-    private ImagePicker imagePicker;
-    private Activity mActivity;
-    private LayoutInflater mInflater;
-    private int mImageSize;
+    private final ImagePicker imagePicker;
+    private final Activity mActivity;
+    private final LayoutInflater mInflater;
+    private final int mImageSize;
     private List<ImageFolder> imageFolders;
     private int lastSelected = 0;
 

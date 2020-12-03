@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManagerRegistry {
-    private static List<WeakReference<TaskManager>> managers = new ArrayList<WeakReference<TaskManager>>();
+    private static final List<WeakReference<TaskManager>> managers = new ArrayList<WeakReference<TaskManager>>();
 
     public static void register(TaskManager manager) {
         synchronized (managers) {

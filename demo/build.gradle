@@ -113,6 +113,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation project(path: ':netease-nimsdk')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.zxn.mvvm:jetpackmvvm:1.0.9'
 
     //implementation 'com.huawei.hms:push:4.0.4.301'
 //    implementation 'com.google.firebase:firebase-messaging:20.3.0'

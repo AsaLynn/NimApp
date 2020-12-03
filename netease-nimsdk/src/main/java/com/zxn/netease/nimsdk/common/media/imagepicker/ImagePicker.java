@@ -24,7 +24,7 @@ public class ImagePicker {
 
     public Bitmap cropBitmap;
 
-    private ArrayList<GLImage> mSelectedImages = new ArrayList<>();   //选中的图片集合
+    private final ArrayList<GLImage> mSelectedImages = new ArrayList<>();   //选中的图片集合
 
     private List<ImageFolder> mImageFolders;      //所有的图片文件夹
 

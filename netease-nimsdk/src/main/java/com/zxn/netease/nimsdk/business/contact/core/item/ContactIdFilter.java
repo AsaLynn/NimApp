@@ -25,7 +25,7 @@ public class ContactIdFilter implements ContactItemFilter {
         if (item instanceof ContactItem) {
             IContact contact = ((ContactItem) item).getContact();
             boolean contains = ids.contains(contact.getContactId());
-            return exclude ? contains : !contains;
+            return exclude == contains;
         }
 
         return false;

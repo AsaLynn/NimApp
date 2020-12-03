@@ -57,7 +57,7 @@ public class DropManager {
     private IDropListener innerListener; // 红点拖拽动画监听器
 
     private boolean enable;
-    private int[] explosionResIds = new int[]{
+    private final int[] explosionResIds = new int[]{
             R.drawable.nim_explosion_one,
             R.drawable.nim_explosion_two,
             R.drawable.nim_explosion_three,

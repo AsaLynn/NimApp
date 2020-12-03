@@ -173,7 +173,7 @@ public class CaptureActivity extends AppCompatActivity {
         }
         // Create our Preview view and set it as the content of our activity.
         mPreview = new CameraPreview(this);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        FrameLayout preview = findViewById(R.id.camera_preview);
         preview.addView(mPreview);
     }
 
@@ -249,7 +249,7 @@ public class CaptureActivity extends AppCompatActivity {
         mCamera.takePicture(null, null, mPicture);
     }
 
-    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
+    private final Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
@@ -473,7 +473,7 @@ public class CaptureActivity extends AppCompatActivity {
         }
     }
 
-    private Runnable progressRunnable = new Runnable() {
+    private final Runnable progressRunnable = new Runnable() {
 
         @Override
         public void run() {

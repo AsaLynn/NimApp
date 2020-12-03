@@ -16,7 +16,7 @@ public class CustomNotificationCache {
         return InstanceHolder.instance;
     }
 
-    private List<CustomNotification> notifications = new LinkedList<>();
+    private final List<CustomNotification> notifications = new LinkedList<>();
 
     public void addCustomNotification(CustomNotification notification) {
         if (notification == null) {

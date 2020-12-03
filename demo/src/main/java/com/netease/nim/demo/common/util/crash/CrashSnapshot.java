@@ -47,10 +47,7 @@ public class CrashSnapshot {
         if (new File("/system/app/Superuser.apk").exists()) {
             return true;
         }
-        if ((!isSdk) && (new File("/system/xbin/su").exists())) {
-            return true;
-        }
-        return false;
+        return (!isSdk) && (new File("/system/xbin/su").exists());
     }
 
     private static boolean isGoogleSdk() {

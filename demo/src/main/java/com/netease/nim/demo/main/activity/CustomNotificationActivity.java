@@ -57,7 +57,7 @@ public class CustomNotificationActivity extends UI implements TAdapterDelegate {
     // adapter
     private TAdapter adapter;
 
-    private List<CustomNotification> items = new ArrayList<>();
+    private final List<CustomNotification> items = new ArrayList<>();
 
     public static void start(Context context) {
         start(context, null, true);

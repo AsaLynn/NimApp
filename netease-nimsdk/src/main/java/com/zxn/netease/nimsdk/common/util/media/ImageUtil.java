@@ -369,15 +369,15 @@ public class ImageUtil {
         int width = -1;
         int height = -1;
         int[] bound;
-        if (String.class.isInstance(imageObject)) {
+        if (imageObject instanceof String) {
             bound = BitmapDecoder.decodeBound((String) imageObject);
             width = bound[0];
             height = bound[1];
-        } else if (Integer.class.isInstance(imageObject)) {
+        } else if (imageObject instanceof Integer) {
             bound = BitmapDecoder.decodeBound(NimUIKit.getContext().getResources(), (Integer) imageObject);
             width = bound[0];
             height = bound[1];
-        } else if (InputStream.class.isInstance(imageObject)) {
+        } else if (imageObject instanceof InputStream) {
             bound = BitmapDecoder.decodeBound((InputStream) imageObject);
             width = bound[0];
             height = bound[1];

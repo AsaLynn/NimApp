@@ -17,9 +17,9 @@ import java.lang.ref.WeakReference;
  */
 public abstract class BaseAction implements Serializable {
 
-    private int iconResId;
+    private final int iconResId;
 
-    private int titleId;
+    private final int titleId;
 
     private transient int index;
 

@@ -16,6 +16,6 @@ public class DateViewHolder extends RecyclerView.ViewHolder {
 
     public DateViewHolder(View itemView) {
         super(itemView);
-        dateText = (TextView) itemView.findViewById(R.id.date_tip);
+        dateText = itemView.findViewById(R.id.date_tip);
     }
 }

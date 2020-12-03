@@ -17,7 +17,7 @@ public class CustomDialogViewHolder extends TViewHolder {
 
     @Override
     protected void inflate() {
-        itemView = (TextView) view.findViewById(R.id.custom_dialog_text_view);
+        itemView = view.findViewById(R.id.custom_dialog_text_view);
     }
 
     @Override

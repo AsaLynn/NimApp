@@ -29,9 +29,9 @@ public class NimUserInfoCache {
         return InstanceHolder.instance;
     }
 
-    private Map<String, NimUserInfo> account2UserMap = new ConcurrentHashMap<>();
+    private final Map<String, NimUserInfo> account2UserMap = new ConcurrentHashMap<>();
 
-    private Map<String, List<RequestCallback<NimUserInfo>>> requestUserInfoMap = new ConcurrentHashMap<>(); // 重复请求处理
+    private final Map<String, List<RequestCallback<NimUserInfo>>> requestUserInfoMap = new ConcurrentHashMap<>(); // 重复请求处理
 
     /**
      * 构建缓存与清理
@@ -167,7 +167,7 @@ public class NimUserInfoCache {
         NIMClient.getService(UserServiceObserve.class).observeUserInfoUpdate(userInfoUpdateObserver, register);
     }
 
-    private Observer<List<NimUserInfo>> userInfoUpdateObserver = new Observer<List<NimUserInfo>>() {
+    private final Observer<List<NimUserInfo>> userInfoUpdateObserver = new Observer<List<NimUserInfo>>() {
 
         @Override
         public void onEvent(List<NimUserInfo> users) {

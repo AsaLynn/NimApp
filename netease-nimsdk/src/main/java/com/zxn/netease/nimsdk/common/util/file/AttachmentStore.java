@@ -310,11 +310,7 @@ public class AttachmentStore {
     }
 
     public static boolean isFileExist(String path) {
-        if (!TextUtils.isEmpty(path) && new File(path).exists()) {
-            return true;
-        } else {
-            return false;
-        }
+        return !TextUtils.isEmpty(path) && new File(path).exists();
     }
 
     public static boolean saveBitmap(Bitmap bitmap, String path, boolean recycle) {

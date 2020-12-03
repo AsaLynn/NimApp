@@ -30,8 +30,8 @@ public class VideoMessageHelper {
     private File videoFile;
     private String videoFilePath;
 
-    private Activity activity;
-    private VideoMessageHelperListener listener;
+    private final Activity activity;
+    private final VideoMessageHelperListener listener;
 
     private int localRequestCode;
     private int captureRequestCode;

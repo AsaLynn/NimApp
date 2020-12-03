@@ -20,12 +20,12 @@ public class CircleProgressView extends View {
 
 
     //constant
-    private int millisecond = 1000;//每一秒
-    private float maxProgressSize = CaptureActivity.RECORD_MAX_TIME * millisecond;//总进度是10s
+    private final int millisecond = 1000;//每一秒
+    private final float maxProgressSize = CaptureActivity.RECORD_MAX_TIME * millisecond;//总进度是10s
 
     private float eachProgressAngle = 0;
 
-    private Context mContext;
+    private final Context mContext;
     private WindowManager mWindowManager;
 
     // 画圆环的画笔

@@ -144,7 +144,7 @@ public abstract class BaseMessageActivity extends UI {
     }
 
 
-    private SensorEventListener sensorEventListener = new SensorEventListener() {
+    private final SensorEventListener sensorEventListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
             float[] dis = event.values;

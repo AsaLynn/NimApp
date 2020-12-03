@@ -22,7 +22,7 @@ public class MPermission extends BaseMPermission {
 
     private int requestCode;
     private String[] permissions;
-    private Object object; // activity or fragment
+    private final Object object; // activity or fragment
 
     private MPermission(Object object) {
         this.object = object;
@@ -151,7 +151,7 @@ public class MPermission extends BaseMPermission {
      */
 
     private static void executeMethod(Object activity, Method executeMethod) {
-        executeMethodWithParam(activity, executeMethod, new Object[]{});
+        executeMethodWithParam(activity, executeMethod);
     }
 
     private static void executeMethodWithParam(Object activity, Method executeMethod, Object... args) {

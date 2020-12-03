@@ -40,7 +40,7 @@ public class BlackListActivity extends UI implements TAdapterDelegate {
     private static final int REQUEST_CODE_BLACK = 1;
 
     private ListView listView;
-    private List<UserInfo> data = new ArrayList<>();
+    private final List<UserInfo> data = new ArrayList<>();
     private BlackListAdapter adapter;
 
     public static void start(Context context) {
@@ -128,7 +128,7 @@ public class BlackListActivity extends UI implements TAdapterDelegate {
     }
 
     private void findViews() {
-        TextView notifyText = ((TextView) findView(R.id.notify_bar).findViewById(R.id.status_desc_label));
+        TextView notifyText = findView(R.id.notify_bar).findViewById(R.id.status_desc_label);
         notifyText.setText(R.string.black_list_tip);
         notifyText.setBackgroundColor(getResources().getColor(R.color.color_yellow_fcf3cd));
         notifyText.setTextColor(getResources().getColor(R.color.color_yellow_796413));
@@ -137,7 +137,7 @@ public class BlackListActivity extends UI implements TAdapterDelegate {
         listView.setAdapter(adapter);
     }
 
-    private BlackListAdapter.ViewHolderEventListener viewHolderEventListener = new BlackListAdapter.ViewHolderEventListener() {
+    private final BlackListAdapter.ViewHolderEventListener viewHolderEventListener = new BlackListAdapter.ViewHolderEventListener() {
         @Override
         public void onRemove(final UserInfo user) {
             NIMClient.getService(FriendService.class).removeFromBlackList(user.getAccount()).setCallback(new RequestCallback<Void>() {

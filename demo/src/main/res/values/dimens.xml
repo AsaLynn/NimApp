@@ -88,5 +88,6 @@
     <dimen name="dp_size_36">36sp</dimen>
     <dimen name="dp_size_120">120dp</dimen>
     <dimen name="avatar_size_in_profile">60dp</dimen>
+    <dimen name="dp_title_height">45dp</dimen>
 
 </resources>

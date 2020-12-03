@@ -24,19 +24,19 @@ abstract public class BaseAudioControl<T> {
 
     public interface AudioControlListener {
         //AudioControl准备就绪，已经postDelayed playRunnable，不等同于AudioPlayer已经开始播放
-        public void onAudioControllerReady(Playable playable);
+        void onAudioControllerReady(Playable playable);
 
         /**
          * 结束播放
          */
-        public void onEndPlay(Playable playable);
+        void onEndPlay(Playable playable);
 
         /**
          * 显示播放过程中的进度条
          *
          * @param curPosition 当前进度，如果传-1则自动获取进度
          */
-        public void updatePlayingProgress(Playable playable, long curPosition);
+        void updatePlayingProgress(Playable playable, long curPosition);
     }
 
     protected AudioControlListener audioControlListener;
@@ -265,11 +265,7 @@ abstract public class BaseAudioControl<T> {
         }
 
         protected boolean checkAudioPlayerValid() {
-            if (currentAudioPlayer != listenerPlayingAudioPlayer) {
-                return false;
-            }
-
-            return true;
+            return currentAudioPlayer == listenerPlayingAudioPlayer;
         }
 
         @Override
@@ -335,8 +331,6 @@ abstract public class BaseAudioControl<T> {
             playSuffix();
         }
     }
-
-    ;
 
     public void startPlayAudio(
             T t,

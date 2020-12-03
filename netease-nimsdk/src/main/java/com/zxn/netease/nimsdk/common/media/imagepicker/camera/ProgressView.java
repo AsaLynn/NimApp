@@ -19,13 +19,13 @@ import com.zxn.netease.nimsdk.R;
 
 public class ProgressView extends View {
     //constant
-    private int millisecond = 1000;//每一秒
-    private float maxProgressSize = CaptureActivity.RECORD_MAX_TIME * millisecond;//总进度是10s
+    private final int millisecond = 1000;//每一秒
+    private final float maxProgressSize = CaptureActivity.RECORD_MAX_TIME * millisecond;//总进度是10s
     private float eachProgressWidth = 0;//每一格的宽度
 
     private float eachProgressAngle = 0;
 
-    private Context mContext;
+    private final Context mContext;
     private WindowManager mWindowManager;
     //    private Paint progressPaint;
 
@@ -46,13 +46,13 @@ public class ProgressView extends View {
     // 字的高度
     private float txtHeight;
     // 总进度
-    private int totalProgress = 100;
+    private final int totalProgress = 100;
     // 当前进度
-    private float currentProgress = 0f;
+    private final float currentProgress = 0f;
 
     private float currentAngle = 0f;
     //  透明度
-    private int alpha = 25;
+    private final int alpha = 25;
 
     public ProgressView(Context context) {
         this(context, null);
@@ -105,7 +105,7 @@ public class ProgressView extends View {
 
     private long initTime = -1;//上一次刷新完成后的时间
     private boolean isStart = false;
-    private float countWidth = 0;//进度条进度的进程，每次调用invalidate（）都刷新一次
+    private final float countWidth = 0;//进度条进度的进程，每次调用invalidate（）都刷新一次
 
     @Override
     protected void onDraw(Canvas canvas) {

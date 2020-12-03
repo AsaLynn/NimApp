@@ -57,9 +57,9 @@ public class VoiceTrans {
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             baseActivity.addContentView(textLayout, layoutParams);
         }
-        voiceTransText = (TextView) textLayout.findViewById(R.id.voice_trans_text);
+        voiceTransText = textLayout.findViewById(R.id.voice_trans_text);
         cancelBtn = textLayout.findViewById(R.id.cancel_btn);
-        refreshingIndicator = (ProgressBar) textLayout.findViewById(R.id.refreshing_indicator);
+        refreshingIndicator = textLayout.findViewById(R.id.refreshing_indicator);
         failIcon = textLayout.findViewById(R.id.trans_fail_icon);
     }
 

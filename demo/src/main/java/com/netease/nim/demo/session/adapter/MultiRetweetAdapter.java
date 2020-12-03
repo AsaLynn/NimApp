@@ -40,9 +40,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class MultiRetweetAdapter extends RecyclerView.Adapter<MultiRetweetAdapter.ViewHolder> {
-    private List<IMMessage> mItems;
-    private Activity mContext;
-    private RecyclerView mRecyclerView;
+    private final List<IMMessage> mItems;
+    private final Activity mContext;
+    private final RecyclerView mRecyclerView;
 
     public MultiRetweetAdapter(RecyclerView recyclerView, List<IMMessage> items, Activity context) {
         mItems = items;

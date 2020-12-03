@@ -108,20 +108,13 @@ public class MessageHelper {
                         attachData.getEvent() == AddFriendNotify.Event.RECV_AGREE_ADD_FRIEND ||
                         attachData.getEvent() == AddFriendNotify.Event.RECV_REJECT_ADD_FRIEND) {
                     return false; // 对方直接加你为好友，对方通过你的好友请求，对方拒绝你的好友请求
-                } else if (attachData.getEvent() == AddFriendNotify.Event.RECV_ADD_FRIEND_VERIFY_REQUEST) {
-                    return true; // 好友验证请求
-                }
+                } else return attachData.getEvent() == AddFriendNotify.Event.RECV_ADD_FRIEND_VERIFY_REQUEST; // 好友验证请求
             }
             return false;
-        } else if (msgType == SystemMessageType.TeamInvite ||
+        } else return msgType == SystemMessageType.TeamInvite ||
                 msgType == SystemMessageType.ApplyJoinTeam ||
                 msgType == SystemMessageType.SuperTeamApply ||
-                msgType == SystemMessageType.SuperTeamInvite
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+                msgType == SystemMessageType.SuperTeamInvite;
     }
 
     /**
@@ -387,7 +380,7 @@ public class MessageHelper {
     }
 
     private static class RC4SecretKey implements SecretKey {
-        private SecretKeySpec spec;
+        private final SecretKeySpec spec;
 
         private RC4SecretKey(byte[] key) {
             this.spec = new SecretKeySpec(key, "RC4");

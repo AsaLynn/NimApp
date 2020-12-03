@@ -13,10 +13,10 @@ import java.util.Set;
 
 public class OnlineStateEventCache {
 
-    private static Map<String, OnlineState> onlineStateCache = new HashMap<>();
+    private static final Map<String, OnlineState> onlineStateCache = new HashMap<>();
 
     // 管理在线状态订阅账号
-    private static Set<String> subscribeAccounts = new HashSet<>();
+    private static final Set<String> subscribeAccounts = new HashSet<>();
 
     public static OnlineState getOnlineState(String account) {
         return onlineStateCache.get(account);

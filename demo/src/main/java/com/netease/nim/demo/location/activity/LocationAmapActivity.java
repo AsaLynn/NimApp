@@ -319,7 +319,7 @@ public class LocationAmapActivity extends UI implements OnCameraChangeListener, 
         handler.removeCallbacks(runable);
     }
 
-    private NimGeocoder.NimGeocoderListener geocoderListener = new NimGeocoder.NimGeocoderListener() {
+    private final NimGeocoder.NimGeocoderListener geocoderListener = new NimGeocoder.NimGeocoderListener() {
 
         @Override
         public void onGeoCoderResult(NimLocation location) {
@@ -336,7 +336,7 @@ public class LocationAmapActivity extends UI implements OnCameraChangeListener, 
     };
 
 
-    private Runnable runable = new Runnable() {
+    private final Runnable runable = new Runnable() {
 
         @Override
         public void run() {

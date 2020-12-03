@@ -174,7 +174,7 @@ public class RecentContactsFragment extends TFragment {
         };
     }
 
-    private SimpleClickListener<RecentContactAdapter> touchListener = new SimpleClickListener<RecentContactAdapter>() {
+    private final SimpleClickListener<RecentContactAdapter> touchListener = new SimpleClickListener<RecentContactAdapter>() {
 
         @Override
         public void onItemClick(RecentContactAdapter adapter, View view, int position) {
@@ -347,7 +347,7 @@ public class RecentContactsFragment extends TFragment {
         Collections.sort(list, comp);
     }
 
-    private static Comparator<RecentContact> comp = (recent1, recent2) -> {
+    private static final Comparator<RecentContact> comp = (recent1, recent2) -> {
         // 先比较置顶tag
         boolean isStickTop1 = NIMClient.getService(MsgService.class).isStickTopSession(recent1.getContactId(), recent1.getSessionType());
         boolean isStickTop2 = NIMClient.getService(MsgService.class).isStickTopSession(recent2.getContactId(), recent2.getSessionType());
@@ -394,10 +394,10 @@ public class RecentContactsFragment extends TFragment {
     }
 
     // 暂存消息，当RecentContact 监听回来时使用，结束后清掉
-    private Map<String, Set<IMMessage>> cacheMessages = new HashMap<>();
+    private final Map<String, Set<IMMessage>> cacheMessages = new HashMap<>();
 
     //监听在线消息中是否有@我
-    private Observer<List<IMMessage>> messageReceiverObserver = new Observer<List<IMMessage>>() {
+    private final Observer<List<IMMessage>> messageReceiverObserver = new Observer<List<IMMessage>>() {
 
         @Override
         public void onEvent(List<IMMessage> imMessages) {
@@ -518,9 +518,9 @@ public class RecentContactsFragment extends TFragment {
         }
     };
 
-    private Observer<List<StickTopSessionInfo>> syncStickTopSessionObserve = (Observer<List<StickTopSessionInfo>>) stickTopSessionInfos -> refreshMessages(false);
+    private final Observer<List<StickTopSessionInfo>> syncStickTopSessionObserve = (Observer<List<StickTopSessionInfo>>) stickTopSessionInfos -> refreshMessages(false);
 
-    private Observer<StickTopSessionInfo> stickTopSessionChangeObserve = (Observer<StickTopSessionInfo>) stickTopSessionInfo -> refreshMessages(false);
+    private final Observer<StickTopSessionInfo> stickTopSessionChangeObserve = (Observer<StickTopSessionInfo>) stickTopSessionInfo -> refreshMessages(false);
 
     private int getItemIndex(String uuid) {
         for (int i = 0; i < items.size(); i++) {

@@ -24,7 +24,7 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
  */
 public class DisplayMessageActivity extends UI implements ModuleProxy {
 
-    private static String EXTRA_ANCHOR = "anchor";
+    private static final String EXTRA_ANCHOR = "anchor";
 
     public static void start(Context context, IMMessage anchor) {
         Intent intent = new Intent();

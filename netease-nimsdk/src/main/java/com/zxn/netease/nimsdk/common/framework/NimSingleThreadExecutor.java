@@ -14,8 +14,8 @@ public class NimSingleThreadExecutor {
 
     private static NimSingleThreadExecutor instance;
 
-    private Handler uiHandler;
-    private Executor executor;
+    private final Handler uiHandler;
+    private final Executor executor;
 
     private NimSingleThreadExecutor() {
         uiHandler = new Handler(NimUIKit.getContext().getMainLooper());
@@ -58,7 +58,7 @@ public class NimSingleThreadExecutor {
             this.task = task;
         }
 
-        private NimTask<T> task;
+        private final NimTask<T> task;
 
         @Override
         public void run() {

@@ -27,7 +27,7 @@ public class GLVideoActivity extends AppCompatActivity implements GLVideoModel.M
         start(context, Uri.parse(url), duration);
     }
 
-    private GLMediaPlayerManager mediaPlayerManager = new GLMediaPlayerManager();
+    private final GLMediaPlayerManager mediaPlayerManager = new GLMediaPlayerManager();
 
     private GLVideoPlaceholder placeholder;
 

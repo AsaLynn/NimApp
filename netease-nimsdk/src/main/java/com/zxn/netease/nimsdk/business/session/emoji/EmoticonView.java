@@ -25,8 +25,8 @@ import java.util.List;
  */
 public class EmoticonView {
 
-    private ViewPager emotPager;
-    private LinearLayout pageNumberLayout;
+    private final ViewPager emotPager;
+    private final LinearLayout pageNumberLayout;
     /**
      * 总页数.
      */
@@ -38,9 +38,9 @@ public class EmoticonView {
     public static final int EMOJI_PER_PAGE = 27; // 最后一个是删除键
     public static final int STICKER_PER_PAGE = 8;
 
-    private Context context;
-    private IEmoticonSelectedListener listener;
-    private EmoticonViewPaperAdapter pagerAdapter = new EmoticonViewPaperAdapter();
+    private final Context context;
+    private final IEmoticonSelectedListener listener;
+    private final EmoticonViewPaperAdapter pagerAdapter = new EmoticonViewPaperAdapter();
 
     /**
      * 所有表情贴图支持横向滑动切换
@@ -49,7 +49,7 @@ public class EmoticonView {
     private boolean isDataInitialized = false;             // 数据源只需要初始化一次,变更时再初始化
     private List<StickerCategory> categoryDataList;       // 表情贴图数据源
     private List<Integer> categoryPageNumberList;           // 每套表情贴图对应的页数
-    private int[] pagerIndexInfo = new int[2];           // 0：category index；1：pager index in category
+    private final int[] pagerIndexInfo = new int[2];           // 0：category index；1：pager index in category
     private IEmoticonCategoryChanged categoryChangedCallback; // 横向滑动切换时回调picker
 
     public EmoticonView(Context context, IEmoticonSelectedListener mlistener,
@@ -288,7 +288,7 @@ public class EmoticonView {
         this.categoryChangedCallback = callback;
     }
 
-    private OnItemClickListener stickerListener = new OnItemClickListener() {
+    private final OnItemClickListener stickerListener = new OnItemClickListener() {
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
             int position = emotPager.getCurrentItem();
             getPagerInfo(position);

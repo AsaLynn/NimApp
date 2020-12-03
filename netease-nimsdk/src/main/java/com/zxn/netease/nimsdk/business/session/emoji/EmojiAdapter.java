@@ -12,9 +12,9 @@ import com.zxn.netease.nimsdk.R;
 
 public class EmojiAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
 
-    private int startIndex;
+    private final int startIndex;
 
     public EmojiAdapter(Context mContext, int startIndex) {
         this.context = mContext;
@@ -40,7 +40,7 @@ public class EmojiAdapter extends BaseAdapter {
     @SuppressLint({"ViewHolder", "InflateParams"})
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.nim_emoji_item, null);
-        ImageView emojiThumb = (ImageView) convertView.findViewById(R.id.imgEmoji);
+        ImageView emojiThumb = convertView.findViewById(R.id.imgEmoji);
         int count = EmojiManager.getDisplayCount();
         int index = startIndex + position;
         if (position == EmoticonView.EMOJI_PER_PAGE || index == count) {

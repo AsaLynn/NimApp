@@ -28,13 +28,13 @@ public class AutoRefreshListView extends ListView {
     }
 
     public interface OnRefreshListener {
-        public void onRefreshFromStart();
+        void onRefreshFromStart();
 
-        public void onRefreshFromEnd();
+        void onRefreshFromEnd();
     }
 
     private OnRefreshListener refreshListener;
-    private List<OnScrollListener> scrollListeners = new ArrayList<OnScrollListener>();
+    private final List<OnScrollListener> scrollListeners = new ArrayList<OnScrollListener>();
 
     private State state = State.RESET;
     private Mode mode = Mode.START;

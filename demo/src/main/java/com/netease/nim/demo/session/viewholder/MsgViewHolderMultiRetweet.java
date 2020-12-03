@@ -22,7 +22,7 @@ import java.util.regex.Matcher;
 
 public class MsgViewHolderMultiRetweet extends MsgViewHolderBase {
 
-    private static int TIP_LEN_MAX = 30;
+    private static final int TIP_LEN_MAX = 30;
     private TextView mTitleTV;
     private TextView mFirstMsgTV;
     private TextView mSecondMsgTV;

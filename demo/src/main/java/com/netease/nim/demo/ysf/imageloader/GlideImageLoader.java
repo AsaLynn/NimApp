@@ -18,7 +18,7 @@ import com.qiyukf.unicorn.ysfkit.unicorn.api.UnicornImageLoader;
  */
 
 public class GlideImageLoader implements UnicornImageLoader {
-    private Context context;
+    private final Context context;
 
     public GlideImageLoader(Context context) {
         this.context = context.getApplicationContext();

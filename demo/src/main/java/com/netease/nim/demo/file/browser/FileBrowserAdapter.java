@@ -13,8 +13,8 @@ import java.util.List;
 public class FileBrowserAdapter extends TAdapter {
 
     public static class FileManagerItem {
-        private String name;
-        private String path;
+        private final String name;
+        private final String path;
 
         public FileManagerItem(String name, String path) {
             this.name = name;

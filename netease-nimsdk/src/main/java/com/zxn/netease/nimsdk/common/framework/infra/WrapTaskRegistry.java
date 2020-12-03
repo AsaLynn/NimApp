@@ -3,7 +3,7 @@ package com.zxn.netease.nimsdk.common.framework.infra;
 import java.util.Collection;
 
 public class WrapTaskRegistry implements TaskRegistry {
-    private TaskRegistry wrap;
+    private final TaskRegistry wrap;
 
     public WrapTaskRegistry(TaskRegistry wrap) {
         this.wrap = wrap;

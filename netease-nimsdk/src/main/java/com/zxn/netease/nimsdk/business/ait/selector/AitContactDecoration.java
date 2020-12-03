@@ -29,9 +29,7 @@ public class AitContactDecoration extends DividerItemDecoration {
     protected boolean needDrawDecoration(RecyclerView parent, int position) {
         if (ignoreDecorations != null) {
             int viewType = parent.getAdapter().getItemViewType(position);
-            if (ignoreDecorations.contains(viewType)) {
-                return false;
-            }
+            return !ignoreDecorations.contains(viewType);
         }
         return true;
     }

@@ -151,17 +151,11 @@ public class NimApplication extends Application {
     }
 
     private void initUIKit() {
-        // 初始化
+
         NimUIKit.init(this, buildUIKitOptions());
 
-        // 设置地理位置提供者。如果需要发送地理位置消息，该参数必须提供。如果不需要，可以忽略。
-        NimUIKit.setLocationProvider(new NimDemoLocationProvider());
-
-        // IM 会话窗口的定制初始化。
         SessionHelper.init();
 
-
-        // 通讯录列表定制初始化
         ContactHelper.init();
 
         // 添加自定义推送文案以及选项，请开发者在各端（Android、IOS、PC、Web）消息发送时保持一致，以免出现通知不一致的情况

@@ -13,7 +13,7 @@ public class ScreenUtil {
 
     private static final String TAG = "Demo.ScreenUtil";
 
-    private static double RATIO = 0.85;
+    private static final double RATIO = 0.85;
 
     public static int screenWidth;
 

@@ -164,7 +164,7 @@ class NimSDKOptionConfig {
         return config;
     }
 
-    private static MessageNotifierCustomization messageNotifierCustomization = new MessageNotifierCustomization() {
+    private static final MessageNotifierCustomization messageNotifierCustomization = new MessageNotifierCustomization() {
 
         @Override
         public String makeNotifyContent(String nick, IMMessage message) {

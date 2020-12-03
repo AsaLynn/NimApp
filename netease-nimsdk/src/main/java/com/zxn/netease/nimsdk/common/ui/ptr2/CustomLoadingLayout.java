@@ -15,14 +15,14 @@ import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
  */
 public class CustomLoadingLayout extends LoadingLayout {
 
-    private FrameLayout mInnerLayout;
-    private LoadingView loadingView;
+    private final FrameLayout mInnerLayout;
+    private final LoadingView loadingView;
 
     public CustomLoadingLayout(Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.nim_pull_to_refresh_header_custom, this);
-        mInnerLayout = (FrameLayout) findViewById(R.id.fl_inner);
-        loadingView = (LoadingView) mInnerLayout.findViewById(R.id.custom_loading);
+        mInnerLayout = findViewById(R.id.fl_inner);
+        loadingView = mInnerLayout.findViewById(R.id.custom_loading);
     }
 
     @Override

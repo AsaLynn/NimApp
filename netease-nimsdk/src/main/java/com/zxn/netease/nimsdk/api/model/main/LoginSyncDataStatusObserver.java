@@ -35,7 +35,7 @@ public class LoginSyncDataStatusObserver {
     /**
      * 监听
      */
-    private List<Observer<Void>> observers = new ArrayList<>();
+    private final List<Observer<Void>> observers = new ArrayList<>();
 
     /**
      * 注销时清除状态&监听
@@ -55,7 +55,7 @@ public class LoginSyncDataStatusObserver {
         NIMClient.getService(AuthServiceObserver.class).observeLoginSyncTeamMembersCompleteResult(syncTeamMemberObserver, register);
     }
 
-    private Observer<LoginSyncStatus> loginSyncStatusObserver = new Observer<LoginSyncStatus>() {
+    private final Observer<LoginSyncStatus> loginSyncStatusObserver = new Observer<LoginSyncStatus>() {
         @Override
         public void onEvent(LoginSyncStatus status) {
             syncStatus = status;
@@ -67,7 +67,7 @@ public class LoginSyncDataStatusObserver {
             }
         }
     };
-    private Observer<Boolean> syncTeamMemberObserver = new Observer<Boolean>() {
+    private final Observer<Boolean> syncTeamMemberObserver = new Observer<Boolean>() {
         @Override
         public void onEvent(Boolean result) {
             LogUtil.i(TAG, "login sync all team members result = " + result);

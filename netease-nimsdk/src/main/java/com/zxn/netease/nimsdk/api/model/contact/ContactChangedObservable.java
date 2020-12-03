@@ -12,8 +12,8 @@ import java.util.List;
 
 public class ContactChangedObservable {
 
-    private List<ContactChangedObserver> observers = new ArrayList<>();
-    private Handler uiHandler;
+    private final List<ContactChangedObserver> observers = new ArrayList<>();
+    private final Handler uiHandler;
 
     public ContactChangedObservable(Context context) {
         uiHandler = new Handler(context.getMainLooper());

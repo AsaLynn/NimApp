@@ -27,9 +27,9 @@ public class ReminderManager {
     }
 
     // observers
-    private SparseArray<ReminderItem> items = new SparseArray<>();
+    private final SparseArray<ReminderItem> items = new SparseArray<>();
 
-    private List<UnreadNumChangedCallback> unreadNumChangedCallbacks = new ArrayList<>();
+    private final List<UnreadNumChangedCallback> unreadNumChangedCallbacks = new ArrayList<>();
 
     private ReminderManager() {
         populate(items);

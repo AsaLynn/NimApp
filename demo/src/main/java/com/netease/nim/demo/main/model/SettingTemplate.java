@@ -4,12 +4,12 @@ package com.netease.nim.demo.main.model;
  * Created by hzxuwen on 2015/6/29.
  */
 public class SettingTemplate {
-    private int id;
-    private int icon;
-    private int type;
-    private String title; // left title
+    private final int id;
+    private final int icon;
+    private final int type;
+    private final String title; // left title
     private String detail; // right detail
-    private boolean visible;
+    private final boolean visible;
     private boolean checked;
     private int checkedId; // type==TYPE_THREE_CHOOSE_ONE; 默认被选中项的ID
 

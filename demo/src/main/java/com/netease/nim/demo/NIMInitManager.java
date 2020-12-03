@@ -68,7 +68,7 @@ public class NIMInitManager {
         }
     }
 
-    private BroadcastReceiver localeReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver localeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {

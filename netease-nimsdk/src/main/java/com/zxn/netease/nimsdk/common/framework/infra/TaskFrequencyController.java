@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class TaskFrequencyController {
 
-    private static Map<String, Long> taskTime = new HashMap<String, Long>();
+    private static final Map<String, Long> taskTime = new HashMap<String, Long>();
 
     public static <T> T runTask(ControllableTask<T> task, int frequencyInS, T def) {
         String key = makeKey(task);
@@ -41,8 +41,8 @@ public class TaskFrequencyController {
         taskTime.clear();
     }
 
-    private static interface IControllableTask {
-        public String tag();
+    private interface IControllableTask {
+        String tag();
     }
 
     public static abstract class ControllableTask<T> implements IControllableTask {

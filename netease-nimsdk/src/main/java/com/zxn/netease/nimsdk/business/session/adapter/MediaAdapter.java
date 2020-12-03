@@ -30,8 +30,8 @@ public class MediaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int ITEM_VIEW_TYPE_DATE = 0;
     private static final int ITEM_VIEW_TYPE_ITEM = 1;
 
-    private Context context;
-    private List<MediaItem> mediaItems;
+    private final Context context;
+    private final List<MediaItem> mediaItems;
 
     public static class MediaItem {
         private boolean isDate;

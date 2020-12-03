@@ -72,7 +72,7 @@ public class WatchMessagePictureActivity extends UI {
     private Handler handler;
     private IMMessage message;
     private boolean isShowMenu;
-    private List<IMMessage> imageMsgList = new ArrayList<>();
+    private final List<IMMessage> imageMsgList = new ArrayList<>();
     private int firstDisplayImageIndex = 0;
 
     private boolean newPageSelected = false;
@@ -268,7 +268,7 @@ public class WatchMessagePictureActivity extends UI {
             @Override
             public void destroyItem(ViewGroup container, int position, Object object) {
                 View layout = (View) object;
-                BaseZoomableImageView iv = (BaseZoomableImageView) layout.findViewById(R.id.watch_image_view);
+                BaseZoomableImageView iv = layout.findViewById(R.id.watch_image_view);
                 iv.clear();
                 container.removeView(layout);
             }
@@ -347,7 +347,7 @@ public class WatchMessagePictureActivity extends UI {
             });
             return;
         }
-        image = (BaseZoomableImageView) currentLayout.findViewById(R.id.watch_image_view);
+        image = currentLayout.findViewById(R.id.watch_image_view);
         requestOriImage(imageMsgList.get(position));
     }
 
@@ -365,12 +365,8 @@ public class WatchMessagePictureActivity extends UI {
     }
 
     private boolean isOriginImageHasDownloaded(final IMMessage message) {
-        if (message.getAttachStatus() == AttachStatusEnum.transferred &&
-                !TextUtils.isEmpty(((ImageAttachment) message.getAttachment()).getPath())) {
-            return true;
-        }
-
-        return false;
+        return message.getAttachStatus() == AttachStatusEnum.transferred &&
+                !TextUtils.isEmpty(((ImageAttachment) message.getAttachment()).getPath());
     }
 
     /**
@@ -431,7 +427,7 @@ public class WatchMessagePictureActivity extends UI {
         NIMClient.getService(MsgServiceObserve.class).observeMsgStatus(statusObserver, register);
     }
 
-    private Observer<IMMessage> statusObserver = new Observer<IMMessage>() {
+    private final Observer<IMMessage> statusObserver = new Observer<IMMessage>() {
         @Override
         public void onEvent(IMMessage msg) {
             if (!msg.isTheSame(message) || isDestroyedCompatible()) {

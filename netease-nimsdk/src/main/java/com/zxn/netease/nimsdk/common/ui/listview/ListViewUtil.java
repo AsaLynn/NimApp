@@ -12,11 +12,7 @@ public class ListViewUtil {
             return false;
         }
 
-        if (messageListView.getLastVisiblePosition() >= messageListView.getAdapter().getCount() - 1 - messageListView.getFooterViewsCount()) {
-            return true;
-        } else {
-            return false;
-        }
+        return messageListView.getLastVisiblePosition() >= messageListView.getAdapter().getCount() - 1 - messageListView.getFooterViewsCount();
     }
 
     //index是items的index，不包含header

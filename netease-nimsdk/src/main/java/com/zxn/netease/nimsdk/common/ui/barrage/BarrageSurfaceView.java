@@ -48,12 +48,12 @@ public class BarrageSurfaceView extends SurfaceViewTemplate {
     private BarrageConfig config;
 
     // 轨道管理
-    private Set<Integer> linesUnavailable = new HashSet<>();
+    private final Set<Integer> linesUnavailable = new HashSet<>();
     private int lineCount;
     private int lineHeight;
 
     // 字幕管理
-    private Queue<String> textCache = new LinkedList<>();
+    private final Queue<String> textCache = new LinkedList<>();
 
     // 执行者管理（多线程访问）
     private final List<BarrageTextTask> tasks = new LinkedList<>();
@@ -167,7 +167,7 @@ public class BarrageSurfaceView extends SurfaceViewTemplate {
         return new BarrageTextTask(text, line, color, size, duration, x, y, deltaX);
     }
 
-    private Handler mHandler = new Handler(getContext().getMainLooper()) {
+    private final Handler mHandler = new Handler(getContext().getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {

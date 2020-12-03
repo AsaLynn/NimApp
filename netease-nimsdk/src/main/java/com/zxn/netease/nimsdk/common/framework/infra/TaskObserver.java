@@ -7,7 +7,7 @@ public interface TaskObserver {
      * @param task
      * @param results
      */
-    public void onTaskResult(Task task, Object[] results);
+    void onTaskResult(Task task, Object[] results);
 
     /**
      * on task progress
@@ -15,5 +15,5 @@ public interface TaskObserver {
      * @param task
      * @param params
      */
-    public void onTaskProgress(Task task, Object[] params);
+    void onTaskProgress(Task task, Object[] params);
 }

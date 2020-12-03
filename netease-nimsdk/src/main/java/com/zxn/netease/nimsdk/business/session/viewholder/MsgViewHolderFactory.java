@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class MsgViewHolderFactory {
 
-    private static HashMap<Class<? extends MsgAttachment>, Class<? extends MsgViewHolderBase>> viewHolders = new HashMap<>();
+    private static final HashMap<Class<? extends MsgAttachment>, Class<? extends MsgViewHolderBase>> viewHolders = new HashMap<>();
 
     private static Class<? extends MsgViewHolderBase> tipMsgViewHolder;
 

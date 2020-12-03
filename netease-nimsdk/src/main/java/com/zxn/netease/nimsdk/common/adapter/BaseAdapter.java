@@ -169,7 +169,7 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
         return delegate.getItemViewType(dataList.get(position), position);
     }
 
-    private View.OnClickListener mClickListenerMediator = new View.OnClickListener() {
+    private final View.OnClickListener mClickListenerMediator = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (listener != null) {
@@ -182,7 +182,7 @@ public class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
         }
     };
 
-    private View.OnLongClickListener mLongClickListenerMediator = new View.OnLongClickListener() {
+    private final View.OnLongClickListener mLongClickListenerMediator = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
             if (listener != null) {

@@ -14,7 +14,7 @@ public class MessageListPanelHelper {
 
     private static MessageListPanelHelper instance;
 
-    private List<LocalMessageObserver> observers = new ArrayList<>();
+    private final List<LocalMessageObserver> observers = new ArrayList<>();
 
     public static MessageListPanelHelper getInstance() {
         if (instance == null) {

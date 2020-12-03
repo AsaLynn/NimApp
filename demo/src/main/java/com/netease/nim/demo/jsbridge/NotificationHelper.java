@@ -14,9 +14,9 @@ import com.netease.nim.demo.main.activity.MainActivity;
  * Created by hzliuxuanlin on 16/10/22.
  */
 public class NotificationHelper {
-    private Context context;
+    private final Context context;
 
-    private NotificationManager notificationManager;
+    private final NotificationManager notificationManager;
     private Notification notification;
     private static final int NOTIFY_ID = NotificationHelper.class.hashCode();
 

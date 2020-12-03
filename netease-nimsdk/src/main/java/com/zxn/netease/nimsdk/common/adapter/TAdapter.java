@@ -31,7 +31,7 @@ public class TAdapter<T> extends BaseAdapter implements IViewReclaimer {
 
     private boolean mutable;
 
-    private Set<IScrollStateListener> listeners;
+    private final Set<IScrollStateListener> listeners;
 
     public TAdapter(Context context, List<T> items, TAdapterDelegate delegate) {
         this.context = context;

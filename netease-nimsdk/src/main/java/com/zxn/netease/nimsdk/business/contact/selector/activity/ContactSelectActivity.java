@@ -261,9 +261,9 @@ public class ContactSelectActivity extends UI implements View.OnClickListener, a
     }
 
     private class ContactDataProviderEx extends ContactDataProvider {
-        private String teamId;
+        private final String teamId;
 
-        private boolean loadedTeamMember = false;
+        private final boolean loadedTeamMember = false;
 
         public ContactDataProviderEx(String teamId, int... itemTypes) {
             super(itemTypes);
@@ -311,11 +311,7 @@ public class ContactSelectActivity extends UI implements View.OnClickListener, a
             }
 
             private void updateEmptyView(String queryText) {
-                if (!isEmptyContacts && !TextUtils.isEmpty(queryText)) {
-                    setSearchViewVisible(true);
-                } else {
-                    setSearchViewVisible(false);
-                }
+                setSearchViewVisible(!isEmptyContacts && !TextUtils.isEmpty(queryText));
             }
 
             private void setSearchViewVisible(boolean visible) {
@@ -409,10 +405,10 @@ public class ContactSelectActivity extends UI implements View.OnClickListener, a
         });
 
         // 字母导航
-        TextView letterHit = (TextView) findViewById(R.id.tv_hit_letter);
-        LetterIndexView idxView = (LetterIndexView) findViewById(R.id.liv_index);
+        TextView letterHit = findViewById(R.id.tv_hit_letter);
+        LetterIndexView idxView = findViewById(R.id.liv_index);
         idxView.setLetters(getResources().getStringArray(R.array.letter_list2));
-        ImageView imgBackLetter = (ImageView) findViewById(R.id.img_hit_letter);
+        ImageView imgBackLetter = findViewById(R.id.img_hit_letter);
         if (option.type != ContactSelectType.TEAM) {
             livIndex = contactAdapter.createLivIndex(listView, idxView, letterHit, imgBackLetter);
             livIndex.show();
@@ -422,15 +418,11 @@ public class ContactSelectActivity extends UI implements View.OnClickListener, a
     }
 
     private void initContactSelectArea() {
-        btnSelect = (Button) findViewById(R.id.btnSelect);
-        if (!option.allowSelectEmpty) {
-            btnSelect.setEnabled(false);
-        } else {
-            btnSelect.setEnabled(true);
-        }
+        btnSelect = findViewById(R.id.btnSelect);
+        btnSelect.setEnabled(option.allowSelectEmpty);
         btnSelect.setOnClickListener(this);
-        bottomPanel = (RelativeLayout) findViewById(R.id.rlCtrl);
-        scrollViewSelected = (HorizontalScrollView) findViewById(R.id.contact_select_area);
+        bottomPanel = findViewById(R.id.rlCtrl);
+        scrollViewSelected = findViewById(R.id.contact_select_area);
         if (option.multi) {
             bottomPanel.setVisibility(View.VISIBLE);
             if (option.showContactSelectArea) {
@@ -446,7 +438,7 @@ public class ContactSelectActivity extends UI implements View.OnClickListener, a
         }
 
         // selected contact image banner
-        imageSelectedGridView = (GridView) findViewById(R.id.contact_select_area_grid);
+        imageSelectedGridView = findViewById(R.id.contact_select_area_grid);
         imageSelectedGridView.setAdapter(contactSelectedAdapter);
         notifySelectAreaDataSetChanged();
         imageSelectedGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

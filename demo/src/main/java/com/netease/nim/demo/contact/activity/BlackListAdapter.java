@@ -26,7 +26,7 @@ public class BlackListAdapter extends TAdapter<UserInfo> {
         void onRemove(UserInfo user);
     }
 
-    private ViewHolderEventListener viewHolderEventListener;
+    private final ViewHolderEventListener viewHolderEventListener;
 
     public ViewHolderEventListener getEventListener() {
         return viewHolderEventListener;

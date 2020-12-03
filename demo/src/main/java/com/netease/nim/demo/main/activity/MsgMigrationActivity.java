@@ -83,16 +83,16 @@ public class MsgMigrationActivity extends UI implements View.OnClickListener {
     // 消息导出返回的Future , 在导出途中可用于取消
     private AbortableFuture<Void> msgExportFuture;
     // 消息导出自定义处理器
-    private MsgExportProcessor msgExportProcessor = new MsgExportProcessor();
+    private final MsgExportProcessor msgExportProcessor = new MsgExportProcessor();
 
 
     // 消息导入返回的Future , 在导入途中可用于取消
     private AbortableFuture<Void> msgImportFuture;
     // 消息导入自定义处理器
-    private MsgImportProcessor msgImportProcessor = new MsgImportProcessor();
+    private final MsgImportProcessor msgImportProcessor = new MsgImportProcessor();
 
 
-    private DismissOnClickListener clickDismissListener = new DismissOnClickListener();
+    private final DismissOnClickListener clickDismissListener = new DismissOnClickListener();
 
 
     private MsgService msgService;
@@ -477,7 +477,7 @@ public class MsgMigrationActivity extends UI implements View.OnClickListener {
     // 消息导出自定义处理器
     private class MsgExportProcessor implements IMsgExportProcessor {
 
-        private String password;
+        private final String password;
 
         MsgExportProcessor() {
             // 生成32 位的UUID密钥 , 256 bit

@@ -15,7 +15,7 @@ public enum OnlineStateCode {
     Offline(2);
 
 
-    private int value;
+    private final int value;
 
     OnlineStateCode(int netState) {
         this.value = netState;

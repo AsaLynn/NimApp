@@ -38,9 +38,9 @@ public class FriendDataCache {
     /**
      * 属性
      */
-    private Set<String> friendAccountSet = new CopyOnWriteArraySet<>();
+    private final Set<String> friendAccountSet = new CopyOnWriteArraySet<>();
 
-    private Map<String, Friend> friendMap = new ConcurrentHashMap<>();
+    private final Map<String, Friend> friendMap = new ConcurrentHashMap<>();
 
     /**
      * 初始化&清理
@@ -126,7 +126,7 @@ public class FriendDataCache {
     /**
      * 监听好友关系变化
      */
-    private Observer<FriendChangedNotify> friendChangedNotifyObserver = new Observer<FriendChangedNotify>() {
+    private final Observer<FriendChangedNotify> friendChangedNotifyObserver = new Observer<FriendChangedNotify>() {
         @Override
         public void onEvent(FriendChangedNotify friendChangedNotify) {
             List<Friend> addedOrUpdatedFriends = friendChangedNotify.getAddedOrUpdatedFriends();
@@ -182,7 +182,7 @@ public class FriendDataCache {
     /**
      * 监听黑名单变化(决定是否加入或者移出好友列表)
      */
-    private Observer<BlackListChangedNotify> blackListChangedNotifyObserver = new Observer<BlackListChangedNotify>() {
+    private final Observer<BlackListChangedNotify> blackListChangedNotifyObserver = new Observer<BlackListChangedNotify>() {
         @Override
         public void onEvent(BlackListChangedNotify blackListChangedNotify) {
             List<String> addedAccounts = blackListChangedNotify.getAddedAccounts();

@@ -17,7 +17,7 @@ public class MessageListView extends AutoRefreshListView {
 
     private OnListViewEventListener listener;
 
-    private RecyclerListener recyclerListener = new RecyclerListener() {
+    private final RecyclerListener recyclerListener = new RecyclerListener() {
 
         @Override
         public void onMovedToScrapHeap(View view) {
@@ -103,6 +103,6 @@ public class MessageListView extends AutoRefreshListView {
     }
 
     public interface OnListViewEventListener {
-        public void onListViewStartScroll();
+        void onListViewStartScroll();
     }
 }

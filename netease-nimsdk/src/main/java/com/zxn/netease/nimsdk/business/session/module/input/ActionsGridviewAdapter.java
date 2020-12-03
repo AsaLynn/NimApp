@@ -16,9 +16,9 @@ import java.util.List;
 
 public class ActionsGridviewAdapter extends BaseAdapter {
 
-    private Context context;
+    private final Context context;
 
-    private List<BaseAction> baseActions;
+    private final List<BaseAction> baseActions;
 
     public ActionsGridviewAdapter(Context context, List<BaseAction> baseActions) {
         this.context = context;
@@ -50,7 +50,7 @@ public class ActionsGridviewAdapter extends BaseAdapter {
         }
 
         BaseAction viewHolder = baseActions.get(position);
-        ((ImageView) itemlayout.findViewById(R.id.imageView)).setBackgroundResource(viewHolder.getIconResId());
+        itemlayout.findViewById(R.id.imageView).setBackgroundResource(viewHolder.getIconResId());
         ((TextView) itemlayout.findViewById(R.id.textView)).setText(context.getString(viewHolder.getTitleId()));
         return itemlayout;
     }

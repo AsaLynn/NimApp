@@ -22,7 +22,7 @@ public abstract class PickImageAction extends BaseAction {
 
     public static final String MIME_JPEG = "image/jpeg";
 
-    private boolean multiSelect;
+    private final boolean multiSelect;
 
     protected abstract void onPicked(File file);
 

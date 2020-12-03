@@ -207,7 +207,7 @@ public class OnlineStateEventSubscribe {
             firstSubs = true;
         }
 
-        private static Runnable runnable = new Runnable() {
+        private static final Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 // 如果不是好友并且不在最近联系人里面，则不会续订

@@ -114,7 +114,7 @@ public class GlobalSearchActivity extends UI implements OnItemClickListener {
         ToolBarOptions options = new NimToolBarOptions();
         setToolBar(R.id.toolbar, options);
 
-        lvContacts = (ListView) findViewById(R.id.searchResultList);
+        lvContacts = findViewById(R.id.searchResultList);
         lvContacts.setVisibility(View.GONE);
         SearchGroupStrategy searchGroupStrategy = new SearchGroupStrategy();
         IContactDataProvider dataProvider = new ContactDataProvider(ItemTypes.FRIEND, ItemTypes.TEAM, ItemTypes.MSG);

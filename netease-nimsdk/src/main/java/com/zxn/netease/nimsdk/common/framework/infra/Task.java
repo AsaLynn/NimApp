@@ -199,8 +199,6 @@ public abstract class Task {
 //		AppCrashHandler.getInstance(null).saveException(tr, false);
     }
 
-    ;
-
     /**
      * on handle result
      *
@@ -208,8 +206,6 @@ public abstract class Task {
      */
     protected void onHandleResult(Object[] results) {
     }
-
-    ;
 
     /**
      * on publish result

@@ -15,7 +15,7 @@ import android.view.SurfaceView;
  */
 public abstract class SurfaceViewTemplate extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
-    private SurfaceHolder mHolder;
+    private final SurfaceHolder mHolder;
     private Canvas canvas;
     private boolean isRunning;
     private final Object lock = new Object();

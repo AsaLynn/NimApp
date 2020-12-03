@@ -28,7 +28,7 @@ public class MsgViewHolderOpenRedPacket extends MsgViewHolderBase {
 
     private LinearLayout linearLayout;
 
-    private NimUserInfo userInfo;
+    private final NimUserInfo userInfo;
 
     public MsgViewHolderOpenRedPacket(BaseMultiItemFetchLoadAdapter adapter) {
         super(adapter);

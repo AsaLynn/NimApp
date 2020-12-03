@@ -151,11 +151,11 @@ public class TaskExecutor implements Executor {
     private static class PRunnable implements Runnable {
         private static int sSerial = 0;
 
-        private Runnable runnable;
+        private final Runnable runnable;
 
-        private int priority;
+        private final int priority;
 
-        private int serial;
+        private final int serial;
 
         public PRunnable(Runnable r, int p) {
             serial = sSerial++;

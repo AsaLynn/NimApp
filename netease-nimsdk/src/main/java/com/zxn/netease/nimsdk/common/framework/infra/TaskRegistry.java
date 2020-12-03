@@ -9,7 +9,7 @@ public interface TaskRegistry {
      * @param task
      * @return task registered
      */
-    public Task register(Task task);
+    Task register(Task task);
 
     /**
      * unregister task
@@ -17,7 +17,7 @@ public interface TaskRegistry {
      * @param task
      * @return task unregistered
      */
-    public Task unregister(Task task);
+    Task unregister(Task task);
 
     /**
      * task registered
@@ -25,7 +25,7 @@ public interface TaskRegistry {
      * @param task
      * @return registered
      */
-    public boolean registered(Task task);
+    boolean registered(Task task);
 
     /**
      * query task
@@ -33,19 +33,19 @@ public interface TaskRegistry {
      * @param key
      * @return task
      */
-    public Task query(String key);
+    Task query(String key);
 
     /**
      * query all tasks registered
      *
      * @return
      */
-    public Collection<Task> queryAll();
+    Collection<Task> queryAll();
 
     /**
      * count
      *
      * @return count
      */
-    public int count();
+    int count();
 }

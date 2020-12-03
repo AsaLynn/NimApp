@@ -18,7 +18,7 @@ public class MediaViewHolder extends RecyclerView.ViewHolder {
 
     public MediaViewHolder(View itemView) {
         super(itemView);
-        mediaImage = (ImageView) itemView.findViewById(R.id.media_image);
-        playImage = (ImageView) itemView.findViewById(R.id.play_image);
+        mediaImage = itemView.findViewById(R.id.media_image);
+        playImage = itemView.findViewById(R.id.play_image);
     }
 }

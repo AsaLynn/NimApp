@@ -112,7 +112,7 @@ public class InputPanel
     private boolean isTextAudioSwitchShow = true;
 
     // adapter
-    private List<BaseAction> actions;
+    private final List<BaseAction> actions;
 
     // data
     private long typingTime = 0;
@@ -340,7 +340,7 @@ public class InputPanel
      * ************************* 键盘布局切换 *******************************
      */
 
-    private View.OnClickListener clickListener = new View.OnClickListener() {
+    private final View.OnClickListener clickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
@@ -562,21 +562,21 @@ public class InputPanel
         actionPanelBottomLayoutHasSetup = true;
     }
 
-    private Runnable showEmojiRunnable = new Runnable() {
+    private final Runnable showEmojiRunnable = new Runnable() {
         @Override
         public void run() {
             emoticonPickerView.setVisibility(View.VISIBLE);
         }
     };
 
-    private Runnable showMoreFuncRunnable = new Runnable() {
+    private final Runnable showMoreFuncRunnable = new Runnable() {
         @Override
         public void run() {
             actionPanelBottomLayout.setVisibility(View.VISIBLE);
         }
     };
 
-    private Runnable showTextRunnable = new Runnable() {
+    private final Runnable showTextRunnable = new Runnable() {
         @Override
         public void run() {
             showInputMethod(messageEditText);
@@ -717,12 +717,8 @@ public class InputPanel
         int[] location = new int[2];
         view.getLocationOnScreen(location);
 
-        if (event.getRawX() < location[0] || event.getRawX() > location[0] + view.getWidth()
-                || event.getRawY() < location[1] - 40) {
-            return true;
-        }
-
-        return false;
+        return event.getRawX() < location[0] || event.getRawX() > location[0] + view.getWidth()
+                || event.getRawY() < location[1] - 40;
     }
 
     /**

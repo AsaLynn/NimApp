@@ -77,7 +77,7 @@ public abstract class SimpleClickListener<T extends IRecyclerView> implements Re
 
     private class ItemTouchHelperGestureListener extends GestureDetector.SimpleOnGestureListener {
 
-        private RecyclerView recyclerView;
+        private final RecyclerView recyclerView;
 
         public ItemTouchHelperGestureListener(RecyclerView recyclerView) {
             this.recyclerView = recyclerView;
@@ -258,13 +258,10 @@ public abstract class SimpleClickListener<T extends IRecyclerView> implements Re
         view.getLocationOnScreen(location);
         int x = location[0];
         int y = location[1];
-        if (ev.getRawX() < x
-                || ev.getRawX() > (x + view.getWidth())
-                || ev.getRawY() < y
-                || ev.getRawY() > (y + view.getHeight())) {
-            return false;
-        }
-        return true;
+        return !(ev.getRawX() < x)
+                && !(ev.getRawX() > (x + view.getWidth()))
+                && !(ev.getRawY() < y)
+                && !(ev.getRawY() > (y + view.getHeight()));
     }
 
     private boolean isHeaderOrFooterPosition(int position) {

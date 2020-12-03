@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContactDataProvider implements IContactDataProvider {
 
-    private int[] itemTypes;
+    private final int[] itemTypes;
 
     public ContactDataProvider(int... itemTypes) {
         this.itemTypes = itemTypes;

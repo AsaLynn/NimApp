@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 public class NimUserInfoProvider implements UserInfoProvider {
 
-    private Context context;
+    private final Context context;
 
     public NimUserInfoProvider(Context context) {
         this.context = context;

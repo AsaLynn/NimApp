@@ -3,7 +3,7 @@ package com.zxn.netease.nimsdk.common.fragment;
 public abstract class TabFragment extends TFragment {
 
     public interface State {
-        public boolean isCurrent(TabFragment fragment);
+        boolean isCurrent(TabFragment fragment);
     }
 
     private State state;

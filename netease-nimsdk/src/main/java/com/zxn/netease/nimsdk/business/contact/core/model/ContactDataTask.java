@@ -14,9 +14,9 @@ import java.util.List;
 public class ContactDataTask {
 
     public interface Host {
-        public void onData(ContactDataTask task, AbsContactDataList datas, boolean all); // 搜索完成，返回数据给调用方
+        void onData(ContactDataTask task, AbsContactDataList datas, boolean all); // 搜索完成，返回数据给调用方
 
-        public boolean isCancelled(ContactDataTask task); // 判断调用放是否已经取消
+        boolean isCancelled(ContactDataTask task); // 判断调用放是否已经取消
     }
 
     private final IContactDataProvider dataProvider; // 数据源提供者

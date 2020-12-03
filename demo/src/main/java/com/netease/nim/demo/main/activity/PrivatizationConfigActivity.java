@@ -194,6 +194,6 @@ public class PrivatizationConfigActivity extends UI implements View.OnClickListe
     }
 
     private static SharedPreferences getNosUploadSp(Context context) {
-        return context.getSharedPreferences("xx_NOS_LBS", context.MODE_PRIVATE);
+        return context.getSharedPreferences("xx_NOS_LBS", MODE_PRIVATE);
     }
 }

@@ -52,7 +52,7 @@ public class NimLocation {
 
     private long updateTime;
 
-    private NimAddress nimAddress = new NimAddress();
+    private final NimAddress nimAddress = new NimAddress();
 
     public NimLocation(Object location, String type) {
         this.location = location;
@@ -172,15 +172,11 @@ public class NimLocation {
     }
 
     public boolean hasCoordinates() {
-        if (status != Status.INVALID)
-            return true;
-        return false;
+        return status != Status.INVALID;
     }
 
     public boolean hasAddress() {
-        if (status == Status.HAS_LOCATION_ADDRESS)
-            return true;
-        return false;
+        return status == Status.HAS_LOCATION_ADDRESS;
     }
 
     public String getFullAddr() {

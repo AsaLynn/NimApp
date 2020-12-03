@@ -207,7 +207,7 @@ public class HttpClientWrapper {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             int len;
-            byte buffer[] = new byte[BUFFER_SIZE];
+            byte[] buffer = new byte[BUFFER_SIZE];
             while ((len = is.read(buffer)) != -1) {
                 os.write(buffer, 0, len);
             }

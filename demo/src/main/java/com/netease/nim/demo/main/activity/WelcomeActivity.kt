@@ -1,153 +1,114 @@
-package com.netease.nim.demo.main.activity;
+package com.netease.nim.demo.main.activity
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.text.TextUtils;
-import android.util.Log;
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import android.text.TextUtils
+import android.util.Log
+import com.netease.nim.demo.DemoCache.getAccount
+import com.netease.nim.demo.DemoCache.setMainTaskLaunching
+import com.netease.nim.demo.R
+import com.netease.nim.demo.common.util.sys.SysInfoUtil
+import com.netease.nim.demo.config.preference.Preferences
+import com.netease.nim.demo.login.LoginActivity.Companion.start
+import com.netease.nimlib.sdk.NimIntent
+import com.netease.nimlib.sdk.msg.model.IMMessage
+import com.zxn.netease.nimsdk.api.NimUIKit
+import com.zxn.netease.nimsdk.common.activity.UI
+import com.zxn.netease.nimsdk.common.util.log.LogUtil
+import java.util.*
 
-import com.alibaba.fastjson.JSON;
-import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.common.util.sys.SysInfoUtil;
-import com.netease.nim.demo.config.preference.Preferences;
-import com.netease.nim.demo.login.LoginActivity;
-import com.netease.nimlib.sdk.NimIntent;
-import com.netease.nimlib.sdk.msg.MessageBuilder;
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.zxn.netease.nimsdk.common.util.log.LogUtil;
-
-import java.util.ArrayList;
-import java.util.Map;
-
-/**
- * 欢迎/导航页（app启动Activity）
- * <p/>
- * Created by huangjun on 2015/2/1.
- */
-public class WelcomeActivity extends UI {
-
-    private static final String TAG = "WelcomeActivity";
-
-    private boolean customSplash = false;
-
-    private static boolean firstEnter = true; // 是否首次进入
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-
-        DemoCache.setMainTaskLaunching(true);
-
+class WelcomeActivity : UI() {
+    private var customSplash = false
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_welcome)
+        setMainTaskLaunching(true)
         if (savedInstanceState != null) {
-            setIntent(new Intent()); // 从堆栈恢复，不再重复解析之前的intent
+            intent = Intent() // 从堆栈恢复，不再重复解析之前的intent
         }
-
         if (!firstEnter) {
-            onIntent(); // APP进程还在，Activity被重新调度起来
+            onIntent() // APP进程还在，Activity被重新调度起来
         } else {
-            showSplashView(); // APP进程重新起来
+            showSplashView() // APP进程重新起来
         }
     }
 
-    private void showSplashView() {
-        // 首次进入，打开欢迎界面
-        getWindow().setBackgroundDrawableResource(R.drawable.splash_bg);
-        customSplash = true;
+    private fun showSplashView() {
+        customSplash = true
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
         /*
          * 如果Activity在，不会走到onCreate，而是onNewIntent，这时候需要setIntent
          * 场景：点击通知栏跳转到此，会收到Intent
-         */
-        setIntent(intent);
+         */setIntent(intent)
         if (!customSplash) {
-            onIntent();
+            onIntent()
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
+    override fun onResume() {
+        super.onResume()
         if (firstEnter) {
-            firstEnter = false;
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
+            firstEnter = false
+            val runnable: Runnable = object : Runnable {
+                override fun run() {
                     if (!NimUIKit.isInitComplete()) {
-                        LogUtil.i(TAG, "wait for uikit cache!");
-                        new Handler().postDelayed(this, 100);
-                        return;
+                        LogUtil.i(TAG, "wait for uikit cache!")
+                        Handler().postDelayed(this, 100)
+                        return
                     }
-
-                    customSplash = false;
+                    customSplash = false
                     if (canAutoLogin()) {
-                        onIntent();
+                        onIntent()
                     } else {
-                        LoginActivity.start(WelcomeActivity.this);
-                        finish();
+                        start(this@WelcomeActivity)
+                        finish()
                     }
                 }
-            };
+            }
             if (customSplash) {
-                new Handler().postDelayed(runnable, 1000);
+                Handler().postDelayed(runnable, 1000)
             } else {
-                runnable.run();
+                runnable.run()
             }
         }
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, 0);
+    override fun onDestroy() {
+        super.onDestroy()
+        setMainTaskLaunching(false)
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        DemoCache.setMainTaskLaunching(false);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.clear();
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
     }
 
     // 处理收到的Intent
-    private void onIntent() {
-        LogUtil.i(TAG, "onIntent...");
-
-        if (TextUtils.isEmpty(DemoCache.getAccount())) {
+    private fun onIntent() {
+        LogUtil.i(TAG, "onIntent...")
+        if (TextUtils.isEmpty(getAccount())) {
             // 判断当前app是否正在运行
             if (!SysInfoUtil.stackResumed(this)) {
-                LoginActivity.start(this);
+                start(this)
             }
-            finish();
+            finish()
         } else {
             // 已经登录过了，处理过来的请求
-            Intent intent = getIntent();
+            val intent = intent
             if (intent != null) {
                 if (intent.hasExtra(NimIntent.EXTRA_NOTIFY_CONTENT)) {
-                    parseNotifyIntent(intent);
-                    return;
+                    parseNotifyIntent(intent)
+                    return
                 }
             }
-
             if (!firstEnter && intent == null) {
-                finish();
+                finish()
             } else {
-                showMainActivity();
+                showMainActivity()
             }
         }
     }
@@ -155,35 +116,30 @@ public class WelcomeActivity extends UI {
     /**
      * 已经登陆过，自动登陆
      */
-    private boolean canAutoLogin() {
-        String account = Preferences.getUserAccount();
-        String token = Preferences.getUserToken();
-
-        Log.i(TAG, "get local sdk token =" + token);
-        return !TextUtils.isEmpty(account) && !TextUtils.isEmpty(token);
+    private fun canAutoLogin(): Boolean {
+        val account = Preferences.getUserAccount()
+        val token = Preferences.getUserToken()
+        Log.i(TAG, "get local sdk token =$token")
+        return !TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)
     }
 
-    private void parseNotifyIntent(Intent intent) {
-        ArrayList<IMMessage> messages = (ArrayList<IMMessage>) intent.getSerializableExtra(NimIntent.EXTRA_NOTIFY_CONTENT);
-        if (messages == null || messages.size() > 1) {
-            showMainActivity(null);
+    private fun parseNotifyIntent(intent: Intent) {
+        val messages =
+            intent.getSerializableExtra(NimIntent.EXTRA_NOTIFY_CONTENT) as ArrayList<IMMessage>?
+        if (messages == null || messages.size > 1) {
+            showMainActivity(null)
         } else {
-            showMainActivity(new Intent().putExtra(NimIntent.EXTRA_NOTIFY_CONTENT, messages.get(0)));
+            showMainActivity(Intent().putExtra(NimIntent.EXTRA_NOTIFY_CONTENT, messages[0]))
         }
     }
 
-
-    private void parseNormalIntent(Intent intent) {
-        showMainActivity(intent);
+    private fun showMainActivity(intent: Intent? = null) {
+        MainActivity.start(this@WelcomeActivity, intent)
+        finish()
     }
 
-    private void showMainActivity() {
-        showMainActivity(null);
+    companion object {
+        private const val TAG = "WelcomeActivity"
+        private var firstEnter = true // 是否首次进入
     }
-
-    private void showMainActivity(Intent intent) {
-        MainActivity.start(WelcomeActivity.this, intent);
-        finish();
-    }
-
 }

@@ -1,7 +1,7 @@
 package com.zxn.netease.nimsdk.common.framework.infra;
 
 public class WrapTaskScheduler implements TaskScheduler {
-    private TaskScheduler wrap;
+    private final TaskScheduler wrap;
 
     public WrapTaskScheduler(TaskScheduler wrap) {
         this.wrap = wrap;

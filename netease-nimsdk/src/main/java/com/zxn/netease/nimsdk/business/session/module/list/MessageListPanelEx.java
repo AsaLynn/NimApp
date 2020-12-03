@@ -105,7 +105,7 @@ public class MessageListPanelEx {
      * container
      */
     private Container container;
-    private View rootView;
+    private final View rootView;
 
     /**
      * message list view
@@ -124,11 +124,11 @@ public class MessageListPanelEx {
     /**
      * 仅显示消息记录，不接收和发送消息
      */
-    private boolean recordOnly;
+    private final boolean recordOnly;
     /**
      * 从服务器拉取消息记录
      */
-    private boolean remote;
+    private final boolean remote;
 
     /**
      * 语音转文字
@@ -259,7 +259,7 @@ public class MessageListPanelEx {
         messageListView.addOnItemTouchListener(listener);
     }
 
-    private OnItemClickListener listener = new OnItemClickListener() {
+    private final OnItemClickListener listener = new OnItemClickListener() {
         @Override
         public void onItemClick(IRecyclerView adapter, View view, int position) {
 
@@ -380,7 +380,7 @@ public class MessageListPanelEx {
         Collections.sort(list, comp);
     }
 
-    private static Comparator<IMMessage> comp = (o1, o2) -> {
+    private static final Comparator<IMMessage> comp = (o1, o2) -> {
         long time = o1.getTime() - o2.getTime();
         return time == 0 ? 0 : (time < 0 ? -1 : 1);
     };
@@ -388,7 +388,7 @@ public class MessageListPanelEx {
     /**
      * 消息状态变化观察者
      */
-    private Observer<IMMessage> messageStatusObserver = (Observer<IMMessage>) message -> {
+    private final Observer<IMMessage> messageStatusObserver = (Observer<IMMessage>) message -> {
         if (isMyMessage(message)) {
             NimLog.i(TAG, String.format("content: %s, callbackExt: %s", message.getContent(), message.getCallbackExtension()));
             onMessageStatusChange(message);
@@ -398,12 +398,12 @@ public class MessageListPanelEx {
     /**
      * 消息附件上传/下载进度观察者
      */
-    private Observer<AttachmentProgress> attachmentProgressObserver = (Observer<AttachmentProgress>) progress -> onAttachmentProgressChange(progress);
+    private final Observer<AttachmentProgress> attachmentProgressObserver = (Observer<AttachmentProgress>) progress -> onAttachmentProgressChange(progress);
 
     /**
      * 消息撤回观察者
      */
-    private Observer<RevokeMsgNotification> revokeMessageObserver = new Observer<RevokeMsgNotification>() {
+    private final Observer<RevokeMsgNotification> revokeMessageObserver = new Observer<RevokeMsgNotification>() {
         @Override
         public void onEvent(RevokeMsgNotification notification) {
             if (notification == null || notification.getMessage() == null) {
@@ -424,7 +424,7 @@ public class MessageListPanelEx {
     /**
      * 群消息已读回执观察者
      */
-    private Observer<List<TeamMessageReceipt>> teamMessageReceiptObserver = new Observer<List<TeamMessageReceipt>>() {
+    private final Observer<List<TeamMessageReceipt>> teamMessageReceiptObserver = new Observer<List<TeamMessageReceipt>>() {
         @Override
         public void onEvent(List<TeamMessageReceipt> teamMessageReceipts) {
             for (TeamMessageReceipt teamMessageReceipt : teamMessageReceipts) {
@@ -436,13 +436,13 @@ public class MessageListPanelEx {
         }
     };
 
-    private Observer<IMMessage> deleteMsgSelfObserver =
+    private final Observer<IMMessage> deleteMsgSelfObserver =
             (Observer<IMMessage>) message -> deleteItem(message, true, false);
 
-    private Observer<List<IMMessage>> deleteMsgSelfBatchObserver =
+    private final Observer<List<IMMessage>> deleteMsgSelfBatchObserver =
             (Observer<List<IMMessage>>) msgList -> deleteItems(msgList, true, false);
 
-    private Observer<List<SessionMsgDeleteOption>> deleteSessionHistoryMsgsObserver = (optionList) -> {
+    private final Observer<List<SessionMsgDeleteOption>> deleteSessionHistoryMsgsObserver = (optionList) -> {
         for (SessionMsgDeleteOption option : optionList) {
             deleteItemsRange(option.getSessionId(), option.getSessionType(), 0, option.getTime());
         }
@@ -451,7 +451,7 @@ public class MessageListPanelEx {
     /**
      * 用户信息观察者
      */
-    private UserInfoObserver userInfoObserver = new UserInfoObserver() {
+    private final UserInfoObserver userInfoObserver = new UserInfoObserver() {
         @Override
         public void onUserInfoChanged(List<String> accounts) {
             if (container.sessionType == SessionTypeEnum.P2P) {
@@ -467,7 +467,7 @@ public class MessageListPanelEx {
     /**
      * 本地消息接收观察者
      */
-    private MessageListPanelHelper.LocalMessageObserver incomingLocalMessageObserver = new MessageListPanelHelper.LocalMessageObserver() {
+    private final MessageListPanelHelper.LocalMessageObserver incomingLocalMessageObserver = new MessageListPanelHelper.LocalMessageObserver() {
         @Override
         public void onAddMessage(IMMessage message) {
             if (message == null || !container.account.equals(message.getSessionId())) {
@@ -588,12 +588,12 @@ public class MessageListPanelEx {
      */
     private class MessageLoader implements BaseFetchLoadAdapter.RequestLoadMoreListener, BaseFetchLoadAdapter.RequestFetchMoreListener {
 
-        private int loadMsgCount = NimUIKitImpl.getOptions().messageCountLoadOnce;
+        private final int loadMsgCount = NimUIKitImpl.getOptions().messageCountLoadOnce;
 
         private QueryDirectionEnum direction = null;
 
-        private IMMessage anchor;
-        private boolean remote;
+        private final IMMessage anchor;
+        private final boolean remote;
 
         private boolean firstLoad = true;
 
@@ -612,7 +612,7 @@ public class MessageListPanelEx {
             }
         }
 
-        private RequestCallback<List<IMMessage>> callback = new RequestCallbackWrapper<List<IMMessage>>() {
+        private final RequestCallback<List<IMMessage>> callback = new RequestCallbackWrapper<List<IMMessage>>() {
             @Override
             public void onResult(int code, List<IMMessage> messages, Throwable exception) {
                 mIsInitFetchingLocal = false;
@@ -948,9 +948,7 @@ public class MessageListPanelEx {
             if (selectedItem.getStatus() == MsgStatusEnum.success
                     && !NimUIKitImpl.getMsgRevokeFilter().shouldIgnore(selectedItem)
                     && !recordOnly) {
-                if (selectedItem.getDirect() == MsgDirectionEnum.Out) {
-                    return true;
-                }
+                return selectedItem.getDirect() == MsgDirectionEnum.Out;
             }
             return false;
         }

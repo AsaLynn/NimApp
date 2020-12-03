@@ -3,6 +3,7 @@ package com.zxn.netease.nimsdk.common.util.string;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 public class MD5 {
@@ -11,11 +12,7 @@ public class MD5 {
         if (value == null || value.trim().length() < 1) {
             return null;
         }
-        try {
-            return getMD5(value.getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
+        return getMD5(value.getBytes(StandardCharsets.UTF_8));
     }
 
     public static String getMD5(byte[] source) {

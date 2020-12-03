@@ -94,7 +94,7 @@ public class P2PMessageActivity extends BaseMessageActivity {
     /**
      * 命令消息接收观察者
      */
-    private Observer<CustomNotification> commandObserver = (Observer<CustomNotification>) message -> {
+    private final Observer<CustomNotification> commandObserver = (Observer<CustomNotification>) message -> {
         if (!sessionId.equals(message.getSessionId()) || message.getSessionType() != SessionTypeEnum.P2P) {
             return;
         }
@@ -105,7 +105,7 @@ public class P2PMessageActivity extends BaseMessageActivity {
     /**
      * 用户信息变更观察者
      */
-    private UserInfoObserver userInfoObserver = accounts -> {
+    private final UserInfoObserver userInfoObserver = accounts -> {
         if (!accounts.contains(sessionId)) {
             return;
         }
@@ -115,7 +115,7 @@ public class P2PMessageActivity extends BaseMessageActivity {
     /**
      * 好友资料变更（eg:关系）
      */
-    private ContactChangedObserver friendDataChangedObserver = new ContactChangedObserver() {
+    private final ContactChangedObserver friendDataChangedObserver = new ContactChangedObserver() {
         @Override
         public void onAddedOrUpdatedFriends(List<String> accounts) {
             setTitle(UserInfoHelper.getUserTitleName(sessionId, SessionTypeEnum.P2P));
@@ -140,7 +140,7 @@ public class P2PMessageActivity extends BaseMessageActivity {
     /**
      * 好友在线状态观察者
      */
-    private OnlineStateChangeObserver onlineStateChangeObserver = accounts -> {
+    private final OnlineStateChangeObserver onlineStateChangeObserver = accounts -> {
         if (!accounts.contains(sessionId)) {
             return;
         }

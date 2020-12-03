@@ -241,21 +241,18 @@ public class TimeUtil {
         cal2.setTime(date2);
         int subYear = cal1.get(Calendar.YEAR) - cal2.get(Calendar.YEAR);
         if (0 == subYear) {
-            if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
-                return true;
+            return cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR);
         } else if (1 == subYear && 11 == cal2.get(Calendar.MONTH)) {
             // 如果12月的最后一周横跨来年第一周的话则最后一周即算做来年的第一周
-            if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
-                return true;
+            return cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR);
         } else if (-1 == subYear && 11 == cal1.get(Calendar.MONTH)) {
-            if (cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR))
-                return true;
+            return cal1.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR);
         }
         return false;
     }
 
     public static long getSecondsByMilliseconds(long milliseconds) {
-        long seconds = new BigDecimal((float) ((float) milliseconds / (float) 1000)).setScale(0,
+        long seconds = new BigDecimal((float) milliseconds / (float) 1000).setScale(0,
                 BigDecimal.ROUND_HALF_UP).intValue();
         // if (seconds == 0) {
         // seconds = 1;
@@ -290,7 +287,7 @@ public class TimeUtil {
     public static String unitFormat(int i) {
         String retStr = null;
         if (i >= 0 && i < 10)
-            retStr = "0" + Integer.toString(i);
+            retStr = "0" + i;
         else retStr = "" + i;
         return retStr;
     }

@@ -39,7 +39,7 @@ public class DropCover extends View {
     private static final int CLICK_DELTA_TIME_LIMIT = 10; // 超过此时长需要爆裂
 
     private View dropFake;
-    private Path path = new Path();
+    private final Path path = new Path();
     private int radius; // 移动圆形半径
     private float curX; // 当前手指x坐标
     private float curY; // 当前手指y坐标

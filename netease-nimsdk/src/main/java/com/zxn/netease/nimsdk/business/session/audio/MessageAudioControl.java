@@ -104,7 +104,7 @@ public class MessageAudioControl extends BaseAudioControl<IMMessage> {
 
     @Override
     public IMMessage getPlayingAudio() {
-        if (isPlayingAudio() && AudioMessagePlayable.class.isInstance(currentPlayable)) {
+        if (isPlayingAudio() && currentPlayable instanceof AudioMessagePlayable) {
             return ((AudioMessagePlayable) currentPlayable).getMessage();
         } else {
             return null;
@@ -214,13 +214,9 @@ public class MessageAudioControl extends BaseAudioControl<IMMessage> {
     }
 
     public boolean isUnreadAudioMessage(IMMessage message) {
-        if ((message.getMsgType() == MsgTypeEnum.audio)
+        return (message.getMsgType() == MsgTypeEnum.audio)
                 && message.getDirect() == MsgDirectionEnum.In
                 && message.getAttachStatus() == AttachStatusEnum.transferred
-                && message.getStatus() != MsgStatusEnum.read) {
-            return true;
-        } else {
-            return false;
-        }
+                && message.getStatus() != MsgStatusEnum.read;
     }
 }

@@ -96,7 +96,7 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
 
     SettingsAdapter adapter;
 
-    private List<SettingTemplate> items = new ArrayList<>();
+    private final List<SettingTemplate> items = new ArrayList<>();
 
     private String noDisturbTime;
 
@@ -287,9 +287,6 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
                 break;
             case TAG_CUSTOM_NOTIFY:
                 CustomNotificationActivity.start(SettingsActivity.this);
-                break;
-            case TAG_ABOUT:
-                startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
                 break;
             case TAG_CLEAR:
                 NIMClient.getService(MsgService.class).clearMsgDatabase(true);

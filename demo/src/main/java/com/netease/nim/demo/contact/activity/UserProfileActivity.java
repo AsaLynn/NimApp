@@ -331,7 +331,7 @@ public class UserProfileActivity extends UI {
         }
     }
 
-    private SwitchButton.OnChangedListener onChangedListener = (v, checkState) -> {
+    private final SwitchButton.OnChangedListener onChangedListener = (v, checkState) -> {
         final String key = (String) v.getTag();
         if (KEY_RECENT_STICKY.equals(key)) {
             updateSticky(checkState);
@@ -464,7 +464,7 @@ public class UserProfileActivity extends UI {
         }
     }
 
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {

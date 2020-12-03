@@ -24,8 +24,8 @@ import java.util.List;
  */
 public class SearchMessageAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<IMMessage> messages;
+    private final Context context;
+    private final List<IMMessage> messages;
     private String keyword;
 
     public SearchMessageAdapter(Context context, List<IMMessage> messages) {
@@ -71,20 +71,20 @@ public class SearchMessageAdapter extends BaseAdapter {
     }
 
     private class TextSearchResultViewHolder {
-        private HeadImageView imgHead;
-        private TextView tvNickname;
-        private TextView tvMessage;
-        private TextView tvDatetime;
-        private ImageView imgMsgStatus;
+        private final HeadImageView imgHead;
+        private final TextView tvNickname;
+        private final TextView tvMessage;
+        private final TextView tvDatetime;
+        private final ImageView imgMsgStatus;
 
 
         public TextSearchResultViewHolder(View view) {
-            this.imgHead = (HeadImageView) view.findViewById(R.id.img_head);
+            this.imgHead = view.findViewById(R.id.img_head);
 
-            this.tvNickname = (TextView) view.findViewById(R.id.tv_nick_name);
-            this.tvMessage = (TextView) view.findViewById(R.id.tv_message);
-            this.tvDatetime = (TextView) view.findViewById(R.id.tv_date_time);
-            this.imgMsgStatus = (ImageView) view.findViewById(R.id.img_msg_status);
+            this.tvNickname = view.findViewById(R.id.tv_nick_name);
+            this.tvMessage = view.findViewById(R.id.tv_message);
+            this.tvDatetime = view.findViewById(R.id.tv_date_time);
+            this.imgMsgStatus = view.findViewById(R.id.img_msg_status);
         }
 
         public void refresh(IMMessage message) {

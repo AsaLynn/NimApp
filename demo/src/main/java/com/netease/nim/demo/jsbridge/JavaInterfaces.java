@@ -14,7 +14,7 @@ import com.netease.nimlib.jsbridge.interfaces.IJavaReplyToJsImageInfo;
  */
 public class JavaInterfaces {
 
-    private JsBridgeActivity context;
+    private final JsBridgeActivity context;
 
     public JavaInterfaces(JsBridgeActivity context) {
         this.context = context;

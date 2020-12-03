@@ -64,8 +64,8 @@ public class SystemMessageActivity extends UI implements TAdapterDelegate,
 
     // adapter
     private SystemMessageAdapter adapter;
-    private List<SystemMessage> items = new ArrayList<>();
-    private Set<Long> itemIds = new HashSet<>();
+    private final List<SystemMessage> items = new ArrayList<>();
+    private final Set<Long> itemIds = new HashSet<>();
 
     // db
     private boolean firstLoad = true;
@@ -174,7 +174,7 @@ public class SystemMessageActivity extends UI implements TAdapterDelegate,
     }
 
     private void initListView() {
-        listView = (MessageListView) findViewById(R.id.messageListView);
+        listView = findViewById(R.id.messageListView);
         listView.setMode(AutoRefreshListView.Mode.END);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
@@ -189,7 +189,7 @@ public class SystemMessageActivity extends UI implements TAdapterDelegate,
 
 
     private int loadOffset = 0;
-    private Set<String> addFriendVerifyRequestAccounts = new HashSet<>(); // 发送过好友申请的账号（好友申请合并用）
+    private final Set<String> addFriendVerifyRequestAccounts = new HashSet<>(); // 发送过好友申请的账号（好友申请合并用）
 
     /**
      * 加载历史消息

@@ -64,7 +64,7 @@ public class GLVideoPlaceholder extends FrameLayout {
 
     private OnClickListener onPlayClicked;
 
-    private OnClickListener onPlayClickedListener = new OnClickListener() {
+    private final OnClickListener onPlayClickedListener = new OnClickListener() {
         @Override
         public void onClick(final View v) {
             if (model == null) {

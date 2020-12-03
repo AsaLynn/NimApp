@@ -29,8 +29,8 @@ public class NimLocationManager implements AMapLocationListener {
     }
 
     private static final String TAG = "NimLocationManager";
-    private Context mContext;
-    private NimLocationListener mListener;
+    private final Context mContext;
+    private final NimLocationListener mListener;
     private Criteria criteria;
 
     /**
@@ -40,15 +40,15 @@ public class NimLocationManager implements AMapLocationListener {
     private static final int MSG_LOCATION_POINT_OK = 2;
     private static final int MSG_LOCATION_ERROR = 3;
 
-    private MsgHandler mMsgHandler = new MsgHandler();
-    private TaskExecutor executor = new TaskExecutor(TAG, TaskExecutor.defaultConfig, true);
+    private final MsgHandler mMsgHandler = new MsgHandler();
+    private final TaskExecutor executor = new TaskExecutor(TAG, TaskExecutor.defaultConfig, true);
 
     /**
      * AMap location
      */
     private AMapLocationClient client;
 
-    private Geocoder mGeocoder;
+    private final Geocoder mGeocoder;
 
     public NimLocationManager(Context context, NimLocationListener oneShotListener) {
         mContext = context;

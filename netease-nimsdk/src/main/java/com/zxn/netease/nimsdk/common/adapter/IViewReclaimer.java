@@ -8,5 +8,5 @@ public interface IViewReclaimer {
      *
      * @param view
      */
-    public void reclaimView(View view);
+    void reclaimView(View view);
 }

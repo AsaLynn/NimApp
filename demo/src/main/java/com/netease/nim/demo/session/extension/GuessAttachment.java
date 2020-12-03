@@ -14,8 +14,8 @@ public class GuessAttachment extends CustomAttachment {
         Jiandao(2, "剪刀"),
         Bu(3, "布"),;
 
-        private int value;
-        private String desc;
+        private final int value;
+        private final String desc;
 
         Guess(int value, String desc) {
             this.value = value;

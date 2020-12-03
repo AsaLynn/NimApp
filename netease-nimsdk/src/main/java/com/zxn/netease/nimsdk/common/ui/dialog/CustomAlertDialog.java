@@ -26,7 +26,7 @@ import java.util.List;
 
 public class CustomAlertDialog extends AlertDialog {
 
-    private Context context;
+    private final Context context;
 
     private int itemSize = 0;
 
@@ -46,9 +46,9 @@ public class CustomAlertDialog extends AlertDialog {
 
     private View.OnClickListener titleListener = null;
 
-    private List<Pair<String, Integer>> itemTextList = new LinkedList<Pair<String, Integer>>();
+    private final List<Pair<String, Integer>> itemTextList = new LinkedList<Pair<String, Integer>>();
 
-    private List<onSeparateItemClickListener> itemListenerList = new LinkedList<onSeparateItemClickListener>();
+    private final List<onSeparateItemClickListener> itemListenerList = new LinkedList<onSeparateItemClickListener>();
 
     private OnClickListener listListener;
 
@@ -56,7 +56,7 @@ public class CustomAlertDialog extends AlertDialog {
 
     private OnItemClickListener itemListener;
 
-    private int defaultColor = R.color.color_black_333333;
+    private final int defaultColor = R.color.color_black_333333;
 
     public CustomAlertDialog(Context context) {
         super(context, R.style.dialog_default_style);
@@ -120,25 +120,25 @@ public class CustomAlertDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nim_easy_alert_dialog_with_listview);
-        LinearLayout root = (LinearLayout) findViewById(R.id.easy_alert_dialog_layout);
+        LinearLayout root = findViewById(R.id.easy_alert_dialog_layout);
         ViewGroup.LayoutParams params = root.getLayoutParams();
-        params.width = (int) ScreenUtil.getDialogWidth();
+        params.width = ScreenUtil.getDialogWidth();
         root.setLayoutParams(params);
         addFootView(root);
         titleView = findViewById(R.id.easy_dialog_title_view);
         if (titleView != null) {
             setTitleVisible(isTitleVisible);
         }
-        titleTextView = (TextView) findViewById(R.id.easy_dialog_title_text_view);
+        titleTextView = findViewById(R.id.easy_dialog_title_text_view);
         if (titleTextView != null) {
             setTitle(title);
         }
-        titleBtn = (ImageButton) findViewById(R.id.easy_dialog_title_button);
+        titleBtn = findViewById(R.id.easy_dialog_title_button);
         if (titleBtn != null) {
             setTitleBtnVisible(isTitleBtnVisible);
             setTitleBtnListener(titleListener);
         }
-        listView = (ListView) findViewById(R.id.easy_dialog_list_view);
+        listView = findViewById(R.id.easy_dialog_list_view);
         if (itemSize > 0) {
             updateListView();
         }
@@ -150,7 +150,7 @@ public class CustomAlertDialog extends AlertDialog {
 
     public void setTitle(String title) {
         this.title = title;
-        isTitleVisible = TextUtils.isEmpty(title) ? false : true;
+        isTitleVisible = !TextUtils.isEmpty(title);
         setTitleVisible(isTitleVisible);
         if (isTitleVisible && titleTextView != null) {
             titleTextView.setText(title);
@@ -159,7 +159,7 @@ public class CustomAlertDialog extends AlertDialog {
 
     public void setTitle(int resId) {
         this.title = context.getString(resId);
-        isTitleVisible = TextUtils.isEmpty(title) ? false : true;
+        isTitleVisible = !TextUtils.isEmpty(title);
         setTitleVisible(isTitleVisible);
         if (isTitleVisible && titleTextView != null) {
             titleTextView.setText(title);

@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class AllDataSource extends AbsDataSource {
 
-    private CursorDataSource image;
-    private CursorDataSource video;
+    private final CursorDataSource image;
+    private final CursorDataSource video;
     private final Result result;
 
     /**
@@ -40,8 +40,8 @@ public class AllDataSource extends AbsDataSource {
     }
 
     private class Result {
-        private OnImagesLoadedListener listener1;
-        private OnImagesLoadedListener listener2;
+        private final OnImagesLoadedListener listener1;
+        private final OnImagesLoadedListener listener2;
         private List<ImageFolder> result1;
         private List<ImageFolder> result2;
 
@@ -49,7 +49,7 @@ public class AllDataSource extends AbsDataSource {
             listener1 = new OnImagesLoadedListener() {
                 @Override
                 public void onImagesLoaded(List<ImageFolder> imageFolders) {
-                    result1 = imageFolders == null ? Collections.<ImageFolder>emptyList() : imageFolders;
+                    result1 = imageFolders == null ? Collections.emptyList() : imageFolders;
                     check();
                 }
             };
@@ -57,7 +57,7 @@ public class AllDataSource extends AbsDataSource {
             listener2 = new OnImagesLoadedListener() {
                 @Override
                 public void onImagesLoaded(List<ImageFolder> imageFolders) {
-                    result2 = imageFolders == null ? Collections.<ImageFolder>emptyList() : imageFolders;
+                    result2 = imageFolders == null ? Collections.emptyList() : imageFolders;
                     check();
                 }
             };

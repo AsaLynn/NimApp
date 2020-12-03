@@ -369,11 +369,7 @@ public class ImageGridActivity extends ImageBaseActivity implements AbsDataSourc
     }
 
     private void setOkButtonEnable(boolean enabled) {
-        if (enabled) {
-            mBtnOk.setEnabled(true);
-        } else {
-            mBtnOk.setEnabled(false);
-        }
+        mBtnOk.setEnabled(enabled);
         syncButtonText();
     }
 

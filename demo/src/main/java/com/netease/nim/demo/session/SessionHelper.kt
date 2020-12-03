@@ -88,9 +88,6 @@ object SessionHelper {
         private get() {
             if (field == null) {
                 field = object : DefaultRecentCustomization() {
-                    override fun getDefaultDigest(recent: RecentContact): String {
-                        return super.getDefaultDigest(recent)
-                    }
                 }
             }
             return field

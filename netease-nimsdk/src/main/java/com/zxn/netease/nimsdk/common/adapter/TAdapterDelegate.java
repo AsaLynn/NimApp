@@ -2,9 +2,9 @@ package com.zxn.netease.nimsdk.common.adapter;
 
 public interface TAdapterDelegate {
 
-    public int getViewTypeCount();
+    int getViewTypeCount();
 
-    public Class<? extends TViewHolder> viewHolderAtPosition(int position);
+    Class<? extends TViewHolder> viewHolderAtPosition(int position);
 
-    public boolean enabled(int position);
+    boolean enabled(int position);
 }

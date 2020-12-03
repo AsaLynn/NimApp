@@ -115,12 +115,12 @@ public class UserProfileSettingActivity extends UI implements View.OnClickListen
         ((TextView) emailLayout.findViewById(R.id.attribute)).setText(R.string.email);
         ((TextView) signatureLayout.findViewById(R.id.attribute)).setText(R.string.signature);
 
-        nickText = (TextView) nickLayout.findViewById(R.id.value);
-        genderText = (TextView) genderLayout.findViewById(R.id.value);
-        birthText = (TextView) birthLayout.findViewById(R.id.value);
-        phoneText = (TextView) phoneLayout.findViewById(R.id.value);
-        emailText = (TextView) emailLayout.findViewById(R.id.value);
-        signatureText = (TextView) signatureLayout.findViewById(R.id.value);
+        nickText = nickLayout.findViewById(R.id.value);
+        genderText = genderLayout.findViewById(R.id.value);
+        birthText = birthLayout.findViewById(R.id.value);
+        phoneText = phoneLayout.findViewById(R.id.value);
+        emailText = emailLayout.findViewById(R.id.value);
+        signatureText = signatureLayout.findViewById(R.id.value);
 
         findViewById(R.id.head_layout).setOnClickListener(this);
         nickLayout.setOnClickListener(this);
@@ -288,7 +288,7 @@ public class UserProfileSettingActivity extends UI implements View.OnClickListen
         }
     }
 
-    private Runnable outimeTask = new Runnable() {
+    private final Runnable outimeTask = new Runnable() {
         @Override
         public void run() {
             cancelUpload(R.string.user_info_update_failed);

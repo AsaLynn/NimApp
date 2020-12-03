@@ -51,7 +51,6 @@
     <dimen name="avatar_size_default">50dip</dimen>
     <dimen name="avatar_size_in_session">40dip</dimen>
     <dimen name="avatar_size_in_contact">30dip</dimen>
-    <dimen name="avatar_size_robot">40dip</dimen>
 
     <!-- bubble -->
     <dimen name="max_text_bubble_width">222dip</dimen>

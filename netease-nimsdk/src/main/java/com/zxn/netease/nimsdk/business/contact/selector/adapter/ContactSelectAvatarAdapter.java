@@ -19,9 +19,9 @@ class GalleryItemViewHolder {
 }
 
 public class ContactSelectAvatarAdapter extends BaseAdapter {
-    private Context context;
+    private final Context context;
 
-    private List<IContact> selectedContactItems;
+    private final List<IContact> selectedContactItems;
 
     public ContactSelectAvatarAdapter(Context context) {
         this.context = context;
@@ -50,7 +50,7 @@ public class ContactSelectAvatarAdapter extends BaseAdapter {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.nim_contact_select_area_item, null);
-            imageView = (HeadImageView) convertView.findViewById(R.id.contact_select_area_image);
+            imageView = convertView.findViewById(R.id.contact_select_area_image);
 
             GalleryItemViewHolder holder = new GalleryItemViewHolder();
             holder.imageView = imageView;

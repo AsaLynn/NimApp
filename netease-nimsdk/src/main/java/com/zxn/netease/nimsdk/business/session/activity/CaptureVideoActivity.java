@@ -96,9 +96,9 @@ public class CaptureVideoActivity extends UI implements SurfaceHolder.Callback {
 
     private int mAngle = 0;
 
-    private LinkedList<Point> backCameraSize = new LinkedList<>();
+    private final LinkedList<Point> backCameraSize = new LinkedList<>();
 
-    private LinkedList<Point> frontCameraSize = new LinkedList<>();
+    private final LinkedList<Point> frontCameraSize = new LinkedList<>();
 
     public static void start(Activity activity, String videoFilePath, int captureCode) {
         Intent intent = new Intent();
@@ -108,7 +108,7 @@ public class CaptureVideoActivity extends UI implements SurfaceHolder.Callback {
     }
 
     // 录制时间计数
-    private Runnable runnable = new Runnable() {
+    private final Runnable runnable = new Runnable() {
 
         public void run() {
             end = new Date().getTime();

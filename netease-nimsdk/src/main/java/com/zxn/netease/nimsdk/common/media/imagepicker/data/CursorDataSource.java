@@ -21,8 +21,8 @@ public abstract class CursorDataSource extends AbsDataSource implements LoaderMa
     private static final int LOADER_ALL = 0;         //加载所有图片
     private static final int LOADER_CATEGORY = 1;    //分类加载图片
 
-    private FragmentActivity activity;
-    private ArrayList<ImageFolder> imageFolders = new ArrayList<>();   //所有的图片文件夹
+    private final FragmentActivity activity;
+    private final ArrayList<ImageFolder> imageFolders = new ArrayList<>();   //所有的图片文件夹
     private final Loader loader;
 
     /**

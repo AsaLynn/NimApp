@@ -27,14 +27,14 @@ import java.util.List;
 public class SettingsAdapter extends BaseAdapter {
     protected List<SettingTemplate> items;
     protected Context context;
-    private int layoutID;
+    private final int layoutID;
     protected int itemHeight;
 
     private SwitchButton.OnChangedListener onchangeListener;
-    private SwitchChangeListener switchChangeListener;
+    private final SwitchChangeListener switchChangeListener;
 
     private RadioGroup.OnCheckedChangeListener onCheckedChangeListener;
-    private CheckChangeListener checkChangeListener;
+    private final CheckChangeListener checkChangeListener;
 
 
     public interface SwitchChangeListener {

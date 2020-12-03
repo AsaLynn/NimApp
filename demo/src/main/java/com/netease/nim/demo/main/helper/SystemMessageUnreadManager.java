@@ -5,7 +5,7 @@ package com.netease.nim.demo.main.helper;
  */
 public class SystemMessageUnreadManager {
 
-    private static SystemMessageUnreadManager instance = new SystemMessageUnreadManager();
+    private static final SystemMessageUnreadManager instance = new SystemMessageUnreadManager();
 
     public static SystemMessageUnreadManager getInstance() {
         return instance;

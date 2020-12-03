@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class GLImage implements GLMedia, Serializable, Comparable<GLImage> {
     private String name;       //图片的名字
-    private String path;       //图片的路径
+    private final String path;       //图片的路径
     private long size;         //图片的大小
     private int width;         //图片的宽度
     private int height;       //图片的高度

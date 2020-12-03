@@ -32,11 +32,11 @@ public class GLMediaPlayer {
 
     private static final String TAG = "YXMediaPlayer";
 
-    private List<PlayerObserver> observers = new LinkedList<>();
+    private final List<PlayerObserver> observers = new LinkedList<>();
 
     private int pendingSeek;
 
-    private Handler handler;
+    private final Handler handler;
 
     private MediaPlayer mPlayer;
 
@@ -45,7 +45,7 @@ public class GLMediaPlayer {
     private int playerHeight;
 
 
-    private Runnable progressRunnable = new Runnable() {
+    private final Runnable progressRunnable = new Runnable() {
         @Override
         public void run() {
             handler.removeCallbacks(progressRunnable);

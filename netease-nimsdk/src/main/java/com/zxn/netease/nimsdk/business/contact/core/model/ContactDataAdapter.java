@@ -86,7 +86,7 @@ public class ContactDataAdapter extends BaseAdapter {
 
     @Override
     public boolean isEmpty() {
-        return datas != null ? datas.isEmpty() : true;
+        return datas == null || datas.isEmpty();
     }
 
     public final TextQuery getQuery() {

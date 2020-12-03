@@ -39,7 +39,7 @@ public class ContactsSelectHolder extends AbsContactViewHolder<ContactItem> {
     public void refresh(ContactDataAdapter adapter, int position, ContactItem item) {
         if (multi) {
             boolean disabled = !adapter.isEnabled(position);
-            boolean selected = adapter instanceof ContactSelectAdapter ? ((ContactSelectAdapter) adapter).isSelected(position) : false;
+            boolean selected = adapter instanceof ContactSelectAdapter && ((ContactSelectAdapter) adapter).isSelected(position);
             this.select.setVisibility(View.VISIBLE);
             if (disabled) {
                 this.select.setBackgroundResource(R.drawable.nim_contact_checkbox_checked_grey);

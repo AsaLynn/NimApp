@@ -37,7 +37,7 @@ public class FileBrowserActivity extends UI implements TAdapterDelegate {
 
     // view
     private ListView fileListView;
-    private List<FileManagerItem> fileListItems = new ArrayList<>();
+    private final List<FileManagerItem> fileListItems = new ArrayList<>();
 
     public static void startActivityForResult(Activity activity, int reqCode) {
         Intent intent = new Intent();

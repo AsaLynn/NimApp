@@ -31,16 +31,16 @@ import java.util.Set;
 public class NimGeocoder {
 
     public interface NimGeocoderListener {
-        public void onGeoCoderResult(NimLocation location);
+        void onGeoCoderResult(NimLocation location);
     }
 
     private static final String TAG = "YixinGeoCoder";
 
-    private Context context;
+    private final Context context;
 
     private NimGeocoderListener listener;
 
-    private List<NimLocation> queryList;
+    private final List<NimLocation> queryList;
 
     private Set<NimLocation> querying;
 
@@ -48,7 +48,7 @@ public class NimGeocoder {
 
     private TaskManager taskManager;
 
-    private Handler callerHandler;
+    private final Handler callerHandler;
 
     public NimGeocoder(Context context, NimGeocoderListener listener) {
         this.context = context;
@@ -162,12 +162,12 @@ public class NimGeocoder {
     }
 
     private interface GeocoderProvider {
-        public boolean queryAddress(NimLocation location);
+        boolean queryAddress(NimLocation location);
     }
 
     private class GoogleGeocoder implements GeocoderProvider {
 
-        private Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        private final Geocoder geocoder = new Geocoder(context, Locale.getDefault());
 
         @Override
         public boolean queryAddress(NimLocation location) {
@@ -190,7 +190,7 @@ public class NimGeocoder {
 
     private class AMapGeocoder implements GeocoderProvider {
 
-        private GeocodeSearch search = new GeocodeSearch(context);
+        private final GeocodeSearch search = new GeocodeSearch(context);
 
         @Override
         public boolean queryAddress(NimLocation location) {

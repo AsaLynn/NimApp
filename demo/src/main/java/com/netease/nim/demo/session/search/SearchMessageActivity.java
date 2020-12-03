@@ -51,7 +51,7 @@ public class SearchMessageActivity extends UI {
 
     private SearchView searchView;
     private AutoRefreshListView searchResultListView;
-    private List<IMMessage> searchResultList = new ArrayList<IMMessage>();
+    private final List<IMMessage> searchResultList = new ArrayList<IMMessage>();
     private SearchMessageAdapter adapter;
 
     private boolean searching;
@@ -106,7 +106,7 @@ public class SearchMessageActivity extends UI {
     }
 
     private void initSearchListView() {
-        searchResultListView = (AutoRefreshListView) findViewById(R.id.searchResultList);
+        searchResultListView = findViewById(R.id.searchResultList);
         searchResultListView.setMode(AutoRefreshListView.Mode.END);
         searchResultListView.setVisibility(View.GONE);
         searchResultListView.setEmptyView(LayoutInflater.from(this).inflate(R.layout.message_search_empty_view, null));

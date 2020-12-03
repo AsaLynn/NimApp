@@ -39,10 +39,10 @@ public class MsgHolder extends AbsContactViewHolder<MsgItem> {
     public View inflate(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.nim_contacts_item, null);
 
-        head = (HeadImageView) view.findViewById(R.id.contacts_item_head);
-        name = (TextView) view.findViewById(R.id.contacts_item_name);
-        time = (TextView) view.findViewById(R.id.contacts_item_time);
-        desc = (TextView) view.findViewById(R.id.contacts_item_desc);
+        head = view.findViewById(R.id.contacts_item_head);
+        name = view.findViewById(R.id.contacts_item_name);
+        time = view.findViewById(R.id.contacts_item_time);
+        desc = view.findViewById(R.id.contacts_item_desc);
 
         // calculate
         View parent = (View) desc.getParent();

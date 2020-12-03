@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SystemMessageAdapter extends TAdapter {
 
-    private SystemMessageViewHolder.SystemMessageListener systemMessageListener;
+    private final SystemMessageViewHolder.SystemMessageListener systemMessageListener;
 
     public SystemMessageAdapter(Context context, List<?> items, TAdapterDelegate delegate,
                                 SystemMessageViewHolder.SystemMessageListener listener) {

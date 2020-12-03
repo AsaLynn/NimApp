@@ -250,11 +250,7 @@ public class NetworkUtil {
 
     public static boolean is3G(Context context) {
         int type = getNetworkClass(context);
-        if (type == NETWORK_CLASS_3_G || type == NETWORK_CLASS_4_G) {
-            return true;
-        } else {
-            return false;
-        }
+        return type == NETWORK_CLASS_3_G || type == NETWORK_CLASS_4_G;
     }
 
     /**
@@ -268,11 +264,7 @@ public class NetworkUtil {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo ni = cm.getActiveNetworkInfo();
             if (ni != null) {
-                if (ni.getType() == ConnectivityManager.TYPE_WIFI) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return ni.getType() == ConnectivityManager.TYPE_WIFI;
             } else {
                 return false;
             }
@@ -297,12 +289,8 @@ public class NetworkUtil {
             return false;
         }
 
-        if ((tm.getDataState() == TelephonyManager.DATA_CONNECTED || tm.getDataState() == TelephonyManager.DATA_ACTIVITY_NONE)
-                && info.isAvailable()) {
-            return true;
-        } else {
-            return false;
-        }
+        return (tm.getDataState() == TelephonyManager.DATA_CONNECTED || tm.getDataState() == TelephonyManager.DATA_ACTIVITY_NONE)
+                && info.isAvailable();
     }
 
     public static String getNetworkProxyInfo(Context context) {
@@ -364,27 +352,15 @@ public class NetworkUtil {
     }
 
     public static boolean isCtwap(Context context) {
-        if (getApnType(context).equals(CONNECT_TYPE_CTWAP)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getApnType(context).equals(CONNECT_TYPE_CTWAP);
     }
 
     public static boolean isUniwap(Context context) {
-        if (getApnType(context).equals(CONNECT_TYPE_UNIWAP)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getApnType(context).equals(CONNECT_TYPE_UNIWAP);
     }
 
     public static boolean isCmwap(Context context) {
-        if (getApnType(context).equals(CONNECT_TYPE_CMWAP)) {
-            return true;
-        } else {
-            return false;
-        }
+        return getApnType(context).equals(CONNECT_TYPE_CMWAP);
     }
 
     /**
@@ -403,19 +379,11 @@ public class NetworkUtil {
             return false;
         }
 
-        if (apnName.equals(CONNECT_TYPE_CTWAP) || apnName.equals(CONNECT_TYPE_CTNET)) {
-            return true;
-        } else {
-            return false;
-        }
+        return apnName.equals(CONNECT_TYPE_CTWAP) || apnName.equals(CONNECT_TYPE_CTNET);
     }
 
     public static boolean isCtcNetwork(byte type) {
-        if (type == CURRENT_NETWORK_TYPE_CTWAP || type == CURRENT_NETWORK_TYPE_CTNET) {
-            return true;
-        } else {
-            return false;
-        }
+        return type == CURRENT_NETWORK_TYPE_CTWAP || type == CURRENT_NETWORK_TYPE_CTNET;
     }
 
     /**
@@ -434,20 +402,12 @@ public class NetworkUtil {
             return false;
         }
 
-        if (apnName.equals(CONNECT_TYPE_UNIWAP) || apnName.equals(CONNECT_TYPE_UNINET)
-                || apnName.equals(CONNECT_TYPE_UNI3GWAP) || apnName.equals(CONNECT_TYPE_UNI3GNET)) {
-            return true;
-        } else {
-            return false;
-        }
+        return apnName.equals(CONNECT_TYPE_UNIWAP) || apnName.equals(CONNECT_TYPE_UNINET)
+                || apnName.equals(CONNECT_TYPE_UNI3GWAP) || apnName.equals(CONNECT_TYPE_UNI3GNET);
     }
 
     public static boolean isCucNetwork(byte type) {
-        if (type == CURRENT_NETWORK_TYPE_UNIWAP || type == CURRENT_NETWORK_TYPE_UNIET) {
-            return true;
-        } else {
-            return false;
-        }
+        return type == CURRENT_NETWORK_TYPE_UNIWAP || type == CURRENT_NETWORK_TYPE_UNIET;
     }
 
     /**
@@ -466,19 +426,11 @@ public class NetworkUtil {
             return false;
         }
 
-        if (apnName.equals(CONNECT_TYPE_CMWAP) || apnName.equals(CONNECT_TYPE_CMNET)) {
-            return true;
-        } else {
-            return false;
-        }
+        return apnName.equals(CONNECT_TYPE_CMWAP) || apnName.equals(CONNECT_TYPE_CMNET);
     }
 
     public static boolean isCmbNetwork(byte type) {
-        if (type == CURRENT_NETWORK_TYPE_CMWAP || type == CURRENT_NETWORK_TYPE_CMNET) {
-            return true;
-        } else {
-            return false;
-        }
+        return type == CURRENT_NETWORK_TYPE_CMWAP || type == CURRENT_NETWORK_TYPE_CMNET;
     }
 
     /**
@@ -523,11 +475,7 @@ public class NetworkUtil {
      * @return
      */
     public static boolean isNeedSetProxyForNetRequest() { // #00044 +
-        if (Build.MODEL.equals("SCH-N719") || Build.MODEL.equals("SCH-I939D")) {
-            return false;
-        } else {
-            return true;
-        }
+        return !Build.MODEL.equals("SCH-N719") && !Build.MODEL.equals("SCH-I939D");
     }
 
     public static String getNetworkInfo(Context context) {
@@ -797,12 +745,12 @@ public class NetworkUtil {
 
 
     public interface LinkNetWorkType {
-        public static final int UNKNOWN = 0;
-        public static final int WIFI = 1;
-        public static final int WWAN = 2;
-        public static final int _2G = 3;
-        public static final int _3G = 4;
-        public static final int _4G = 5;
+        int UNKNOWN = 0;
+        int WIFI = 1;
+        int WWAN = 2;
+        int _2G = 3;
+        int _3G = 4;
+        int _4G = 5;
     }
 
     public static int getNetworkTypeForLink(Context context) {

@@ -25,11 +25,11 @@ public class IncomingMsgPrompt {
     private TextView newMessageTipTextView;
     private HeadImageView newMessageTipHeadImageView;
 
-    private Context context;
-    private View view;
-    private RecyclerView messageListView;
-    private BaseFetchLoadAdapter adapter;
-    private Handler uiHandler;
+    private final Context context;
+    private final View view;
+    private final RecyclerView messageListView;
+    private final BaseFetchLoadAdapter adapter;
+    private final Handler uiHandler;
 
     public IncomingMsgPrompt(Context context, View view, RecyclerView messageListView, BaseFetchLoadAdapter adapter,
                              Handler uiHandler) {
@@ -64,7 +64,7 @@ public class IncomingMsgPrompt {
 
     // 初始化底部新信息提示条
     private void init() {
-        ViewGroup containerView = (ViewGroup) view.findViewById(R.id.message_activity_list_view_container);
+        ViewGroup containerView = view.findViewById(R.id.message_activity_list_view_container);
         View.inflate(context, R.layout.nim_new_message_tip_layout, containerView);
         newMessageTipLayout = containerView.findViewById(R.id.new_message_tip_layout);
         newMessageTipLayout.setOnClickListener(new View.OnClickListener() {
@@ -75,11 +75,11 @@ public class IncomingMsgPrompt {
                 newMessageTipLayout.setVisibility(View.GONE);
             }
         });
-        newMessageTipTextView = (TextView) newMessageTipLayout.findViewById(R.id.new_message_tip_text_view);
-        newMessageTipHeadImageView = (HeadImageView) newMessageTipLayout.findViewById(R.id.new_message_tip_head_image_view);
+        newMessageTipTextView = newMessageTipLayout.findViewById(R.id.new_message_tip_text_view);
+        newMessageTipHeadImageView = newMessageTipLayout.findViewById(R.id.new_message_tip_head_image_view);
     }
 
-    private Runnable showNewMessageTipLayoutRunnable = new Runnable() {
+    private final Runnable showNewMessageTipLayoutRunnable = new Runnable() {
 
         @Override
         public void run() {

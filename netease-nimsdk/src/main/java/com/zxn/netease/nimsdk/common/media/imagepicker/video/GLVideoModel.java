@@ -33,7 +33,7 @@ public class GLVideoModel implements GLVideoView.Callback {
 
     private GLVideoModel.Callback callback;
 
-    private List<ModelObserver> observers = new LinkedList<>();
+    private final List<ModelObserver> observers = new LinkedList<>();
 
     private final Uri uri;
 
@@ -42,7 +42,7 @@ public class GLVideoModel implements GLVideoView.Callback {
     private int current;
 
     private int duration;
-    private long feedDuration;
+    private final long feedDuration;
     private int videoWidth = -1;
     private int viewHeight = -1;
 

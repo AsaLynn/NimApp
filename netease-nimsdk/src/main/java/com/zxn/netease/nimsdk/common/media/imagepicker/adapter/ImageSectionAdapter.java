@@ -25,8 +25,8 @@ import java.util.Map;
 
 public class ImageSectionAdapter extends AdvancedAdapter {
 
-    private ImageBaseActivity activity;
-    private ImagePicker imagePicker;
+    private final ImageBaseActivity activity;
+    private final ImagePicker imagePicker;
     private static final int sTypeItemImage = 0;
     private static final int sTypeItemVideo = 1;
     private static final int sTypeItemTitle = 2;

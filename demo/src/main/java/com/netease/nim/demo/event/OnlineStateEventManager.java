@@ -69,7 +69,7 @@ public class OnlineStateEventManager {
         registerNetTypeChangeObserver();
     }
 
-    private static ContactChangedObserver observer = new ContactChangedObserver() {
+    private static final ContactChangedObserver observer = new ContactChangedObserver() {
         @Override
         public void onAddedOrUpdatedFriends(List<String> accounts) {
             if (accounts == null || accounts.isEmpty()) {
@@ -154,7 +154,7 @@ public class OnlineStateEventManager {
         }, true);
     }
 
-    private static BroadcastReceiver receiver = new BroadcastReceiver() {
+    private static final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

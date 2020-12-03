@@ -1,15 +1,12 @@
 package com.netease.nim.demo.main.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import androidx.viewpager.widget.ViewPager;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
@@ -41,17 +38,14 @@ import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.SystemMessageObserver;
 import com.netease.nimlib.sdk.msg.SystemMessageService;
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
-
 import java.util.ArrayList;
 
 /**
  * 主界面
- * Created by huangjun on 2015/3/25.
  */
 public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         ReminderManager.UnreadNumChangedCallback {
@@ -61,18 +55,6 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
     private static final int REQUEST_CODE_NORMAL = 1;
 
     private static final int REQUEST_CODE_ADVANCED = 2;
-
-    private static final int BASIC_PERMISSION_REQUEST_CODE = 100;
-
-    private static final String[] BASIC_PERMISSIONS = new String[]{
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION};
-
 
     private PagerSlidingTabStrip tabs;
 
@@ -85,7 +67,7 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
 
     private boolean isFirstIn;
 
-    private Observer<Integer> sysMsgUnreadCountChangedObserver = (Observer<Integer>) unreadCount -> {
+    private final Observer<Integer> sysMsgUnreadCountChangedObserver = (Observer<Integer>) unreadCount -> {
         SystemMessageUnreadManager.getInstance().setSysMsgUnreadCount(unreadCount);
         ReminderManager.getInstance().updateContactUnreadNum(unreadCount);//todo:
     };
@@ -116,7 +98,7 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        setToolBar(R.id.toolbar, R.string.app_name/*, R.drawable.actionbar_dark_logo*/);
+        setToolBar(R.id.toolbar, R.string.app_name);
         setTitle(R.string.app_name);
         isFirstIn = true;
         //不保留后台活动，从厂商推送进聊天页面，会无法退出聊天页面

@@ -17,7 +17,7 @@ public class LetterIndexView extends View {
 
     private String[] letters = null;
 
-    private Paint mPaint;
+    private final Paint mPaint;
 
     private float offset;
 
@@ -25,11 +25,11 @@ public class LetterIndexView extends View {
 
     private int normalColor;
 
-    private int touchColor;
+    private final int touchColor;
 
-    private Drawable hintDrawable;
+    private final Drawable hintDrawable;
 
-    private int stringArrayId = R.array.letter_list;
+    private final int stringArrayId = R.array.letter_list;
 
     public LetterIndexView(Context paramContext) {
         this(paramContext, null);

@@ -3,7 +3,7 @@ package com.zxn.netease.nimsdk.common.framework.infra;
 import java.util.concurrent.Executor;
 
 public class CompoundTaskWorker extends AbstractTaskWorker {
-    private AbstractTaskWorker[] workers;
+    private final AbstractTaskWorker[] workers;
 
     public CompoundTaskWorker(AbstractTaskWorker... workers) {
         this.workers = workers;

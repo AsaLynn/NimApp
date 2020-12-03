@@ -7,10 +7,10 @@ package com.zxn.netease.nimsdk.business.ait.selector.model;
 public class AitContactItem<T> {
 
     // view type
-    private int viewType;
+    private final int viewType;
 
     // data
-    private T model;
+    private final T model;
 
     public AitContactItem(int viewType, T model) {
         this.viewType = viewType;

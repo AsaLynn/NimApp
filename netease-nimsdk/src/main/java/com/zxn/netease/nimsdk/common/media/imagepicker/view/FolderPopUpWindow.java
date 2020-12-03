@@ -20,7 +20,7 @@ import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
 
 public class FolderPopUpWindow extends PopupWindow implements View.OnClickListener {
 
-    private ListView listView;
+    private final ListView listView;
     private OnItemClickListener onItemClickListener;
 
     public FolderPopUpWindow(Context context, BaseAdapter adapter) {

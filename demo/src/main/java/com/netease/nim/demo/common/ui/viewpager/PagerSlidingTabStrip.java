@@ -57,9 +57,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
 
     // @formatter:on
 
-    private LinearLayout.LayoutParams tabViewLayoutParams;
+    private final LinearLayout.LayoutParams tabViewLayoutParams;
 
-    private LinearLayout tabsContainer;
+    private final LinearLayout tabsContainer;
 
     private ViewPager pager;
 
@@ -73,9 +73,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
 
     private float currentPositionOffset = 0f;
 
-    private Paint rectPaint;
+    private final Paint rectPaint;
 
-    private Paint dividerPaint;
+    private final Paint dividerPaint;
 
     private int indicatorColor = 0xFF0888ff;
 
@@ -266,7 +266,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
         TextView textView;
         for (int i = 0; i < childCount; ++i) {
             tabView = (LinearLayout) tabsContainer.getChildAt(i);
-            textView = (TextView) tabView.findViewById(R.id.tab_title_label);
+            textView = tabView.findViewById(R.id.tab_title_label);
             if (i == position) {
                 textView.setTextColor(getResources().getColor(checkedTextColor));
             } else {
@@ -291,7 +291,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
         if (tabView == null) {
             tabView = inflater.inflate(R.layout.tab_layout_main, null);
         }
-        TextView titleTV = ((TextView) tabView.findViewById(R.id.tab_title_label));
+        TextView titleTV = tabView.findViewById(R.id.tab_title_label);
         final boolean needAdaptation = ScreenUtil.density <= 1.5 && screenAdaptation;
         final Resources resources = getContext().getResources();
         if (titleTV != null) {
@@ -299,7 +299,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
             titleTV.setText(title);
         }
 
-        final DropFake unreadTV = ((DropFake) tabView.findViewById(R.id.tab_new_msg_label));
+        final DropFake unreadTV = tabView.findViewById(R.id.tab_new_msg_label);
         if (unreadTV != null && isFakeDropOpen) {
             unreadTV.setTouchListener(new DropFake.ITouchListener() {
                 @Override
@@ -363,8 +363,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
 
     public void updateTab(int index, ReminderItem item) {
         LinearLayout tabView = (LinearLayout) tabsContainer.getChildAt(index);
-        ImageView indicatorView = (ImageView) tabView.findViewById(R.id.tab_new_indicator);
-        final DropFake unreadTV = ((DropFake) tabView.findViewById(R.id.tab_new_msg_label));
+        ImageView indicatorView = tabView.findViewById(R.id.tab_new_indicator);
+        final DropFake unreadTV = tabView.findViewById(R.id.tab_new_msg_label);
 
         if (item == null || unreadTV == null || indicatorView == null) {
             unreadTV.setVisibility(View.GONE);
@@ -612,7 +612,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
      */
     public interface OnTabClickListener {
 
-        public void onCurrentTabClicked(int position);
+        void onCurrentTabClicked(int position);
     }
 
     /**
@@ -620,7 +620,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements OnPage
      */
     public interface OnTabDoubleTapListener {
 
-        public void onCurrentTabDoubleTap(int position);
+        void onCurrentTabDoubleTap(int position);
     }
 
     /**

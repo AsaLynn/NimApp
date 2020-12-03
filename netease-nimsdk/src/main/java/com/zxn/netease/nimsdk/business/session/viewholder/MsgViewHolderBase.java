@@ -138,7 +138,7 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
             replyTipTextView.setVisibility(View.GONE);
             return;
         }
-        replyTipTextView.setText(String.format(context.getResources().getString(R.string.reply_with_amount), String.valueOf(count)));
+        replyTipTextView.setText(String.format(context.getResources().getString(R.string.reply_with_amount), count));
         replyTipTextView.setVisibility(View.VISIBLE);
     }
 
@@ -473,7 +473,7 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
             return;
         }
 
-        LinearLayout bodyContainer = (LinearLayout) view.findViewById(R.id.message_item_body);
+        LinearLayout bodyContainer = view.findViewById(R.id.message_item_body);
 
         // 调整container的位置
         int index = isReceivedMessage() ? 0 : 4;

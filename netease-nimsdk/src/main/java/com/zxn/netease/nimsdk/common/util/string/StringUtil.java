@@ -98,7 +98,7 @@ public class StringUtil {
         }
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
-            int tmp = (int) str.charAt(i);
+            int tmp = str.charAt(i);
             if (tmp > 0 && tmp < 127) {
                 count += 1;
             } else {

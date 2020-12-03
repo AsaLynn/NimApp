@@ -71,7 +71,7 @@ public class NavigationAmapActivity extends UI implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_view_amap_navigation_layout);
-        mapView = (MapView) findViewById(R.id.autonavi_mapView);
+        mapView = findViewById(R.id.autonavi_mapView);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
 
         ToolBarOptions options = new NimToolBarOptions();
@@ -246,7 +246,7 @@ public class NavigationAmapActivity extends UI implements
         handler.removeCallbacks(runnable);
     }
 
-    private Runnable runnable = new Runnable() {
+    private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
             showLocationFailTip();
@@ -355,7 +355,7 @@ public class NavigationAmapActivity extends UI implements
             return null;
         }
         View view = getLayoutInflater().inflate(R.layout.amap_marker_window_info, null);
-        TextView textView = (TextView) view.findViewById(R.id.title);
+        TextView textView = view.findViewById(R.id.title);
         textView.setText(text);
         return view;
     }

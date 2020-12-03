@@ -18,8 +18,8 @@ public class ActionsPanel {
 
     // 初始化更多布局adapter
     public static void init(View view, List<BaseAction> actions) {
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        final ViewGroup indicator = (ViewGroup) view.findViewById(R.id.actions_page_indicator);
+        final ViewPager viewPager = view.findViewById(R.id.viewPager);
+        final ViewGroup indicator = view.findViewById(R.id.actions_page_indicator);
 
         ActionsPagerAdapter adapter = new ActionsPagerAdapter(viewPager, actions);
         viewPager.setAdapter(adapter);

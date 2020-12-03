@@ -21,11 +21,11 @@ public class NimHttpClient {
 
     public class NimHttpTask implements Runnable {
 
-        private String url;
-        private Map<String, String> headers;
-        private String jsonBody;
-        private NimHttpCallback callback;
-        private boolean post;
+        private final String url;
+        private final Map<String, String> headers;
+        private final String jsonBody;
+        private final NimHttpCallback callback;
+        private final boolean post;
 
         public NimHttpTask(String url, Map<String, String> headers, String jsonBody, NimHttpCallback callback) {
             this(url, headers, jsonBody, callback, true);

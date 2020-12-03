@@ -92,8 +92,8 @@ public class MultiportActivity extends UI {
         final OnlineClient c = client;
         final View view = getLayoutInflater().inflate(R.layout.multiport_item, null);
         versionLayout.addView(view);
-        TextView clientName = (TextView) view.findViewById(R.id.client_name);
-        TextView clientLogout = (TextView) view.findViewById(R.id.client_logout);
+        TextView clientName = view.findViewById(R.id.client_name);
+        TextView clientLogout = view.findViewById(R.id.client_logout);
         clientLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

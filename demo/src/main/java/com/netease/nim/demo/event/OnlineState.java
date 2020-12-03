@@ -9,17 +9,17 @@ public class OnlineState {
     /**
      * 客户端类型，参照 {@link com.netease.nimlib.sdk.auth.ClientType}
      */
-    private int onlineClient;
+    private final int onlineClient;
 
     /**
      * 网络状态，WIFI,4G,3G,2G
      */
-    private NetStateCode netState;
+    private final NetStateCode netState;
 
     /**
      * 在线状态，0 在线  1 忙碌  2 离开
      */
-    private OnlineStateCode onlineState;
+    private final OnlineStateCode onlineState;
 
     public OnlineState(int onlineClient, int netState, int onlineState) {
         this.onlineClient = onlineClient;

@@ -28,9 +28,9 @@ public class StickerManager {
     /**
      * 数据源
      */
-    private List<StickerCategory> stickerCategories = new ArrayList<>();
-    private Map<String, StickerCategory> stickerCategoryMap = new HashMap<>();
-    private Map<String, Integer> stickerOrder = new HashMap<>(3);
+    private final List<StickerCategory> stickerCategories = new ArrayList<>();
+    private final Map<String, StickerCategory> stickerCategoryMap = new HashMap<>();
+    private final Map<String, Integer> stickerOrder = new HashMap<>(3);
 
     public static StickerManager getInstance() {
         if (instance == null) {

@@ -20,13 +20,13 @@ import java.util.List;
 
 public class AitManager implements TextWatcher {
 
-    private Context context;
+    private final Context context;
 
-    private String tid;
+    private final String tid;
 
-    private boolean robot;
+    private final boolean robot;
 
-    private AitContactsModel aitContactsModel;
+    private final AitContactsModel aitContactsModel;
 
     private int curPos;
 

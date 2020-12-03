@@ -29,7 +29,7 @@ public abstract class ItemViewHolder extends BaseViewHolder<SectionModel> {
     private SectionModel model;
     protected ImageView videoIcon;
 
-    private SectionModel.Listener listener = new SectionModel.Listener() {
+    private final SectionModel.Listener listener = new SectionModel.Listener() {
         @Override
         public void onChanged() {
             int position = getAdapterPosition();

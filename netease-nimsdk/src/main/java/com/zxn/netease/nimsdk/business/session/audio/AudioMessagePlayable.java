@@ -6,7 +6,7 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 public class AudioMessagePlayable implements Playable {
 
-    private IMMessage message;
+    private final IMMessage message;
 
     public IMMessage getMessage() {
         return message;
@@ -28,7 +28,7 @@ public class AudioMessagePlayable implements Playable {
 
     @Override
     public boolean isAudioEqual(Playable audio) {
-        if (AudioMessagePlayable.class.isInstance(audio)) {
+        if (audio instanceof AudioMessagePlayable) {
             return message.isTheSame(((AudioMessagePlayable) audio).getMessage());
         } else {
             return false;

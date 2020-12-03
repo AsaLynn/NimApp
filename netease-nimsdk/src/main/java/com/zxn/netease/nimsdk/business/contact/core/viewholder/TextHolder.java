@@ -18,7 +18,7 @@ public class TextHolder extends AbsContactViewHolder<TextItem> {
     @Override
     public View inflate(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.nim_contact_text_item, null);
-        textView = (TextView) view.findViewById(R.id.text);
+        textView = view.findViewById(R.id.text);
         return view;
     }
 }

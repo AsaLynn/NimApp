@@ -1,7 +1,7 @@
 package com.zxn.netease.nimsdk.common.framework.infra;
 
 public abstract class DefaultTask extends ManagedTask {
-    private DefaultTaskCallback callback;
+    private final DefaultTaskCallback callback;
 
     public DefaultTask(DefaultTaskCallback callback) {
         this.callback = callback;

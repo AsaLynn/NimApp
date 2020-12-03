@@ -273,11 +273,7 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
     }
 
     private void setOkButtonEnable(boolean enabled) {
-        if (enabled) {
-            mBtnOk.setEnabled(true);
-        } else {
-            mBtnOk.setEnabled(false);
-        }
+        mBtnOk.setEnabled(enabled);
         syncButtonText();
     }
 

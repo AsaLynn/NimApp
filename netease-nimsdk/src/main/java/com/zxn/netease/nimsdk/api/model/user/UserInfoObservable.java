@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class UserInfoObservable {
 
-    private List<UserInfoObserver> observers = new ArrayList<>();
-    private Handler uiHandler;
+    private final List<UserInfoObserver> observers = new ArrayList<>();
+    private final Handler uiHandler;
 
     public UserInfoObservable(Context context) {
         uiHandler = new Handler(context.getMainLooper());

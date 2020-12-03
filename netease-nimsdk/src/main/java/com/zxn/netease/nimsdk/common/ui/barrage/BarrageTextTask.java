@@ -7,14 +7,14 @@ import android.text.TextPaint;
  */
 class BarrageTextTask {
     // build
-    private String text;
-    private int line;
-    private int duration;
+    private final String text;
+    private final int line;
+    private final int duration;
     private float x;
-    private float y;
-    private float deltaX;
-    private float length;
-    private TextPaint paint;
+    private final float y;
+    private final float deltaX;
+    private final float length;
+    private final TextPaint paint;
 
     // inner
     private float runX;

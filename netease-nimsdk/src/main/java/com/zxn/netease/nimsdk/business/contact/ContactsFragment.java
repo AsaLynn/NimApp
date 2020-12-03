@@ -61,7 +61,7 @@ public class ContactsFragment extends TFragment {
 
     private ContactsCustomization customization;
 
-    private ReloadFrequencyControl reloadControl = new ReloadFrequencyControl();
+    private final ReloadFrequencyControl reloadControl = new ReloadFrequencyControl();
 
     public void setContactsCustomization(ContactsCustomization customization) {
         this.customization = customization;
@@ -359,14 +359,14 @@ public class ContactsFragment extends TFragment {
         }
     };
 
-    private UserInfoObserver userInfoObserver = new UserInfoObserver() {
+    private final UserInfoObserver userInfoObserver = new UserInfoObserver() {
         @Override
         public void onUserInfoChanged(List<String> accounts) {
             reloadWhenDataChanged(accounts, "onUserInfoChanged", true, false); // 非好友资料变更，不用刷新界面
         }
     };
 
-    private Observer<Void> loginSyncCompletedObserver = new Observer<Void>() {
+    private final Observer<Void> loginSyncCompletedObserver = new Observer<Void>() {
         @Override
         public void onEvent(Void aVoid) {
             getHandler().postDelayed(new Runnable() {

@@ -4,7 +4,7 @@ import java.util.concurrent.Executor;
 
 public abstract class AbstractTaskWorker {
     public interface ExecuteCallback {
-        public void onExecuted(Task task, boolean unschedule);
+        void onExecuted(Task task, boolean unschedule);
     }
 
     /**

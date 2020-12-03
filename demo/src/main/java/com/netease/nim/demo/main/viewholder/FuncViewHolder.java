@@ -29,12 +29,12 @@ import java.util.Set;
 
 public class FuncViewHolder extends AbsContactViewHolder<FuncViewHolder.FuncItem> implements ReminderManager.UnreadNumChangedCallback {
 
-    private static ArrayList<WeakReference<ReminderManager.UnreadNumChangedCallback>> sUnreadCallbackRefs = new ArrayList<>();
+    private static final ArrayList<WeakReference<ReminderManager.UnreadNumChangedCallback>> sUnreadCallbackRefs = new ArrayList<>();
 
     private ImageView image;
     private TextView funcName;
     private TextView unreadNum;
-    private Set<ReminderManager.UnreadNumChangedCallback> callbacks = new HashSet<>();
+    private final Set<ReminderManager.UnreadNumChangedCallback> callbacks = new HashSet<>();
 
     @Override
     public View inflate(LayoutInflater inflater) {

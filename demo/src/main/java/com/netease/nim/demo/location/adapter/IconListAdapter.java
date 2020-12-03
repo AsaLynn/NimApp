@@ -57,11 +57,11 @@ public class IconListAdapter extends ArrayAdapter<IconListAdapter.IconListItem> 
         }
 
         // Set text field
-        text = (TextView) view.findViewById(R.id.text1);
+        text = view.findViewById(R.id.text1);
         text.setText(getItem(position).getTitle());
 
         // Set resource icon
-        image = (ImageView) view.findViewById(R.id.icon);
+        image = view.findViewById(R.id.icon);
         image.setBackgroundDrawable(getItem(position).getResource());
 
         return view;

@@ -35,7 +35,7 @@ public class GLMediaPlayerManager implements GLVideoModel.Callback, GLMediaPlaye
 
     private Context context;
 
-    private Handler mainHandler;
+    private final Handler mainHandler;
 
     public GLMediaPlayerManager() {
         mainHandler = new Handler();

@@ -88,10 +88,10 @@ public class SendImageHelper {
     // 从相册选择图片进行发送(Added by NYB)
     public static class SendImageTask extends AsyncTask<Void, Void, File> {
 
-        private Context context;
+        private final Context context;
         private boolean isOrig;
-        private GLImage info;
-        private Callback callback;
+        private final GLImage info;
+        private final Callback callback;
 
         public SendImageTask(Context context, boolean isOrig, GLImage info, Callback callback) {
             this.context = context;

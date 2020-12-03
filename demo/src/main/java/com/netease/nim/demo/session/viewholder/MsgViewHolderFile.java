@@ -38,10 +38,10 @@ public class MsgViewHolderFile extends MsgViewHolderBase {
 
     @Override
     public void inflateContentView() {
-        fileIcon = (ImageView) view.findViewById(R.id.message_item_file_icon_image);
-        fileNameLabel = (TextView) view.findViewById(R.id.message_item_file_name_label);
-        fileStatusLabel = (TextView) view.findViewById(R.id.message_item_file_status_label);
-        progressBar = (ProgressBar) view.findViewById(R.id.message_item_file_transfer_progress_bar);
+        fileIcon = view.findViewById(R.id.message_item_file_icon_image);
+        fileNameLabel = view.findViewById(R.id.message_item_file_name_label);
+        fileStatusLabel = view.findViewById(R.id.message_item_file_status_label);
+        progressBar = view.findViewById(R.id.message_item_file_transfer_progress_bar);
     }
 
     @Override

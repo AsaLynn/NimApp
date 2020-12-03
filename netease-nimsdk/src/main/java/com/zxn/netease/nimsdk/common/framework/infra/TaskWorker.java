@@ -6,7 +6,7 @@ public class TaskWorker extends AbstractTaskWorker {
     /**
      * executor
      */
-    private Executor executor;
+    private final Executor executor;
 
     public TaskWorker(Executor executor) {
         this.executor = executor;

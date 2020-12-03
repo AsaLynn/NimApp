@@ -21,18 +21,18 @@ public class LoadingView extends View {
     private static final int DEFAULT_BALL_COLOR = 0xffffffff;
     private static final float DEFAULT_SPEED = (float) 0.5;
 
-    private Paint paint = new Paint();
+    private final Paint paint = new Paint();
 
-    private Paint paint2 = new Paint();
+    private final Paint paint2 = new Paint();
 
     private PointF leftBall;
     private PointF rightBall;
 
     //两个小球的碰撞参数
-    private float handleLenRate = 1f;
+    private final float handleLenRate = 1f;
 
     private float radius = DEFAULT_RADIUS;
-    private float mv = 0.5f;
+    private final float mv = 0.5f;
     private float maxTouchDistance = (float) (DEFAULT_RADIUS * 2.5);
 
 

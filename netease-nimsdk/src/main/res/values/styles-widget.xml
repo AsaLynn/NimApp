@@ -77,24 +77,8 @@
     </style>
 
     <!-- 右下角有输入字符长度限制 用于对话框 -->
-    <style name="easy_dialog_edit_text_style" parent="@android:style/Widget.EditText">
-        <item name="android:includeFontPadding">false</item>
-        <item name="android:background">@drawable/nim_easy_edit_text_dialog_bg</item>
-        <item name="android:paddingLeft">6dp</item>
-        <item name="android:paddingRight">30dp</item>
-        <item name="android:paddingBottom">6dp</item>
-    </style>
 
     <style name="grid_view" parent="@android:style/Widget.GridView">
-    </style>
-
-    <style name="sdk_share_dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@color/transparent</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
     <style name="easy_dialog_style" parent="@android:style/Theme.Dialog">

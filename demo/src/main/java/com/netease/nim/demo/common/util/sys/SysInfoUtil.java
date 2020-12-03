@@ -57,9 +57,7 @@ public class SysInfoUtil {
         List<RunningTaskInfo> recentTaskInfos = manager.getRunningTasks(1);
         if (recentTaskInfos != null && recentTaskInfos.size() > 0) {
             RunningTaskInfo taskInfo = recentTaskInfos.get(0);
-            if (taskInfo.baseActivity.getPackageName().equals(packageName) && taskInfo.numActivities > 1) {
-                return true;
-            }
+            return taskInfo.baseActivity.getPackageName().equals(packageName) && taskInfo.numActivities > 1;
         }
 
         return false;

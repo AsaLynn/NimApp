@@ -11,7 +11,7 @@ public abstract class ManagedTask extends ObservableTask {
     private static final String TAG = "ManagedTask";
     private static final String ENCLOSURE = "()";
 
-    private static AtomicInteger serial = new AtomicInteger();
+    private static final AtomicInteger serial = new AtomicInteger();
 
     private TaskManager taskManager;
 
@@ -39,7 +39,7 @@ public abstract class ManagedTask extends ObservableTask {
         return taskObserver;
     }
 
-    private ArrayList<ManagedTask> links = new ArrayList<ManagedTask>();
+    private final ArrayList<ManagedTask> links = new ArrayList<ManagedTask>();
 
     /**
      * on task result
