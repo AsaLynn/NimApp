@@ -6,6 +6,7 @@ plugins {
     id 'com.github.dcendents.android-maven'
     id 'com.jfrog.bintray'
 }
+apply plugin: 'kotlin-kapt'
 version = "1.2.1"
 
 android {
@@ -13,18 +14,18 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 5
+        versionCode 6
         versionName version
-        consumerProguardFiles "consumer-rules.pro"
+        //consumerProguardFiles "consumer-rules.pro"
         ndk {
             abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
         }
-        renderscriptSupportModeEnabled true
+        //renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -34,10 +35,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    packagingOptions {
-        doNotStrip '*/mips/*.so'
-        doNotStrip '*/mips64/*.so'
-    }
+    /*packagingOptions {
+        doNotStrip 'mips.so'
+        doNotStrip 'mips64.so'
+    }*/
 }
 
 dependencies {
@@ -46,8 +47,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.appcompat:appcompat:1.2.0'
+
     api 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
     api 'com.github.chrisbanes:PhotoView:2.3.0'
     api 'com.alibaba:fastjson:1.2.74'
     //应用图标显示消息数目

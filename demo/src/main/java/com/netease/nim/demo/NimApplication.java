@@ -10,7 +10,7 @@ import android.webkit.WebView;
 import androidx.multidex.MultiDex;
 
 import com.heytap.msp.push.HeytapPushManager;
-import com.huawei.hms.support.common.ActivityMgr;
+//import com.huawei.hms.support.common.ActivityMgr;
 import com.netease.nim.demo.common.util.crash.AppCrashHandler;
 import com.netease.nim.demo.config.preference.Preferences;
 import com.netease.nim.demo.config.preference.UserPreferences;
@@ -71,7 +71,7 @@ public class NimApplication extends Application {
         // 以下逻辑只在主进程初始化时执行
         if (NIMUtil.isMainProcess(this)) {
 
-            ActivityMgr.INST.init(this);
+            //ActivityMgr.INST.init(this);
             // 初始化OPPO PUSH服务，创建默认通道
             HeytapPushManager.init(this, true);
 
