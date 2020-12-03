@@ -28,10 +28,8 @@ import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.ResponseCode;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.AuthService;
-import com.netease.nimlib.sdk.lucene.LuceneService;
 import com.netease.nimlib.sdk.misc.DirCacheFileType;
 import com.netease.nimlib.sdk.misc.MiscService;
-import com.netease.nimlib.sdk.mixpush.MixPushService;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.settings.SettingsService;
 import com.netease.nimlib.sdk.settings.SettingsServiceObserver;
@@ -366,34 +364,12 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
 
     private boolean getIsShowPushNoDetail() {
         StatusBarNotificationConfig localConfig = UserPreferences.getStatusConfig();
-        // 可能出现服务器和本地不一致，纠正
-        boolean remoteShowNoDetail = NIMClient.getService(MixPushService.class)
-                                              .isPushShowNoDetail();
-        if (localConfig.hideContent ^ remoteShowNoDetail) {
-            updateShowPushNoDetail(localConfig.hideContent);
-        }
+
         return localConfig.hideContent;
     }
 
     private void updateShowPushNoDetail(final boolean showNoDetail) {
-        NIMClient.getService(MixPushService.class).setPushShowNoDetail(showNoDetail).setCallback(
-                new RequestCallbackWrapper<Void>() {
 
-                    @Override
-                    public void onResult(int code, Void result, Throwable exception) {
-                        if (code == ResponseCode.RES_SUCCESS) {
-                            StatusBarNotificationConfig config = UserPreferences.getStatusConfig();
-                            config.hideContent = showNoDetail;
-                            UserPreferences.setStatusConfig(config);
-                            NIMClient.updateStatusBarNotificationConfig(config);
-                            ToastHelper.showToast(SettingsActivity.this, "设置成功");
-                        } else {
-                            pushShowNoDetailItem.setChecked(!showNoDetail);
-                            adapter.notifyDataSetChanged();
-                            ToastHelper.showToast(SettingsActivity.this, "设置失败");
-                        }
-                    }
-                });
     }
 
     /**
@@ -514,41 +490,7 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
     }
 
     private void setMessageNotify(final boolean checkState) {
-        // 如果接入第三方推送（小米），则同样应该设置开、关推送提醒
-        // 如果关闭消息提醒，则第三方推送消息提醒也应该关闭。
-        // 如果打开消息提醒，则同时打开第三方推送消息提醒。
-        NIMClient.getService(MixPushService.class).enable(checkState).setCallback(
-                new RequestCallback<Void>() {
 
-                    @Override
-                    public void onSuccess(Void param) {
-                        ToastHelper.showToast(SettingsActivity.this,
-                                              R.string.user_info_update_success);
-                        notificationItem.setChecked(checkState);
-                        setToggleNotification(checkState);
-                    }
-
-                    @Override
-                    public void onFailed(int code) {
-                        notificationItem.setChecked(!checkState);
-                        // 这种情况是客户端不支持第三方推送
-                        if (code == ResponseCode.RES_UNSUPPORT) {
-                            notificationItem.setChecked(checkState);
-                            setToggleNotification(checkState);
-                        } else if (code == ResponseCode.RES_EFREQUENTLY) {
-                            ToastHelper.showToast(SettingsActivity.this,
-                                                  R.string.operation_too_frequent);
-                        } else {
-                            ToastHelper.showToast(SettingsActivity.this,
-                                                  R.string.user_info_update_failed);
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onException(Throwable exception) {
-                    }
-                });
     }
 
     private void setToggleNotification(boolean checkState) {
@@ -565,17 +507,15 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
     }
 
     private void startNoDisturb() {
-        NoDisturbActivity.startActivityForResult(this, UserPreferences.getStatusConfig(),
-                                                 noDisturbTime, NoDisturbActivity.NO_DISTURB_REQ);
+
     }
 
     private String getIndexCacheSize() {
-        long size = NIMClient.getService(LuceneService.class).getCacheSize();
-        return String.format("%.2f", size / (1024.0f * 1024.0f));
+
+        return "";
     }
 
     private void clearIndex() {
-        NIMClient.getService(LuceneService.class).clearCache();
         clearIndexItem.setDetail("0.00 M");
         adapter.notifyDataSetChanged();
     }
@@ -601,42 +541,12 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
                  });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
-                case NoDisturbActivity.NO_DISTURB_REQ:
-                    setNoDisturbTime(data);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
     /**
      * 设置免打扰时间
      *
      * @param data
      */
     private void setNoDisturbTime(Intent data) {
-        boolean isChecked = data.getBooleanExtra(NoDisturbActivity.EXTRA_ISCHECKED, false);
-        noDisturbTime = getString(R.string.setting_close);
-        StatusBarNotificationConfig config = UserPreferences.getStatusConfig();
-        if (isChecked) {
-            config.downTimeBegin = data.getStringExtra(NoDisturbActivity.EXTRA_START_TIME);
-            config.downTimeEnd = data.getStringExtra(NoDisturbActivity.EXTRA_END_TIME);
-            noDisturbTime = String.format("%s到%s", config.downTimeBegin, config.downTimeEnd);
-        } else {
-            config.downTimeBegin = null;
-            config.downTimeEnd = null;
-        }
-        disturbItem.setDetail(noDisturbTime);
-        adapter.notifyDataSetChanged();
-        UserPreferences.setDownTimeToggle(isChecked);
-        config.downTimeToggle = isChecked;
-        UserPreferences.setStatusConfig(config);
-        NIMClient.updateStatusBarNotificationConfig(config);
+
     }
 }

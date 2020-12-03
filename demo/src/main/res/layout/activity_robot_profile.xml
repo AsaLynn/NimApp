@@ -70,7 +70,6 @@
         android:layout_marginBottom="15dip"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="@dimen/text_size_20"
-        android:background="@drawable/nim_team_create_btn_selector"
         android:minHeight="50dp"
         android:text="@string/robot_start_chat"
         android:textColor="@color/white"

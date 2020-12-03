@@ -10,14 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.netease.nim.demo.R;
+import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil;
-import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
 import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
 import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
 import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
 import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 import java.util.List;
 
@@ -102,11 +100,8 @@ public class SearchMessageAdapter extends BaseAdapter {
             // 减去固定的头像和时间宽度
             labelWidth -= ScreenUtil.dip2px(70 + 70);
             tvNickname.setMaxWidth(labelWidth);
-            if (message.getSessionType() == SessionTypeEnum.Team) {
-                tvNickname.setText(TeamHelper.getTeamMemberDisplayName(message.getSessionId(), message.getFromAccount()));
-            } else {
-                tvNickname.setText(UserInfoHelper.getUserDisplayName(message.getFromAccount()));
-            }
+
+            tvNickname.setText(UserInfoHelper.getUserDisplayName(message.getFromAccount()));
         }
 
         private void refreshContent(IMMessage message) {

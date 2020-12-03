@@ -162,12 +162,12 @@ public class UserProfileEditItemActivity extends UI implements View.OnClickListe
         } else {
             editText.setText(data);
         }
-        editText.setDeleteImage(R.drawable.nim_grey_delete_icon);
+
     }
 
     private void initActionbar() {
         TextView toolbarView = findView(R.id.action_bar_right_clickable_textview);
-        toolbarView.setText(R.string.save);
+        toolbarView.setText("save");
         toolbarView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -169,7 +169,7 @@ public class OnlineStateEventSubscribe {
 
     // 机器人账号不订阅
     public static boolean subscribeFilter(String account) {
-        return NimUIKit.getRobotInfoProvider().getRobotByAccount(account) != null;
+        return false;
     }
 
     /**

@@ -28,7 +28,7 @@
         android:layout_below="@id/app_bar_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
-        android:background="@drawable/nim_avatar_group" />
+         />
 
     <TextView
         android:id="@+id/team_name"
@@ -79,7 +79,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="55dp"
         android:background="@drawable/nim_message_button_bottom_send_selector"
-        android:text="@string/team_apply_to_join"
+
         android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -20,7 +20,6 @@
             android:background="?attr/colorPrimary"
             app:titleTextAppearance="@style/Toolbar.TitleText">
 
-            <include layout="@layout/nim_action_bar_right_clickable_tv" />
         </com.zxn.widget.ExpandToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -31,7 +30,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/nim_blue_edit_text_bg"
         android:hint="@string/input_account"
         android:inputType="text"
         android:padding="5dp"

@@ -20,7 +20,6 @@ import com.zxn.netease.nimsdk.business.contact.core.query.IContactDataProvider;
 import com.zxn.netease.nimsdk.business.contact.core.query.TextQuery;
 import com.zxn.netease.nimsdk.business.contact.core.viewholder.LabelHolder;
 import com.zxn.netease.nimsdk.business.contact.core.viewholder.MsgHolder;
-import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
 import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
 import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
 import com.zxn.netease.nimsdk.common.activity.UI;
@@ -81,8 +80,6 @@ public class GlobalSearchDetailActivity2 extends UI implements OnItemClickListen
         ToolBarOptions options = new NimToolBarOptions();
         if (sessionType == SessionTypeEnum.P2P) {
             options.titleString = UserInfoHelper.getUserDisplayName(sessionId);
-        } else if (sessionType == SessionTypeEnum.Team) {
-            options.titleString = TeamHelper.getTeamName(sessionId);
         }
         setToolBar(R.id.toolbar, options);
 
@@ -144,7 +141,6 @@ public class GlobalSearchDetailActivity2 extends UI implements OnItemClickListen
 
         @Override
         public List<AbsContactItem> provide(TextQuery query) {
-            dataList.addAll(MsgDataProvider.provide(query));
             return dataList;
         }
     }

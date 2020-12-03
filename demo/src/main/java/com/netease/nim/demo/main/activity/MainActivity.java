@@ -27,21 +27,13 @@ import com.netease.nim.demo.main.model.MainTab;
 import com.netease.nim.demo.main.reminder.ReminderItem;
 import com.netease.nim.demo.main.reminder.ReminderManager;
 import com.netease.nim.demo.session.SessionHelper;
-import com.netease.nim.demo.team.TeamCreateHelper;
-import com.netease.nim.demo.team.activity.AdvancedTeamSearchActivity;
-import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.api.model.main.LoginSyncDataStatusObserver;
 import com.zxn.netease.nimsdk.business.contact.selector.activity.ContactSelectActivity;
-import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
 import com.zxn.netease.nimsdk.common.ToastHelper;
 import com.zxn.netease.nimsdk.common.activity.UI;
 import com.zxn.netease.nimsdk.common.ui.dialog.DialogMaker;
 import com.zxn.netease.nimsdk.common.ui.drop.DropManager;
 import com.zxn.netease.nimsdk.common.util.log.LogUtil;
-import com.zxn.netease.nimsdk.support.permission.MPermission;
-import com.zxn.netease.nimsdk.support.permission.annotation.OnMPermissionDenied;
-import com.zxn.netease.nimsdk.support.permission.annotation.OnMPermissionGranted;
-import com.zxn.netease.nimsdk.support.permission.annotation.OnMPermissionNeverAskAgain;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.NimIntent;
 import com.netease.nimlib.sdk.Observer;
@@ -144,7 +136,6 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         registerCustomMessageObservers(true);
         requestSystemMessageUnreadCount();
         initUnreadCover();
-        //requestBasicPermission();
     }
 
     private boolean parseIntent() {
@@ -295,12 +286,6 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         });
     }
 
-//    private void requestBasicPermission() {
-//        MPermission.printMPermissionResult(true, this, BASIC_PERMISSIONS);
-//        MPermission.with(MainActivity.this).setRequestCode(BASIC_PERMISSION_REQUEST_CODE)
-//                   .permissions(BASIC_PERMISSIONS).request();
-//    }
-
     private void onLogout() {
         Preferences.saveUserToken("");
         // 清理缓存&注销监听
@@ -324,14 +309,14 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
      * {@link MsgService#MSG_CHATTING_ACCOUNT_NONE} 目前没有与任何人对话，需要状态栏消息通知
      */
     private void enableMsgNotification(boolean enable) {
-        boolean msg = (pager.getCurrentItem() != MainTab.RECENT_CONTACTS.tabIndex);
+        /*boolean msg = (pager.getCurrentItem() != MainTab.RECENT_CONTACTS.tabIndex);
         if (enable | msg) {
             NIMClient.getService(MsgService.class).setChattingAccount(
                     MsgService.MSG_CHATTING_ACCOUNT_NONE, SessionTypeEnum.None);
         } else {
             NIMClient.getService(MsgService.class).setChattingAccount(
                     MsgService.MSG_CHATTING_ACCOUNT_ALL, SessionTypeEnum.None);
-        }
+        }*/
     }
 
 
@@ -348,23 +333,6 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         switch (item.getItemId()) {
             case R.id.about:
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                break;
-            case R.id.view_cloud_session:
-                RecentSessionActivity.start(this);
-                break;
-            case R.id.create_normal_team:
-                ContactSelectActivity.Option option = TeamHelper.getCreateContactSelectOption(null,
-                                                                                              50);
-                NimUIKit.startContactSelector(MainActivity.this, option, REQUEST_CODE_NORMAL);
-                break;
-            case R.id.create_regular_team:
-                ContactSelectActivity.Option advancedOption = TeamHelper
-                        .getCreateContactSelectOption(null, 50);
-                NimUIKit.startContactSelector(MainActivity.this, advancedOption,
-                                              REQUEST_CODE_ADVANCED);
-                break;
-            case R.id.search_advanced_team:
-                AdvancedTeamSearchActivity.start(MainActivity.this);
                 break;
             case R.id.add_buddy:
                 AddFriendActivity.start(MainActivity.this);
@@ -437,15 +405,10 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         if (requestCode == REQUEST_CODE_NORMAL) {
             final ArrayList<String> selected = data.getStringArrayListExtra(
                     ContactSelectActivity.RESULT_DATA);
-            if (selected != null && !selected.isEmpty()) {
-                TeamCreateHelper.createNormalTeam(MainActivity.this, selected, false, null);
-            } else {
-                ToastHelper.showToast(MainActivity.this, "请选择至少一个联系人！");
-            }
+            ToastHelper.showToast(MainActivity.this, "请选择至少一个联系人！");
         } else if (requestCode == REQUEST_CODE_ADVANCED) {
             final ArrayList<String> selected = data.getStringArrayListExtra(
                     ContactSelectActivity.RESULT_DATA);
-            TeamCreateHelper.createAdvancedTeam(MainActivity.this, selected);
         }
     }
 
@@ -477,33 +440,6 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
             tabs.updateTab(tab.tabIndex, item);
         }
     }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-//                                           @NonNull int[] grantResults) {
-//        MPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-//    }
-
-//    @OnMPermissionGranted(BASIC_PERMISSION_REQUEST_CODE)
-//    public void onBasicPermissionSuccess() {
-//        try {
-//            ToastHelper.showToast(this, "授权成功");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        MPermission.printMPermissionResult(false, this, BASIC_PERMISSIONS);
-//    }
-
-//    @OnMPermissionDenied(BASIC_PERMISSION_REQUEST_CODE)
-//    @OnMPermissionNeverAskAgain(BASIC_PERMISSION_REQUEST_CODE)
-//    public void onBasicPermissionFailed() {
-//        try {
-//            ToastHelper.showToast(this, "未全部授权，部分功能可能无法正常运行！");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        MPermission.printMPermissionResult(false, this, BASIC_PERMISSIONS);
-//    }
 
     @Override
     protected boolean displayHomeAsUpEnabled() {

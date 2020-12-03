@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dip"
-        android:background="@drawable/nim_g_unread_badge"
+
         android:gravity="center"
         android:singleLine="true"
         android:textColor="@android:color/white"

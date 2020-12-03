@@ -29,7 +29,6 @@ import com.zxn.netease.nimsdk.common.activity.UI;
 import com.zxn.netease.nimsdk.common.ui.dialog.DialogMaker;
 import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialog;
 import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialogHelper;
-import com.zxn.netease.nimsdk.common.ui.dialog.EasyEditDialog;
 import com.zxn.netease.nimsdk.common.ui.imageview.HeadImageView;
 import com.zxn.netease.nimsdk.common.ui.widget.SwitchButton;
 import com.zxn.netease.nimsdk.common.util.log.LogUtil;
@@ -222,7 +221,7 @@ public class UserProfileActivity extends UI {
     }
 
     private void initActionbar() {
-        TextView toolbarView = findView(R.id.action_bar_right_clickable_textview);
+        /*TextView toolbarView = findView(R.id.action_bar_right_clickable_textview);
         if (!TextUtils.equals(account, DemoCache.getAccount())) {
             toolbarView.setVisibility(View.GONE);
             return;
@@ -230,7 +229,7 @@ public class UserProfileActivity extends UI {
             toolbarView.setVisibility(View.VISIBLE);
         }
         toolbarView.setText(R.string.edit);
-        toolbarView.setOnClickListener(v -> UserProfileSettingActivity.start(UserProfileActivity.this, account));
+        toolbarView.setOnClickListener(v -> UserProfileSettingActivity.start(UserProfileActivity.this, account));*/
     }
 
     private void setToggleBtn(SwitchButton btn, boolean isChecked) {
@@ -306,49 +305,9 @@ public class UserProfileActivity extends UI {
     }
 
     private void updateToggleView() {
-        if (DemoCache.getAccount() != null && !DemoCache.getAccount().equals(account)) {
-            boolean black = NIMClient.getService(FriendService.class).isInBlackList(account);
-            boolean notice = NIMClient.getService(FriendService.class).isNeedMessageNotify(account);
-            if (blackSwitch == null) {
-                blackSwitch = addToggleItemView(KEY_BLACK_LIST, R.string.black_list, black);
-            } else {
-                setToggleBtn(blackSwitch, black);
-            }
-            if (noticeSwitch == null) {
-                noticeSwitch = addToggleItemView(KEY_MSG_NOTICE, R.string.msg_notice, notice);
-            } else {
-                setToggleBtn(noticeSwitch, notice);
-            }
-            if (NIMClient.getService(FriendService.class).isMyFriend(account)) {
-                RecentContact recentContact = NIMClient.getService(MsgService.class).queryRecentContact(account,
-                                                                                                        SessionTypeEnum.P2P);
-                boolean isSticky = NIMClient.getService(MsgService.class).isStickTopSession(account, SessionTypeEnum.P2P);
-                if (stickySwitch == null) {
-                    stickySwitch = addToggleItemView(KEY_RECENT_STICKY, R.string.recent_sticky, isSticky);
-                } else {
-                    setToggleBtn(stickySwitch, isSticky);
-                }
-            }
-            updateUserOperatorView();
-        }
+
     }
 
-
-    private SwitchButton addToggleItemView(String key, int titleResId, boolean initState) {
-        ViewGroup vp = (ViewGroup) getLayoutInflater().inflate(R.layout.nim_user_profile_toggle_item, null);
-        ViewGroup.LayoutParams vlp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                                (int) getResources()
-                                                                        .getDimension(R.dimen.isetting_item_height));
-        vp.setLayoutParams(vlp);
-        TextView titleText = vp.findViewById(R.id.user_profile_title);
-        titleText.setText(titleResId);
-        SwitchButton switchButton = vp.findViewById(R.id.user_profile_toggle);
-        switchButton.setCheck(initState);
-        switchButton.setOnChangedListener(onChangedListener);
-        switchButton.setTag(key);
-        toggleLayout.addView(vp);
-        return switchButton;
-    }
 
     private void updateAlias(boolean isFriend) {
         if (isFriend) {
@@ -527,18 +486,8 @@ public class UserProfileActivity extends UI {
      * 通过验证方式添加好友
      */
     private void onAddFriendByVerify() {
-        final EasyEditDialog requestDialog = new EasyEditDialog(this);
-        requestDialog.setEditTextMaxLength(32);
-        requestDialog.setTitle(getString(R.string.add_friend_verify_tip));
-        requestDialog.addNegativeButtonListener(R.string.cancel, v -> requestDialog.dismiss());
-        requestDialog.addPositiveButtonListener(R.string.send, v -> {
-            requestDialog.dismiss();
-            String msg = requestDialog.getEditMessage();
-            doAddFriend(msg, false);
-        });
-        requestDialog.setOnCancelListener(dialog -> {
-        });
-        requestDialog.show();
+        doAddFriend("msg", false);
+
     }
 
     private void doAddFriend(String msg, boolean addDirectly) {

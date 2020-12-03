@@ -9,9 +9,7 @@ import android.widget.TextView;
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.contact.activity.BlackListActivity;
-import com.netease.nim.demo.main.activity.RobotListActivity;
 import com.netease.nim.demo.main.activity.SystemMessageActivity;
-import com.netease.nim.demo.main.activity.TeamListActivity;
 import com.netease.nim.demo.main.helper.SystemMessageUnreadManager;
 import com.netease.nim.demo.main.reminder.ReminderId;
 import com.netease.nim.demo.main.reminder.ReminderItem;
@@ -142,12 +140,10 @@ public class FuncViewHolder extends AbsContactViewHolder<FuncViewHolder.FuncItem
         public static void handle(Context context, AbsContactItem item) {
             if (item == VERIFY) {
                 SystemMessageActivity.start(context);
-            } else if (item == ROBOT) {
-                RobotListActivity.start(context);
             } else if (item == NORMAL_TEAM) {
-                TeamListActivity.start(context, ItemTypes.TEAMS.NORMAL_TEAM);
+
             } else if (item == ADVANCED_TEAM) {
-                TeamListActivity.start(context, ItemTypes.TEAMS.ADVANCED_TEAM);
+
             } else if (item == MY_COMPUTER) {
                 SessionHelper.startP2PSession(context, DemoCache.getAccount());
             } else if (item == BLACK_LIST) {

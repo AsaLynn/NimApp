@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@drawable/nim_list_item_bg_selecter"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -39,7 +38,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dip"
-            android:background="@drawable/nim_team_create_btn_selector"
             android:text="@string/remove"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_14"/>

@@ -51,7 +51,7 @@ public class AddFriendActivity extends UI {
 
     private void findViews() {
         searchEdit = findView(R.id.search_friend_edit);
-        searchEdit.setDeleteImage(R.drawable.nim_grey_delete_icon);
+
     }
 
     private void initActionbar() {
@@ -61,7 +61,7 @@ public class AddFriendActivity extends UI {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(searchEdit.getText().toString())) {
-                    ToastHelper.showToast(AddFriendActivity.this, R.string.not_allow_empty);
+                    ToastHelper.showToast(AddFriendActivity.this,"not_allow_empty");
                 } else if (searchEdit.getText().toString().equals(DemoCache.getAccount())) {
                     ToastHelper.showToast(AddFriendActivity.this, R.string.add_friend_self_tip);
                 } else {

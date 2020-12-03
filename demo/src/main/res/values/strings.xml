@@ -271,5 +271,7 @@
     <string name="cloud_session_list">云端会话列表</string>
     <string name="effective_after_restart">重启后生效</string>
     <string name="text_chat_notice">温馨提示：禁止出现商业广告、微信、QQ以及色情、暴力和具有 侮辱性的内容，文明聊天谨防诈骗，违规封号处理</string>
+    <string name="file_transfer_state_downloaded">file_transfer_state_downloaded</string>
+    <string name="file_transfer_state_undownload">file_transfer_state_undownload</string>
 
 </resources>

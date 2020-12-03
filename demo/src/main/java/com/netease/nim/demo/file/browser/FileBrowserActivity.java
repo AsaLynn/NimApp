@@ -122,7 +122,7 @@ public class FileBrowserActivity extends UI implements TAdapterDelegate {
                     }
                 } else {
                     //没有权限
-                    ToastHelper.showToast(FileBrowserActivity.this, R.string.no_permission);
+                    ToastHelper.showToast(FileBrowserActivity.this, "no_permission");
                 }
             }
         });

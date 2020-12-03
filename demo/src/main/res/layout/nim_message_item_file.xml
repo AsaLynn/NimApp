@@ -56,7 +56,7 @@
             android:layout_marginRight="5dp"
             android:indeterminate="false"
             android:max="100"
-            android:progressDrawable="@drawable/nim_progress_bar_background"
+
             android:visibility="gone"/>
     </FrameLayout>
 </RelativeLayout>

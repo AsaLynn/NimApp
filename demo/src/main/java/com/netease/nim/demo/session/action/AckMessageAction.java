@@ -8,7 +8,6 @@ import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.activity.SendAckMsgActivity;
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
 import com.zxn.netease.nimsdk.business.session.constant.RequestCode;
-import com.zxn.netease.nimsdk.impl.cache.TeamDataCache;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
@@ -28,11 +27,6 @@ public class AckMessageAction extends BaseAction {
     @Override
     public void onClick() {
         // 只在小于100人的群里有效
-        Team team = TeamDataCache.getInstance().getTeamById(getContainer().account);
-        if (team != null && team.getMemberCount() > 100) {
-            ToastHelper.showToast(getContainer().activity, "已读回执适用于小于100人的群");
-            return;
-        }
         SendAckMsgActivity.startActivity(getContainer().activity, getContainer().account, makeRequestCode(RequestCode.SEND_ACK_MESSAGE));
     }
 

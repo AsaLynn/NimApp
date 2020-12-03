@@ -275,28 +275,6 @@ public class SearchMessageActivity extends UI {
 
     private ArrayList<String> filterAccounts(String query) {
         ArrayList<String> filter = new ArrayList<String>();
-        if (sessionType == SessionTypeEnum.Team) {
-            if (members == null) {
-                members = NimUIKit.getTeamProvider().getTeamMemberList(sessionId);
-            }
-
-            if (members != null) {
-                for (TeamMember member : members) {
-                    if (member == null) {
-                        continue;
-                    }
-                    String account = member.getAccount();
-                    if (match(member.getTeamNick(), query)) {
-                        filter.add(account);
-                        continue;
-                    }
-                    if (match(UserInfoHelper.getUserName(account), query)) {
-                        filter.add(account);
-                        continue;
-                    }
-                }
-            }
-        }
         return filter;
     }
 

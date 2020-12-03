@@ -41,17 +41,13 @@ public class CustomNotificationViewHolder extends TViewHolder {
     private void updateBackground() {
         topLine.setVisibility(isFirstItem() ? View.GONE : View.VISIBLE);
         bottomLine.setVisibility(isLastItem() ? View.VISIBLE : View.GONE);
-        view.setBackgroundResource(R.drawable.nim_list_item_bg_selecter);
+
     }
 
     protected void loadPortrait() {
         // 设置头像
         if (notification.getSessionType() == SessionTypeEnum.P2P) {
             imgHead.loadBuddyAvatar(notification.getFromAccount());
-        } else if (notification.getSessionType() == SessionTypeEnum.Team) {
-            imgHead.setImageResource(R.drawable.nim_avatar_group);
-        } else if (notification.getSessionType() == SessionTypeEnum.SUPER_TEAM) {
-            imgHead.setImageResource(R.drawable.nim_avatar_group);
         }
     }
 

@@ -25,7 +25,6 @@ import com.zxn.netease.nimsdk.common.activity.UI;
 import com.zxn.netease.nimsdk.common.adapter.TAdapter;
 import com.zxn.netease.nimsdk.common.adapter.TAdapterDelegate;
 import com.zxn.netease.nimsdk.common.adapter.TViewHolder;
-import com.zxn.netease.nimsdk.common.ui.dialog.EasyEditDialog;
 import com.zxn.netease.nimsdk.common.ui.listview.AutoRefreshListView;
 import com.zxn.netease.nimsdk.common.ui.listview.MessageListView;
 import com.netease.nimlib.sdk.NIMClient;
@@ -208,36 +207,6 @@ public class CustomNotificationActivity extends UI implements TAdapterDelegate {
         option.type = team ? ContactSelectActivity.ContactSelectType.TEAM : ContactSelectActivity.ContactSelectType.BUDDY;
         sendTarget = team ? 1 : 0;
         NimUIKit.startContactSelector(CustomNotificationActivity.this, option, CONTACT_SELECT_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CONTACT_SELECT_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            final ArrayList<String> selected = data.getStringArrayListExtra(ContactSelectActivity.RESULT_DATA);
-            if (selected != null && !selected.isEmpty()) {
-                final EasyEditDialog requestDialog = new EasyEditDialog(this);
-                requestDialog.setEditTextMaxLength(200);
-                requestDialog.setTitle(getString(R.string.send_custom_notification_tip));
-                requestDialog.addNegativeButtonListener(R.string.cancel, v -> {
-                    requestDialog.dismiss();
-                    finish();
-                });
-                requestDialog.addPositiveButtonListener(R.string.send, v -> {
-                    requestDialog.dismiss();
-                    String content = requestDialog.getEditMessage();
-                    if (!TextUtils.isEmpty(content)) {
-                        sendCustomNotification(selected.get(0), content);
-                    }
-                    finish();
-                });
-                requestDialog.setOnCancelListener(dialog -> finish());
-                requestDialog.show();
-                showKeyboard(true);
-            }
-        } else {
-            sendTarget = -1;
-        }
     }
 
     private void sendCustomNotification(String account, String content) {

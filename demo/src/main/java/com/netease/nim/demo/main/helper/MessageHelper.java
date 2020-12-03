@@ -8,8 +8,6 @@ import com.netease.nim.demo.session.extension.MultiRetweetAttachment;
 import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.api.model.CreateMessageCallback;
 import com.zxn.netease.nimsdk.business.session.actions.PickImageAction;
-import com.zxn.netease.nimsdk.business.team.helper.SuperTeamHelper;
-import com.zxn.netease.nimsdk.business.team.helper.TeamHelper;
 import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper;
 import com.zxn.netease.nimsdk.common.util.log.sdk.wrapper.NimLog;
 import com.zxn.netease.nimsdk.common.util.storage.StorageType;
@@ -56,10 +54,6 @@ public class MessageHelper {
     public static String getName(String account, SessionTypeEnum sessionType) {
         if (sessionType == SessionTypeEnum.P2P) {
             return UserInfoHelper.getUserDisplayName(account);
-        } else if (sessionType == SessionTypeEnum.Team) {
-            return TeamHelper.getTeamName(account);
-        } else if (sessionType == SessionTypeEnum.SUPER_TEAM) {
-            return SuperTeamHelper.getTeamName(account);
         }
         return account;
     }
@@ -74,35 +68,17 @@ public class MessageHelper {
             case ApplyJoinTeam:
             case RejectTeamApply:
             case AddFriend:
-                Team team = NimUIKit.getTeamProvider().getTeamById(message.getTargetId());
-                if (team == null && message.getAttachObject() instanceof Team) {
-                    team = (Team) message.getAttachObject();
-                }
-                teamName = team == null ? message.getTargetId() : team.getName();
                 break;
             case SuperTeamInvite:
             case SuperTeamInviteReject:
             case SuperTeamApply:
             case SuperTeamApplyReject:
-                SuperTeam superTeam = NimUIKit.getSuperTeamProvider().getTeamById(message.getTargetId());
-                if (superTeam == null && message.getAttachObject() instanceof SuperTeam) {
-                    superTeam = (SuperTeam) message.getAttachObject();
-                }
-                teamName = superTeam == null ? message.getTargetId() : superTeam.getName();
                 break;
             default:
                 teamName = message.getTargetId();
         }
 
-        if (message.getType() == SystemMessageType.TeamInvite || message.getType() == SystemMessageType.SuperTeamInvite) {
-            sb.append("邀请").append("你").append("加入群 ").append(teamName);
-        } else if (message.getType() == SystemMessageType.DeclineTeamInvite || message.getType() == SystemMessageType.SuperTeamInviteReject) {
-            sb.append(fromAccount).append("拒绝了群 ").append(teamName).append(" 邀请");
-        } else if (message.getType() == SystemMessageType.ApplyJoinTeam || message.getType() == SystemMessageType.SuperTeamApply) {
-            sb.append("申请加入群 ").append(teamName);
-        } else if (message.getType() == SystemMessageType.RejectTeamApply || message.getType() == SystemMessageType.SuperTeamApplyReject) {
-            sb.append(fromAccount).append("拒绝了你加入群 ").append(teamName).append("的申请");
-        } else if (message.getType() == SystemMessageType.AddFriend) {
+        if (message.getType() == SystemMessageType.AddFriend) {
             AddFriendNotify attachData = (AddFriendNotify) message.getAttachObject();
             if (attachData != null) {
                 if (attachData.getEvent() == AddFriendNotify.Event.RECV_ADD_FRIEND_DIRECT) {
@@ -262,11 +238,11 @@ public class MessageHelper {
                         sessionId, sessionName, url, MD5.getMD5(encryptedFileBytes), false, isEncrypted,
                         new String(key), nick1, firstContent, nick2, getContent(secondMsg)
                 );
-                String pushContent = DemoCache.getContext().getString(R.string.msg_type_multi_retweet);
+                //String pushContent = DemoCache.getContext().getString(R.string.msg_type_multi_retweet);
                 //创建MultiRetweet类型自定义信息
-                IMMessage packedMsg = MessageBuilder.createCustomMessage(firstMsg.getSessionId(), sessionType, pushContent, attachment);
-                packedMsg.setPushContent(pushContent);
-                callback.onFinished(packedMsg);
+                //IMMessage packedMsg = MessageBuilder.createCustomMessage(firstMsg.getSessionId(), sessionType, pushContent, attachment);
+                //packedMsg.setPushContent(pushContent);
+                //callback.onFinished(packedMsg);
             }
 
             @Override
@@ -341,19 +317,9 @@ public class MessageHelper {
                 }
                 return userInfo.getName();
             case Team:
-                //获取群信息
-                Team team = NimUIKit.getTeamProvider().getTeamById(id);
-                if (team == null) {
-                    return null;
-                }
-                return team.getName();
+                return "team.getName()";
             case SUPER_TEAM:
-                //获取群信息
-                SuperTeam superTeam = NimUIKit.getSuperTeamProvider().getTeamById(id);
-                if (superTeam == null) {
-                    return null;
-                }
-                return superTeam.getName();
+                return "SUPER_TEAM";
             default:
                 return null;
         }

@@ -54,7 +54,6 @@ public class SystemMessageViewHolder extends TViewHolder {
         agreeButton = (Button) view.findViewById(R.id.agree);
         rejectButton = (Button) view.findViewById(R.id.reject);
         operatorResultText = (TextView) view.findViewById(R.id.operator_result);
-        view.setBackgroundResource(R.drawable.nim_list_item_bg_selecter);
     }
 
     @Override

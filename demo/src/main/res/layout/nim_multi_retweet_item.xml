@@ -3,7 +3,7 @@
     android:id="@+id/rl_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white_alpha_60"
+
     android:clickable="true"
     android:focusable="true">
 
@@ -66,7 +66,7 @@
                 android:layout_below="@id/tv_session_name"
                 android:layout_marginLeft="15dp"
                 android:text="details"
-                android:textColor="@color/black_opacity_60"
+
                 android:textSize="@dimen/sp_14" />
 
             <ImageView
@@ -91,7 +91,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/rl_info"
             android:layout_margin="5dp"
-            android:background="@color/_4d000000" />
+             />
     </RelativeLayout>
 
 </RelativeLayout>

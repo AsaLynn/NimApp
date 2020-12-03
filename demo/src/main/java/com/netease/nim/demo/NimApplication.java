@@ -11,13 +11,11 @@ import androidx.multidex.MultiDex;
 
 import com.heytap.msp.push.HeytapPushManager;
 import com.huawei.hms.support.common.ActivityMgr;
-import com.netease.nim.demo.chatroom.ChatRoomSessionHelper;
 import com.netease.nim.demo.common.util.crash.AppCrashHandler;
 import com.netease.nim.demo.config.preference.Preferences;
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.contact.ContactHelper;
 import com.netease.nim.demo.event.DemoOnlineStateContentProvider;
-import com.netease.nim.demo.mixpush.DemoMixPushMessageHandler;
 import com.netease.nim.demo.mixpush.DemoPushContentProvider;
 import com.netease.nim.demo.session.NimDemoLocationProvider;
 import com.netease.nim.demo.session.SessionHelper;
@@ -26,7 +24,6 @@ import com.netease.nim.demo.ysf.util.YsfHelper;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.auth.LoginInfo;
-import com.netease.nimlib.sdk.mixpush.NIMPushClient;
 import com.netease.nimlib.sdk.util.NIMUtil;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.OnBotEventListener;
 import com.qiyukf.unicorn.ysfkit.unicorn.api.QuickEntry;
@@ -77,9 +74,6 @@ public class NimApplication extends Application {
             ActivityMgr.INST.init(this);
             // 初始化OPPO PUSH服务，创建默认通道
             HeytapPushManager.init(this, true);
-
-            // 注册自定义推送消息处理，这个是可选项
-            NIMPushClient.registerMixPushMessageHandler(new DemoMixPushMessageHandler());
 
             // init pinyin
             PinYin.init(this);
@@ -166,8 +160,6 @@ public class NimApplication extends Application {
         // IM 会话窗口的定制初始化。
         SessionHelper.init();
 
-        // 聊天室聊天窗口的定制初始化。
-        ChatRoomSessionHelper.init();
 
         // 通讯录列表定制初始化
         ContactHelper.init();

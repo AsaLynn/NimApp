@@ -35,7 +35,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             android:padding="@dimen/dp_10"
-            android:text="@string/forward"
+
             android:textColor="@color/color_activity_blue_bg" />
     </RelativeLayout>
 

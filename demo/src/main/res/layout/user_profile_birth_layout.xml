@@ -20,7 +20,7 @@
             android:background="?attr/colorPrimary"
             app:titleTextAppearance="@style/Toolbar.TitleText">
 
-            <include layout="@layout/nim_action_bar_right_clickable_tv" />
+
         </com.zxn.widget.ExpandToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -1,7 +1,6 @@
 package com.netease.nim.demo.contact;
 
 import android.content.Context;
-
 import com.netease.nim.demo.contact.activity.UserProfileActivity;
 import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.api.model.contact.ContactEventListener;
@@ -21,7 +20,8 @@ public class ContactHelper {
         NimUIKit.setContactEventListener(new ContactEventListener() {
             @Override
             public void onItemClick(Context context, String account) {
-                UserProfileActivity.start(context, account);
+                //UserProfileActivity.start(context, account);
+                NimUIKit.startP2PSession(context, account);
             }
 
             @Override

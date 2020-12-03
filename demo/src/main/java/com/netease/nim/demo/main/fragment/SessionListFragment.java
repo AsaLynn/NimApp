@@ -59,7 +59,7 @@ public class SessionListFragment extends MainTabFragment {
     private RecentContactsFragment fragment;
 
     public SessionListFragment() {
-        this.setContainerId(MainTab.RECENT_CONTACTS.fragmentId);
+        //this.setContainerId(MainTab.RECENT_CONTACTS.fragmentId);
     }
 
     @Override

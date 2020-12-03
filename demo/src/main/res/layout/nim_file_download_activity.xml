@@ -18,7 +18,7 @@
         android:layout_below="@id/file_name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@drawable/nim_team_create_btn_selector"
+
         android:text="下载"
         android:textColor="@color/white"
         android:textSize="17sp" />

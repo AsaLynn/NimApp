@@ -1,6 +1,5 @@
 package com.netease.nim.demo.login
 
-import android.Manifest
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -41,9 +40,6 @@ import com.zxn.netease.nimsdk.common.util.log.LogUtil
 import com.zxn.netease.nimsdk.common.util.string.MD5
 import com.zxn.netease.nimsdk.common.util.sys.NetworkUtil
 import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil
-import com.zxn.netease.nimsdk.support.permission.annotation.OnMPermissionDenied
-import com.zxn.netease.nimsdk.support.permission.annotation.OnMPermissionGranted
-import com.zxn.netease.nimsdk.support.permission.annotation.OnMPermissionNeverAskAgain
 
 /**
  * 登录/注册界面
@@ -52,7 +48,6 @@ import com.zxn.netease.nimsdk.support.permission.annotation.OnMPermissionNeverAs
  * Created by huangjun on 2015/2/1.
  */
 class LoginActivity : UI(), View.OnKeyListener {
-    private val BASIC_PERMISSION_REQUEST_CODE = 110
     private var rightTopBtn // ActionBar完成按钮
             : TextView? = null
     private var leftTopBtn: TextView? = null
@@ -92,32 +87,6 @@ class LoginActivity : UI(), View.OnKeyListener {
         setupRegisterPanel()
     }
 
-    /**
-     * 基本权限管理
-     */
-    private val BASIC_PERMISSIONS = arrayOf(
-        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
-    )
-
-    //    private void requestBasicPermission() {
-    //        MPermission.with(LoginActivity.this).setRequestCode(BASIC_PERMISSION_REQUEST_CODE)
-    //                   .permissions(BASIC_PERMISSIONS).request();
-    //    }
-    //    @Override
-    //    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-    //                                           int[] grantResults) {
-    //        MPermission.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-    //    }
-//    @OnMPermissionGranted(BASIC_PERMISSION_REQUEST_CODE)
-//    fun onBasicPermissionSuccess() {
-//        ToastHelper.showToast(this, "授权成功")
-//    }
-
-//    @OnMPermissionDenied(BASIC_PERMISSION_REQUEST_CODE)
-//    @OnMPermissionNeverAskAgain(BASIC_PERMISSION_REQUEST_CODE)
-//    fun onBasicPermissionFailed() {
-//        ToastHelper.showToast(this, "授权失败")
-//    }
 
     private fun onParseIntent() {
         if (!intent.getBooleanExtra(KICK_OUT, false)) {

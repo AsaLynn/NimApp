@@ -12,10 +12,7 @@ import com.netease.nim.demo.R;
 import com.netease.nim.demo.common.util.sys.SysInfoUtil;
 import com.netease.nim.demo.config.preference.Preferences;
 import com.netease.nim.demo.login.LoginActivity;
-import com.netease.nim.demo.mixpush.DemoMixPushMessageHandler;
-import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.NimIntent;
-import com.netease.nimlib.sdk.mixpush.MixPushService;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
@@ -144,8 +141,6 @@ public class WelcomeActivity extends UI {
                 if (intent.hasExtra(NimIntent.EXTRA_NOTIFY_CONTENT)) {
                     parseNotifyIntent(intent);
                     return;
-                } else if (NIMClient.getService(MixPushService.class).isFCMIntent(intent)) {
-                    parseFCMNotifyIntent(NIMClient.getService(MixPushService.class).parseFCMPayload(intent));
                 }
             }
 
@@ -177,18 +172,6 @@ public class WelcomeActivity extends UI {
         }
     }
 
-    private void parseFCMNotifyIntent(String payloadString) {
-        Map<String, String> payload = JSON.parseObject(payloadString, Map.class);
-        String sessionId = payload.get(DemoMixPushMessageHandler.PAYLOAD_SESSION_ID);
-        String type = payload.get(DemoMixPushMessageHandler.PAYLOAD_SESSION_TYPE);
-        if (sessionId != null && type != null) {
-            int typeValue = Integer.valueOf(type);
-            IMMessage message = MessageBuilder.createEmptyMessage(sessionId, SessionTypeEnum.typeOfValue(typeValue), 0);
-            showMainActivity(new Intent().putExtra(NimIntent.EXTRA_NOTIFY_CONTENT, message));
-        } else {
-            showMainActivity(null);
-        }
-    }
 
     private void parseNormalIntent(Intent intent) {
         showMainActivity(intent);

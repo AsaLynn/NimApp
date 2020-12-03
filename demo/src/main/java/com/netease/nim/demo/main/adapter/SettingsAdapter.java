@@ -90,7 +90,6 @@ public class SettingsAdapter extends BaseAdapter {
             lp.height = itemHeight;
             viewHolder.root.setLayoutParams(lp);
         }
-        viewHolder.root.setBackgroundResource(R.drawable.nim_semitransparency_selector);
         viewHolder.headImageView.setVisibility(View.GONE);
         viewHolder.titleView.setVisibility(View.GONE);
         viewHolder.detailView.setVisibility(View.GONE);
@@ -184,7 +183,6 @@ public class SettingsAdapter extends BaseAdapter {
         viewHolder.headDetailView.setText(String.format("帐号:%s", DemoCache.getAccount()));
         viewHolder.titleView.setVisibility(View.GONE);
         viewHolder.headImageView.loadBuddyAvatar(DemoCache.getAccount());
-        viewHolder.indicator.setImageResource(R.drawable.nim_arrow_right);
         viewHolder.indicator.setVisibility(View.VISIBLE);
     }
 

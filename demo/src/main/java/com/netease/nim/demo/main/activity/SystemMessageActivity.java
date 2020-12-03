@@ -38,7 +38,6 @@ import com.netease.nimlib.sdk.msg.SystemMessageService;
 import com.netease.nimlib.sdk.msg.constant.SystemMessageStatus;
 import com.netease.nimlib.sdk.msg.constant.SystemMessageType;
 import com.netease.nimlib.sdk.msg.model.SystemMessage;
-import com.netease.nimlib.sdk.superteam.SuperTeamService;
 import com.netease.nimlib.sdk.team.TeamService;
 import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 
@@ -386,7 +385,7 @@ public class SystemMessageActivity extends UI implements TAdapterDelegate,
         };
 
         TeamService teamService = NIMClient.getService(TeamService.class);
-        SuperTeamService superTeamService = NIMClient.getService(SuperTeamService.class);
+
         InvocationFuture<Void> invocationFuture = null;
         String targetId = message.getTargetId();
         String fromAccount = message.getFromAccount();
@@ -398,10 +397,8 @@ public class SystemMessageActivity extends UI implements TAdapterDelegate,
                 invocationFuture = pass ? teamService.passApply(targetId, fromAccount) : teamService.rejectApply(targetId, fromAccount, "");
                 break;
             case SuperTeamInvite:
-                invocationFuture = pass ? superTeamService.acceptInvite(targetId, fromAccount) : superTeamService.declineInvite(targetId, fromAccount, "");
                 break;
             case SuperTeamApply:
-                invocationFuture = pass ? superTeamService.passApply(targetId, fromAccount) : superTeamService.rejectApply(targetId, fromAccount, "");
                 break;
             case AddFriend:
                 invocationFuture = NIMClient.getService(FriendService.class).ackAddFriendRequest(fromAccount, pass);

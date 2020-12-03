@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/empty"
-        android:src="@drawable/nim_main_tab_new_message_notify"
+
         android:visibility="gone"/>
 
     <com.zxn.netease.nimsdk.common.ui.drop.DropFake

@@ -20,8 +20,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:titleTextAppearance="@style/Toolbar.TitleText">
-            <include layout="@layout/nim_action_bar_left_click_tv"/>
-            <include layout="@layout/nim_action_bar_right_clickable_tv" />
         </com.zxn.widget.ExpandToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -167,6 +165,28 @@
                 android:layout_marginTop="10dip"
                 android:padding="15dip"
                 android:text="@string/register"
+                android:textColor="@drawable/register_tip_selector"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/action_bar_right_clickable_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dip"
+                android:padding="15dip"
+                android:text="action_bar_right_clickable_textview"
+                android:textColor="@drawable/register_tip_selector"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/action_bar_left_clickable_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dip"
+                android:padding="15dip"
+                android:text="action_bar_left_clickable_textview"
                 android:textColor="@drawable/register_tip_selector"
                 android:textSize="15sp" />
         </LinearLayout>

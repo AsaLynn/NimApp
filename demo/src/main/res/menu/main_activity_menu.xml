@@ -19,9 +19,6 @@
                 android:id="@+id/create_normal_team"
                 android:title="@string/create_normal_team"/>
             <item
-                android:id="@+id/create_regular_team"
-                android:title="@string/create_advanced_team"/>
-            <item
                 android:id="@+id/search_advanced_team"
                 android:title="@string/search_advanced_team"/>
             <item

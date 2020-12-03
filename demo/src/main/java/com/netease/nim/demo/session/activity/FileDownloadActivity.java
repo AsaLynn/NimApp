@@ -138,6 +138,5 @@ public class FileDownloadActivity extends UI {
     private void onDownloadFailed() {
         fileDownloadBtn.setText("下载");
         fileDownloadBtn.setEnabled(true);
-        fileDownloadBtn.setBackgroundResource(R.drawable.nim_team_create_btn_selector);
     }
 }
