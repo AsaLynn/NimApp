@@ -1,4 +1,3 @@
-include ':faceunity'
 include ':demo'
 include ':netease-nimsdk'
 rootProject.name = "NimApp"
