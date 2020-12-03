@@ -3,14 +3,12 @@ package com.netease.nim.demo.session.model;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.session.fragment.tab.AckMsgTabFragment;
 import com.netease.nim.demo.session.fragment.tab.ReadAckMsgTabFragment;
-import com.netease.nim.demo.session.fragment.tab.UnreadAckMsgTabFragment;
 
 /**
  * Created by winnie on 2018/3/14.
  */
 
 public enum  AckMsgTab {
-    UNREAD(0, AckMsgReminderId.UNREAD, UnreadAckMsgTabFragment.class, R.string.unread, R.layout.ack_msg_unread_layout),
     READ(1, AckMsgReminderId.READ, ReadAckMsgTabFragment.class, R.string.readed, R.layout.ack_msg_readed_layout);
 
     public final int tabIndex;

@@ -106,8 +106,6 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation fileTree(include: '*.aar', dir: 'aar-sdk')
-    implementation project(':avchatkit')
-    implementation project(path: ':rtskit')
     implementation 'com.huawei.hms:push:4.0.4.301'
     implementation 'com.meizu.flyme.internet:push-internal:3.9.7'
     implementation 'com.netease.nimlib:jsbridge:1.3.1'

@@ -15,7 +15,6 @@ import com.netease.nim.demo.main.reminder.ReminderManager;
 import com.netease.nim.demo.session.SessionHelper;
 import com.netease.nim.demo.session.extension.GuessAttachment;
 import com.netease.nim.demo.session.extension.MultiRetweetAttachment;
-import com.netease.nim.demo.session.extension.RTSAttachment;
 import com.netease.nim.demo.session.extension.RedPacketAttachment;
 import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
 import com.netease.nim.demo.session.extension.SnapChatAttachment;
@@ -243,9 +242,7 @@ public class SessionListFragment extends MainTabFragment {
                 if (attachment instanceof GuessAttachment) {
                     GuessAttachment guess = (GuessAttachment) attachment;
                     return guess.getValue().getDesc();
-                } else if (attachment instanceof RTSAttachment) {
-                    return "[白板]";
-                } else if (attachment instanceof StickerAttachment) {
+                }  else if (attachment instanceof StickerAttachment) {
                     return "[贴图]";
                 } else if (attachment instanceof SnapChatAttachment) {
                     return "[阅后即焚]";

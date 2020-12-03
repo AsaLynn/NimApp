@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             android:background="@color/transparent"
             android:padding="@dimen/dp_10"
-            android:src="@drawable/nim_actionbar_dark_back_icon" />
+    />
 
         <TextView
             android:id="@+id/tv_session_name"

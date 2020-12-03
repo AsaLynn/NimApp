@@ -7,23 +7,21 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.netease.nim.avchatkit.activity.AVChatActivity;
-import com.netease.nim.avchatkit.constant.AVChatExtras;
 import com.netease.nim.demo.DemoCache;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.common.util.sys.SysInfoUtil;
 import com.netease.nim.demo.config.preference.Preferences;
 import com.netease.nim.demo.login.LoginActivity;
 import com.netease.nim.demo.mixpush.DemoMixPushMessageHandler;
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.NimIntent;
 import com.netease.nimlib.sdk.mixpush.MixPushService;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.zxn.netease.nimsdk.api.NimUIKit;
+import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -148,8 +146,6 @@ public class WelcomeActivity extends UI {
                     return;
                 } else if (NIMClient.getService(MixPushService.class).isFCMIntent(intent)) {
                     parseFCMNotifyIntent(NIMClient.getService(MixPushService.class).parseFCMPayload(intent));
-                } else if (intent.hasExtra(AVChatExtras.EXTRA_FROM_NOTIFICATION) || intent.hasExtra(AVChatActivity.INTENT_ACTION_AVCHAT)) {
-                    parseNormalIntent(intent);
                 }
             }
 

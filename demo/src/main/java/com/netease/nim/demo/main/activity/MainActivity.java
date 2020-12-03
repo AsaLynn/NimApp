@@ -10,14 +10,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
-
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.netease.nim.avchatkit.AVChatProfile;
-import com.netease.nim.avchatkit.activity.AVChatActivity;
-import com.netease.nim.avchatkit.constant.AVChatExtras;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.common.ui.viewpager.FadeInOutPageTransformer;
 import com.netease.nim.demo.common.ui.viewpager.PagerSlidingTabStrip;
@@ -171,20 +166,6 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
                     SessionHelper.startTeamSession(this, message.getSessionId());
                     break;
             }
-            return true;
-        }
-        if (intent.hasExtra(AVChatActivity.INTENT_ACTION_AVCHAT) &&
-            AVChatProfile.getInstance().isAVChatting()) {
-            intent.removeExtra(AVChatActivity.INTENT_ACTION_AVCHAT);
-            Intent localIntent = new Intent();
-            localIntent.setClass(this, AVChatActivity.class);
-            startActivity(localIntent);
-            return true;
-        }
-        String account = intent.getStringExtra(AVChatExtras.EXTRA_ACCOUNT);
-        if (intent.hasExtra(AVChatExtras.EXTRA_FROM_NOTIFICATION) && !TextUtils.isEmpty(account)) {
-            intent.removeExtra(AVChatExtras.EXTRA_FROM_NOTIFICATION);
-            SessionHelper.startP2PSession(this, account);
             return true;
         }
         return false;

@@ -69,13 +69,12 @@ public class AckMsgInfoActivity extends UI implements ViewPager.OnPageChangeList
         IMMessage message = (IMMessage) getIntent().getSerializableExtra(AckMsgInfoActivity.EXTRA_MESSAGE);
         viewModel = ViewModelProviders.of(this).get(AckMsgViewModel.class);
         viewModel.init(message);
-        unreadItem = new ReminderItem(AckMsgTab.UNREAD.reminderId);
+
         readItem = new ReminderItem(AckMsgTab.READ.reminderId);
         viewModel.getTeamMsgAckInfo().observe(this, new Observer<TeamMsgAckInfo>() {
             @Override
             public void onChanged(@Nullable TeamMsgAckInfo teamMsgAckInfo) {
                 unreadItem.setUnread(teamMsgAckInfo.getUnAckCount());
-                updateReminder(unreadItem, AckMsgTab.UNREAD.reminderId);
 
                 readItem.setUnread(teamMsgAckInfo.getAckCount());
                 updateReminder(readItem, AckMsgTab.READ.reminderId);

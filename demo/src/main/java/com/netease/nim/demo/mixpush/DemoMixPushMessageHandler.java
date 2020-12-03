@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.SparseArray;
 
-import com.netease.nim.avchatkit.AVChatKit;
 import com.netease.nim.demo.DemoCache;
 import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.netease.nimlib.sdk.NimIntent;
@@ -78,14 +77,6 @@ public class DemoMixPushMessageHandler implements MixPushMessageHandler {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (manager != null) {
             manager.cancelAll();
-            SparseArray<Notification> nos = AVChatKit.getNotifications();
-            if (nos != null) {
-                int key = 0;
-                for (int i = 0; i < nos.size(); i++) {
-                    key = nos.keyAt(i);
-                    manager.notify(key, nos.get(key));
-                }
-            }
         }
         return true;
     }

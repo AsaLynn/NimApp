@@ -8,17 +8,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.netease.nim.demo.R;
-import com.netease.nim.demo.session.extension.RTSAttachment;
 import com.netease.nim.demo.session.extension.RedPacketAttachment;
 import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
 import com.netease.nim.demo.session.extension.SnapChatAttachment;
 import com.netease.nim.demo.session.extension.StickerAttachment;
-import com.netease.nim.rtskit.common.dialog.EasyAlertDialog;
 import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
 import com.zxn.netease.nimsdk.common.CommonUtil;
 import com.zxn.netease.nimsdk.common.ToastHelper;
 import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
 import com.zxn.netease.nimsdk.common.activity.UI;
+import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialog;
 import com.zxn.netease.nimsdk.common.util.string.StringUtil;
 import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
@@ -497,7 +496,7 @@ public class MsgMigrationActivity extends UI implements View.OnClickListener {
                 }
 
                 //  过滤 白板、贴图、阅后即焚、红包消息。
-                if (attachment instanceof RTSAttachment ||
+                if (
                         attachment instanceof StickerAttachment ||
                         attachment instanceof SnapChatAttachment ||
                         attachment instanceof RedPacketAttachment ||
