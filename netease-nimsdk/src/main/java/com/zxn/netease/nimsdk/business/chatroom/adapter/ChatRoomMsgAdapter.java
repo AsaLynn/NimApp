@@ -1,7 +1,6 @@
 package com.zxn.netease.nimsdk.business.chatroom.adapter;
 
 import android.view.View;
-
 import com.zxn.netease.nimsdk.R;
 import com.zxn.netease.nimsdk.business.chatroom.viewholder.ChatRoomMsgViewHolderBase;
 import com.zxn.netease.nimsdk.business.chatroom.viewholder.ChatRoomMsgViewHolderFactory;
@@ -11,7 +10,6 @@ import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder;
 import com.netease.nimlib.sdk.chatroom.model.ChatRoomMessage;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
