@@ -181,8 +181,9 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
             return defaultValue;
         }
         IMMessage msg = msgList.get(0);
-        SessionCustomization sessionCustomization = SessionTypeEnum.P2P == msg.getSessionType() ?
-                NimUIKit.getCommonP2PSessionCustomization() : NimUIKit.getCommonTeamSessionCustomization();
+        SessionCustomization sessionCustomization
+                = SessionTypeEnum.P2P == msg.getSessionType() ? NimUIKit.getCommonP2PSessionCustomization()
+                : NimUIKit.getCommonTeamSessionCustomization();
         return sessionCustomization.getMessageDigest(msg);
     }
 

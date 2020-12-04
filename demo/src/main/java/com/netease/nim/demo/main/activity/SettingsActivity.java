@@ -1,6 +1,5 @@
 package com.netease.nim.demo.main.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import com.netease.nimlib.sdk.NotificationFoldStyle;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
-import com.netease.nimlib.sdk.ResponseCode;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.misc.DirCacheFileType;
@@ -37,9 +35,7 @@ import com.netease.nimlib.sdk.settings.SettingsServiceObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by hzxuwen on 2015/6/26.
- */
+
 public class SettingsActivity extends UI implements SettingsAdapter.SwitchChangeListener, SettingsAdapter.CheckChangeListener {
 
     private static final int TAG_HEAD = 1;

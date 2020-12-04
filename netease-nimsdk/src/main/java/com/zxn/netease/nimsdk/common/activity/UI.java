@@ -3,20 +3,19 @@ package com.zxn.netease.nimsdk.common.activity;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.zxn.netease.nimsdk.common.fragment.TFragment;
-import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.zxn.netease.nimsdk.common.util.sys.ReflectionUtil;
 
 import java.util.ArrayList;
@@ -30,16 +29,6 @@ public abstract class UI extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        LogUtil.ui("activity: " + getClass().getSimpleName() + " onCreate()");
-    }
 
     @Override
     public void onBackPressed() {
@@ -50,19 +39,7 @@ public abstract class UI extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        LogUtil.ui("activity: " + getClass().getSimpleName() + " onDestroy()");
         destroyed = true;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     @Override
@@ -114,7 +91,6 @@ public abstract class UI extends AppCompatActivity {
         if (toolbar != null) {
             return toolbar.getHeight();
         }
-
         return 0;
     }
 
@@ -169,12 +145,9 @@ public abstract class UI extends AppCompatActivity {
             focus.requestFocus();
         }
 
-        getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (viewToFocus == null || viewToFocus.isFocused()) {
-                    showKeyboard(true);
-                }
+        getHandler().postDelayed(() -> {
+            if (viewToFocus == null || viewToFocus.isFocused()) {
+                showKeyboard(true);
             }
         }, 200);
     }
@@ -265,12 +238,10 @@ public abstract class UI extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_MENU:
-                return onMenuKeyDown();
-
-            default:
-                return super.onKeyDown(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_MENU){
+            return onMenuKeyDown();
+        }else {
+            return super.onKeyDown(keyCode, event);
         }
     }
 

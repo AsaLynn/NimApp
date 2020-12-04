@@ -1,165 +1,159 @@
-package com.zxn.netease.nimsdk.business.session.fragment;
+package com.zxn.netease.nimsdk.business.session.fragment
 
-import android.content.Intent;
-import android.media.AudioManager;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.Observer;
-import com.netease.nimlib.sdk.RequestCallback;
-import com.netease.nimlib.sdk.ResponseCode;
-import com.netease.nimlib.sdk.msg.MessageBuilder;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.MsgServiceObserve;
-import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
-import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
-import com.netease.nimlib.sdk.msg.model.CustomMessageConfig;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.netease.nimlib.sdk.msg.model.MemberPushOption;
-import com.netease.nimlib.sdk.msg.model.MessageReceipt;
-import com.netease.nimlib.sdk.robot.model.RobotMsgType;
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.api.UIKitOptions;
-import com.zxn.netease.nimsdk.api.model.main.CustomPushContentProvider;
-import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
-import com.zxn.netease.nimsdk.business.ait.AitManager;
-import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
-import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction;
-import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction;
-import com.zxn.netease.nimsdk.business.session.constant.Extras;
-import com.zxn.netease.nimsdk.business.session.module.Container;
-import com.zxn.netease.nimsdk.business.session.module.ModuleProxy;
-import com.zxn.netease.nimsdk.business.session.module.input.InputPanel;
-import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx;
-import com.zxn.netease.nimsdk.common.CommonUtil;
-import com.zxn.netease.nimsdk.common.fragment.TFragment;
-import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
-import com.zxn.utils.UIUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import android.content.Intent
+import android.media.AudioManager
+import android.os.Bundle
+import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.Observer
+import com.netease.nimlib.sdk.RequestCallback
+import com.netease.nimlib.sdk.ResponseCode
+import com.netease.nimlib.sdk.msg.MessageBuilder
+import com.netease.nimlib.sdk.msg.MsgService
+import com.netease.nimlib.sdk.msg.MsgServiceObserve
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum
+import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
+import com.netease.nimlib.sdk.msg.model.CustomMessageConfig
+import com.netease.nimlib.sdk.msg.model.IMMessage
+import com.netease.nimlib.sdk.msg.model.MemberPushOption
+import com.netease.nimlib.sdk.msg.model.MessageReceipt
+import com.netease.nimlib.sdk.robot.model.RobotMsgType
+import com.zxn.netease.nimsdk.R
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
+import com.zxn.netease.nimsdk.business.ait.AitManager
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction
+import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction
+import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction
+import com.zxn.netease.nimsdk.business.session.constant.Extras
+import com.zxn.netease.nimsdk.business.session.module.Container
+import com.zxn.netease.nimsdk.business.session.module.ModuleProxy
+import com.zxn.netease.nimsdk.business.session.module.input.InputPanel
+import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx
+import com.zxn.netease.nimsdk.common.CommonUtil.isEmpty
+import com.zxn.netease.nimsdk.common.fragment.TFragment
+import com.zxn.netease.nimsdk.impl.NimUIKitImpl
+import com.zxn.utils.UIUtils
+import java.util.*
 
 /**
  * 聊天界面基类
  */
-public class MessageFragment extends TFragment implements ModuleProxy {
+open class MessageFragment : TFragment(), ModuleProxy {
 
-    private View rootView;
-
-    private SessionCustomization customization;
-
-    protected static final String TAG = "MessageActivity";
-
-    // p2p对方Account或者群id
-    protected String sessionId;
-
-    protected SessionTypeEnum sessionType;
-
-    // modules
-    protected InputPanel inputPanel;
-    protected MessageListPanelEx messageListPanel;
-
-    protected AitManager aitManager;
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        parseIntent();
-        UIUtils.init(getContext());
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.nim_message_fragment, container, false);
-        return rootView;
-    }
+    private var rootView: View? = null
+    private var customization: SessionCustomization? = null
 
     /**
-     * ***************************** life cycle *******************************
+     * p2p对方Account或者群id
      */
+    protected var sessionId: String? = null
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    /**
+     * 会话类型
+     */
+    protected var sessionType: SessionTypeEnum? = null
 
-        NIMClient.getService(MsgService.class).setChattingAccount(MsgService.MSG_CHATTING_ACCOUNT_NONE, SessionTypeEnum.None);
-        inputPanel.onPause();
-        messageListPanel.onPause();
+    // modules
+    protected var inputPanel: InputPanel? = null
+    protected var messageListPanel: MessageListPanelEx? = null
+    protected var aitManager: AitManager? = null
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        parseIntent()
+        UIUtils.init(context)
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        messageListPanel.onResume();
-        NIMClient.getService(MsgService.class).setChattingAccount(sessionId, sessionType);
-        getActivity().setVolumeControlStream(AudioManager.STREAM_VOICE_CALL); // 默认使用听筒播放
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        rootView = inflater.inflate(R.layout.nim_message_fragment, container, false)
+        return rootView
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        messageListPanel.onDestroy();
-        registerObservers(false);
+    override fun onPause() {
+        super.onPause()
+        NIMClient.getService(MsgService::class.java)
+            .setChattingAccount(MsgService.MSG_CHATTING_ACCOUNT_NONE, SessionTypeEnum.None)
+        inputPanel!!.onPause()
+        messageListPanel!!.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        messageListPanel!!.onResume()
+        NIMClient.getService(MsgService::class.java).setChattingAccount(sessionId, sessionType)
+        activity!!.volumeControlStream = AudioManager.STREAM_VOICE_CALL // 默认使用听筒播放
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        messageListPanel!!.onDestroy()
+        registerObservers(false)
         if (inputPanel != null) {
-            inputPanel.onDestroy();
+            inputPanel!!.onDestroy()
         }
         if (aitManager != null) {
-            aitManager.reset();
+            aitManager!!.reset()
         }
     }
 
-    public boolean onBackPressed() {
-        return inputPanel.collapse(true);
+    fun onBackPressed(): Boolean {
+        return inputPanel!!.collapse(true)
     }
 
-    public void refreshMessageList() {
-        messageListPanel.refreshMessageList();
+    fun refreshMessageList() {
+        messageListPanel!!.refreshMessageList()
     }
 
+    private fun parseIntent() {
+        var anchor: IMMessage? = null
+        arguments?.let {
+            sessionId = it.getString(Extras.EXTRA_ACCOUNT)
+            sessionType = it.getSerializable(Extras.EXTRA_TYPE) as SessionTypeEnum?
+            anchor = it.getSerializable(Extras.EXTRA_ANCHOR) as IMMessage?
+            customization =
+                it.getSerializable(Extras.EXTRA_CUSTOMIZATION) as SessionCustomization?
+        }
 
-    private void parseIntent() {
-        Bundle arguments = getArguments();
-        sessionId = arguments.getString(Extras.EXTRA_ACCOUNT);
-        sessionType = (SessionTypeEnum) arguments.getSerializable(Extras.EXTRA_TYPE);
-        IMMessage anchor = (IMMessage) arguments.getSerializable(Extras.EXTRA_ANCHOR);
-
-        customization = (SessionCustomization) arguments.getSerializable(Extras.EXTRA_CUSTOMIZATION);
-        Container container = new Container(getActivity(), sessionId, sessionType, this, true);
-
+        val container = Container(activity, sessionId, sessionType, this, true)
         if (messageListPanel == null) {
-            messageListPanel = new MessageListPanelEx(container, rootView, anchor, false, false, customization);
+            messageListPanel =
+                MessageListPanelEx(container, rootView, anchor, false, false, customization)
         } else {
-            messageListPanel.reload(container, anchor);
+            messageListPanel!!.reload(container, anchor)
         }
-
         if (inputPanel == null) {
-            inputPanel = new InputPanel(container, rootView, getActionList());
-            inputPanel.setCustomization(customization);
+            inputPanel = InputPanel(container, rootView, actionList)
+            inputPanel!!.setCustomization(customization)
         } else {
-            inputPanel.reload(container, customization);
+            inputPanel!!.reload(container, customization)
         }
-
-        initAitManager();
-
-        registerObservers(true);
-
+        initAitManager()
+        registerObservers(true)
         if (customization != null) {
-            messageListPanel.setChattingBackground(customization.backgroundUri, customization.backgroundColor);
+            messageListPanel!!.setChattingBackground(
+                customization!!.backgroundUri,
+                customization!!.backgroundColor
+            )
         }
     }
 
-    private void initAitManager() {
-        UIKitOptions options = NimUIKitImpl.getOptions();
+    private fun initAitManager() {
+        val options = NimUIKitImpl.getOptions()
         if (options.aitEnable) {
-            aitManager = new AitManager(getContext(), options.aitTeamMember && sessionType == SessionTypeEnum.Team ? sessionId : null, options.aitIMRobot);
-            inputPanel.addAitTextWatcher(aitManager);
-            aitManager.setTextChangeListener(inputPanel);
+            aitManager = AitManager(
+                context,
+                if (options.aitTeamMember && sessionType == SessionTypeEnum.Team) sessionId else null,
+                options.aitIMRobot
+            )
+            inputPanel!!.addAitTextWatcher(aitManager)
+            aitManager!!.setTextChangeListener(inputPanel)
         }
     }
 
@@ -167,229 +161,230 @@ public class MessageFragment extends TFragment implements ModuleProxy {
      * ************************* 消息收发 **********************************
      */
     // 是否允许发送消息
-    protected boolean isAllowSendMessage(final IMMessage message) {
-        return customization.isAllowSendMessage(message);
+    protected fun isAllowSendMessage(message: IMMessage?): Boolean {
+        customization?.let {
+            return it.isAllowSendMessage(message)
+        }
+        return true
     }
 
-
-    private void registerObservers(boolean register) {
-        MsgServiceObserve service = NIMClient.getService(MsgServiceObserve.class);
-        service.observeReceiveMessage(incomingMessageObserver, register);
+    private fun registerObservers(register: Boolean) {
+        val service = NIMClient.getService(
+            MsgServiceObserve::class.java
+        )
+        service.observeReceiveMessage(incomingMessageObserver, register)
         // 已读回执监听
         if (NimUIKitImpl.getOptions().shouldHandleReceipt) {
-            service.observeMessageReceipt(messageReceiptObserver, register);
+            service.observeMessageReceipt(messageReceiptObserver, register)
         }
     }
 
     /**
      * 消息接收观察者
      */
-    Observer<List<IMMessage>> incomingMessageObserver = (Observer<List<IMMessage>>) messages -> onMessageIncoming(messages);
+    var incomingMessageObserver =
+        Observer { messages: List<IMMessage?> -> onMessageIncoming(messages) } as Observer<List<IMMessage?>>
 
-    private void onMessageIncoming(List<IMMessage> messages) {
-        if (CommonUtil.isEmpty(messages)) {
-            return;
+    private fun onMessageIncoming(messages: List<IMMessage?>) {
+        if (isEmpty(messages)) {
+            return
         }
-        messageListPanel.onIncomingMessage(messages);
+        messageListPanel!!.onIncomingMessage(messages)
         // 发送已读回执
-        messageListPanel.sendReceipt();
+        messageListPanel!!.sendReceipt()
     }
 
     /**
      * 已读回执观察者
      */
-    private final Observer<List<MessageReceipt>> messageReceiptObserver = new Observer<List<MessageReceipt>>() {
-        @Override
-        public void onEvent(List<MessageReceipt> messageReceipts) {
-            messageListPanel.receiveReceipt();
+    private val messageReceiptObserver: Observer<List<MessageReceipt>> =
+        Observer<List<MessageReceipt>> {
+            messageListPanel!!.receiveReceipt()
         }
-    };
-
 
     /**
      * ********************** implements ModuleProxy *********************
      */
-    @Override
-    public boolean sendMessage(IMMessage message) {
+    override fun sendMessage(message: IMMessage?): Boolean {
+        var message = message
         if (isAllowSendMessage(message)) {
-            appendTeamMemberPush(message);
-            message = changeToRobotMsg(message);
-            appendPushConfigAndSend(message);
+            appendTeamMemberPush(message)
+            message = changeToRobotMsg(message)
+            appendPushConfigAndSend(message)
         } else {
             // 替换成tip
-            message = MessageBuilder.createTipMessage(message.getSessionId(), message.getSessionType());
-            message.setContent("该消息无法发送");
-            message.setStatus(MsgStatusEnum.success);
-            NIMClient.getService(MsgService.class).saveMessageToLocal(message, false);
+            message = MessageBuilder.createTipMessage(message!!.sessionId, message.sessionType)
+            message.content = "该消息无法发送"
+            message.status = MsgStatusEnum.success
+            NIMClient.getService(MsgService::class.java).saveMessageToLocal(message, false)
         }
-
-        messageListPanel.onMsgSend(message);
+        messageListPanel!!.onMsgSend(message)
         if (aitManager != null) {
-            aitManager.reset();
+            aitManager!!.reset()
         }
-        return true;
+        return true
     }
 
-    private void appendPushConfigAndSend(IMMessage message) {
-        final IMMessage msg = message;
-        appendPushConfig(message);
-        MsgService service = NIMClient.getService(MsgService.class);
+    private fun appendPushConfigAndSend(message: IMMessage?) {
+        appendPushConfig(message)
+        val service = NIMClient.getService(MsgService::class.java)
         // send message to server and save to db
-        final IMMessage replyMsg = inputPanel.getReplyMessage();
+        val replyMsg = inputPanel!!.replyMessage
         if (replyMsg == null) {
-            service.sendMessage(message, false).setCallback(new RequestCallback<Void>() {
-                @Override
-                public void onSuccess(Void param) {
+            service.sendMessage(message, false).setCallback(object : RequestCallback<Void?> {
+                override fun onSuccess(param: Void?) {}
+                override fun onFailed(code: Int) {
+                    sendFailWithBlackList(code, message)
                 }
 
-                @Override
-                public void onFailed(int code) {
-                    sendFailWithBlackList(code, msg);
-                }
-
-                @Override
-                public void onException(Throwable exception) {
-
-                }
-            });
+                override fun onException(exception: Throwable) {}
+            })
         } else {
-            service.replyMessage(message, replyMsg, false).setCallback(new RequestCallback<Void>() {
-                @Override
-                public void onSuccess(Void param) {
-                    String threadId = message.getThreadOption().getThreadMsgIdClient();
-                    messageListPanel.refreshMessageItem(threadId);
-                }
+            service.replyMessage(message, replyMsg, false)
+                .setCallback(object : RequestCallback<Void?> {
+                    override fun onSuccess(param: Void?) {
+                        val threadId = message!!.threadOption.threadMsgIdClient
+                        messageListPanel!!.refreshMessageItem(threadId)
+                    }
 
-                @Override
-                public void onFailed(int code) {
-                    sendFailWithBlackList(code, msg);
-                }
+                    override fun onFailed(code: Int) {
+                        sendFailWithBlackList(code, message)
+                    }
 
-                @Override
-                public void onException(Throwable exception) {
-
-                }
-            });
+                    override fun onException(exception: Throwable) {}
+                })
         }
-        inputPanel.resetReplyMessage();
+        inputPanel!!.resetReplyMessage()
     }
 
     // 被对方拉入黑名单后，发消息失败的交互处理
-    private void sendFailWithBlackList(int code, IMMessage msg) {
-        if (code == ResponseCode.RES_IN_BLACK_LIST) {
+    private fun sendFailWithBlackList(code: Int, msg: IMMessage?) {
+        if (code == ResponseCode.RES_IN_BLACK_LIST.toInt()) {
             // 如果被对方拉入黑名单，发送的消息前不显示重发红点
-            msg.setStatus(MsgStatusEnum.success);
-            NIMClient.getService(MsgService.class).updateIMMessageStatus(msg);
-            messageListPanel.refreshMessageList();
+            msg!!.status = MsgStatusEnum.success
+            NIMClient.getService(MsgService::class.java).updateIMMessageStatus(msg)
+            messageListPanel!!.refreshMessageList()
             // 同时，本地插入被对方拒收的tip消息
-            IMMessage tip = MessageBuilder.createTipMessage(msg.getSessionId(), msg.getSessionType());
-            tip.setContent(getActivity().getString(R.string.black_list_send_tip));
-            tip.setStatus(MsgStatusEnum.success);
-            CustomMessageConfig config = new CustomMessageConfig();
-            config.enableUnreadCount = false;
-            tip.setConfig(config);
-            NIMClient.getService(MsgService.class).saveMessageToLocal(tip, true);
+            val tip = MessageBuilder.createTipMessage(msg.sessionId, msg.sessionType)
+            tip.content = activity!!.getString(R.string.black_list_send_tip)
+            tip.status = MsgStatusEnum.success
+            val config = CustomMessageConfig()
+            config.enableUnreadCount = false
+            tip.config = config
+            NIMClient.getService(MsgService::class.java).saveMessageToLocal(tip, true)
         }
     }
 
-    private void appendTeamMemberPush(IMMessage message) {
+    private fun appendTeamMemberPush(message: IMMessage?) {
         if (aitManager == null) {
-            return;
+            return
         }
         if (sessionType == SessionTypeEnum.Team) {
-            List<String> pushList = aitManager.getAitTeamMember();
+            val pushList = aitManager!!.aitTeamMember
             if (pushList == null || pushList.isEmpty()) {
-                return;
+                return
             }
-            MemberPushOption memberPushOption = new MemberPushOption();
-            memberPushOption.setForcePush(true);
-            memberPushOption.setForcePushContent(message.getContent());
-            memberPushOption.setForcePushList(pushList);
-            message.setMemberPushOption(memberPushOption);
+            val memberPushOption = MemberPushOption()
+            memberPushOption.isForcePush = true
+            memberPushOption.forcePushContent = message!!.content
+            memberPushOption.forcePushList = pushList
+            message.memberPushOption = memberPushOption
         }
     }
 
-    private IMMessage changeToRobotMsg(IMMessage message) {
+    private fun changeToRobotMsg(message: IMMessage?): IMMessage? {
+        var message = message
         if (aitManager == null) {
-            return message;
+            return message
         }
-        if (message.getMsgType() == MsgTypeEnum.robot) {
-            return message;
+        if (message!!.msgType == MsgTypeEnum.robot) {
+            return message
         }
-        String robotAccount = aitManager.getAitRobot();
+        val robotAccount = aitManager!!.aitRobot
         if (TextUtils.isEmpty(robotAccount)) {
-            return message;
+            return message
         }
-        String text = message.getContent();
-        String content = aitManager.removeRobotAitString(text, robotAccount);
-        content = content.equals("") ? " " : content;
-        message = MessageBuilder.createRobotMessage(message.getSessionId(), message.getSessionType(), robotAccount, text, RobotMsgType.TEXT, content, null, null);
-        return message;
+        val text = message.content
+        var content = aitManager!!.removeRobotAitString(text, robotAccount)
+        content = if (content == "") " " else content
+        message = MessageBuilder.createRobotMessage(
+            message.sessionId,
+            message.sessionType,
+            robotAccount,
+            text,
+            RobotMsgType.TEXT,
+            content,
+            null,
+            null
+        )
+        return message
     }
 
-    private void appendPushConfig(IMMessage message) {
-        CustomPushContentProvider customConfig = NimUIKitImpl.getCustomPushContentProvider();
-        if (customConfig == null) {
-            return;
-        }
-        String content = customConfig.getPushContent(message);
-        Map<String, Object> payload = customConfig.getPushPayload(message);
+    private fun appendPushConfig(message: IMMessage?) {
+        val customConfig = NimUIKitImpl.getCustomPushContentProvider() ?: return
+        val content = customConfig.getPushContent(message)
+        val payload = customConfig.getPushPayload(message)
         if (!TextUtils.isEmpty(content)) {
-            message.setPushContent(content);
+            message!!.pushContent = content
         }
         if (payload != null) {
-            message.setPushPayload(payload);
+            message!!.pushPayload = payload
         }
-
     }
 
-    @Override
-    public void onInputPanelExpand() {
-        messageListPanel.scrollToBottom();
+    override fun onInputPanelExpand() {
+        messageListPanel!!.scrollToBottom()
     }
 
-    @Override
-    public void shouldCollapseInputPanel() {
-        inputPanel.collapse(false);
+    override fun shouldCollapseInputPanel() {
+        inputPanel!!.collapse(false)
     }
 
-    @Override
-    public boolean isLongClickEnabled() {
-        return !inputPanel.isRecording();
-    }
+    override val isLongClickEnabled: Boolean
+        get() = !inputPanel!!.isRecording
 
-    @Override
-    public void onItemFooterClick(IMMessage message) {
+    override fun onItemFooterClick(message: IMMessage?) {
         if (aitManager == null) {
-            return;
+            return
         }
     }
 
-    @Override
-    public void onReplyMessage(IMMessage message) {
-        inputPanel.setReplyMessage(message);
+    override fun onReplyMessage(message: IMMessage?) {
+        inputPanel!!.replyMessage = message
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (aitManager != null) {
-            aitManager.onActivityResult(requestCode, resultCode, data);
+            aitManager!!.onActivityResult(requestCode, resultCode, data)
         }
-        inputPanel.onActivityResult(requestCode, resultCode, data);
-        messageListPanel.onActivityResult(requestCode, resultCode, data);
+        inputPanel!!.onActivityResult(requestCode, resultCode, data)
+        messageListPanel!!.onActivityResult(requestCode, resultCode, data)
     }
 
     // 操作面板集合
-    protected List<BaseAction> getActionList() {
-        List<BaseAction> actions = new ArrayList<>();
-        if (customization != null && customization.actions != null) {
-            actions.addAll(customization.actions);
-        } else {
-            actions.add(new SelectImageAction());
-            actions.add(new TakePictureAction());
+    protected val actionList: List<BaseAction>
+        protected get() {
+            val actions: MutableList<BaseAction> = ArrayList()
+            if (customization != null && customization!!.actions != null) {
+                actions.addAll(customization!!.actions)
+            } else {
+                actions.add(SelectImageAction())
+                actions.add(TakePictureAction())
+            }
+            return actions
         }
-        return actions;
-    }
 
+    companion object {
+        protected const val TAG = "MessageActivity"
+
+        fun newInstance(account: String?, type: SessionTypeEnum?,customization: SessionCustomization?): MessageFragment =
+            MessageFragment().apply {
+                arguments = Bundle().apply {
+                    putString(Extras.EXTRA_ACCOUNT, account)
+                    putSerializable(Extras.EXTRA_TYPE, type)
+                    putSerializable(Extras.EXTRA_CUSTOMIZATION, customization)
+                }
+            }
+    }
 }

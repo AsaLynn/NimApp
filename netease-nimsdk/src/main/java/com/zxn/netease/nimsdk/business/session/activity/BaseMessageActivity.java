@@ -27,9 +27,7 @@ import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
 
 import java.util.List;
 
-/**
- * Created by zhoujianghua on 2015/9/10.
- */
+
 public abstract class BaseMessageActivity extends UI {
 
     protected String sessionId;

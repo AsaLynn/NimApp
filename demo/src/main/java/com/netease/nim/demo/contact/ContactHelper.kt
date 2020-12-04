@@ -3,6 +3,7 @@ package com.netease.nim.demo.contact
 import android.content.Context
 import com.netease.nim.demo.contact.activity.UserProfileActivity
 import com.netease.nim.demo.msg.MsgActivity
+import com.netease.nim.demo.session.SessionHelper
 import com.zxn.netease.nimsdk.api.NimUIKit
 import com.zxn.netease.nimsdk.api.model.contact.ContactEventListener
 
@@ -20,9 +21,9 @@ object ContactHelper {
             override fun onItemClick(context: Context?, account: String?) {
                 //UserProfileActivity.start(context, account);
                 //NimUIKit.startP2PSession(context, account)
-                //msg,MsgActivity
                 context?.let {
-                    MsgActivity.jumpTo(context,account)
+                    MsgActivity.jumpTo(context,account, SessionHelper.p2pCustomization)
+                   //NimUIKit.startP2PSession(context, account)
                 }
             }
 

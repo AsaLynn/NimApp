@@ -3,9 +3,7 @@ package com.zxn.netease.nimsdk.business.session.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.zxn.netease.nimsdk.common.ToastHelper;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zxn.netease.nimsdk.R;
@@ -26,9 +24,7 @@ import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
-
 import java.util.List;
-import java.util.Set;
 
 
 /**

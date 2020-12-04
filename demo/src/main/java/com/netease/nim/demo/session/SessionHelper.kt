@@ -41,7 +41,7 @@ import java.util.*
  */
 object SessionHelper {
 
-    private var p2pCustomization: SessionCustomization = SessionCustomization().apply {
+    var p2pCustomization: SessionCustomization = SessionCustomization().apply {
 
         this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
 
