@@ -6,7 +6,9 @@ import android.os.Build;
 import android.os.Process;
 import android.text.TextUtils;
 import android.webkit.WebView;
+
 import androidx.multidex.MultiDex;
+
 import com.heytap.msp.push.HeytapPushManager;
 import com.netease.nim.demo.common.util.crash.AppCrashHandler;
 import com.netease.nim.demo.config.preference.Preferences;
@@ -15,24 +17,13 @@ import com.netease.nim.demo.contact.ContactHelper;
 import com.netease.nim.demo.event.DemoOnlineStateContentProvider;
 import com.netease.nim.demo.mixpush.DemoPushContentProvider;
 import com.netease.nim.demo.session.SessionHelper;
-import com.netease.nim.demo.ysf.imageloader.GlideImageLoader;
-import com.netease.nim.demo.ysf.util.YsfHelper;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.util.NIMUtil;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.OnBotEventListener;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.QuickEntry;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.QuickEntryListener;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.UICustomization;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.UnicornImageLoader;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.YSFOptions;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.privatization.UnicornAddress;
 import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.api.UIKitOptions;
 import com.zxn.netease.nimsdk.business.contact.core.query.PinYin;
-import com.zxn.netease.nimsdk.common.ToastHelper;
 import com.zxn.utils.UIUtils;
 
 public class NimApplication extends Application {
@@ -92,13 +83,13 @@ public class NimApplication extends Application {
     }
 
     private void initMixSdk() {
-        UnicornImageLoader imageLoader;
-        imageLoader = new GlideImageLoader(this);
+//        UnicornImageLoader imageLoader;
+//        imageLoader = new GlideImageLoader(this);
         //内部已经初始化了 Nim baseSDK
-        Unicorn.init(this, YsfHelper.readAppKey(this), mixOptions(), imageLoader);
+//        Unicorn.init(this, YsfHelper.readAppKey(this), mixOptions(), imageLoader);
     }
 
-    private YSFOptions mixOptions() {
+    /*private YSFOptions mixOptions() {
         YSFOptions options = new YSFOptions();
         if (options.uiCustomization == null) {
             options.uiCustomization = new UICustomization();
@@ -129,7 +120,7 @@ public class NimApplication extends Application {
             options.unicornAddress = unicornAddress;
         }
         return options;
-    }
+    }*/
 
     private LoginInfo getLoginInfo() {
         String account = Preferences.getUserAccount();

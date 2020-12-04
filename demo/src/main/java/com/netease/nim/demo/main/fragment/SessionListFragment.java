@@ -35,7 +35,7 @@ import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
+//import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -225,7 +225,7 @@ public class SessionListFragment extends MainTabFragment {
                         ToastHelper.showToast(getActivity(), "超大群开发者按需实现");
                         break;
                     case Ysf:
-                        Unicorn.openServiceActivity(getContext(), "七鱼测试", null);
+                        //Unicorn.openServiceActivity(getContext(), "七鱼测试", null);
                         break;
                     default:
                         break;

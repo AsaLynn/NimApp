@@ -41,7 +41,7 @@ import com.netease.nimlib.sdk.msg.SystemMessageService;
 import com.netease.nimlib.sdk.msg.model.CustomNotification;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
-import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
+//import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
 import java.util.ArrayList;
 
 /**
@@ -323,7 +323,7 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
                 GlobalSearchActivity.start(MainActivity.this);
                 break;
             case R.id.enter_ysf:
-                Unicorn.openServiceActivity(this, "七鱼测试", null);
+                //Unicorn.openServiceActivity(this, "七鱼测试", null);
                 break;
             default:
                 break;
