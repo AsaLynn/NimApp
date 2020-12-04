@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Environment;
 import android.text.TextUtils;
-
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.main.activity.WelcomeActivity;
 import com.zxn.netease.nimsdk.api.wrapper.MessageRevokeTip;
@@ -22,11 +21,8 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 import java.io.IOException;
 
 /**
- * Created by hzchenkang on 2017/9/26.
- * <p>
  * 云信sdk 自定义的SDK选项设置
  */
-
 class NimSDKOptionConfig {
 
     static SDKOptions getSDKOptions(Context context) {

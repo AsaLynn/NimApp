@@ -40,7 +40,6 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends RecyclerView.Adapter<K> implements IRecyclerView {
 
     private static final String TAG = BaseFetchLoadAdapter.class.getSimpleName();
-    private int mItemViewTypePosition;
 
     // fetch more
     public interface RequestFetchMoreListener {
@@ -73,7 +72,7 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
     // animation
     private boolean mAnimationShowFirstOnly = true;
     private boolean mOpenAnimationEnable = false;
-    private final Interpolator mInterpolator = new LinearInterpolator();
+    private Interpolator mInterpolator = new LinearInterpolator();
     private int mAnimationDuration = 200;
     private int mLastPosition = -1;
 
@@ -188,12 +187,10 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
         if (mRequestFetchMoreListener == null || !mFetchMoreEnable) {
             return 0;
         }
-        /*if (mItemViewTypePosition == 0) {
-            mNextFetchEnable = true;
-        }*/
         if (!mNextFetchEnable && mFetchMoreView.isLoadEndMoreGone()) {
             return 0;
         }
+
         return 1;
     }
 
@@ -281,8 +278,7 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
             return;
         }
         mFetching = false;
-        //mNextFetchEnable = false;
-        mNextFetchEnable = mItemViewTypePosition == 0;
+        mNextFetchEnable = false;
         mFetchMoreView.setLoadMoreEndGone(gone);
         if (gone) {
             notifyItemRemoved(0);
@@ -630,14 +626,13 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
 
     @Override
     public int getItemViewType(int position) {
-        mItemViewTypePosition = position;
         if (getEmptyViewCount() == 1) {
             return EMPTY_VIEW;
         }
 
-        /*if (position == 0 && null != mHeaderLayout && mHeaderLayout.getChildCount() != 0) {
+        if (position == 0 && null != mHeaderLayout && mHeaderLayout.getChildCount() != 0) {
             return HEADER_VIEW;
-        }*/
+        }
 
         // fetch
         autoRequestFetchMoreData(position);
@@ -749,10 +744,13 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
     private K getLoadingView(ViewGroup parent) {
         View view = getItemView(mLoadMoreView.getLayoutId(), parent);
         K holder = createBaseViewHolder(view);
-        holder.itemView.setOnClickListener(v -> {
-            if (mLoadMoreView.getLoadMoreStatus() == LoadMoreView.STATUS_FAIL) {
-                mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
-                notifyItemChanged(getFetchMoreViewCount() + mData.size());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mLoadMoreView.getLoadMoreStatus() == LoadMoreView.STATUS_FAIL) {
+                    mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+                    notifyItemChanged(getFetchMoreViewCount() + mData.size());
+                }
             }
         });
         return holder;
@@ -760,15 +758,14 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
 
     private K getFetchingView(ViewGroup parent) {
         View view = getItemView(mFetchMoreView.getLayoutId(), parent);
-        /*if (mFetchMoreView.getTopView() != null && (view instanceof ViewGroup)) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            viewGroup.addView(mFetchMoreView.getTopView(), 0, new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
-        }*/
         K holder = createBaseViewHolder(view);
-        holder.itemView.setOnClickListener(v -> {
-            if (mFetchMoreView.getLoadMoreStatus() == LoadMoreView.STATUS_FAIL) {
-                mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
-                notifyItemChanged(0);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mFetchMoreView.getLoadMoreStatus() == LoadMoreView.STATUS_FAIL) {
+                    mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+                    notifyItemChanged(0);
+                }
             }
         });
         return holder;

@@ -14,11 +14,6 @@ import com.zxn.netease.nimsdk.api.model.contact.ContactsCustomization;
 import java.util.List;
 
 
-/**
- * 集成通讯录列表
- * <p/>
- * Created by huangjun on 2015/9/7.
- */
 public class ContactListFragment extends MainTabFragment {
 
     private ContactsFragment fragment;

@@ -22,17 +22,122 @@
         android:layout_height="wrap_content"
         android:background="#101118"
         android:gravity="center"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_5"
         android:text="相处0.000475天  在线"
         android:textColor="#ff6a6a86"
         android:textSize="12sp"
         app:layout_constraintTop_toBottomOf="@id/titleView" />
 
     <FrameLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOnlineTime"
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvOnlineTime" />
+        android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/tvCp"
+        android:layout_width="84dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/sp_rec_ltr18_lbr18_solid_580eff"
+        android:gravity="center"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:text="CP值：0"
+        android:textColor="@color/c_ffffff"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".msg.MsgActivity">
+
+    <com.zxn.titleview.TitleView
+        android:id="@+id/titleView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_title_height"
+        android:background="#101118"
+        app:backIcon="@mipmap/nim_actionbar_dark_back_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleText="用户昵称"
+        app:titleTextColor="@color/c_ffffff" />
+
+    <TextView
+        android:id="@+id/tvOnlineTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#101118"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="相处0.000475天  在线"
+        android:textColor="#ff6a6a86"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/titleView" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvMsg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#101118"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOnlineTime">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_15"
+                android:paddingRight="@dimen/dp_15"
+                android:text="温馨提示：禁止出现商业广告、微信、QQ以及色情、暴力和具有
+侮辱性的内容，文明聊天谨防诈骗，违规封号处理"
+                android:textColor="#ff6a6a86"
+                android:textSize="12sp" />
+
+            <FrameLayout
+                android:id="@+id/fl_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <TextView
+        android:id="@+id/tvCp"
+        android:layout_width="84dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/sp_rec_ltr18_lbr18_solid_580eff"
+        android:gravity="center"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:text="CP值：0"
+        android:textColor="@color/c_ffffff"
+        android:textSize="@dimen/sp_15"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+
+
+
+

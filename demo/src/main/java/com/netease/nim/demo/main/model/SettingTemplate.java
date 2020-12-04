@@ -1,8 +1,6 @@
 package com.netease.nim.demo.main.model;
 
-/**
- * Created by hzxuwen on 2015/6/29.
- */
+
 public class SettingTemplate {
     private final int id;
     private final int icon;

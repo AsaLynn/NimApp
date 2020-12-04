@@ -117,9 +117,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.zxn.mvvm:jetpackmvvm:1.0.9'
+    implementation 'com.zxn.time:time-utils:1.6.2'
 
     //implementation 'com.huawei.hms:push:4.0.4.301'
-//    implementation 'com.google.firebase:firebase-messaging:20.3.0'
-//    implementation 'com.google.firebase:firebase-core:17.5.1'
 
 }

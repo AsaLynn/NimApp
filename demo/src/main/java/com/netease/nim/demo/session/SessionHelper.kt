@@ -9,7 +9,6 @@ import com.netease.nim.demo.session.action.FileAction
 import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nim.demo.session.action.SnapChatAction
 import com.netease.nim.demo.session.extension.*
-import com.netease.nim.demo.session.load.YinYuLoadMoreView
 import com.netease.nim.demo.session.viewholder.*
 import com.netease.nimlib.sdk.NIMClient
 import com.netease.nimlib.sdk.msg.MsgService
@@ -19,7 +18,6 @@ import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
 import com.netease.nimlib.sdk.msg.model.IMMessage
-import com.netease.nimlib.sdk.msg.model.RecentContact
 import com.netease.nimlib.sdk.robot.model.RobotAttachment
 import com.zxn.netease.nimsdk.api.NimUIKit
 import com.zxn.netease.nimsdk.api.model.recent.RecentCustomization
@@ -45,7 +43,7 @@ object SessionHelper {
 
         this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
 
-        this.loadMoreView = YinYuLoadMoreView()
+        //this.loadMoreView = YinYuLoadMoreView()
 
         this.actions = ArrayList<BaseAction>().apply {
             add(SelectImageAction())
@@ -60,11 +58,7 @@ object SessionHelper {
             }
             add(cloudMsgButton)
         }
-
-        //定制底部按钮:
-
     }
-
 
     private var myP2pCustomization: SessionCustomization? = SessionCustomization().apply {
         // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了

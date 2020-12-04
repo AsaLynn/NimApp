@@ -20,10 +20,9 @@ import com.netease.nimlib.sdk.team.model.UpdateTeamAttachment;
 import java.util.Map;
 
 /**
- * Created by hzchenkang on 2017/9/26.
+ *
  * 用于初始化时，注册全局的广播、云信观察者等等云信相关业务
  */
-
 public class NIMInitManager {
 
     private static final String TAG = "NIMInitManager";

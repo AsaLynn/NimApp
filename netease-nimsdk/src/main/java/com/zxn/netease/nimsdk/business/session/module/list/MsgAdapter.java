@@ -24,9 +24,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by huangjun on 2016/12/21.
- */
+
 public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseViewHolder> {
 
     private final Map<Class<? extends MsgViewHolderBase>, Integer> holder2ViewType;
@@ -350,9 +348,5 @@ public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseVie
         return container;
     }
 
-    @Override
-    public void fetchMoreEnd(List<IMMessage> data, boolean gone) {
-        super.fetchMoreEnd(data, gone);
-        //mNextFetchEnable = true;//todo:debugging.2
-    }
+
 }

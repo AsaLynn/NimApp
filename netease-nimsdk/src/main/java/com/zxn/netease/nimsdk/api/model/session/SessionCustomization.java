@@ -49,11 +49,6 @@ public class SessionCustomization implements Serializable {
 
 
     /**
-     * 聊天列表顶部温馨提示内容
-     */
-    public LoadMoreView loadMoreView = null;
-
-    /**
      * 如果OptionsButton的点击响应中需要startActivityForResult，可在此函数中处理结果。
      * 需要注意的是，由于加号中的Action的限制，RequestCode只能使用int的最低8位。
      *

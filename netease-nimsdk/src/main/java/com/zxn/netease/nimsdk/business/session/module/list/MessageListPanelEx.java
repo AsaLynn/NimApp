@@ -243,15 +243,7 @@ public class MessageListPanelEx {
         // adapter
         items = new ArrayList<>();
         adapter = new MsgAdapter(messageListView, items, container);
-        if (customization != null && customization.loadMoreView != null) {
-            //View header = LayoutInflater.from(messageListView.getContext()).inflate(customization.headLayoutId, null,false);
-            //adapter.addHeaderView(header);
-            //opView.addHeaderView(header);
-            adapter.setFetchMoreView(customization.loadMoreView);
-        }else {
-            adapter.setFetchMoreView(new MsgListFetchLoadMoreView());
-        }
-
+        adapter.setFetchMoreView(new MsgListFetchLoadMoreView());
         adapter.setLoadMoreView(new MsgListFetchLoadMoreView());
         adapter.setEventListener(new MsgItemEventListener());
         initFetchLoadListener(anchor);

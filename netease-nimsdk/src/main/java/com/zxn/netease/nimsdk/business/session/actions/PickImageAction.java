@@ -12,10 +12,7 @@ import com.zxn.netease.nimsdk.common.media.imagepicker.option.ImagePickerOption;
 
 import java.io.File;
 
-/**
- *
- * Created by zhoujianghua on 2015/7/31.
- */
+
 public abstract class PickImageAction extends BaseAction {
 
     protected static final int PICK_IMAGE_COUNT = 9;

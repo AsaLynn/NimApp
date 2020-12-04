@@ -3,7 +3,6 @@ package com.netease.nim.demo.session;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-
 import com.netease.nim.demo.location.activity.LocationAmapActivity;
 import com.netease.nim.demo.location.activity.LocationExtras;
 import com.netease.nim.demo.location.activity.NavigationAmapActivity;
@@ -12,9 +11,7 @@ import com.zxn.netease.nimsdk.common.ui.dialog.EasyAlertDialog;
 import com.zxn.netease.nimsdk.common.util.log.LogUtil;
 import com.zxn.netease.nimsdk.api.model.location.LocationProvider;
 
-/**
- * Created by zhoujianghua on 2015/8/11.
- */
+
 public class NimDemoLocationProvider implements LocationProvider {
     @Override
     public void requestLocation(final Context context, Callback callback) {

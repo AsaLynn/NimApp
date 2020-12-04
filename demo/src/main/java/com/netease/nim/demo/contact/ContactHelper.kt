@@ -22,7 +22,7 @@ object ContactHelper {
                 //UserProfileActivity.start(context, account);
                 //NimUIKit.startP2PSession(context, account)
                 context?.let {
-                    MsgActivity.jumpTo(context,account, SessionHelper.p2pCustomization)
+                    MsgActivity.jumpTo(context,account)
                    //NimUIKit.startP2PSession(context, account)
                 }
             }

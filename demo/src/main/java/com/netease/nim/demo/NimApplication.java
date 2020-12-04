@@ -6,18 +6,14 @@ import android.os.Build;
 import android.os.Process;
 import android.text.TextUtils;
 import android.webkit.WebView;
-
 import androidx.multidex.MultiDex;
-
 import com.heytap.msp.push.HeytapPushManager;
-//import com.huawei.hms.support.common.ActivityMgr;
 import com.netease.nim.demo.common.util.crash.AppCrashHandler;
 import com.netease.nim.demo.config.preference.Preferences;
 import com.netease.nim.demo.config.preference.UserPreferences;
 import com.netease.nim.demo.contact.ContactHelper;
 import com.netease.nim.demo.event.DemoOnlineStateContentProvider;
 import com.netease.nim.demo.mixpush.DemoPushContentProvider;
-import com.netease.nim.demo.session.NimDemoLocationProvider;
 import com.netease.nim.demo.session.SessionHelper;
 import com.netease.nim.demo.ysf.imageloader.GlideImageLoader;
 import com.netease.nim.demo.ysf.util.YsfHelper;
@@ -86,9 +82,6 @@ public class NimApplication extends Application {
 //            NIMClient.toggleRevokeMessageNotification(false);
             // 云信sdk相关业务初始化
             NIMInitManager.getInstance().init(true);
-            // 初始化rts模块
-            initRTSKit();
-
         }
         //初始化融合 SDK 中的七鱼业务关业务
         initMixSdk();
@@ -141,7 +134,6 @@ public class NimApplication extends Application {
     private LoginInfo getLoginInfo() {
         String account = Preferences.getUserAccount();
         String token = Preferences.getUserToken();
-
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
             DemoCache.setAccount(account.toLowerCase());
             return new LoginInfo(account, token);
@@ -168,13 +160,8 @@ public class NimApplication extends Application {
         UIKitOptions options = new UIKitOptions();
         // 设置app图片/音频/日志等缓存目录
         options.appCacheDir = NimSDKOptionConfig.getAppCacheDir(this) + "/app";
-        options.messageLeftBackground = R.drawable.demo_message_item_left_selector;
-        //messageLeftBackground
-        //options.messageRightBackground = R.drawable.nim_message_item_right_selector;
+        options.messageLeftBackground = R.drawable.nim_message_item_left_selector;
+        options.messageRightBackground = R.drawable.nim_message_item_right_selector;
         return options;
-    }
-
-    private void initRTSKit() {
-
     }
 }
