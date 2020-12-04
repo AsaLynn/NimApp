@@ -503,9 +503,7 @@ class LoginActivity : UI(), View.OnKeyListener {
                 val appInfo = context.packageManager.getApplicationInfo(
                     context.packageName, PackageManager.GET_META_DATA
                 )
-                if (appInfo != null) {
-                    return appInfo.metaData.getString("com.netease.nim.appKey")
-                }
+                return appInfo.metaData.getString("com.netease.nim.appKey")
             } catch (e: Exception) {
                 e.printStackTrace()
             }

@@ -1,296 +1,263 @@
-package com.netease.nim.demo.main.activity;
+package com.netease.nim.demo.main.activity
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import androidx.viewpager.widget.ViewPager;
-import com.alibaba.fastjson.JSONException;
-import com.alibaba.fastjson.JSONObject;
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.common.ui.viewpager.FadeInOutPageTransformer;
-import com.netease.nim.demo.common.ui.viewpager.PagerSlidingTabStrip;
-import com.netease.nim.demo.config.preference.Preferences;
-import com.netease.nim.demo.contact.activity.AddFriendActivity;
-import com.netease.nim.demo.login.LoginActivity;
-import com.netease.nim.demo.login.LogoutHelper;
-import com.netease.nim.demo.main.adapter.MainTabPagerAdapter;
-import com.netease.nim.demo.main.helper.CustomNotificationCache;
-import com.netease.nim.demo.main.helper.SystemMessageUnreadManager;
-import com.netease.nim.demo.main.model.MainTab;
-import com.netease.nim.demo.main.reminder.ReminderItem;
-import com.netease.nim.demo.main.reminder.ReminderManager;
-import com.netease.nim.demo.session.SessionHelper;
-import com.zxn.netease.nimsdk.api.model.main.LoginSyncDataStatusObserver;
-import com.zxn.netease.nimsdk.business.contact.selector.activity.ContactSelectActivity;
-import com.zxn.netease.nimsdk.common.ToastHelper;
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.zxn.netease.nimsdk.common.ui.dialog.DialogMaker;
-import com.zxn.netease.nimsdk.common.ui.drop.DropManager;
-import com.zxn.netease.nimsdk.common.util.log.LogUtil;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.NimIntent;
-import com.netease.nimlib.sdk.Observer;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.MsgServiceObserve;
-import com.netease.nimlib.sdk.msg.SystemMessageObserver;
-import com.netease.nimlib.sdk.msg.SystemMessageService;
-import com.netease.nimlib.sdk.msg.model.CustomNotification;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.netease.nimlib.sdk.msg.model.RecentContact;
-//import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
-import java.util.ArrayList;
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.alibaba.fastjson.JSONException
+import com.alibaba.fastjson.JSONObject
+import com.netease.nim.demo.R
+import com.netease.nim.demo.common.ui.viewpager.FadeInOutPageTransformer
+import com.netease.nim.demo.common.ui.viewpager.PagerSlidingTabStrip
+import com.netease.nim.demo.common.ui.viewpager.PagerSlidingTabStrip.OnCustomTabListener
+import com.netease.nim.demo.config.preference.Preferences
+import com.netease.nim.demo.contact.activity.AddFriendActivity
+import com.netease.nim.demo.login.LoginActivity
+import com.netease.nim.demo.login.LogoutHelper.logout
+import com.netease.nim.demo.main.adapter.MainTabPagerAdapter
+import com.netease.nim.demo.main.helper.CustomNotificationCache
+import com.netease.nim.demo.main.helper.SystemMessageUnreadManager
+import com.netease.nim.demo.main.model.MainTab
+import com.netease.nim.demo.main.reminder.ReminderItem
+import com.netease.nim.demo.main.reminder.ReminderManager
+import com.netease.nim.demo.main.reminder.ReminderManager.UnreadNumChangedCallback
+import com.netease.nim.demo.session.SessionHelper.startP2PSession
+import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.NimIntent
+import com.netease.nimlib.sdk.Observer
+import com.netease.nimlib.sdk.msg.MsgService
+import com.netease.nimlib.sdk.msg.MsgServiceObserve
+import com.netease.nimlib.sdk.msg.SystemMessageObserver
+import com.netease.nimlib.sdk.msg.SystemMessageService
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
+import com.netease.nimlib.sdk.msg.model.CustomNotification
+import com.netease.nimlib.sdk.msg.model.IMMessage
+import com.netease.nimlib.sdk.msg.model.RecentContact
+import com.zxn.netease.nimsdk.api.model.main.LoginSyncDataStatusObserver
+import com.zxn.netease.nimsdk.business.contact.selector.activity.ContactSelectActivity
+import com.zxn.netease.nimsdk.common.ToastHelper.showToast
+import com.zxn.netease.nimsdk.common.activity.UI
+import com.zxn.netease.nimsdk.common.ui.dialog.DialogMaker
+import com.zxn.netease.nimsdk.common.ui.drop.DropManager
+import com.zxn.netease.nimsdk.common.util.log.LogUtil
 
 /**
  * 主界面
  */
-public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
-        ReminderManager.UnreadNumChangedCallback {
-
-    private static final String EXTRA_APP_QUIT = "APP_QUIT";
-
-    private static final int REQUEST_CODE_NORMAL = 1;
-
-    private static final int REQUEST_CODE_ADVANCED = 2;
-
-    private PagerSlidingTabStrip tabs;
-
-    private ViewPager pager;
-
-    private int scrollState;
-
-    private MainTabPagerAdapter adapter;
-
-
-    private boolean isFirstIn;
-
-    private final Observer<Integer> sysMsgUnreadCountChangedObserver = (Observer<Integer>) unreadCount -> {
-        SystemMessageUnreadManager.getInstance().setSysMsgUnreadCount(unreadCount);
-        ReminderManager.getInstance().updateContactUnreadNum(unreadCount);//todo:
-    };
-
-
-    public static void start(Context context) {
-        start(context, null);
+class MainActivity : UI(), OnPageChangeListener, UnreadNumChangedCallback {
+    private var tabs: PagerSlidingTabStrip? = null
+    private var pager: ViewPager? = null
+    private var scrollState = 0
+    private var adapter: MainTabPagerAdapter? = null
+    private var isFirstIn = false
+    private val sysMsgUnreadCountChangedObserver = Observer { unreadCount: Int? ->
+        SystemMessageUnreadManager.getInstance().sysMsgUnreadCount = unreadCount!!
+        ReminderManager.getInstance().updateContactUnreadNum(unreadCount) //todo:
     }
 
-    public static void start(Context context, Intent extras) {
-        Intent intent = new Intent();
-        intent.setClass(context, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        if (extras != null) {
-            intent.putExtras(extras);
-        }
-        context.startActivity(intent);
-    }
-
-    // 注销
-    public static void logout(Context context, boolean quit) {
-        Intent extra = new Intent();
-        extra.putExtra(EXTRA_APP_QUIT, quit);
-        start(context, extra);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        setToolBar(R.id.toolbar, R.string.app_name);
-        setTitle(R.string.app_name);
-        isFirstIn = true;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main)
+        setToolBar(R.id.toolbar, R.string.app_name)
+        setTitle(R.string.app_name)
+        isFirstIn = true
         //不保留后台活动，从厂商推送进聊天页面，会无法退出聊天页面
         if (savedInstanceState == null && parseIntent()) {
-            return;
+            return
         }
-        init();
+        init()
     }
 
-    private void init() {
-        observerSyncDataComplete();
-        findViews();
-        setupPager();
-        setupTabs();
-        registerMsgUnreadInfoObserver(true);
-        registerSystemMessageObservers(true);
-        registerCustomMessageObservers(true);
-        requestSystemMessageUnreadCount();
-        initUnreadCover();
+    private fun init() {
+        observerSyncDataComplete()
+        findViews()
+        setupPager()
+        setupTabs()
+        registerMsgUnreadInfoObserver(true)
+        registerSystemMessageObservers(true)
+        registerCustomMessageObservers(true)
+        requestSystemMessageUnreadCount()
+        initUnreadCover()
     }
 
-    private boolean parseIntent() {
-        Intent intent = getIntent();
+    private fun parseIntent(): Boolean {
+        val intent = intent
         if (intent.hasExtra(EXTRA_APP_QUIT)) {
-            intent.removeExtra(EXTRA_APP_QUIT);
-            onLogout();
-            return true;
+            intent.removeExtra(EXTRA_APP_QUIT)
+            onLogout()
+            return true
         }
         if (intent.hasExtra(NimIntent.EXTRA_NOTIFY_CONTENT)) {
-            IMMessage message = (IMMessage) intent.getSerializableExtra(
-                    NimIntent.EXTRA_NOTIFY_CONTENT);
-            intent.removeExtra(NimIntent.EXTRA_NOTIFY_CONTENT);
-            switch (message.getSessionType()) {
-                case P2P:
-                    SessionHelper.startP2PSession(this, message.getSessionId());
-                    break;
-                case Team:
-                    //SessionHelper.startTeamSession(this, message.getSessionId());
-                    break;
+            val message = intent.getSerializableExtra(
+                NimIntent.EXTRA_NOTIFY_CONTENT
+            ) as IMMessage?
+            intent.removeExtra(NimIntent.EXTRA_NOTIFY_CONTENT)
+            when (message!!.sessionType) {
+                SessionTypeEnum.P2P -> startP2PSession(this, message.sessionId)
+                SessionTypeEnum.Team -> {
+                }
             }
-            return true;
+            return true
         }
-        return false;
+        return false
     }
 
-    private void observerSyncDataComplete() {
-        boolean syncCompleted = LoginSyncDataStatusObserver.getInstance()
-                                                           .observeSyncDataCompletedEvent(
-                                                                   (Observer<Void>) v -> DialogMaker
-                                                                           .dismissProgressDialog());
+    private fun observerSyncDataComplete() {
+        val syncCompleted = LoginSyncDataStatusObserver.getInstance()
+            .observeSyncDataCompletedEvent(
+                Observer { v: Void? ->
+                    DialogMaker
+                        .dismissProgressDialog()
+                })
         //如果数据没有同步完成，弹个进度Dialog
         if (!syncCompleted) {
-            DialogMaker.showProgressDialog(MainActivity.this, getString(R.string.prepare_data))
-                       .setCanceledOnTouchOutside(false);
+            DialogMaker.showProgressDialog(this@MainActivity, getString(R.string.prepare_data))
+                .setCanceledOnTouchOutside(false)
         }
     }
 
-    private void findViews() {
-        tabs = findView(R.id.tabs);
-        pager = findView(R.id.main_tab_pager);
+    private fun findViews() {
+        tabs = findView(R.id.tabs)
+        pager = findView(R.id.main_tab_pager)
     }
 
-    private void setupPager() {
-        adapter = new MainTabPagerAdapter(getSupportFragmentManager(), this, pager);
-        pager.setOffscreenPageLimit(adapter.getCacheCount());
-        pager.setPageTransformer(true, new FadeInOutPageTransformer());
-        pager.setAdapter(adapter);
-        pager.setOnPageChangeListener(this);
+    private fun setupPager() {
+        adapter = MainTabPagerAdapter(supportFragmentManager, this, pager)
+        pager!!.offscreenPageLimit = adapter!!.cacheCount
+        pager!!.setPageTransformer(true, FadeInOutPageTransformer())
+        pager!!.adapter = adapter
+        pager!!.setOnPageChangeListener(this)
     }
 
-    private void setupTabs() {
-        tabs.setOnCustomTabListener(new PagerSlidingTabStrip.OnCustomTabListener() {
-
-            @Override
-            public int getTabLayoutResId(int position) {
-                return R.layout.tab_layout_main;
+    private fun setupTabs() {
+        tabs!!.setOnCustomTabListener(object : OnCustomTabListener() {
+            override fun getTabLayoutResId(position: Int): Int {
+                return R.layout.tab_layout_main
             }
 
-            @Override
-            public boolean screenAdaptation() {
-                return true;
+            override fun screenAdaptation(): Boolean {
+                return true
             }
-        });
-        tabs.setViewPager(pager);
-        tabs.setOnTabClickListener(adapter);
-        tabs.setOnTabDoubleTapListener(adapter);
+        })
+        tabs!!.setViewPager(pager)
+        tabs!!.setOnTabClickListener(adapter)
+        tabs!!.setOnTabDoubleTapListener(adapter)
     }
-
 
     /**
      * 注册未读消息数量观察者
      */
-    private void registerMsgUnreadInfoObserver(boolean register) {
+    private fun registerMsgUnreadInfoObserver(register: Boolean) {
         if (register) {
-            ReminderManager.getInstance().registerUnreadNumChangedCallback(this);
+            ReminderManager.getInstance().registerUnreadNumChangedCallback(this)
         } else {
-            ReminderManager.getInstance().unregisterUnreadNumChangedCallback(this);
+            ReminderManager.getInstance().unregisterUnreadNumChangedCallback(this)
         }
     }
 
     /**
      * 注册/注销系统消息未读数变化
      */
-    private void registerSystemMessageObservers(boolean register) {
-        NIMClient.getService(SystemMessageObserver.class).observeUnreadCountChange(
-                sysMsgUnreadCountChangedObserver, register);
+    private fun registerSystemMessageObservers(register: Boolean) {
+        NIMClient.getService(SystemMessageObserver::class.java).observeUnreadCountChange(
+            sysMsgUnreadCountChangedObserver, register
+        )
     }
 
     // sample
-    Observer<CustomNotification> customNotificationObserver = (Observer<CustomNotification>) notification -> {
+    var customNotificationObserver = Observer { notification: CustomNotification ->
         // 处理自定义通知消息
-        LogUtil.i("demo", "receive custom notification: " + notification.getContent() + " from :" +
-                          notification.getSessionId() + "/" + notification.getSessionType() +
-                          "unread=" + (notification.getConfig() == null ? "" : notification.getConfig().enableUnreadCount +  " " + "push=" +
-                          notification.getConfig().enablePush + " nick=" +
-                          notification.getConfig().enablePushNick));
+        LogUtil.i(
+            "demo", "receive custom notification: " + notification.content + " from :" +
+                    notification.sessionId + "/" + notification.sessionType +
+                    "unread=" + if (notification.config == null) "" else notification.config.enableUnreadCount.toString() + " " + "push=" +
+                    notification.config.enablePush + " nick=" +
+                    notification.config.enablePushNick
+        )
         try {
-            JSONObject obj = JSONObject.parseObject(notification.getContent());
+            val obj = JSONObject.parseObject(notification.content)
             if (obj != null && obj.getIntValue("id") == 2) {
                 // 加入缓存中
-                CustomNotificationCache.getInstance().addCustomNotification(notification);
+                CustomNotificationCache.getInstance().addCustomNotification(notification)
                 // Toast
-                String content = obj.getString("content");
-                String tip = String.format("自定义消息[%s]：%s", notification.getFromAccount(), content);
-                ToastHelper.showToast(MainActivity.this, tip);
+                val content = obj.getString("content")
+                val tip = String.format("自定义消息[%s]：%s", notification.fromAccount, content)
+                showToast(this@MainActivity, tip)
             }
-        } catch (JSONException e) {
-            LogUtil.e("demo", e.getMessage());
+        } catch (e: JSONException) {
+            LogUtil.e("demo", e.message)
         }
-    };
+    } as Observer<CustomNotification>
 
-    private void registerCustomMessageObservers(boolean register) {
-        NIMClient.getService(MsgServiceObserve.class).observeCustomNotification(
-                customNotificationObserver, register);
+    private fun registerCustomMessageObservers(register: Boolean) {
+        NIMClient.getService(MsgServiceObserve::class.java).observeCustomNotification(
+            customNotificationObserver, register
+        )
     }
 
     /**
      * 查询系统消息未读数
      */
-    private void requestSystemMessageUnreadCount() {
-        int unread = NIMClient.getService(SystemMessageService.class)
-                              .querySystemMessageUnreadCountBlock();
-        SystemMessageUnreadManager.getInstance().setSysMsgUnreadCount(unread);
-        ReminderManager.getInstance().updateContactUnreadNum(unread);
+    private fun requestSystemMessageUnreadCount() {
+        val unread = NIMClient.getService(SystemMessageService::class.java)
+            .querySystemMessageUnreadCountBlock()
+        SystemMessageUnreadManager.getInstance().sysMsgUnreadCount = unread
+        ReminderManager.getInstance().updateContactUnreadNum(unread)
     }
 
     //初始化未读红点动画
-    private void initUnreadCover() {
-        DropManager.getInstance().init(this, findView(R.id.unread_cover), (id, explosive) -> {
-            if (id == null || !explosive) {
-                return;
-            }
-            if (id instanceof RecentContact) {
-                RecentContact r = (RecentContact) id;
-                NIMClient.getService(MsgService.class).clearUnreadCount(r.getContactId(),
-                                                                        r.getSessionType());
-                return;
-            }
-            if (id instanceof String) {
-                if (((String) id).contentEquals("0")) {
-                    NIMClient.getService(MsgService.class).clearAllUnreadCount();
-                } else if (((String) id).contentEquals("1")) {
-                    NIMClient.getService(SystemMessageService.class)
-                             .resetSystemMessageUnreadCount();
+    private fun initUnreadCover() {
+        DropManager.getInstance()
+            .init(this, findView(R.id.unread_cover)) { id: Any?, explosive: Boolean ->
+                if (id == null || !explosive) {
+                    return@init
+                }
+                if (id is RecentContact) {
+                    val r = id
+                    NIMClient.getService(MsgService::class.java).clearUnreadCount(
+                        r.contactId,
+                        r.sessionType
+                    )
+                    return@init
+                }
+                if (id is String) {
+                    if (id.contentEquals("0")) {
+                        NIMClient.getService(MsgService::class.java).clearAllUnreadCount()
+                    } else if (id.contentEquals("1")) {
+                        NIMClient.getService(SystemMessageService::class.java)
+                            .resetSystemMessageUnreadCount()
+                    }
                 }
             }
-        });
     }
 
-    private void onLogout() {
-        Preferences.saveUserToken("");
+    private fun onLogout() {
+        Preferences.saveUserToken("")
         // 清理缓存&注销监听
-        LogoutHelper.logout();
+        logout()
         // 启动登录
-        LoginActivity.start(this);
-        finish();
+        LoginActivity.start(this)
+        finish()
     }
 
-    private void selectPage() {
+    private fun selectPage() {
         if (scrollState == ViewPager.SCROLL_STATE_IDLE) {
-            adapter.onPageSelected(pager.getCurrentItem());
+            adapter!!.onPageSelected(pager!!.currentItem)
         }
     }
 
     /**
      * 设置最近联系人的消息为已读
-     * <p>
+     *
+     *
      * account, 聊天对象帐号，或者以下两个值：
-     * {@link MsgService#MSG_CHATTING_ACCOUNT_ALL} 目前没有与任何人对话，但能看到消息提醒（比如在消息列表界面），不需要在状态栏做消息通知
-     * {@link MsgService#MSG_CHATTING_ACCOUNT_NONE} 目前没有与任何人对话，需要状态栏消息通知
+     * [MsgService.MSG_CHATTING_ACCOUNT_ALL] 目前没有与任何人对话，但能看到消息提醒（比如在消息列表界面），不需要在状态栏做消息通知
+     * [MsgService.MSG_CHATTING_ACCOUNT_NONE] 目前没有与任何人对话，需要状态栏消息通知
      */
-    private void enableMsgNotification(boolean enable) {
+    private fun enableMsgNotification(enable: Boolean) {
         /*boolean msg = (pager.getCurrentItem() != MainTab.RECENT_CONTACTS.tabIndex);
         if (enable | msg) {
             NIMClient.getService(MsgService.class).setChattingAccount(
@@ -301,131 +268,133 @@ public class MainActivity extends UI implements ViewPager.OnPageChangeListener,
         }*/
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_activity_menu, menu);
-        super.onCreateOptionsMenu(menu);
-        return true;
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_activity_menu, menu)
+        super.onCreateOptionsMenu(menu)
+        return true
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.about:
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                break;
-            case R.id.add_buddy:
-                AddFriendActivity.start(MainActivity.this);
-                break;
-            case R.id.search_btn:
-                GlobalSearchActivity.start(MainActivity.this);
-                break;
-            case R.id.enter_ysf:
-                //Unicorn.openServiceActivity(this, "七鱼测试", null);
-                break;
-            default:
-                break;
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.about -> startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+            R.id.add_buddy -> AddFriendActivity.start(this@MainActivity)
+            R.id.search_btn -> GlobalSearchActivity.start(this@MainActivity)
+            else -> {
+            }
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item)
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        parseIntent();
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        parseIntent()
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    public override fun onResume() {
+        super.onResume()
         // 第一次 ， 三方通知唤起进会话页面之类的，不会走初始化过程
-        boolean temp = isFirstIn;
-        isFirstIn = false;
+        val temp = isFirstIn
+        isFirstIn = false
         if (pager == null && temp) {
-            return;
+            return
         }
         //如果不是第一次进 ， eg: 其他页面back
         if (pager == null) {
-            init();
+            init()
         }
-        enableMsgNotification(false);
+        enableMsgNotification(false)
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.clear();
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    public override fun onPause() {
+        super.onPause()
         if (pager == null) {
-            return;
+            return
         }
-        enableMsgNotification(true);
+        enableMsgNotification(true)
     }
 
-    @Override
-    public void onDestroy() {
-        registerMsgUnreadInfoObserver(false);
-        registerSystemMessageObservers(false);
-        registerCustomMessageObservers(false);
-        DropManager.getInstance().destroy();
-        super.onDestroy();
+    public override fun onDestroy() {
+        registerMsgUnreadInfoObserver(false)
+        registerSystemMessageObservers(false)
+        registerCustomMessageObservers(false)
+        DropManager.getInstance().destroy()
+        super.onDestroy()
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != Activity.RESULT_OK) {
-            return;
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != RESULT_OK) {
+            return
         }
         if (requestCode == REQUEST_CODE_NORMAL) {
-            final ArrayList<String> selected = data.getStringArrayListExtra(
-                    ContactSelectActivity.RESULT_DATA);
-            ToastHelper.showToast(MainActivity.this, "请选择至少一个联系人！");
+            val selected = data!!.getStringArrayListExtra(
+                ContactSelectActivity.RESULT_DATA
+            )
+            showToast(this@MainActivity, "请选择至少一个联系人！")
         } else if (requestCode == REQUEST_CODE_ADVANCED) {
-            final ArrayList<String> selected = data.getStringArrayListExtra(
-                    ContactSelectActivity.RESULT_DATA);
+            val selected = data!!.getStringArrayListExtra(
+                ContactSelectActivity.RESULT_DATA
+            )
         }
     }
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        tabs.onPageScrolled(position, positionOffset, positionOffsetPixels);
-        adapter.onPageScrolled(position);
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        tabs!!.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        adapter!!.onPageScrolled(position)
     }
 
-    @Override
-    public void onPageSelected(int position) {
-        tabs.onPageSelected(position);
-        selectPage();
-        enableMsgNotification(false);
+    override fun onPageSelected(position: Int) {
+        tabs!!.onPageSelected(position)
+        selectPage()
+        enableMsgNotification(false)
     }
 
-    @Override
-    public void onPageScrollStateChanged(int state) {
-        tabs.onPageScrollStateChanged(state);
-        scrollState = state;
-        selectPage();
+    override fun onPageScrollStateChanged(state: Int) {
+        tabs!!.onPageScrollStateChanged(state)
+        scrollState = state
+        selectPage()
     }
 
     //未读消息数量观察者实现
-    @Override
-    public void onUnreadNumChanged(ReminderItem item) {
-        MainTab tab = MainTab.fromReminderId(item.getId());
+    override fun onUnreadNumChanged(item: ReminderItem) {
+        val tab = MainTab.fromReminderId(item.id)
         if (tab != null) {
-            tabs.updateTab(tab.tabIndex, item);
+            tabs!!.updateTab(tab.tabIndex, item)
         }
     }
 
-    @Override
-    protected boolean displayHomeAsUpEnabled() {
-        return false;
+    override fun displayHomeAsUpEnabled(): Boolean {
+        return false
     }
 
+    companion object {
+        private const val EXTRA_APP_QUIT = "APP_QUIT"
+        private const val REQUEST_CODE_NORMAL = 1
+        private const val REQUEST_CODE_ADVANCED = 2
+        @JvmOverloads
+        fun start(context: Context, extras: Intent? = null) {
+            val intent = Intent()
+            intent.setClass(context, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            if (extras != null) {
+                intent.putExtras(extras)
+            }
+            context.startActivity(intent)
+        }
+
+        // 注销
+        @JvmStatic
+        fun logout(context: Context, quit: Boolean) {
+            val extra = Intent()
+            extra.putExtra(EXTRA_APP_QUIT, quit)
+            start(context, extra)
+        }
+    }
 }

@@ -65,6 +65,8 @@ dependencies {
     api 'com.netease.nimlib:basesdk:8.0.0'
 
 //    api 'com.netease.nimlib:push:8.1.2'
+
+    implementation 'com.zxn.mvvm:jetpackmvvm:1.0.9'
 }
 repositories {
     mavenCentral()

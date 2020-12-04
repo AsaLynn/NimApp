@@ -137,7 +137,6 @@ public class MsgMigrationActivity extends UI implements View.OnClickListener {
         } else if (id == R.id.tv_cancel_and_progress) {
             showCancelDialog();
         } else if (id == R.id.btn_back_to_list) {
-            MainActivity.start(this);
             finish();
         }
 

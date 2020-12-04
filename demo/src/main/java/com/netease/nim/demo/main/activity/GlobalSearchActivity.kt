@@ -1,217 +1,179 @@
-package com.netease.nim.demo.main.activity;
+package com.netease.nim.demo.main.activity
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import androidx.core.view.MenuItemCompat;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.SearchView.OnQueryTextListener;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.session.SessionHelper;
-import com.netease.nim.demo.session.search.DisplayMessageActivity;
-import com.zxn.netease.nimsdk.business.contact.core.item.AbsContactItem;
-import com.zxn.netease.nimsdk.business.contact.core.item.ContactItem;
-import com.zxn.netease.nimsdk.business.contact.core.item.ItemTypes;
-import com.zxn.netease.nimsdk.business.contact.core.item.MsgItem;
-import com.zxn.netease.nimsdk.business.contact.core.model.ContactDataAdapter;
-import com.zxn.netease.nimsdk.business.contact.core.model.ContactGroupStrategy;
-import com.zxn.netease.nimsdk.business.contact.core.provider.ContactDataProvider;
-import com.zxn.netease.nimsdk.business.contact.core.query.IContactDataProvider;
-import com.zxn.netease.nimsdk.business.contact.core.viewholder.ContactHolder;
-import com.zxn.netease.nimsdk.business.contact.core.viewholder.LabelHolder;
-import com.zxn.netease.nimsdk.business.contact.core.viewholder.MsgHolder;
-import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.zxn.netease.nimsdk.common.util.string.StringUtil;
-import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
-import com.netease.nimlib.sdk.search.model.MsgIndexRecord;
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
+import android.view.View.OnTouchListener
+import android.widget.AbsListView
+import android.widget.AdapterView
+import android.widget.ListView
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuItemCompat
+import com.netease.nim.demo.R
+import com.netease.nim.demo.session.SessionHelper.startP2PSession
+import com.netease.nim.demo.session.search.DisplayMessageActivity
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions
+import com.zxn.netease.nimsdk.business.contact.core.item.AbsContactItem
+import com.zxn.netease.nimsdk.business.contact.core.item.ContactItem
+import com.zxn.netease.nimsdk.business.contact.core.item.ItemTypes
+import com.zxn.netease.nimsdk.business.contact.core.item.MsgItem
+import com.zxn.netease.nimsdk.business.contact.core.model.ContactDataAdapter
+import com.zxn.netease.nimsdk.business.contact.core.model.ContactGroupStrategy
+import com.zxn.netease.nimsdk.business.contact.core.provider.ContactDataProvider
+import com.zxn.netease.nimsdk.business.contact.core.query.IContactDataProvider
+import com.zxn.netease.nimsdk.business.contact.core.viewholder.ContactHolder
+import com.zxn.netease.nimsdk.business.contact.core.viewholder.LabelHolder
+import com.zxn.netease.nimsdk.business.contact.core.viewholder.MsgHolder
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions
+import com.zxn.netease.nimsdk.common.activity.UI
+import com.zxn.netease.nimsdk.common.util.string.StringUtil
+import kotlinx.android.synthetic.main.global_search_result.*
 
 /**
  * 全局搜索页面
  * 支持通讯录搜索、消息全文检索
- * <p/>
- * Created by huangjun on 2015/4/13.
  */
-public class GlobalSearchActivity extends UI implements OnItemClickListener {
+class GlobalSearchActivity : UI(), AdapterView.OnItemClickListener {
+    private var adapter: ContactDataAdapter? = null
+//    private var lvContacts: ListView = searchResultList
+    private var searchView: SearchView? = null
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.global_search_menu, menu)
+        val item = menu.findItem(R.id.action_search)
+        handler.post { MenuItemCompat.expandActionView(item) }
+        MenuItemCompat.setOnActionExpandListener(
+            item,
+            object : MenuItemCompat.OnActionExpandListener {
+                override fun onMenuItemActionExpand(menuItem: MenuItem): Boolean {
+                    return true
+                }
 
-    private ContactDataAdapter adapter;
-
-    private ListView lvContacts;
-
-    private SearchView searchView;
-
-    public static final void start(Context context) {
-        Intent intent = new Intent();
-        intent.setClass(context, GlobalSearchActivity.class);
-        context.startActivity(intent);
-    }
-
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        getMenuInflater().inflate(R.menu.global_search_menu, menu);
-        final MenuItem item = menu.findItem(R.id.action_search);
-
-        getHandler().post(new Runnable() {
-            @Override
-            public void run() {
-                MenuItemCompat.expandActionView(item);
-            }
-        });
-
-        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem menuItem) {
-                return true;
+                override fun onMenuItemActionCollapse(menuItem: MenuItem): Boolean {
+                    finish()
+                    return false
+                }
+            })
+        searchView = MenuItemCompat.getActionView(item) as SearchView
+        searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                showKeyboard(false)
+                return false
             }
 
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
-                finish();
-
-                return false;
-            }
-        });
-
-        searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(new OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                showKeyboard(false);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
+            override fun onQueryTextChange(query: String): Boolean {
                 if (StringUtil.isEmpty(query)) {
-                    lvContacts.setVisibility(View.GONE);
+                    lvContacts!!.visibility = View.GONE
                 } else {
-                    lvContacts.setVisibility(View.VISIBLE);
+                    lvContacts!!.visibility = View.VISIBLE
                 }
-                adapter.query(query);
-                return true;
+                adapter!!.query(query)
+                return true
             }
-        });
-        return true;
+        })
+        return true
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.global_search_result);
-
-        ToolBarOptions options = new NimToolBarOptions();
-        setToolBar(R.id.toolbar, options);
-
-        lvContacts = findViewById(R.id.searchResultList);
-        lvContacts.setVisibility(View.GONE);
-        SearchGroupStrategy searchGroupStrategy = new SearchGroupStrategy();
-        IContactDataProvider dataProvider = new ContactDataProvider(ItemTypes.FRIEND, ItemTypes.TEAM, ItemTypes.MSG);
-
-        adapter = new ContactDataAdapter(this, searchGroupStrategy, dataProvider);
-        adapter.addViewHolder(ItemTypes.LABEL, LabelHolder.class);
-        adapter.addViewHolder(ItemTypes.FRIEND, ContactHolder.class);
-        adapter.addViewHolder(ItemTypes.TEAM, ContactHolder.class);
-        adapter.addViewHolder(ItemTypes.MSG, MsgHolder.class);
-
-        lvContacts.setAdapter(adapter);
-        lvContacts.setOnItemClickListener(this);
-        lvContacts.setOnScrollListener(new OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                showKeyboard(false);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.global_search_result)
+        val options: ToolBarOptions = NimToolBarOptions()
+        setToolBar(R.id.toolbar, options)
+        //lvContacts = findViewById(R.id.searchResultList)
+        lvContacts!!.visibility = View.GONE
+        val searchGroupStrategy = SearchGroupStrategy()
+        val dataProvider: IContactDataProvider =
+            ContactDataProvider(ItemTypes.FRIEND, ItemTypes.TEAM, ItemTypes.MSG)
+        adapter = ContactDataAdapter(this, searchGroupStrategy, dataProvider)
+        adapter!!.addViewHolder(ItemTypes.LABEL, LabelHolder::class.java)
+        adapter!!.addViewHolder(ItemTypes.FRIEND, ContactHolder::class.java)
+        adapter!!.addViewHolder(ItemTypes.TEAM, ContactHolder::class.java)
+        adapter!!.addViewHolder(ItemTypes.MSG, MsgHolder::class.java)
+        lvContacts.adapter = adapter
+        lvContacts.onItemClickListener = this
+        lvContacts.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {
+                showKeyboard(false)
             }
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            override fun onScroll(
+                view: AbsListView,
+                firstVisibleItem: Int,
+                visibleItemCount: Int,
+                totalItemCount: Int
+            ) {
             }
-        });
-        findViewById(R.id.global_search_root).setOnTouchListener(new OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    finish();
-                    return true;
+        })
+        findViewById<View>(R.id.global_search_root).setOnTouchListener(
+            OnTouchListener {_, event ->
+                if (event.action == MotionEvent.ACTION_DOWN) {
+                    finish()
+                    return@OnTouchListener true
                 }
-                return false;
-            }
-        });
+                false
+            })
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    override fun onResume() {
+        super.onResume()
         if (searchView != null) {
-            searchView.clearFocus();
+            searchView!!.clearFocus()
         }
     }
 
-    private static class SearchGroupStrategy extends ContactGroupStrategy {
-        public static final String GROUP_FRIEND = "FRIEND";
-        public static final String GROUP_TEAM = "TEAM";
-        public static final String GROUP_MSG = "MSG";
-
-        SearchGroupStrategy() {
-            add(ContactGroupStrategy.GROUP_NULL, 0, "");
-            add(GROUP_TEAM, 1, "群组");
-            add(GROUP_FRIEND, 2, "好友");
-            add(GROUP_MSG, 3, "聊天记录");
+    private class SearchGroupStrategy internal constructor() : ContactGroupStrategy() {
+        override fun belongs(item: AbsContactItem): String {
+            return when (item.itemType) {
+                ItemTypes.FRIEND -> GROUP_FRIEND
+                ItemTypes.TEAM -> GROUP_TEAM
+                ItemTypes.MSG -> GROUP_MSG
+                else -> GROUP_MSG
+            }
         }
 
-        @Override
-        public String belongs(AbsContactItem item) {
-            switch (item.getItemType()) {
-                case ItemTypes.FRIEND:
-                    return GROUP_FRIEND;
-                case ItemTypes.TEAM:
-                    return GROUP_TEAM;
-                case ItemTypes.MSG:
-                    return GROUP_MSG;
-                default:
-                    return null;
-            }
+        companion object {
+            const val GROUP_FRIEND = "FRIEND"
+            const val GROUP_TEAM = "TEAM"
+            const val GROUP_MSG = "MSG"
+        }
+
+        init {
+            add(GROUP_NULL, 0, "")
+            add(GROUP_TEAM, 1, "群组")
+            add(GROUP_FRIEND, 2, "好友")
+            add(GROUP_MSG, 3, "聊天记录")
         }
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        AbsContactItem item = (AbsContactItem) adapter.getItem(position);
-        switch (item.getItemType()) {
-            case ItemTypes.TEAM: {
-                //SessionHelper.startTeamSession(this, ((ContactItem) item).getContact().getContactId());
-                break;
+    override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+        val item = adapter!!.getItem(position) as AbsContactItem
+        when (item.itemType) {
+            ItemTypes.TEAM -> {
             }
-
-            case ItemTypes.FRIEND: {
-                SessionHelper.startP2PSession(this, ((ContactItem) item).getContact().getContactId());
-                break;
+            ItemTypes.FRIEND -> {
+                startP2PSession(this, (item as ContactItem).contact.contactId)
             }
-
-            case ItemTypes.MSG: {
-                MsgIndexRecord msgIndexRecord = ((MsgItem) item).getRecord();
-                if (msgIndexRecord.getCount() > 1) {
-                    GlobalSearchDetailActivity2.start(this, msgIndexRecord);
+            ItemTypes.MSG -> {
+                val msgIndexRecord = (item as MsgItem).record
+                if (msgIndexRecord.count > 1) {
+                    GlobalSearchDetailActivity2.start(this, msgIndexRecord)
                 } else {
-                    DisplayMessageActivity.start(this, msgIndexRecord.getMessage());
+                    DisplayMessageActivity.start(this, msgIndexRecord.message)
                 }
-                break;
             }
-
-            default:
-                break;
+            else -> {
+            }
         }
     }
 
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent()
+            intent.setClass(context, GlobalSearchActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 }

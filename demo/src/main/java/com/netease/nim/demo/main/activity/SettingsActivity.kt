@@ -1,388 +1,359 @@
-package com.netease.nim.demo.main.activity;
+package com.netease.nim.demo.main.activity
 
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ListView;
-import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.config.preference.UserPreferences;
-import com.netease.nim.demo.contact.activity.UserProfileSettingActivity;
-import com.netease.nim.demo.jsbridge.JsBridgeActivity;
-import com.netease.nim.demo.main.adapter.SettingsAdapter;
-import com.netease.nim.demo.main.model.SettingTemplate;
-import com.netease.nim.demo.main.model.SettingType;
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions;
-import com.zxn.netease.nimsdk.common.ToastHelper;
-import com.zxn.netease.nimsdk.common.activity.ToolBarOptions;
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.NotificationFoldStyle;
-import com.netease.nimlib.sdk.Observer;
-import com.netease.nimlib.sdk.RequestCallback;
-import com.netease.nimlib.sdk.RequestCallbackWrapper;
-import com.netease.nimlib.sdk.StatusBarNotificationConfig;
-import com.netease.nimlib.sdk.auth.AuthService;
-import com.netease.nimlib.sdk.misc.DirCacheFileType;
-import com.netease.nimlib.sdk.misc.MiscService;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.settings.SettingsService;
-import com.netease.nimlib.sdk.settings.SettingsServiceObserver;
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ListView
+import com.netease.nim.demo.DemoCache.getAccount
+import com.netease.nim.demo.DemoCache.notificationConfig
+import com.netease.nim.demo.R
+import com.netease.nim.demo.config.preference.UserPreferences
+import com.netease.nim.demo.contact.activity.UserProfileSettingActivity
+import com.netease.nim.demo.jsbridge.JsBridgeActivity
+import com.netease.nim.demo.main.activity.MainActivity.Companion.logout
+import com.netease.nim.demo.main.activity.SettingsActivity
+import com.netease.nim.demo.main.adapter.SettingsAdapter
+import com.netease.nim.demo.main.adapter.SettingsAdapter.CheckChangeListener
+import com.netease.nim.demo.main.adapter.SettingsAdapter.SwitchChangeListener
+import com.netease.nim.demo.main.model.SettingTemplate
+import com.netease.nim.demo.main.model.SettingType
+import com.netease.nimlib.sdk.*
+import com.netease.nimlib.sdk.Observer
+import com.netease.nimlib.sdk.auth.AuthService
+import com.netease.nimlib.sdk.misc.DirCacheFileType
+import com.netease.nimlib.sdk.misc.MiscService
+import com.netease.nimlib.sdk.msg.MsgService
+import com.netease.nimlib.sdk.settings.SettingsService
+import com.netease.nimlib.sdk.settings.SettingsServiceObserver
+import com.zxn.netease.nimsdk.api.NimUIKit
+import com.zxn.netease.nimsdk.api.wrapper.NimToolBarOptions
+import com.zxn.netease.nimsdk.common.ToastHelper.showToast
+import com.zxn.netease.nimsdk.common.activity.ToolBarOptions
+import com.zxn.netease.nimsdk.common.activity.UI
+import kotlinx.android.synthetic.main.settings_activity.*
+import java.util.*
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class SettingsActivity extends UI implements SettingsAdapter.SwitchChangeListener, SettingsAdapter.CheckChangeListener {
-
-    private static final int TAG_HEAD = 1;
-
-    private static final int TAG_NOTICE = 2;
-
-    private static final int TAG_NO_DISTURBE = 3;
-
-    private static final int TAG_CLEAR = 4;
-
-    private static final int TAG_CUSTOM_NOTIFY = 5;
-
-    private static final int TAG_ABOUT = 6;
-
-    private static final int TAG_SPEAKER = 7;
-
-    private static final int TAG_NRTC_SETTINGS = 8;
-
-    private static final int TAG_NRTC_NET_DETECT = 9;
-
-    private static final int TAG_MSG_IGNORE = 10;
-
-    private static final int TAG_RING = 11;
-
-    private static final int TAG_LED = 12;
-
-    private static final int TAG_NOTICE_CONTENT = 13; // 通知栏提醒配置
-
-    private static final int TAG_CLEAR_INDEX = 18; // 清空全文检索缓存
-
-    private static final int TAG_MULTIPORT_PUSH = 19; // 桌面端登录，是否推送
-
-    private static final int TAG_JS_BRIDGE = 20; // js bridge
-
-    private static final int TAG_NOTIFICATION_FOLD_STYLE = 21; // 通知栏展开方式: 完全展开、全部折叠、按会话折叠
-
-    private static final int TAG_JRMFWAllET = 22; // 我的钱包
-
-    private static final int TAG_CLEAR_SDK_CACHE = 23; // 清除 sdk 文件缓存
-
-    private static final int TAG_PUSH_SHOW_NO_DETAIL = 24; // 推送消息不展示详情
-
-    private static final int TAG_VIBRATE = 25; // 推送消息不展示详情
-
-    private static final int TAG_PRIVATE_CONFIG = 26; // 私有化开关
-
-    private static final int TAG_MSG_MIGRATION = 27; // 本地消息迁移
-
-    private static final int TAG_DELETE_FRIEND_ALIAS = 28; // 本地消息迁移
-
-    private static final int AVCHAT_QUERY = 29; // 音视频通话记录查询
-
-    ListView listView;
-
-    SettingsAdapter adapter;
-
-    private final List<SettingTemplate> items = new ArrayList<>();
-
-    private String noDisturbTime;
-
-    private SettingTemplate disturbItem;
-
-    private SettingTemplate clearIndexItem;
-
-    private SettingTemplate clearSDKDirCacheItem;
-
-    private SettingTemplate notificationItem;
-
-    private SettingTemplate pushShowNoDetailItem;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_activity);
-        ToolBarOptions options = new NimToolBarOptions();
-        options.titleId = R.string.settings;
-        setToolBar(R.id.toolbar, options);
-        initData();
-        initUI();
-        registerObservers(true);
+class SettingsActivity : UI(), SwitchChangeListener, CheckChangeListener {
+//    var listView: ListView? = null
+    var adapter: SettingsAdapter? = null
+    private val items: MutableList<SettingTemplate> = ArrayList()
+    private var noDisturbTime: String? = null
+    private var disturbItem: SettingTemplate? = null
+    private var clearIndexItem: SettingTemplate? = null
+    private var clearSDKDirCacheItem: SettingTemplate? = null
+    private var notificationItem: SettingTemplate? = null
+    private var pushShowNoDetailItem: SettingTemplate? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.settings_activity)
+        val options: ToolBarOptions = NimToolBarOptions()
+        options.titleId = R.string.settings
+        setToolBar(R.id.toolbar, options)
+        initData()
+        initUI()
+        registerObservers(true)
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        adapter.notifyDataSetChanged();
+    override fun onResume() {
+        super.onResume()
+        adapter!!.notifyDataSetChanged()
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        registerObservers(false);
+    override fun onDestroy() {
+        super.onDestroy()
+        registerObservers(false)
     }
 
-    private void registerObservers(boolean register) {
-        NIMClient.getService(SettingsServiceObserver.class).observeMultiportPushConfigNotify(
-                pushConfigObserver, register);
+    private fun registerObservers(register: Boolean) {
+        NIMClient.getService(SettingsServiceObserver::class.java).observeMultiportPushConfigNotify(
+            pushConfigObserver, register
+        )
     }
 
-    Observer<Boolean> pushConfigObserver = (Observer<Boolean>) aBoolean -> ToastHelper.showToast(
-            SettingsActivity.this, "收到multiport push config：" + aBoolean);
+    var pushConfigObserver = Observer { aBoolean: Boolean ->
+        showToast(
+            this@SettingsActivity, "收到multiport push config：$aBoolean"
+        )
+    } as Observer<Boolean>
 
-    private void initData() {
-        if (UserPreferences.getStatusConfig() == null ||
-            !UserPreferences.getStatusConfig().downTimeToggle) {
-            noDisturbTime = getString(R.string.setting_close);
+    private fun initData() {
+        noDisturbTime = if (UserPreferences.getStatusConfig() == null ||
+            !UserPreferences.getStatusConfig().downTimeToggle
+        ) {
+            getString(R.string.setting_close)
         } else {
-            noDisturbTime = String.format("%s到%s", UserPreferences.getStatusConfig().downTimeBegin,
-                                          UserPreferences.getStatusConfig().downTimeEnd);
+            String.format(
+                "%s到%s",
+                UserPreferences.getStatusConfig().downTimeBegin,
+                UserPreferences.getStatusConfig().downTimeEnd
+            )
         }
-        getSDKDirCacheSize();
+        sDKDirCacheSize
     }
 
-    private void initUI() {
-        initItems();
-        listView = findViewById(R.id.settings_listview);
-        View footer = LayoutInflater.from(this).inflate(R.layout.settings_logout_footer, null);
-        listView.addFooterView(footer);
-        initAdapter();
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            SettingTemplate item = items.get(position);
-            onListItemClick(item);
-        });
-        View logoutBtn = footer.findViewById(R.id.settings_button_logout);
-        logoutBtn.setOnClickListener(v -> logout());
+    private fun initUI() {
+        initItems()
+
+        val footer = LayoutInflater.from(this).inflate(R.layout.settings_logout_footer, null)
+        listView.addFooterView(footer)
+        initAdapter()
+        listView.setOnItemClickListener(AdapterView.OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+            val item = items[position]
+            onListItemClick(item)
+        })
+        val logoutBtn = footer.findViewById<View>(R.id.settings_button_logout)
+        logoutBtn.setOnClickListener { v: View? -> logout() }
     }
 
-    private void initAdapter() {
-        adapter = new SettingsAdapter(this, this, this, items);
-        listView.setAdapter(adapter);
+    private fun initAdapter() {
+        adapter = SettingsAdapter(this, this, this, items)
+        listView!!.adapter = adapter
     }
 
-    private void initItems() {
-        items.clear();
-        items.add(new SettingTemplate(TAG_HEAD, SettingType.TYPE_HEAD));
-        notificationItem = new SettingTemplate(TAG_NOTICE, getString(R.string.msg_notice),
-                                               SettingType.TYPE_TOGGLE,
-                                               UserPreferences.getNotificationToggle());
-        items.add(notificationItem);
-        items.add(SettingTemplate.addLine());
-        pushShowNoDetailItem = new SettingTemplate(TAG_PUSH_SHOW_NO_DETAIL,
-                                                   getString(R.string.push_no_detail),
-                                                   SettingType.TYPE_TOGGLE,
-                                                   getIsShowPushNoDetail());
-        items.add(pushShowNoDetailItem);
-
-        NotificationFoldStyle foldStyle = getNotificationFoldStyle();
-        int selectedId;
-        switch (foldStyle) {
-            case EXPAND:
-                selectedId = R.id.rb_expand;
-                break;
-            case CONTACT:
-                selectedId = R.id.rb_contact;
-                break;
-            case ALL:
-            default:
-                selectedId = R.id.rb_fold;
-                break;
+    private fun initItems() {
+        items.clear()
+        items.add(SettingTemplate(TAG_HEAD, SettingType.TYPE_HEAD))
+        notificationItem = SettingTemplate(
+            TAG_NOTICE, getString(R.string.msg_notice),
+            SettingType.TYPE_TOGGLE,
+            UserPreferences.getNotificationToggle()
+        )
+        items.add(notificationItem!!)
+        items.add(SettingTemplate.addLine())
+        pushShowNoDetailItem = SettingTemplate(
+            TAG_PUSH_SHOW_NO_DETAIL,
+            getString(R.string.push_no_detail),
+            SettingType.TYPE_TOGGLE,
+            isShowPushNoDetail
+        )
+        items.add(pushShowNoDetailItem!!)
+        val foldStyle = notificationFoldStyle
+        val selectedId: Int
+        selectedId = when (foldStyle) {
+            NotificationFoldStyle.EXPAND -> R.id.rb_expand
+            NotificationFoldStyle.CONTACT -> R.id.rb_contact
+            NotificationFoldStyle.ALL -> R.id.rb_fold
+            else -> R.id.rb_fold
         }
-        items.add(new SettingTemplate(TAG_NOTIFICATION_FOLD_STYLE, getString(R.string.notification_fold_style), SettingType.TYPE_THREE_CHOOSE_ONE,null, selectedId));
-        items.add(new SettingTemplate(TAG_RING, getString(R.string.ring), SettingType.TYPE_TOGGLE,
-                                      UserPreferences.getRingToggle()));
-        items.add(new SettingTemplate(TAG_VIBRATE, getString(R.string.vibrate),
-                                      SettingType.TYPE_TOGGLE, UserPreferences.getVibrateToggle()));
-        items.add(new SettingTemplate(TAG_LED, getString(R.string.led), SettingType.TYPE_TOGGLE,
-                                      UserPreferences.getLedToggle()));
-        items.add(SettingTemplate.addLine());
-        items.add(new SettingTemplate(TAG_NOTICE_CONTENT, getString(R.string.notice_content),
-                                      SettingType.TYPE_TOGGLE,
-                                      UserPreferences.getNoticeContentToggle()));
-        items.add(SettingTemplate.addLine());
-        disturbItem = new SettingTemplate(TAG_NO_DISTURBE, getString(R.string.no_disturb),
-                                          noDisturbTime);
-        items.add(disturbItem);
-        items.add(SettingTemplate.addLine());
-        items.add(new SettingTemplate(TAG_MULTIPORT_PUSH, getString(R.string.multiport_push),
-                                      SettingType.TYPE_TOGGLE,
-                                      !NIMClient.getService(SettingsService.class)
-                                                .isMultiportPushOpen()));
-        items.add(SettingTemplate.makeSeperator());
-        items.add(new SettingTemplate(TAG_SPEAKER, getString(R.string.msg_speaker),
-                                      SettingType.TYPE_TOGGLE, NimUIKit.isEarPhoneModeEnable()));
-        items.add(SettingTemplate.makeSeperator());
+        items.add(
+            SettingTemplate(
+                TAG_NOTIFICATION_FOLD_STYLE,
+                getString(R.string.notification_fold_style),
+                SettingType.TYPE_THREE_CHOOSE_ONE,
+                null,
+                selectedId
+            )
+        )
+        items.add(
+            SettingTemplate(
+                TAG_RING, getString(R.string.ring), SettingType.TYPE_TOGGLE,
+                UserPreferences.getRingToggle()
+            )
+        )
+        items.add(
+            SettingTemplate(
+                TAG_VIBRATE, getString(R.string.vibrate),
+                SettingType.TYPE_TOGGLE, UserPreferences.getVibrateToggle()
+            )
+        )
+        items.add(
+            SettingTemplate(
+                TAG_LED, getString(R.string.led), SettingType.TYPE_TOGGLE,
+                UserPreferences.getLedToggle()
+            )
+        )
+        items.add(SettingTemplate.addLine())
+        items.add(
+            SettingTemplate(
+                TAG_NOTICE_CONTENT, getString(R.string.notice_content),
+                SettingType.TYPE_TOGGLE,
+                UserPreferences.getNoticeContentToggle()
+            )
+        )
+        items.add(SettingTemplate.addLine())
+        disturbItem = SettingTemplate(
+            TAG_NO_DISTURBE, getString(R.string.no_disturb),
+            noDisturbTime
+        )
+        items.add(disturbItem!!)
+        items.add(SettingTemplate.addLine())
+        items.add(
+            SettingTemplate(
+                TAG_MULTIPORT_PUSH, getString(R.string.multiport_push),
+                SettingType.TYPE_TOGGLE,
+                !NIMClient.getService(SettingsService::class.java)
+                    .isMultiportPushOpen
+            )
+        )
+        items.add(SettingTemplate.makeSeperator())
+        items.add(
+            SettingTemplate(
+                TAG_SPEAKER, getString(R.string.msg_speaker),
+                SettingType.TYPE_TOGGLE, NimUIKit.isEarPhoneModeEnable()
+            )
+        )
+        items.add(SettingTemplate.makeSeperator())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            items.add(SettingTemplate.addLine());
-            items.add(new SettingTemplate(TAG_NRTC_NET_DETECT, "音视频通话网络探测"));
-            items.add(SettingTemplate.addLine());
-            items.add(new SettingTemplate(AVCHAT_QUERY, "音视频通话记录"));
-            items.add(SettingTemplate.makeSeperator());
+            items.add(SettingTemplate.addLine())
+            items.add(SettingTemplate(TAG_NRTC_NET_DETECT, "音视频通话网络探测"))
+            items.add(SettingTemplate.addLine())
+            items.add(SettingTemplate(AVCHAT_QUERY, "音视频通话记录"))
+            items.add(SettingTemplate.makeSeperator())
         }
-        items.add(new SettingTemplate(TAG_MSG_IGNORE, "过滤通知", SettingType.TYPE_TOGGLE,
-                                      UserPreferences.getMsgIgnore()));
-        items.add(SettingTemplate.makeSeperator());
-        items.add(new SettingTemplate(TAG_CLEAR, getString(R.string.about_clear_msg_history)));
-        items.add(SettingTemplate.addLine());
-        clearIndexItem = new SettingTemplate(TAG_CLEAR_INDEX, getString(R.string.clear_index),
-                                             getIndexCacheSize() + " M");
-        items.add(clearIndexItem);
-        items.add(SettingTemplate.addLine());
-        clearSDKDirCacheItem = new SettingTemplate(TAG_CLEAR_SDK_CACHE,
-                                                   getString(R.string.clear_sdk_cache), 0 + " M");
-        items.add(clearSDKDirCacheItem);
-        items.add(SettingTemplate.makeSeperator());
-        items.add(new SettingTemplate(TAG_CUSTOM_NOTIFY, getString(R.string.custom_notification)));
-        items.add(SettingTemplate.addLine());
-        items.add(new SettingTemplate(TAG_JS_BRIDGE, getString(R.string.js_bridge_demonstration)));
-        items.add(SettingTemplate.makeSeperator());
-
-        items.add(new SettingTemplate(TAG_PRIVATE_CONFIG,
-                                      getString(R.string.setting_private_config)));
-        items.add(SettingTemplate.makeSeperator());
-        items.add(new SettingTemplate(TAG_MSG_MIGRATION, getString(R.string.local_db_migration)));
-        items.add(SettingTemplate.makeSeperator());
-        items.add(new SettingTemplate(TAG_ABOUT, getString(R.string.setting_about)));
-        items.add(SettingTemplate.makeSeperator());
-        items.add(new SettingTemplate(TAG_DELETE_FRIEND_ALIAS,
-                                      getString(R.string.delete_friend_is_delete_alias),
-                                      SettingType.TYPE_TOGGLE,
-                                      UserPreferences.isDeleteFriendAndDeleteAlias()));
+        items.add(
+            SettingTemplate(
+                TAG_MSG_IGNORE, "过滤通知", SettingType.TYPE_TOGGLE,
+                UserPreferences.getMsgIgnore()
+            )
+        )
+        items.add(SettingTemplate.makeSeperator())
+        items.add(SettingTemplate(TAG_CLEAR, getString(R.string.about_clear_msg_history)))
+        items.add(SettingTemplate.addLine())
+        clearIndexItem = SettingTemplate(
+            TAG_CLEAR_INDEX, getString(R.string.clear_index),
+            "$indexCacheSize M"
+        )
+        items.add(clearIndexItem!!)
+        items.add(SettingTemplate.addLine())
+        clearSDKDirCacheItem = SettingTemplate(
+            TAG_CLEAR_SDK_CACHE,
+            getString(R.string.clear_sdk_cache), 0.toString() + " M"
+        )
+        items.add(clearSDKDirCacheItem!!)
+        items.add(SettingTemplate.makeSeperator())
+        items.add(SettingTemplate(TAG_CUSTOM_NOTIFY, getString(R.string.custom_notification)))
+        items.add(SettingTemplate.addLine())
+        items.add(SettingTemplate(TAG_JS_BRIDGE, getString(R.string.js_bridge_demonstration)))
+        items.add(SettingTemplate.makeSeperator())
+        items.add(
+            SettingTemplate(
+                TAG_PRIVATE_CONFIG,
+                getString(R.string.setting_private_config)
+            )
+        )
+        items.add(SettingTemplate.makeSeperator())
+        items.add(SettingTemplate(TAG_MSG_MIGRATION, getString(R.string.local_db_migration)))
+        items.add(SettingTemplate.makeSeperator())
+        items.add(SettingTemplate(TAG_ABOUT, getString(R.string.setting_about)))
+        items.add(SettingTemplate.makeSeperator())
+        items.add(
+            SettingTemplate(
+                TAG_DELETE_FRIEND_ALIAS,
+                getString(R.string.delete_friend_is_delete_alias),
+                SettingType.TYPE_TOGGLE,
+                UserPreferences.isDeleteFriendAndDeleteAlias()
+            )
+        )
     }
 
-    private NotificationFoldStyle getNotificationFoldStyle() {
-
-        StatusBarNotificationConfig config = UserPreferences.getStatusConfig();
-        NotificationFoldStyle foldStyle = config.notificationFoldStyle;
-        if (foldStyle == null) {
-            foldStyle = NotificationFoldStyle.ALL;
-            config.notificationFoldStyle = NotificationFoldStyle.ALL;
-            UserPreferences.setStatusConfig(config);
+    private val notificationFoldStyle: NotificationFoldStyle
+        private get() {
+            val config = UserPreferences.getStatusConfig()
+            var foldStyle = config.notificationFoldStyle
+            if (foldStyle == null) {
+                foldStyle = NotificationFoldStyle.ALL
+                config.notificationFoldStyle = NotificationFoldStyle.ALL
+                UserPreferences.setStatusConfig(config)
+            }
+            return foldStyle
         }
-        return foldStyle;
-    }
 
-    private void onListItemClick(SettingTemplate item) {
+    private fun onListItemClick(item: SettingTemplate?) {
         if (item == null) {
-            return;
+            return
         }
-        switch (item.getId()) {
-            case TAG_HEAD:
-                UserProfileSettingActivity.start(this, DemoCache.getAccount());
-                break;
-            case TAG_NO_DISTURBE:
-                startNoDisturb();
-                break;
-            case TAG_CUSTOM_NOTIFY:
-                CustomNotificationActivity.start(SettingsActivity.this);
-                break;
-            case TAG_CLEAR:
-                NIMClient.getService(MsgService.class).clearMsgDatabase(true);
-                ToastHelper.showToast(SettingsActivity.this, R.string.clear_msg_history_success);
-                break;
-            case TAG_CLEAR_INDEX:
-                clearIndex();
-                break;
-            case TAG_CLEAR_SDK_CACHE:
-                clearSDKDirCache();
-                break;
-            case TAG_NRTC_NET_DETECT:
-                netDetectForNrtc();
-                break;
-            case TAG_JS_BRIDGE:
-                startActivity(new Intent(SettingsActivity.this, JsBridgeActivity.class));
-                break;
-            case TAG_JRMFWAllET:
-                break;
-            case TAG_PRIVATE_CONFIG:
-                startActivity(new Intent(this, PrivatizationConfigActivity.class));
-                break;
-            case TAG_MSG_MIGRATION:
-                startActivity(new Intent(this, MsgMigrationActivity.class));
-                break;
-            default:
-                break;
+        when (item.id) {
+            TAG_HEAD -> UserProfileSettingActivity.start(this, getAccount())
+            TAG_NO_DISTURBE -> startNoDisturb()
+            TAG_CUSTOM_NOTIFY -> CustomNotificationActivity.start(this@SettingsActivity)
+            TAG_CLEAR -> {
+                NIMClient.getService(MsgService::class.java).clearMsgDatabase(true)
+                showToast(this@SettingsActivity, R.string.clear_msg_history_success)
+            }
+            TAG_CLEAR_INDEX -> clearIndex()
+            TAG_CLEAR_SDK_CACHE -> clearSDKDirCache()
+            TAG_NRTC_NET_DETECT -> netDetectForNrtc()
+            TAG_JS_BRIDGE -> startActivity(
+                Intent(
+                    this@SettingsActivity,
+                    JsBridgeActivity::class.java
+                )
+            )
+            TAG_JRMFWAllET -> {
+            }
+            TAG_PRIVATE_CONFIG -> startActivity(
+                Intent(
+                    this,
+                    PrivatizationConfigActivity::class.java
+                )
+            )
+            TAG_MSG_MIGRATION -> startActivity(Intent(this, MsgMigrationActivity::class.java))
+            else -> {
+            }
         }
     }
 
-    private void getSDKDirCacheSize() {
-        List<DirCacheFileType> types = new ArrayList<>();
-        types.add(DirCacheFileType.AUDIO);
-        types.add(DirCacheFileType.THUMB);
-        types.add(DirCacheFileType.IMAGE);
-        types.add(DirCacheFileType.VIDEO);
-        types.add(DirCacheFileType.OTHER);
-        NIMClient.getService(MiscService.class).getSizeOfDirCache(types, 0, 0).setCallback(
-                new RequestCallbackWrapper<Long>() {
+    private val sDKDirCacheSize: Unit
+        private get() {
+            val types: MutableList<DirCacheFileType> = ArrayList()
+            types.add(DirCacheFileType.AUDIO)
+            types.add(DirCacheFileType.THUMB)
+            types.add(DirCacheFileType.IMAGE)
+            types.add(DirCacheFileType.VIDEO)
+            types.add(DirCacheFileType.OTHER)
+            NIMClient.getService(MiscService::class.java)
+                .getSizeOfDirCache(types, 0, 0)
+                .setCallback(object : RequestCallbackWrapper<Long>() {
+                        override fun onResult(code: Int, result: Long, exception: Throwable?) {
+                            clearSDKDirCacheItem!!.detail =
+                                String.format("%.2f M", result / (1024.0f * 1024.0f))
+                            adapter!!.notifyDataSetChanged()
+                        }
+                    })
+        }
 
-                    @Override
-                    public void onResult(int code, Long result, Throwable exception) {
-                        clearSDKDirCacheItem.setDetail(
-                                String.format("%.2f M", result / (1024.0f * 1024.0f)));
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+    private fun clearSDKDirCache() {
+        val types: MutableList<DirCacheFileType> = ArrayList()
+        types.add(DirCacheFileType.AUDIO)
+        types.add(DirCacheFileType.THUMB)
+        types.add(DirCacheFileType.IMAGE)
+        types.add(DirCacheFileType.VIDEO)
+        types.add(DirCacheFileType.OTHER)
+        NIMClient.getService(MiscService::class.java).clearDirCache(types, 0, 0).setCallback(
+            object : RequestCallbackWrapper<Void?>() {
+                override fun onResult(code: Int, result: Void?, exception: Throwable) {
+                    clearSDKDirCacheItem!!.detail = "0.00 M"
+                    adapter!!.notifyDataSetChanged()
+                }
+            })
     }
 
-    private void clearSDKDirCache() {
-        List<DirCacheFileType> types = new ArrayList<>();
-        types.add(DirCacheFileType.AUDIO);
-        types.add(DirCacheFileType.THUMB);
-        types.add(DirCacheFileType.IMAGE);
-        types.add(DirCacheFileType.VIDEO);
-        types.add(DirCacheFileType.OTHER);
-        NIMClient.getService(MiscService.class).clearDirCache(types, 0, 0).setCallback(
-                new RequestCallbackWrapper<Void>() {
+    private fun netDetectForNrtc() {}
+    private val isShowPushNoDetail: Boolean
+        private get() {
+            val localConfig = UserPreferences.getStatusConfig()
+            return localConfig.hideContent
+        }
 
-                    @Override
-                    public void onResult(int code, Void result, Throwable exception) {
-                        clearSDKDirCacheItem.setDetail("0.00 M");
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-    }
-
-    private void netDetectForNrtc() {
-
-    }
-
-
-    private boolean getIsShowPushNoDetail() {
-        StatusBarNotificationConfig localConfig = UserPreferences.getStatusConfig();
-
-        return localConfig.hideContent;
-    }
-
-    private void updateShowPushNoDetail(final boolean showNoDetail) {
-
-    }
+    private fun updateShowPushNoDetail(showNoDetail: Boolean) {}
 
     /**
      * 注销
      */
-    private void logout() {
-        MainActivity.logout(SettingsActivity.this, false);
-        finish();
-        NIMClient.getService(AuthService.class).logout();
+    private fun logout() {
+        logout(this@SettingsActivity, false)
+        finish()
+        NIMClient.getService(AuthService::class.java).logout()
     }
 
-
-    @Override
-    public void onCheckChange(SettingTemplate item, int checkedId) {
-        switch (item.getId()) {
-            case TAG_NOTIFICATION_FOLD_STYLE:
-                updateNotificationFoldStyle(checkedId);
-                break;
-            default:
-                break;
+    override fun onCheckChange(item: SettingTemplate, checkedId: Int) {
+        when (item.id) {
+            TAG_NOTIFICATION_FOLD_STYLE -> updateNotificationFoldStyle(checkedId)
+            else -> {
+            }
         }
     }
 
@@ -391,147 +362,112 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
      *
      * @param checkedId 选中项的ID
      */
-    private void updateNotificationFoldStyle(int checkedId) {
-        NotificationFoldStyle foldStyle;
-        switch (checkedId) {
-            case R.id.rb_contact:
-                foldStyle = NotificationFoldStyle.CONTACT;
-                break;
-            case R.id.rb_expand:
-                foldStyle = NotificationFoldStyle.EXPAND;
-                break;
-            default:
-            case R.id.rb_fold:
-                foldStyle = NotificationFoldStyle.ALL;
-                break;
+    private fun updateNotificationFoldStyle(checkedId: Int) {
+        val foldStyle: NotificationFoldStyle
+        foldStyle = when (checkedId) {
+            R.id.rb_contact -> NotificationFoldStyle.CONTACT
+            R.id.rb_expand -> NotificationFoldStyle.EXPAND
+            R.id.rb_fold -> NotificationFoldStyle.ALL
+            else -> NotificationFoldStyle.ALL
         }
-        StatusBarNotificationConfig config = UserPreferences.getStatusConfig();
-        config.notificationFoldStyle = foldStyle;
-        UserPreferences.setStatusConfig(config);
-        NIMClient.updateStatusBarNotificationConfig(config);
+        val config = UserPreferences.getStatusConfig()
+        config.notificationFoldStyle = foldStyle
+        UserPreferences.setStatusConfig(config)
+        NIMClient.updateStatusBarNotificationConfig(config)
     }
 
-    @Override
-    public void onSwitchChange(SettingTemplate item, boolean checkState) {
-        switch (item.getId()) {
-            case TAG_NOTICE:
-                setMessageNotify(checkState);
-                break;
-            case TAG_SPEAKER:
-                NimUIKit.setEarPhoneModeEnable(checkState);
-                break;
-            case TAG_MSG_IGNORE:
-                UserPreferences.setMsgIgnore(checkState);
-                break;
-            case TAG_RING: {
-                UserPreferences.setRingToggle(checkState);
-                StatusBarNotificationConfig config = UserPreferences.getStatusConfig();
-                config.ring = checkState;
-                UserPreferences.setStatusConfig(config);
-                NIMClient.updateStatusBarNotificationConfig(config);
-                break;
+    override fun onSwitchChange(item: SettingTemplate, checkState: Boolean) {
+        when (item.id) {
+            TAG_NOTICE -> setMessageNotify(checkState)
+            TAG_SPEAKER -> NimUIKit.setEarPhoneModeEnable(checkState)
+            TAG_MSG_IGNORE -> UserPreferences.setMsgIgnore(checkState)
+            TAG_RING -> {
+                UserPreferences.setRingToggle(checkState)
+                val config = UserPreferences.getStatusConfig()
+                config.ring = checkState
+                UserPreferences.setStatusConfig(config)
+                NIMClient.updateStatusBarNotificationConfig(config)
             }
-            case TAG_VIBRATE: {
-                UserPreferences.setVibrateToggle(checkState);
-                StatusBarNotificationConfig config = UserPreferences.getStatusConfig();
-                config.vibrate = checkState;
-                UserPreferences.setStatusConfig(config);
-                NIMClient.updateStatusBarNotificationConfig(config);
+            TAG_VIBRATE -> {
+                UserPreferences.setVibrateToggle(checkState)
+                val config = UserPreferences.getStatusConfig()
+                config.vibrate = checkState
+                UserPreferences.setStatusConfig(config)
+                NIMClient.updateStatusBarNotificationConfig(config)
             }
-            break;
-            case TAG_LED: {
-                UserPreferences.setLedToggle(checkState);
-                StatusBarNotificationConfig config = UserPreferences.getStatusConfig();
-                StatusBarNotificationConfig demoConfig = DemoCache.getNotificationConfig();
+            TAG_LED -> {
+                UserPreferences.setLedToggle(checkState)
+                val config = UserPreferences.getStatusConfig()
+                val demoConfig = notificationConfig
                 if (checkState && demoConfig != null) {
-                    config.ledARGB = demoConfig.ledARGB;
-                    config.ledOnMs = demoConfig.ledOnMs;
-                    config.ledOffMs = demoConfig.ledOffMs;
+                    config.ledARGB = demoConfig.ledARGB
+                    config.ledOnMs = demoConfig.ledOnMs
+                    config.ledOffMs = demoConfig.ledOffMs
                 } else {
-                    config.ledARGB = -1;
-                    config.ledOnMs = -1;
-                    config.ledOffMs = -1;
+                    config.ledARGB = -1
+                    config.ledOnMs = -1
+                    config.ledOffMs = -1
                 }
-                UserPreferences.setStatusConfig(config);
-                NIMClient.updateStatusBarNotificationConfig(config);
+                UserPreferences.setStatusConfig(config)
+                NIMClient.updateStatusBarNotificationConfig(config)
             }
-            break;
-            case TAG_NOTICE_CONTENT:
-                UserPreferences.setNoticeContentToggle(checkState);
-                StatusBarNotificationConfig config2 = UserPreferences.getStatusConfig();
-                config2.titleOnlyShowAppName = checkState;
-                UserPreferences.setStatusConfig(config2);
-                NIMClient.updateStatusBarNotificationConfig(config2);
-                break;
-            case TAG_MULTIPORT_PUSH:
-                updateMultiportPushConfig(!checkState);
-                break;
-            case TAG_PUSH_SHOW_NO_DETAIL:
-                updateShowPushNoDetail(checkState);
-                break;
-            case TAG_DELETE_FRIEND_ALIAS:
-                updateDeleteFriendAndAlias(checkState);
-                break;
-            default:
-                break;
+            TAG_NOTICE_CONTENT -> {
+                UserPreferences.setNoticeContentToggle(checkState)
+                val config2 = UserPreferences.getStatusConfig()
+                config2.titleOnlyShowAppName = checkState
+                UserPreferences.setStatusConfig(config2)
+                NIMClient.updateStatusBarNotificationConfig(config2)
+            }
+            TAG_MULTIPORT_PUSH -> updateMultiportPushConfig(!checkState)
+            TAG_PUSH_SHOW_NO_DETAIL -> updateShowPushNoDetail(checkState)
+            TAG_DELETE_FRIEND_ALIAS -> updateDeleteFriendAndAlias(checkState)
+            else -> {
+            }
         }
-        item.setChecked(checkState);
+        item.setChecked(checkState)
     }
 
-    private void updateDeleteFriendAndAlias(boolean checkState) {
-        UserPreferences.setDeleteFriendAndDeleteAlias(checkState);
+    private fun updateDeleteFriendAndAlias(checkState: Boolean) {
+        UserPreferences.setDeleteFriendAndDeleteAlias(checkState)
     }
 
-    private void setMessageNotify(final boolean checkState) {
-
-    }
-
-    private void setToggleNotification(boolean checkState) {
+    private fun setMessageNotify(checkState: Boolean) {}
+    private fun setToggleNotification(checkState: Boolean) {
         try {
-            setNotificationToggle(checkState);
-            NIMClient.toggleNotification(checkState);
-        } catch (Exception e) {
-            e.printStackTrace();
+            setNotificationToggle(checkState)
+            NIMClient.toggleNotification(checkState)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
-    private void setNotificationToggle(boolean on) {
-        UserPreferences.setNotificationToggle(on);
+    private fun setNotificationToggle(on: Boolean) {
+        UserPreferences.setNotificationToggle(on)
     }
 
-    private void startNoDisturb() {
+    private fun startNoDisturb() {}
+    private val indexCacheSize: String
+        private get() = ""
 
+    private fun clearIndex() {
+        clearIndexItem!!.detail = "0.00 M"
+        adapter!!.notifyDataSetChanged()
     }
 
-    private String getIndexCacheSize() {
+    private fun updateMultiportPushConfig(checkState: Boolean) {
+        NIMClient.getService(SettingsService::class.java).updateMultiportPushConfig(checkState)
+            .setCallback(object : RequestCallback<Void?> {
+                override fun onSuccess(param: Void?) {
+                    showToast(this@SettingsActivity, "设置成功")
+                }
 
-        return "";
-    }
+                override fun onFailed(code: Int) {
+                    showToast(this@SettingsActivity, "设置失败,code:$code")
+                    adapter!!.notifyDataSetChanged()
+                }
 
-    private void clearIndex() {
-        clearIndexItem.setDetail("0.00 M");
-        adapter.notifyDataSetChanged();
-    }
-
-    private void updateMultiportPushConfig(final boolean checkState) {
-        NIMClient.getService(SettingsService.class).updateMultiportPushConfig(checkState)
-                 .setCallback(new RequestCallback<Void>() {
-
-                     @Override
-                     public void onSuccess(Void param) {
-                         ToastHelper.showToast(SettingsActivity.this, "设置成功");
-                     }
-
-                     @Override
-                     public void onFailed(int code) {
-                         ToastHelper.showToast(SettingsActivity.this, "设置失败,code:" + code);
-                         adapter.notifyDataSetChanged();
-                     }
-
-                     @Override
-                     public void onException(Throwable exception) {
-                     }
-                 });
+                override fun onException(exception: Throwable) {}
+            })
     }
 
     /**
@@ -539,7 +475,33 @@ public class SettingsActivity extends UI implements SettingsAdapter.SwitchChange
      *
      * @param data
      */
-    private void setNoDisturbTime(Intent data) {
+    private fun setNoDisturbTime(data: Intent) {}
 
+    companion object {
+        private const val TAG_HEAD = 1
+        private const val TAG_NOTICE = 2
+        private const val TAG_NO_DISTURBE = 3
+        private const val TAG_CLEAR = 4
+        private const val TAG_CUSTOM_NOTIFY = 5
+        private const val TAG_ABOUT = 6
+        private const val TAG_SPEAKER = 7
+        private const val TAG_NRTC_SETTINGS = 8
+        private const val TAG_NRTC_NET_DETECT = 9
+        private const val TAG_MSG_IGNORE = 10
+        private const val TAG_RING = 11
+        private const val TAG_LED = 12
+        private const val TAG_NOTICE_CONTENT = 13 // 通知栏提醒配置
+        private const val TAG_CLEAR_INDEX = 18 // 清空全文检索缓存
+        private const val TAG_MULTIPORT_PUSH = 19 // 桌面端登录，是否推送
+        private const val TAG_JS_BRIDGE = 20 // js bridge
+        private const val TAG_NOTIFICATION_FOLD_STYLE = 21 // 通知栏展开方式: 完全展开、全部折叠、按会话折叠
+        private const val TAG_JRMFWAllET = 22 // 我的钱包
+        private const val TAG_CLEAR_SDK_CACHE = 23 // 清除 sdk 文件缓存
+        private const val TAG_PUSH_SHOW_NO_DETAIL = 24 // 推送消息不展示详情
+        private const val TAG_VIBRATE = 25 // 推送消息不展示详情
+        private const val TAG_PRIVATE_CONFIG = 26 // 私有化开关
+        private const val TAG_MSG_MIGRATION = 27 // 本地消息迁移
+        private const val TAG_DELETE_FRIEND_ALIAS = 28 // 本地消息迁移
+        private const val AVCHAT_QUERY = 29 // 音视频通话记录查询
     }
 }

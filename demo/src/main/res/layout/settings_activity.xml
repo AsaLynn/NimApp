@@ -23,7 +23,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ListView
-        android:id="@+id/settings_listview"
+        android:id="@+id/listView"
         style="@style/list_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

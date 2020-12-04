@@ -1,135 +1,128 @@
-package com.zxn.netease.nimsdk.common.activity;
+package com.zxn.netease.nimsdk.common.activity
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.os.Build;
-import android.os.Handler;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.R
+import android.annotation.TargetApi
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.text.TextUtils
+import android.view.KeyEvent
+import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.zxn.mvvm.view.BaseActivity
+import com.zxn.netease.nimsdk.common.fragment.TFragment
+import com.zxn.netease.nimsdk.common.util.sys.ReflectionUtil
+import java.util.*
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.zxn.netease.nimsdk.common.fragment.TFragment;
-import com.zxn.netease.nimsdk.common.util.sys.ReflectionUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public abstract class UI extends AppCompatActivity {
-
-    private boolean destroyed = false;
-
-    private static Handler handler;
-
-    private Toolbar toolbar;
+abstract class UI : BaseActivity<Nothing>() {
+    override val layoutResId: Int
+        get() = 0
 
 
-    @Override
-    public void onBackPressed() {
-        invokeFragmentManagerNoteStateNotSaved();
-        super.onBackPressed();
+    private var destroyed = false
+    lateinit var toolBar: Toolbar
+
+    override fun createObserver() {
+
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        destroyed = true;
+    override fun onInitView() {
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onNavigateUpClicked();
-                return true;
+    override fun registerEventBus(isRegister: Boolean) {
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        handler = Handler(mainLooper)
+    }
+
+    override fun onBackPressed() {
+        invokeFragmentManagerNoteStateNotSaved()
+        super.onBackPressed()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        destroyed = true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> {
+                onNavigateUpClicked()
+                return true
+            }
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item)
     }
 
-    public void setToolBar(int toolBarId, ToolBarOptions options) {
-        toolbar = findViewById(toolBarId);
+    fun setToolBar(toolBarId: Int, options: ToolBarOptions) {
+        toolBar = findViewById(toolBarId)
         if (options.titleId != 0) {
-            toolbar.setTitle(options.titleId);
+            toolBar.setTitle(options.titleId)
         }
         if (!TextUtils.isEmpty(options.titleString)) {
-            toolbar.setTitle(options.titleString);
+            toolBar.setTitle(options.titleString)
         }
-//        if (options.logoId != 0) {
-//            toolbar.setLogo(options.logoId);
-//        }
-        setSupportActionBar(toolbar);
-
+        setSupportActionBar(toolBar)
         if (options.isNeedNavigate) {
-            toolbar.setNavigationIcon(options.navigateId);
+            toolBar.setNavigationIcon(options.navigateId)
             //toolbar.setContentInsetStartWithNavigation(0);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onNavigateUpClicked();
-                }
-            });
+            toolBar.setNavigationOnClickListener(View.OnClickListener { onNavigateUpClicked() })
         }
     }
 
-    public void setToolBar(int toolbarId, int titleId) {
-        toolbar = findViewById(toolbarId);
-        toolbar.setTitle(titleId);
-        setSupportActionBar(toolbar);
+    fun setToolBar(toolbarId: Int, titleId: Int) {
+        toolBar = findViewById(toolbarId)
+        toolBar.setTitle(titleId)
+        setSupportActionBar(toolBar)
     }
 
-    public Toolbar getToolBar() {
-        return toolbar;
+    val toolBarHeight: Int
+        get() = if (toolBar != null) {
+            toolBar!!.height
+        } else 0
+
+    fun onNavigateUpClicked() {
+        onBackPressed()
     }
 
-    public int getToolBarHeight() {
-        if (toolbar != null) {
-            return toolbar.getHeight();
-        }
-        return 0;
-    }
-
-    public void onNavigateUpClicked() {
-        onBackPressed();
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-        super.setTitle(title);
-        if (toolbar != null) {
-            toolbar.setTitle(title);
+    override fun setTitle(title: CharSequence) {
+        super.setTitle(title)
+        if (toolBar != null) {
+            toolBar!!.title = title
         }
     }
 
-    public void setSubTitle(String subTitle) {
-        if (toolbar != null) {
-            toolbar.setSubtitle(subTitle);
+    fun setSubTitle(subTitle: String?) {
+        if (toolBar != null) {
+            toolBar!!.subtitle = subTitle
         }
     }
 
-    protected final Handler getHandler() {
-        if (handler == null) {
-            handler = new Handler(getMainLooper());
-        }
-        return handler;
-    }
+      protected lateinit var handler: Handler
 
-    protected void showKeyboard(boolean isShow) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+    protected fun showKeyboard(isShow: Boolean) {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         if (isShow) {
-            if (getCurrentFocus() == null) {
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            if (currentFocus == null) {
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
             } else {
-                imm.showSoftInput(getCurrentFocus(), 0);
+                imm.showSoftInput(currentFocus, 0)
             }
         } else {
-            if (getCurrentFocus() != null) {
-                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            if (currentFocus != null) {
+                imm.hideSoftInputFromWindow(
+                    currentFocus!!.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS
+                )
             }
         }
     }
@@ -139,138 +132,121 @@ public abstract class UI extends AppCompatActivity {
      *
      * @param focus 键盘的焦点项
      */
-    protected void showKeyboardDelayed(View focus) {
-        final View viewToFocus = focus;
-        if (focus != null) {
-            focus.requestFocus();
-        }
-
-        getHandler().postDelayed(() -> {
-            if (viewToFocus == null || viewToFocus.isFocused()) {
-                showKeyboard(true);
+    protected fun showKeyboardDelayed(focus: View?) {
+        focus?.requestFocus()
+        handler!!.postDelayed({
+            if (focus == null || focus.isFocused) {
+                showKeyboard(true)
             }
-        }, 200);
+        }, 200)
     }
 
-
-    public boolean isDestroyedCompatible() {
-        if (Build.VERSION.SDK_INT >= 17) {
-            return isDestroyedCompatible17();
+    val isDestroyedCompatible: Boolean
+        get() = if (Build.VERSION.SDK_INT >= 17) {
+            isDestroyedCompatible17
         } else {
-            return destroyed || super.isFinishing();
+            destroyed || super.isFinishing()
         }
-    }
 
-    @TargetApi(17)
-    private boolean isDestroyedCompatible17() {
-        return super.isDestroyed();
-    }
+    @get:TargetApi(17)
+    private val isDestroyedCompatible17: Boolean
+        private get() = super.isDestroyed()
 
     /**
      * fragment management
      */
-    public TFragment addFragment(TFragment fragment) {
-        List<TFragment> fragments = new ArrayList<>(1);
-        fragments.add(fragment);
-
-        List<TFragment> fragments2 = addFragments(fragments);
-        return fragments2.get(0);
+    fun addFragment(fragment: TFragment): TFragment? {
+        val fragments: MutableList<TFragment> = ArrayList(1)
+        fragments.add(fragment)
+        val fragments2 = addFragments(fragments)
+        return fragments2[0]
     }
 
-    public List<TFragment> addFragments(List<TFragment> fragments) {
-        List<TFragment> fragments2 = new ArrayList<>(fragments.size());
+    fun addFragments(fragments: List<TFragment>): List<TFragment?> {
+        val fragments2: ArrayList<TFragment> = ArrayList(fragments.size)
 
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-
-        boolean commit = false;
-        for (int i = 0; i < fragments.size(); i++) {
+        val fm = supportFragmentManager
+        val transaction = fm.beginTransaction()
+        var commit = false
+        for (i in fragments.indices) {
             // install
-            TFragment fragment = fragments.get(i);
-            int id = fragment.getContainerId();
+            val fragment = fragments[i]
+            val id = fragment.containerId
 
             // exists
-            TFragment fragment2 = (TFragment) fm.findFragmentById(id);
-
+            var fragment2 = fm.findFragmentById(id) as TFragment?
             if (fragment2 == null) {
-                fragment2 = fragment;
-                transaction.add(id, fragment);
-                commit = true;
+                fragment2 = fragment
+                transaction.add(id, fragment)
+                commit = true
             }
-
-            fragments2.add(i, fragment2);
+            fragments2.add(i, fragment2)
         }
-
         if (commit) {
             try {
-                transaction.commitAllowingStateLoss();
-            } catch (Exception e) {
-
+                transaction.commitAllowingStateLoss()
+            } catch (e: Exception) {
             }
         }
-
-        return fragments2;
+        return fragments2
     }
 
-    public TFragment switchContent(TFragment fragment) {
-        return switchContent(fragment, false);
+    fun switchContent(fragment: TFragment): TFragment {
+        return switchContent(fragment, false)
     }
 
-    protected TFragment switchContent(TFragment fragment, boolean needAddToBackStack) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(fragment.getContainerId(), fragment);
+    protected fun switchContent(fragment: TFragment, needAddToBackStack: Boolean): TFragment {
+        val fm = supportFragmentManager
+        val fragmentTransaction = fm.beginTransaction()
+        fragmentTransaction.replace(fragment.containerId, fragment)
         if (needAddToBackStack) {
-            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.addToBackStack(null)
         }
         try {
-            fragmentTransaction.commitAllowingStateLoss();
-        } catch (Exception e) {
-
+            fragmentTransaction.commitAllowingStateLoss()
+        } catch (e: Exception) {
         }
-
-        return fragment;
+        return fragment
     }
 
-    protected boolean displayHomeAsUpEnabled() {
-        return true;
+    protected open fun displayHomeAsUpEnabled(): Boolean {
+        return true
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_MENU){
-            return onMenuKeyDown();
-        }else {
-            return super.onKeyDown(keyCode, event);
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        return if (keyCode == KeyEvent.KEYCODE_MENU) {
+            onMenuKeyDown()
+        } else {
+            super.onKeyDown(keyCode, event)
         }
     }
 
-    protected boolean onMenuKeyDown() {
-        return false;
+    protected fun onMenuKeyDown(): Boolean {
+        return false
     }
 
-    private void invokeFragmentManagerNoteStateNotSaved() {
-        FragmentManager fm = getSupportFragmentManager();
-        ReflectionUtil.invokeMethod(fm, "noteStateNotSaved", null);
+    private fun invokeFragmentManagerNoteStateNotSaved() {
+        val fm = supportFragmentManager
+        ReflectionUtil.invokeMethod(fm, "noteStateNotSaved", null)
     }
 
-    protected void switchFragmentContent(TFragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(fragment.getContainerId(), fragment);
+    protected fun switchFragmentContent(fragment: TFragment) {
+        val fm = supportFragmentManager
+        val transaction = fm.beginTransaction()
+        transaction.replace(fragment.containerId, fragment)
         try {
-            transaction.commitAllowingStateLoss();
-        } catch (Exception e) {
-            e.printStackTrace();
+            transaction.commitAllowingStateLoss()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
-    protected boolean isCompatible(int apiLevel) {
-        return Build.VERSION.SDK_INT >= apiLevel;
+    protected fun isCompatible(apiLevel: Int): Boolean {
+        return Build.VERSION.SDK_INT >= apiLevel
     }
 
-    protected <T extends View> T findView(int resId) {
-        return (T) (findViewById(resId));
+    protected fun <T : View?> findView(resId: Int): T {
+        return findViewById<View>(resId) as T
     }
 
 }
