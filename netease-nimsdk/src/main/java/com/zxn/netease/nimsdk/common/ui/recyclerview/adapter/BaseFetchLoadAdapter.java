@@ -40,9 +40,11 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 /**
  * 消息适配器基类.
  * @param <T>
- * @param <K>
+ * @param <K>   ViewHolder
  */
-public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends RecyclerView.Adapter<K> implements IRecyclerView {
+public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
+        extends RecyclerView.Adapter<K>
+        implements IRecyclerView {
 
     private static final String TAG = BaseFetchLoadAdapter.class.getSimpleName();
 
