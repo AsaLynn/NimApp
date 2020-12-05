@@ -130,6 +130,8 @@ class MsgActivity : BaseActivity<Nothing>() {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        mMessageFragment.onActivityResult(requestCode, resultCode, data)
+        if (:: mMessageFragment.isInitialized){
+            mMessageFragment.onActivityResult(requestCode, resultCode, data)
+        }
     }
 }

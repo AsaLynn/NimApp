@@ -1,5 +1,6 @@
 package com.zxn.netease.nimsdk.business.session.viewholder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -129,8 +130,9 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
     }
 
     //为Thread消息的设置回复提示语
+    @SuppressLint("StringFormatMatches")
     protected void setBeRepliedTip() {
-        int count = 0;
+        Integer count = 0;
         if (message.isThread()) {
             count = NIMClient.getService(MsgService.class).queryReplyCountInThreadTalkBlock(message);
         }
