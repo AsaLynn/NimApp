@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
-import androidx.annotation.IntDef;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,26 +27,173 @@ import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.LoadMoreView;
 import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.SimpleLoadMoreView;
 import com.zxn.netease.nimsdk.common.ui.recyclerview.util.RecyclerViewUtil;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * 消息适配器基类.
+ *
  * @param <T>
- * @param <K>   ViewHolder
+ * @param <K> ViewHolder
  */
 public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
         extends RecyclerView.Adapter<K>
-        implements IRecyclerView {
+        implements IRecyclerView, IAnimationType {
+
+    /**
+     * 获取条目的总数量
+     *
+     * @return
+     */
+    @Override
+    public int getItemCount() {
+        int count;
+        if (getEmptyViewCount() == 1) {
+            count = 1;
+        } else {
+            count = getFetchMoreViewCount() + mData.size() + getLoadMoreViewCount();
+        }
+        return count;
+    }
+
+    /**
+     * 获取条目的类型.
+     *
+     * @param position
+     * @return
+     */
+    @Override
+    public int getItemViewType(int position) {
+        if (getEmptyViewCount() == 1) {
+            return EMPTY_VIEW;
+        }
+
+        // fetch
+        autoRequestFetchMoreData(position);
+        // load
+        autoRequestLoadMoreData(position);
+        int fetchMoreCount = getFetchMoreViewCount();
+        if (position < fetchMoreCount) {
+            Log.d(TAG, "FETCH pos=" + position);
+            return FETCHING_VIEW;
+        } else {
+            int adjPosition = position - fetchMoreCount;
+            int adapterCount = mData.size();
+            if (adjPosition < adapterCount) {
+                Log.d(TAG, "DATA pos=" + position);
+                return getDefItemViewType(adjPosition);
+            } else {
+                Log.d(TAG, "LOAD pos=" + position);
+                return LOADING_VIEW;
+            }
+        }
+    }
+
+    /**
+     * 创建ViewHolder.
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
+    @Override
+    public K onCreateViewHolder(ViewGroup parent, int viewType) {
+        K baseViewHolder;
+        this.mContext = parent.getContext();
+        this.mLayoutInflater = LayoutInflater.from(mContext);
+        switch (viewType) {
+            case FETCHING_VIEW:
+                baseViewHolder = getFetchingView(parent);
+                break;
+            case LOADING_VIEW:
+                baseViewHolder = getLoadingView(parent);
+                break;
+            case EMPTY_VIEW:
+                baseViewHolder = createBaseViewHolder(mEmptyView);
+                break;
+            default:
+                baseViewHolder = onCreateDefViewHolder(parent, viewType);
+        }
+        return baseViewHolder;
+    }
+
+    /**
+     * To bind different types of holder and solve different the bind events
+     * 绑定不同类型的持有者并解决不同的绑定事件
+     *
+     * @param holder
+     * @param positions
+     * @see #getDefItemViewType(int)
+     */
+    @Override
+    public void onBindViewHolder(K holder, int positions) {
+        int viewType = holder.getItemViewType();
+        switch (viewType) {
+            case LOADING_VIEW:
+                mLoadMoreView.convert(holder);
+                break;
+            case FETCHING_VIEW:
+                mFetchMoreView.convert(holder);
+                break;
+            case EMPTY_VIEW:
+            case HEADER_VIEW:
+                break;
+            default:
+                convert(holder, mData.get(holder.getLayoutPosition() - getFetchMoreViewCount()), positions, isScrolling);
+                break;
+        }
+    }
+
+    /**
+     * 当此适配器创建的视图已附加到窗口时调用。
+     * 简单解决项目将使用所有布局
+     * {@link #setFullSpan(RecyclerView.ViewHolder)}
+     *
+     * @param holder
+     */
+    @Override
+    public void onViewAttachedToWindow(K holder) {
+        super.onViewAttachedToWindow(holder);
+        int type = holder.getItemViewType();
+        if (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) {
+            setFullSpan(holder);
+        } else {
+            addAnimation(holder);
+        }
+    }
+
+    /**
+     *当RecyclerView开始观察此适配器时调用。
+     * @param recyclerView
+     */
+    @Override
+    public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            final GridLayoutManager gridManager = ((GridLayoutManager) manager);
+            gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    int type = getItemViewType(position);
+                    if (mSpanSizeLookup == null) {
+                        return (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) ? gridManager.getSpanCount() : 1;
+                    } else {
+                        return (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) ? gridManager
+                                .getSpanCount() : mSpanSizeLookup.getSpanSize(gridManager, position - getFetchMoreViewCount());
+                    }
+                }
+            });
+        }
+    }
 
     private static final String TAG = BaseFetchLoadAdapter.class.getSimpleName();
 
-    // fetch more
+    /**
+     * fetch more:获取更多的监听.
+     */
     public interface RequestFetchMoreListener {
         void onFetchMoreRequested();
     }
@@ -56,14 +201,24 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
     protected RecyclerView mRecyclerView;
 
     private boolean mFetching = false;
+
     private boolean mFetchMoreEnable = false;
+
     private boolean mNextFetchEnable = false;
+
     private boolean mFirstFetchSuccess = true;
-    private int mAutoFetchMoreSize = 1; // 距离顶部多少条就开始拉取数据了
+    /**
+     * 距离顶部多少条就开始拉取数据了
+     */
+    private int mAutoFetchMoreSize = 1;
+
     private RequestFetchMoreListener mRequestFetchMoreListener;
+
     private LoadMoreView mFetchMoreView = new SimpleLoadMoreView();
 
-    //load more
+    /**
+     * load more:加载更多的监听.
+     */
     public interface RequestLoadMoreListener {
         void onLoadMoreRequested();
     }
@@ -72,22 +227,31 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
     private boolean mNextLoadEnable = false;
     private boolean mLoadMoreEnable = false;
     private boolean mFirstLoadSuccess = true;
-    private int mAutoLoadMoreSize = 1; // 距离底部多少条就开始加载数据了
+    /**
+     * 距离底部多少条就开始加载数据了
+     */
+    private int mAutoLoadMoreSize = 1;
     private RequestLoadMoreListener mRequestLoadMoreListener;
     private LoadMoreView mLoadMoreView = new SimpleLoadMoreView();
 
-    // animation
+    /**
+     * animation:动画.
+     */
     private boolean mAnimationShowFirstOnly = true;
     private boolean mOpenAnimationEnable = false;
     private Interpolator mInterpolator = new LinearInterpolator();
     private int mAnimationDuration = 200;
     private int mLastPosition = -1;
 
-    // @AnimationType
+    /**
+     * AnimationType:动画类型.
+     */
     private BaseAnimation mCustomAnimation;
     private BaseAnimation mSelectAnimation = new AlphaInAnimation();
 
-    // empty
+    /**
+     * empty:空视图.
+     */
     private FrameLayout mEmptyView;
     private boolean mIsUseEmpty = true;
 
@@ -107,33 +271,6 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param isScrolling RecyclerView is scrolling
      */
     protected abstract void convert(K helper, T item, int position, boolean isScrolling);
-
-
-    @IntDef({ALPHAIN, SCALEIN, SLIDEIN_BOTTOM, SLIDEIN_LEFT, SLIDEIN_RIGHT})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface AnimationType {
-    }
-
-    /**
-     * Use with {@link #openLoadAnimation}
-     */
-    public static final int ALPHAIN = 0x00000001;
-    /**
-     * Use with {@link #openLoadAnimation}
-     */
-    public static final int SCALEIN = 0x00000002;
-    /**
-     * Use with {@link #openLoadAnimation}
-     */
-    public static final int SLIDEIN_BOTTOM = 0x00000003;
-    /**
-     * Use with {@link #openLoadAnimation}
-     */
-    public static final int SLIDEIN_LEFT = 0x00000004;
-    /**
-     * Use with {@link #openLoadAnimation}
-     */
-    public static final int SLIDEIN_RIGHT = 0x00000005;
 
 
     /**
@@ -620,75 +757,6 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * *********************************** ViewHolder/ViewType ***********************************
      */
 
-    @Override
-    public int getItemCount() {
-        int count;
-        if (getEmptyViewCount() == 1) {
-            count = 1;
-        } else {
-            count = getFetchMoreViewCount() + mData.size() + getLoadMoreViewCount();
-        }
-        return count;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (getEmptyViewCount() == 1) {
-            return EMPTY_VIEW;
-        }
-
-        if (position == 0 && null != mHeaderLayout && mHeaderLayout.getChildCount() != 0) {
-            return HEADER_VIEW;
-        }
-
-        // fetch
-        autoRequestFetchMoreData(position);
-        // load
-        autoRequestLoadMoreData(position);
-        int fetchMoreCount = getFetchMoreViewCount();
-        if (position < fetchMoreCount) {
-            Log.d(TAG, "FETCH pos=" + position);
-            return FETCHING_VIEW;
-        } else {
-            int adjPosition = position - fetchMoreCount;
-            int adapterCount = mData.size();
-            if (adjPosition < adapterCount) {
-                Log.d(TAG, "DATA pos=" + position);
-                return getDefItemViewType(adjPosition);
-            } else {
-                Log.d(TAG, "LOAD pos=" + position);
-                return LOADING_VIEW;
-            }
-        }
-    }
-
-    /**
-     * To bind different types of holder and solve different the bind events
-     *
-     * @param holder
-     * @param positions
-     * @see #getDefItemViewType(int)
-     */
-    @Override
-    public void onBindViewHolder(K holder, int positions) {
-        int viewType = holder.getItemViewType();
-
-        switch (viewType) {
-            case LOADING_VIEW:
-                mLoadMoreView.convert(holder);
-                break;
-            case FETCHING_VIEW:
-                mFetchMoreView.convert(holder);
-                break;
-            case EMPTY_VIEW:
-            case HEADER_VIEW:
-                break;
-            default:
-                convert(holder, mData.get(holder.getLayoutPosition() - getFetchMoreViewCount()), positions, isScrolling);
-                break;
-        }
-    }
-
     protected K onCreateDefViewHolder(ViewGroup parent, int viewType) {
         return createBaseViewHolder(parent, mLayoutResId);
     }
@@ -723,30 +791,6 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
         return super.getItemViewType(position);
     }
 
-    @Override
-    public K onCreateViewHolder(ViewGroup parent, int viewType) {
-        K baseViewHolder;
-        this.mContext = parent.getContext();
-        this.mLayoutInflater = LayoutInflater.from(mContext);
-        switch (viewType) {
-            case HEADER_VIEW:
-                baseViewHolder = createBaseViewHolder(mHeaderLayout);
-                break;
-            case FETCHING_VIEW:
-                baseViewHolder = getFetchingView(parent);
-                break;
-            case LOADING_VIEW:
-                baseViewHolder = getLoadingView(parent);
-                break;
-            case EMPTY_VIEW:
-                baseViewHolder = createBaseViewHolder(mEmptyView);
-                break;
-            default:
-                baseViewHolder = onCreateDefViewHolder(parent, viewType);
-        }
-        return baseViewHolder;
-
-    }
 
     private K getLoadingView(ViewGroup parent) {
         View view = getItemView(mLoadMoreView.getLayoutId(), parent);
@@ -778,31 +822,15 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
         return holder;
     }
 
-    /**
-     * Called when a view created by this adapter has been attached to a window.
-     * simple to solve item will layout using all
-     * {@link #setFullSpan(RecyclerView.ViewHolder)}
-     *
-     * @param holder
-     */
-    @Override
-    public void onViewAttachedToWindow(K holder) {
-        super.onViewAttachedToWindow(holder);
-        int type = holder.getItemViewType();
-        if (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) {
-            setFullSpan(holder);
-        } else {
-            addAnimation(holder);
-        }
-    }
+
 
     /**
-     * When set to true, the item will layout using all span area. That means, if orientation
-     * is vertical, the view will have full width; if orientation is horizontal, the view will
-     * have full height.
-     * if the hold view use StaggeredGridLayoutManager they should using all span area
+     * 当设置为true时, 条目将使用所有跨度区域进行布局. 这意味着, 如果定向
+     *  是垂直的, 视图将有全宽度; 如果方向是水平的, 视图将
+     * 有完整的高度
+     * 如果保持视图使用交错网格布局管理器，则应使用所有跨度区域
      *
-     * @param holder True if this item should traverse all spans.
+     * @param holder 如果此项应遍历所有跨度
      */
     protected void setFullSpan(RecyclerView.ViewHolder holder) {
         if (holder.itemView.getLayoutParams() instanceof StaggeredGridLayoutManager.LayoutParams) {
@@ -811,26 +839,7 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
         }
     }
 
-    @Override
-    public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
-        if (manager instanceof GridLayoutManager) {
-            final GridLayoutManager gridManager = ((GridLayoutManager) manager);
-            gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    int type = getItemViewType(position);
-                    if (mSpanSizeLookup == null) {
-                        return (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) ? gridManager.getSpanCount() : 1;
-                    } else {
-                        return (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) ? gridManager
-                                .getSpanCount() : mSpanSizeLookup.getSpanSize(gridManager, position - getFetchMoreViewCount());
-                    }
-                }
-            });
-        }
-    }
+
 
     private SpanSizeLookup mSpanSizeLookup;
 
@@ -1007,61 +1016,4 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
         anim.setDuration(mAnimationDuration).start();
         anim.setInterpolator(mInterpolator);
     }
-
-    /**
-     * Append header to the rear of the mHeaderLayout.
-     *
-     * @param header
-     */
-    public void addHeaderView(View header) {
-        addHeaderView(header, -1);
-    }
-
-    /**
-     * Add header view to mHeaderLayout and set header view position in mHeaderLayout.
-     * When index = -1 or index >= child count in mHeaderLayout,
-     * the effect of this method is the same as that of {@link #addHeaderView(View)}.
-     *
-     * @param header
-     * @param index  the position in mHeaderLayout of this header.
-     *               When index = -1 or index >= child count in mHeaderLayout,
-     *               the effect of this method is the same as that of {@link #addHeaderView(View)}.
-     */
-    public void addHeaderView(View header, int index) {
-        addHeaderView(header, index, LinearLayout.VERTICAL);
-    }
-
-    /**
-     * @param header
-     * @param index
-     * @param orientation
-     */
-    public void addHeaderView(View header, int index, int orientation) {
-        if (mHeaderLayout == null) {
-            mHeaderLayout = new LinearLayout(header.getContext());
-            if (orientation == LinearLayout.VERTICAL) {
-                mHeaderLayout.setOrientation(LinearLayout.VERTICAL);
-                mHeaderLayout.setLayoutParams(new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
-            } else {
-                mHeaderLayout.setOrientation(LinearLayout.HORIZONTAL);
-                mHeaderLayout.setLayoutParams(new LayoutParams(WRAP_CONTENT, MATCH_PARENT));
-            }
-        }
-        index = index >= mHeaderLayout.getChildCount() ? -1 : index;
-        mHeaderLayout.addView(header, index);
-        if (mHeaderLayout.getChildCount() == 1) {
-            int position = getHeaderViewPosition();
-            if (position != -1) {
-                notifyItemInserted(position);
-            }
-        }
-    }
-
-    private LinearLayout mHeaderLayout;
-
-    private int getHeaderViewPosition() {
-        return 0;
-    }
-
-
 }

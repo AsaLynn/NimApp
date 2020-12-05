@@ -243,6 +243,7 @@ public class MessageListPanelEx {
         // adapter
         items = new ArrayList<>();
         adapter = new MsgAdapter(messageListView, items, container);
+
         adapter.setFetchMoreView(new MsgListFetchLoadMoreView());
         adapter.setLoadMoreView(new MsgListFetchLoadMoreView());
         adapter.setEventListener(new MsgItemEventListener());
