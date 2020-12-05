@@ -70,17 +70,20 @@ class MsgActivity : BaseActivity<Nothing>() {
 
     }
 
+    private lateinit var mMessageFragment: MessageFragment
+
     override fun onInitView() {
         onInitTitle()
         onJumpTo(intent) { account, customization ->
             titleView.titleText = UserInfoHelper.getUserTitleName(account, SessionTypeEnum.P2P)
+            mMessageFragment = MessageFragment.newInstance(
+                account,
+                SessionTypeEnum.P2P,
+                customization ?: mCustomization
+            )
             supportFragmentManager.beginTransaction()
                 .add(
-                    R.id.fl_container, MessageFragment.newInstance(
-                        account,
-                        SessionTypeEnum.P2P,
-                        customization ?: mCustomization
-                    )
+                    R.id.fl_container, mMessageFragment
                 ).commitAllowingStateLoss()
         }
     }
@@ -123,5 +126,10 @@ class MsgActivity : BaseActivity<Nothing>() {
 
     override fun showToast(msg: String) {
         ToastHelper.showToast(mContext, msg)
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        mMessageFragment.onActivityResult(requestCode, resultCode, data)
     }
 }

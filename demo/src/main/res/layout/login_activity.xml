@@ -19,8 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:titleTextAppearance="@style/Toolbar.TitleText">
-        </com.zxn.widget.ExpandToolbar>
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -46,13 +45,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"
                 android:layout_marginTop="74dp"
+                android:layout_marginRight="10dip"
                 android:orientation="vertical"
                 tools:visibility="gone">
 
                 <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
-                    android:id="@+id/edit_login_account"
+                    android:id="@+id/loginAccountEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_white_normal"
@@ -60,6 +59,7 @@
                     android:hint="@string/login_hint_account"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:text="zxn01"
                     android:textColor="@color/white"
                     android:textColorHint="@color/color_white_66ffffff"
                     android:textCursorDrawable="@null"
@@ -76,6 +76,7 @@
                     android:longClickable="false"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:text="000000"
                     android:textColor="@color/white"
                     android:textColorHint="@color/color_white_66ffffff"
                     android:textCursorDrawable="@null"
@@ -103,8 +104,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dip"
-                android:layout_marginRight="10dip"
                 android:layout_marginTop="74dp"
+                android:layout_marginRight="10dip"
                 android:orientation="vertical"
                 android:visibility="gone"
                 tools:visibility="visible">
@@ -120,6 +121,7 @@
                     android:inputType="text"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:text="zxn01"
                     android:textColor="@color/white"
                     android:textColorHint="@color/color_white_66ffffff"
                     android:textCursorDrawable="@null"
@@ -135,12 +137,14 @@
                     android:inputType="text"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:text="zxn01"
                     android:textColor="@color/white"
                     android:textColorHint="@color/color_white_66ffffff"
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />
 
                 <com.zxn.netease.nimsdk.common.ui.widget.ClearableEditTextWithIcon
+                    android:text="000000"
                     android:id="@+id/edit_register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -159,10 +163,12 @@
 
             <TextView
                 android:id="@+id/register_login_tip"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dp_15"
                 android:layout_marginTop="10dip"
+                android:gravity="center"
                 android:padding="15dip"
                 android:text="@string/register"
                 android:textColor="@drawable/register_tip_selector"
@@ -170,12 +176,13 @@
 
             <TextView
                 android:id="@+id/action_bar_right_clickable_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_35"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dp_15"
                 android:layout_marginTop="10dip"
-                android:padding="15dip"
-                android:text="action_bar_right_clickable_textview"
+                android:gravity="center"
+                android:text="登录"
                 android:textColor="@drawable/register_tip_selector"
                 android:textSize="15sp" />
 

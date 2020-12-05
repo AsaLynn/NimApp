@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
@@ -40,12 +39,11 @@ import com.zxn.netease.nimsdk.common.util.log.LogUtil
 import com.zxn.netease.nimsdk.common.util.string.MD5
 import com.zxn.netease.nimsdk.common.util.sys.NetworkUtil
 import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil
+import kotlinx.android.synthetic.main.login_activity.*
 
 /**
  * 登录/注册界面
  *
- *
- * Created by huangjun on 2015/2/1.
  */
 class LoginActivity : UI(), View.OnKeyListener {
     private var rightTopBtn // ActionBar完成按钮
@@ -53,7 +51,6 @@ class LoginActivity : UI(), View.OnKeyListener {
     private var leftTopBtn: TextView? = null
     private var switchModeBtn // 注册/登录切换按钮
             : TextView? = null
-    private var loginAccountEdit: ClearableEditTextWithIcon? = null
     private var loginPasswordEdit: ClearableEditTextWithIcon? = null
     private var loginSubtypeEdit: ClearableEditTextWithIcon? = null
     private var registerAccountEdit: ClearableEditTextWithIcon? = null
@@ -64,22 +61,14 @@ class LoginActivity : UI(), View.OnKeyListener {
     private var loginRequest: AbortableFuture<LoginInfo>? = null
     private var registerMode = false // 注册模式
     private var registerPanelInited = false // 注册面板是否初始化
-    override fun displayHomeAsUpEnabled(): Boolean {
-        return false
-    }
 
-    override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
-        return false
-    }
+    override val layoutResId: Int = R.layout.login_activity
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_activity)
+    override fun onInitView() {
         val options: ToolBarOptions = NimToolBarOptions()
         options.isNeedNavigate = false
         options.logoId = R.drawable.actionbar_white_logo_space
         setToolBar(R.id.toolbar, options)
-        //requestBasicPermission();
         onParseIntent()
         initRightTopBtn()
         initLeftTopBtn()
@@ -87,6 +76,13 @@ class LoginActivity : UI(), View.OnKeyListener {
         setupRegisterPanel()
     }
 
+    override fun displayHomeAsUpEnabled(): Boolean {
+        return false
+    }
+
+    override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+        return false
+    }
 
     private fun onParseIntent() {
         if (!intent.getBooleanExtra(KICK_OUT, false)) {
@@ -144,7 +140,7 @@ class LoginActivity : UI(), View.OnKeyListener {
      */
     private fun initRightTopBtn() {
         rightTopBtn = addRegisterRightTopBtn(this, R.string.login)
-        rightTopBtn!!.setOnClickListener { v: View? ->
+        rightTopBtn!!.setOnClickListener {
             if (registerMode) {
                 register()
             } else {
@@ -158,11 +154,8 @@ class LoginActivity : UI(), View.OnKeyListener {
      * 登录面板
      */
     private fun setupLoginPanel() {
-        loginAccountEdit = findView(R.id.edit_login_account)
         loginPasswordEdit = findView(R.id.edit_login_password)
         loginSubtypeEdit = findViewById(R.id.edit_login_subtype)
-        loginAccountEdit?.setIconResource(R.drawable.user_account_icon)
-        loginPasswordEdit?.setIconResource(R.drawable.user_pwd_lock_icon)
         loginAccountEdit?.filters = arrayOf<InputFilter>(LengthFilter(32))
         loginPasswordEdit?.filters = arrayOf<InputFilter>(LengthFilter(32))
         loginSubtypeEdit?.filters = arrayOf<InputFilter>(LengthFilter(32))
@@ -170,7 +163,9 @@ class LoginActivity : UI(), View.OnKeyListener {
         loginPasswordEdit?.addTextChangedListener(textWatcher)
         loginPasswordEdit?.setOnKeyListener(this)
         val account = Preferences.getUserAccount()
-        loginAccountEdit?.setText(account)
+        account?.let {
+            loginAccountEdit?.setText(it)
+        }
     }
 
     /**
@@ -180,8 +175,9 @@ class LoginActivity : UI(), View.OnKeyListener {
         loginLayout = findView(R.id.login_layout)
         registerLayout = findView(R.id.register_layout)
         switchModeBtn = findView(R.id.register_login_tip)
-        switchModeBtn?.visibility = if (DemoPrivatizationConfig.isPrivateDisable(this)) View.VISIBLE else View.GONE
-        switchModeBtn?.setOnClickListener(View.OnClickListener { v: View? -> switchMode() })
+        switchModeBtn?.visibility =
+            if (DemoPrivatizationConfig.isPrivateDisable(this)) View.VISIBLE else View.GONE
+        switchModeBtn?.setOnClickListener { _: View? -> switchMode() }
     }
 
     private val textWatcher: TextWatcher = object : TextWatcher {
@@ -488,6 +484,7 @@ class LoginActivity : UI(), View.OnKeyListener {
         private val TAG = LoginActivity::class.java.simpleName
         private const val KICK_OUT = "KICK_OUT"
         private const val KICK_OUT_DESC = "KICK_OUT_DESC"
+
         @JvmStatic
         @JvmOverloads
         fun start(context: Context, kickOut: Boolean = false, kickOutDesc: String? = "") {

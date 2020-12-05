@@ -1,22 +1,13 @@
-package com.zxn.netease.nimsdk.business.session.actions;
+package com.zxn.netease.nimsdk.business.session.actions
 
-import com.zxn.netease.nimsdk.R;
-import com.netease.nimlib.sdk.msg.MessageBuilder;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.netease.nimlib.sdk.msg.MessageBuilder
+import com.zxn.netease.nimsdk.R
+import java.io.File
 
-import java.io.File;
-
-
-public class ImageAction extends PickImageAction {
-
-    public ImageAction() {
-        super(R.drawable.nim_message_plus_photo_selector, R.string.input_panel_photo, true);
-    }
-
-    @Override
-    protected void onPicked(File file) {
-        IMMessage message = MessageBuilder.createImageMessage(getAccount(), getSessionType(), file, file.getName());
-        sendMessage(message);
+class ImageAction :
+    PickImageAction(R.drawable.nim_message_plus_photo_selector, R.string.input_panel_photo, true) {
+    override fun onPicked(file: File?) {
+        val message = MessageBuilder.createImageMessage(account, sessionType, file, file!!.name)
+        sendMessage(message)
     }
 }
-

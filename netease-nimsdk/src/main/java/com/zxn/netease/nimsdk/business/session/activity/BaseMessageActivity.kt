@@ -1,170 +1,159 @@
-package com.zxn.netease.nimsdk.business.session.activity;
+package com.zxn.netease.nimsdk.business.session.activity
 
-import android.content.Context;
-import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.content.Intent
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.appcompat.widget.Toolbar
+import com.zxn.netease.nimsdk.R
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
+import com.zxn.netease.nimsdk.api.model.session.SessionCustomization.OptionsButton
+import com.zxn.netease.nimsdk.business.preference.UserPreferences
+import com.zxn.netease.nimsdk.business.session.audio.MessageAudioControl
+import com.zxn.netease.nimsdk.business.session.constant.Extras
+import com.zxn.netease.nimsdk.business.session.fragment.MessageFragment
+import com.zxn.netease.nimsdk.common.CommonUtil.isEmpty
+import com.zxn.netease.nimsdk.common.activity.UI
+import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil
 
-import androidx.appcompat.widget.Toolbar;
-
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
-import com.zxn.netease.nimsdk.business.preference.UserPreferences;
-import com.zxn.netease.nimsdk.business.session.audio.MessageAudioControl;
-import com.zxn.netease.nimsdk.business.session.constant.Extras;
-import com.zxn.netease.nimsdk.business.session.fragment.MessageFragment;
-import com.zxn.netease.nimsdk.common.CommonUtil;
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
-
-import java.util.List;
-
-
-public abstract class BaseMessageActivity extends UI {
-
-    protected String sessionId;
-
-    private SessionCustomization customization;
-
-    private MessageFragment messageFragment;
-
-    private SensorManager sensorManager;
-
-    private Sensor proximitySensor;
-
-    protected abstract MessageFragment fragment();
-
-    protected abstract int getContentViewId();
-
-    protected abstract void initToolBar();
+abstract class BaseMessageActivity : UI() {
+    @JvmField
+    protected var sessionId: String? = null
+    private var customization: SessionCustomization? = null
+    private var messageFragment: MessageFragment? = null
+    private var sensorManager: SensorManager? = null
+    private var proximitySensor: Sensor? = null
+    protected abstract fun fragment(): MessageFragment?
+    protected abstract val contentViewId: Int
+    protected abstract fun initToolBar()
 
     /**
      * 是否开启距离传感器
      */
-    protected abstract boolean enableSensor();
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(getContentViewId());
-        initToolBar();
-        parseIntent();
-
-        messageFragment = (MessageFragment) switchContent(fragment());
+    protected abstract fun enableSensor(): Boolean
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(contentViewId)
+        initToolBar()
+        parseIntent()
+        messageFragment = switchContent(fragment()!!) as MessageFragment
         if (enableSensor()) {
-            initSensor();
+            initSensor()
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    override fun onResume() {
+        super.onResume()
         if (sensorManager != null && proximitySensor != null) {
-            sensorManager.registerListener(sensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager!!.registerListener(
+                sensorEventListener,
+                proximitySensor,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+    override fun onPause() {
+        super.onPause()
         if (sensorManager != null && proximitySensor != null) {
-            sensorManager.unregisterListener(sensorEventListener);
+            sensorManager!!.unregisterListener(sensorEventListener)
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (messageFragment != null && messageFragment.onBackPressed()) {
-            return;
+    override fun onBackPressed() {
+        if (messageFragment != null && messageFragment!!.onBackPressed()) {
+            return
         }
-        super.onBackPressed();
+        super.onBackPressed()
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (messageFragment != null) {
-            messageFragment.onActivityResult(requestCode, resultCode, data);
+            messageFragment!!.onActivityResult(requestCode, resultCode, data)
         }
-
         if (customization != null) {
-            customization.onActivityResult(this, requestCode, resultCode, data);
+            customization!!.onActivityResult(this, requestCode, resultCode, data)
         }
     }
 
-    private void parseIntent() {
-        Intent intent = getIntent();
-        sessionId = intent.getStringExtra(Extras.EXTRA_ACCOUNT);
-        customization = (SessionCustomization) intent.getSerializableExtra(Extras.EXTRA_CUSTOMIZATION);
-
+    private fun parseIntent() {
+        val intent = intent
+        sessionId = intent.getStringExtra(Extras.EXTRA_ACCOUNT)
+        customization =
+            intent.getSerializableExtra(Extras.EXTRA_CUSTOMIZATION) as SessionCustomization?
         if (customization != null) {
-            addRightCustomViewOnActionBar(this, customization.buttons);
+            addRightCustomViewOnActionBar(this, customization!!.buttons)
         }
     }
 
     // 添加action bar的右侧按钮及响应事件
-    private void addRightCustomViewOnActionBar(UI activity, List<SessionCustomization.OptionsButton> buttons) {
-        if (CommonUtil.isEmpty(buttons)) {
-            return;
+    private fun addRightCustomViewOnActionBar(activity: UI, buttons: List<OptionsButton?>) {
+        if (isEmpty(buttons)) {
+            return
         }
-
-        Toolbar toolbar = getToolBar();
-        if (toolbar == null) {
-            return;
-        }
-
-        LinearLayout buttonContainer
-                = (LinearLayout) LayoutInflater
-                .from(activity)
-                .inflate(R.layout.nim_action_bar_custom_view, null);
-        LinearLayout.LayoutParams params
-                = new LinearLayout
-                .LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        for (final SessionCustomization.OptionsButton button : buttons) {
-            ImageView imageView = new ImageView(activity);
-            imageView.setImageResource(button.iconId);
+        val toolbar = toolBar ?: return
+        val buttonContainer = LayoutInflater
+            .from(activity)
+            .inflate(R.layout.nim_action_bar_custom_view, null) as LinearLayout
+        val params = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        for (button in buttons) {
+            val imageView = ImageView(activity)
+            imageView.setImageResource(button!!.iconId)
             //imageView.setBackgroundResource(R.drawable.nim_nim_action_bar_button_selector);
-            imageView.setPadding(ScreenUtil.dip2px(10), 0, ScreenUtil.dip2px(10), 0);
-            imageView.setOnClickListener(v -> button.onClick(BaseMessageActivity.this, v, sessionId));
-            buttonContainer.addView(imageView, params);
+            imageView.setPadding(ScreenUtil.dip2px(10f), 0, ScreenUtil.dip2px(10f), 0)
+            imageView.setOnClickListener { v: View? ->
+                button.onClick(
+                    this@BaseMessageActivity,
+                    v,
+                    sessionId
+                )
+            }
+            buttonContainer.addView(imageView, params)
         }
-
-        toolbar.addView(buttonContainer, new Toolbar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.RIGHT | Gravity.CENTER));
+        toolbar.addView(
+            buttonContainer,
+            Toolbar.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                Gravity.RIGHT or Gravity.CENTER
+            )
+        )
     }
 
-
-    private final SensorEventListener sensorEventListener = new SensorEventListener() {
-        @Override
-        public void onSensorChanged(SensorEvent event) {
-            float[] dis = event.values;
+    private val sensorEventListener: SensorEventListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent) {
+            val dis = event.values
             if (0.0f == dis[0]) {
                 //靠近，设置为听筒模式
-                MessageAudioControl.getInstance(BaseMessageActivity.this).setEarPhoneModeEnable(true);
+                MessageAudioControl.getInstance(this@BaseMessageActivity)
+                    .setEarPhoneModeEnable(true)
             } else {
                 //离开，复原
-                MessageAudioControl.getInstance(BaseMessageActivity.this).setEarPhoneModeEnable(UserPreferences.isEarPhoneModeEnable());
+                MessageAudioControl.getInstance(this@BaseMessageActivity).setEarPhoneModeEnable(
+                    UserPreferences.isEarPhoneModeEnable()
+                )
             }
         }
 
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    }
 
-        }
-    };
-
-    private void initSensor() {
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+    private fun initSensor() {
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         if (sensorManager != null) {
-            proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+            proximitySensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_PROXIMITY)
         }
     }
 }

@@ -5,9 +5,6 @@ import android.view.View
 import com.netease.nim.demo.DemoCache.getAccount
 import com.netease.nim.demo.R
 import com.netease.nim.demo.contact.activity.UserProfileActivity
-import com.netease.nim.demo.session.action.FileAction
-import com.netease.nim.demo.session.action.GuessAction
-import com.netease.nim.demo.session.action.SnapChatAction
 import com.netease.nim.demo.session.extension.*
 import com.netease.nim.demo.session.viewholder.*
 import com.netease.nimlib.sdk.NIMClient
@@ -61,14 +58,7 @@ object SessionHelper {
     }
 
     private var myP2pCustomization: SessionCustomization? = SessionCustomization().apply {
-        // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
-        val actions = ArrayList<BaseAction>()
-        actions.add(SnapChatAction())
-        actions.add(GuessAction())
-        actions.add(FileAction())
-        this.actions = actions
         this.withSticker = true
-        // 定制ActionBar右边的按钮，可以加多个
         val buttons = ArrayList<OptionsButton>()
         val cloudMsgButton: OptionsButton = object : OptionsButton() {
             override fun onClick(context: Context, view: View, sessionId: String) {}

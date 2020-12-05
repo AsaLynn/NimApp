@@ -18,6 +18,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
+        applicationId "com.netease.nim.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.appTargetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -112,6 +113,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.zxn.mvvm:jetpackmvvm:1.0.9'
     implementation 'com.zxn.time:time-utils:1.6.2'
-
     //implementation 'com.huawei.hms:push:4.0.4.301'
 }

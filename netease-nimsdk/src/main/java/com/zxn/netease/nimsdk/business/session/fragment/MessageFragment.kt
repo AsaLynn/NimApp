@@ -363,8 +363,8 @@ open class MessageFragment : TFragment(), ModuleProxy {
     }
 
     // 操作面板集合
-    protected val actionList: List<BaseAction>
-        protected get() {
+    private val actionList: List<BaseAction>
+        get() {
             val actions: MutableList<BaseAction> = ArrayList()
             if (customization != null && customization!!.actions != null) {
                 actions.addAll(customization!!.actions)

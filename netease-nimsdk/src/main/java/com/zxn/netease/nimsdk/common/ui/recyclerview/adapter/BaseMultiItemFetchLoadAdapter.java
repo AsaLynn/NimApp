@@ -74,7 +74,7 @@ public abstract class BaseMultiItemFetchLoadAdapter<T, K extends BaseViewHolder>
         if (multiTypeViewHolders == null) {
             multiTypeViewHolders = new HashMap<>();
         }
-        multiTypeViewHolders.put(type, new HashMap<String, RecyclerViewHolder>());
+        multiTypeViewHolders.put(type, new HashMap<>());
     }
 
     @Override
@@ -97,7 +97,8 @@ public abstract class BaseMultiItemFetchLoadAdapter<T, K extends BaseViewHolder>
             // build
             try {
                 Class<? extends RecyclerViewHolder> cls = holderClasses.get(viewType);
-                Constructor c = cls.getDeclaredConstructors()[0]; // 第一个显式的构造函数
+                Constructor c = cls.getDeclaredConstructors()[0];
+                // 第一个显式的构造函数
                 c.setAccessible(true);
                 h = (RecyclerViewHolder) c.newInstance(new Object[]{this});
                 multiTypeViewHolders.get(viewType).put(key, h);

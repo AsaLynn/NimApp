@@ -1058,7 +1058,6 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder> extends 
     private LinearLayout mHeaderLayout;
 
     private int getHeaderViewPosition() {
-        //Return to header view notify position
         return 0;
     }
 

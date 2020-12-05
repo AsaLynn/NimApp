@@ -51,12 +51,6 @@ public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseVie
         }
 
         this.container = container;
-//        registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//            @Override
-//            public void onChanged() {
-//                Log.e("TAG","AdapterData Change....");
-//            }
-//        });
     }
 
     @Override
@@ -95,7 +89,6 @@ public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseVie
             if (isRelocateTime) {
                 relocateShowTimeItemAfterDelete(message, index);
             }
-//            notifyDataSetChanged(); // 可以不要！！！
         }
     }
 
@@ -125,7 +118,6 @@ public class MsgAdapter extends BaseMultiItemFetchLoadAdapter<IMMessage, BaseVie
                     relocateShowTimeItemAfterDelete(toDeleteMsg, index);
                 }
             }
-//            notifyDataSetChanged(); // 可以不要！！！
         }
     }
 
