@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.*
 import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder
+import com.zxn.netease.nimsdk.common.ui.recyclerview.util.RecyclerViewUtil
 
 /**
  *  Created by zxn on 2020/12/5.
  */
 abstract class BaseRvAdapter<T,VH : BaseViewHolder>
-@JvmOverloads constructor(@LayoutRes private val layoutResId: Int,
+@JvmOverloads constructor(recyclerView: RecyclerView,@LayoutRes private val layoutResId: Int,
                           data: MutableList<T>? = null) : RecyclerView.Adapter<VH>(), IRecyclerView,
     IAnimationType {
 
@@ -37,7 +38,7 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
     /**
      * empty:空视图.
      */
-    protected var mEmptyView: FrameLayout? = null
+    protected lateinit var mEmptyView: FrameLayout
     private var mIsUseEmpty = true
 
     /**
@@ -169,6 +170,16 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
      * *********************************** EmptyView ***********************************
      */
 
+    fun hasEmptyView(): Boolean {
+        if (!this::mEmptyView.isInitialized || mEmptyView.childCount == 0) {
+            return false
+        }
+        if (!mIsUseEmpty) {
+            return false
+        }
+        return data.isEmpty()
+    }
+
     /**
      * if mEmptyView will be return 1 or not will be return 0
      *
@@ -176,7 +187,7 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
      */
     val emptyViewCount: Int
         get() {
-            if (mEmptyView == null || mEmptyView!!.childCount == 0) {
+            if (!::mEmptyView.isInitialized || mEmptyView.childCount == 0) {
                 return 0
             }
             if (!mIsUseEmpty) {
@@ -189,16 +200,16 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
 
     fun setEmptyView(emptyView: View) {
         var insert = false
-        if (mEmptyView == null) {
+        if (::mEmptyView.isInitialized) {
             mEmptyView = FrameLayout(emptyView.context)
-            mEmptyView!!.layoutParams = RecyclerView.LayoutParams(
+            mEmptyView.layoutParams = RecyclerView.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
             insert = true
         }
-        mEmptyView!!.removeAllViews()
-        mEmptyView!!.addView(emptyView)
+        mEmptyView.removeAllViews()
+        mEmptyView.addView(emptyView)
         mIsUseEmpty = true
         if (insert) {
             if (emptyViewCount == 1) {
@@ -223,7 +234,7 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
      *
      * @return The view to show if the adapter is empty.
      */
-    val emptyView: View?
+    val emptyView: View
         get() = mEmptyView
 
     /**
@@ -298,5 +309,32 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
     val dataSize: Int
         get() = data.size
 
+    /**
+     * Same as QuickAdapter#QuickAdapter(Context,int) but with
+     * some initialization data.
+     *
+     * @param layoutResId The layout resource id of each item.
+     * @param data        A new list is created out of this one to avoid mutable list
+     */
+    init {
+        mRecyclerView = recyclerView
+        //this.data = ((data ?: ArrayList()) as MutableList<T>?)!!
+        if (layoutResId != 0) {
+            mLayoutResId = layoutResId
+        }
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                isScrolling = newState != RecyclerView.SCROLL_STATE_IDLE
+            }
+        })
+        /**
+         * 关闭默认viewholder item动画
+         */
+        RecyclerViewUtil.changeItemAnimation(recyclerView, false)
+    }
 
+    companion object {
+        val TAG = "BaseRvAdapter"
+    }
 }

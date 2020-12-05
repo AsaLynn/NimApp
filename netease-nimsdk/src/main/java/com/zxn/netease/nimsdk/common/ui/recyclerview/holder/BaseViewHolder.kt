@@ -472,4 +472,5 @@ open class BaseViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
             null
         } else convertView!!.context
 
+
 }

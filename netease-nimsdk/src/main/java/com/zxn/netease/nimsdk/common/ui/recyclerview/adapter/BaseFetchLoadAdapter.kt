@@ -24,11 +24,10 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
     recyclerView: RecyclerView,
     layoutResId: Int,
     data: MutableList<T>?
-) : BaseRvAdapter<T, VH>(layoutResId, data) {
+) : BaseRvAdapter<T, VH>(recyclerView,layoutResId, data) {
 
     /**
      * 获取条目的总数量
-     *
      * @return
      */
     override fun getItemCount(): Int {
@@ -41,7 +40,6 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
 
     /**
      * 获取条目的类型.
-     *
      * @param position
      * @return
      */
@@ -594,7 +592,6 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
         appendData(data)
     }
 
-
     val bottomDataPosition: Int
         get() = headerLayoutCount + data.size - 1
 
@@ -617,7 +614,7 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
     private fun getFetchingView(parent: ViewGroup): VH {
         val view = getItemView(mFetchMoreView.layoutId, parent)
         val holder = createBaseViewHolder(view)
-        holder!!.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
             if (mFetchMoreView.loadMoreStatus == LoadMoreView.STATUS_FAIL) {
                 mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
                 notifyItemChanged(0)
@@ -630,36 +627,6 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
 
     interface SpanSizeLookup {
         fun getSpanSize(gridLayoutManager: GridLayoutManager?, position: Int): Int
-    }
-
-
-    companion object {
-        private val TAG = BaseFetchLoadAdapter::class.java.simpleName
-    }
-
-    /**
-     * Same as QuickAdapter#QuickAdapter(Context,int) but with
-     * some initialization data.
-     *
-     * @param layoutResId The layout resource id of each item.
-     * @param data        A new list is created out of this one to avoid mutable list
-     */
-    init {
-        mRecyclerView = recyclerView
-        //this.data = ((data ?: ArrayList()) as MutableList<T>?)!!
-        if (layoutResId != 0) {
-            mLayoutResId = layoutResId
-        }
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                isScrolling = newState != RecyclerView.SCROLL_STATE_IDLE
-            }
-        })
-        /**
-         * 关闭默认viewholder item动画
-         */
-        RecyclerViewUtil.changeItemAnimation(recyclerView, false)
     }
 
 }
