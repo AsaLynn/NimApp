@@ -22,7 +22,7 @@ import java.util.*
 /**
  * ViewHolder基类.
  */
-class BaseViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
+open class BaseViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
     /**
      * Views indexed with their IDs
      */
