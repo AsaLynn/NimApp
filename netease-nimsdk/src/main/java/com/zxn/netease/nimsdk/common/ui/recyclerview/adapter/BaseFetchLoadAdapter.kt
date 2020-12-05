@@ -1,21 +1,16 @@
 package com.zxn.netease.nimsdk.common.ui.recyclerview.adapter
 
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.*
 import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder
 import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.LoadMoreView
 import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.SimpleLoadMoreView
-import com.zxn.netease.nimsdk.common.ui.recyclerview.util.RecyclerViewUtil
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
- * 消息适配器基类.
+ * 下拉自动加载消息的适配器基类.
  *
  * @param <T>
  * @param <K> ViewHolder
@@ -24,7 +19,7 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
     recyclerView: RecyclerView,
     layoutResId: Int,
     data: MutableList<T>?
-) : BaseRvAdapter<T, VH>(recyclerView,layoutResId, data) {
+) : BaseRvAdapter<T, VH>(recyclerView, layoutResId, data) {
 
     /**
      * 获取条目的总数量
@@ -34,7 +29,7 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
         return if (emptyViewCount == 1) {
             1
         } else {
-            fetchMoreViewCount + data.size + loadMoreViewCount
+            headerLayoutCount + getDefItemCount() + loadMoreViewCount
         }
     }
 
@@ -47,24 +42,29 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
         if (emptyViewCount == 1) {
             return IRecyclerView.EMPTY_VIEW
         }
-
-        // fetch
-        autoRequestFetchMoreData(position)
-        // load
-        autoRequestLoadMoreData(position)
-        val fetchMoreCount = fetchMoreViewCount
-        return if (position < fetchMoreCount) {
-            Log.d(TAG, "FETCH pos=$position")
-            IRecyclerView.FETCHING_VIEW
+        val hasHeader = hasHeaderLayout()
+        if (hasHeader && position == 0) {
+            return IRecyclerView.HEADER_VIEW
         } else {
-            val adjPosition = position - fetchMoreCount
-            val adapterCount = data.size
-            if (adjPosition < adapterCount) {
-                Log.d(TAG, "DATA pos=$position")
-                getDefItemViewType(adjPosition)
+            // fetch
+            autoRequestFetchMoreData(position)
+            // load
+            autoRequestLoadMoreData(position)
+            //val fetchMoreCount = fetchMoreViewCount
+            val fetchMoreCount = headerLayoutCount
+            return if (position < fetchMoreCount) {
+                Log.d(TAG, "FETCH pos=$position")
+                IRecyclerView.FETCHING_VIEW
             } else {
-                Log.d(TAG, "LOAD pos=$position")
-                IRecyclerView.LOADING_VIEW
+                val adjPosition = position - fetchMoreCount
+                val adapterCount = data.size
+                if (adjPosition < adapterCount) {
+                    Log.d(TAG, "DATA pos=$position")
+                    getDefItemViewType(adjPosition)
+                } else {
+                    Log.d(TAG, "LOAD pos=$position")
+                    IRecyclerView.LOADING_VIEW
+                }
             }
         }
     }
@@ -77,12 +77,11 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
      * @return
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        mContext = parent.context
-        mLayoutInflater = LayoutInflater.from(mContext)
         return when (viewType) {
             IRecyclerView.FETCHING_VIEW -> getFetchingView(parent)
             IRecyclerView.LOADING_VIEW -> getLoadingView(parent)
             IRecyclerView.EMPTY_VIEW -> createBaseViewHolder(mEmptyView)
+            IRecyclerView.HEADER_VIEW -> createBaseViewHolder(mHeaderLayout)
             else -> onCreateDefViewHolder(parent, viewType)
         }
     }
@@ -92,21 +91,16 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
      * 绑定不同类型的持有者并解决不同的绑定事件
      *
      * @param holder
-     * @param positions
+     * @param position
      * @see .getDefItemViewType
      */
-    override fun onBindViewHolder(holder: VH, positions: Int) {
-        when (holder!!.itemViewType) {
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        when (holder.itemViewType) {
             IRecyclerView.LOADING_VIEW -> mLoadMoreView.convert(holder)
             IRecyclerView.FETCHING_VIEW -> mFetchMoreView.convert(holder)
-            IRecyclerView.EMPTY_VIEW, IRecyclerView.HEADER_VIEW -> {
-            }
-            else -> convert(
-                holder,
-                data[holder.layoutPosition - fetchMoreViewCount],
-                positions,
-                isScrolling
-            )
+            IRecyclerView.EMPTY_VIEW, IRecyclerView.HEADER_VIEW -> {}
+            //else -> convert(holder, data[holder.layoutPosition - fetchMoreViewCount], position, isScrolling)
+            else -> convert(holder, data[holder.layoutPosition - headerLayoutCount], position, isScrolling)
         }
     }
 
@@ -119,7 +113,7 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
      */
     override fun onViewAttachedToWindow(holder: VH) {
         super.onViewAttachedToWindow(holder)
-        val type = holder!!.itemViewType
+        val type = holder.itemViewType
         if (type == IRecyclerView.EMPTY_VIEW || type == IRecyclerView.LOADING_VIEW || type == IRecyclerView.FETCHING_VIEW) {
             setFullSpan(holder)
         } else {
@@ -209,7 +203,13 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
     protected abstract fun convert(helper: VH, item: T, position: Int, isScrolling: Boolean)
 
     override val headerLayoutCount: Int
-        get() = fetchMoreViewCount
+        get() {
+            return if (hasHeaderLayout()) {
+                1 + fetchMoreViewCount
+            } else {
+                fetchMoreViewCount
+            }
+        }
 
     /**
      * *********************************** fetch more 顶部下拉加载 ***********************************
@@ -256,8 +256,9 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
         if (mFetchMoreView.loadMoreStatus != LoadMoreView.STATUS_DEFAULT) {
             return
         }
+        // 都还没有数据，不自动触发加载，等外部塞入数据后再加载
         if (data.size == 0 && mFirstFetchSuccess) {
-            return  // 都还没有数据，不自动触发加载，等外部塞入数据后再加载
+            return
         }
         Log.d(TAG, "auto fetch, pos=$position")
         mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_LOADING

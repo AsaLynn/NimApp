@@ -1,32 +1,11 @@
-package com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore;
+package com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore
 
-import com.zxn.netease.nimsdk.R;
+import com.zxn.netease.nimsdk.R
 
-public final class MsgListFetchLoadMoreView extends LoadMoreView {
-
-    private int mLayoutId = 0;
-
-    public MsgListFetchLoadMoreView() {
-
-    }
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.nim_msg_list_fetch_load_more;
-    }
-
-    @Override
-    protected int getLoadingViewId() {
-        return R.id.load_more_loading_view;
-    }
-
-    @Override
-    protected int getLoadFailViewId() {
-        return R.id.load_more_load_fail_view;
-    }
-
-    @Override
-    protected int getLoadEndViewId() {
-        return R.id.load_more_load_end_view;
-    }
+class MsgListFetchLoadMoreView : LoadMoreView() {
+    private val mLayoutId = 0
+    override val layoutId: Int = R.layout.nim_msg_list_fetch_load_more
+    override val loadingViewId: Int = R.id.load_more_loading_view
+    override val loadFailViewId: Int = R.id.load_more_load_fail_view
+    override val loadEndViewId: Int = R.id.load_more_load_end_view
 }

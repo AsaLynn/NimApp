@@ -25,6 +25,7 @@
         android:visibility="gone">
 
         <TextView
+            android:textColor="@color/c_ffffff"
             android:id="@+id/tv_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,10 +40,11 @@
         android:visibility="gone">
 
         <TextView
+            android:textColor="@color/c_ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/load_end"
-            android:textColor="@android:color/darker_gray" />
+            />
     </FrameLayout>
 </FrameLayout>

@@ -243,6 +243,7 @@ public class MessageListPanelEx {
         // adapter
         items = new ArrayList<>();
         adapter = new MsgAdapter(messageListView, items, container);
+        adapter.addHeaderView(View.inflate(container.activity,R.layout.msg_notice_header_temp,null));
 
         adapter.setFetchMoreView(new MsgListFetchLoadMoreView());
         adapter.setLoadMoreView(new MsgListFetchLoadMoreView());

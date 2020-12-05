@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.Interpolator
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -18,13 +19,16 @@ import com.zxn.netease.nimsdk.common.ui.recyclerview.util.RecyclerViewUtil
 /**
  *  Created by zxn on 2020/12/5.
  */
-abstract class BaseRvAdapter<T,VH : BaseViewHolder>
-@JvmOverloads constructor(recyclerView: RecyclerView,@LayoutRes private val layoutResId: Int,
-                          data: MutableList<T>? = null) : RecyclerView.Adapter<VH>(), IRecyclerView,
+abstract class BaseRvAdapter<T, VH : BaseViewHolder>
+@JvmOverloads constructor(
+    recyclerView: RecyclerView, @LayoutRes private val layoutResId: Int,
+    data: MutableList<T>? = null
+) : RecyclerView.Adapter<VH>(), IRecyclerView,
     IAnimationType {
 
+
     @JvmField
-    protected var mData: MutableList<T> = data?: arrayListOf()
+    protected var mData: MutableList<T> = data ?: arrayListOf()
 
     protected var mRecyclerView: RecyclerView? = null
 
@@ -318,6 +322,8 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
      */
     init {
         mRecyclerView = recyclerView
+        mContext = recyclerView.context
+        mLayoutInflater = LayoutInflater.from(mContext)
         //this.data = ((data ?: ArrayList()) as MutableList<T>?)!!
         if (layoutResId != 0) {
             mLayoutResId = layoutResId
@@ -337,4 +343,75 @@ abstract class BaseRvAdapter<T,VH : BaseViewHolder>
     companion object {
         val TAG = "BaseRvAdapter"
     }
+
+    /**
+     * 当显示空布局时，是否显示 Header
+     */
+    var headerWithEmptyEnable = false
+
+    protected lateinit var mHeaderLayout: LinearLayout
+
+    /**
+     * 是否有 HeaderLayout
+     * @return Boolean
+     */
+    fun hasHeaderLayout(): Boolean {
+        if (this::mHeaderLayout.isInitialized && mHeaderLayout.childCount > 0) {
+            return true
+        }
+        return false
+    }
+
+    /**
+     * Override this method and return your data size.
+     * 重写此方法，返回你的数据数量。
+     */
+    protected open fun getDefItemCount(): Int {
+        return data.size
+    }
+
+    @JvmOverloads
+    fun addHeaderView(view: View, index: Int = -1, orientation: Int = LinearLayout.VERTICAL): Int {
+        if (!this::mHeaderLayout.isInitialized) {
+            mHeaderLayout = LinearLayout(view.context)
+            mHeaderLayout.orientation = orientation
+            mHeaderLayout.layoutParams = if (orientation == LinearLayout.VERTICAL) {
+                RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            } else {
+                RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
+            }
+        }
+
+        val childCount = mHeaderLayout.childCount
+        var mIndex = index
+        if (index < 0 || index > childCount) {
+            mIndex = childCount
+        }
+        mHeaderLayout.addView(view, mIndex)
+        if (mHeaderLayout.childCount == 1) {
+            val position = headerViewPosition
+            if (position != -1) {
+                notifyItemInserted(position)
+            }
+        }
+        return mIndex
+    }
+
+    val headerViewPosition: Int
+        get() {
+            if (hasEmptyView()) {
+                if (headerWithEmptyEnable) {
+                    return 0
+                }
+            } else {
+                return 0
+            }
+            return -1
+        }
 }

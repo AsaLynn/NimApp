@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_notice"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_10"
+    android:text="温馨提示：禁止出现商业广告、微信、QQ以及色情、暴力和具有 侮辱性的内容，文明聊天谨防诈骗，违规封号处理"
+    android:textColor="#6A6A86"
+    android:textSize="@dimen/sp_12" />
