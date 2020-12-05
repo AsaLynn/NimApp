@@ -103,8 +103,8 @@ class MsgAdapter(recyclerView: RecyclerView?, data: List<IMMessage?>?, container
                 index = itemIterator.previousIndex()
                 item = itemIterator.previous()!!
                 itemTime = item.time
-                if (itemTime < toTime && itemTime > fromTime) {
-                    itemIterator.remove()
+                if (itemTime in (fromTime + 1) until toTime) {
+                    //itemIterator.remove()
                     notifyItemRemoved(index)
                     onRemove(item)
                     if (isRelocateTime) {

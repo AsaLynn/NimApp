@@ -1,61 +1,49 @@
-package com.zxn.netease.nimsdk.common.ui.recyclerview.adapter;
+package com.zxn.netease.nimsdk.common.ui.recyclerview.adapter
 
-import android.animation.Animator;
-import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-import android.widget.FrameLayout;
-
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.LayoutParams;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.AlphaInAnimation;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.BaseAnimation;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.ScaleInAnimation;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.SlideInBottomAnimation;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.SlideInLeftAnimation;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.SlideInRightAnimation;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.LoadMoreView;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.SimpleLoadMoreView;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.util.RecyclerViewUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import android.animation.Animator
+import android.content.Context
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.animation.Interpolator
+import android.view.animation.LinearInterpolator
+import android.widget.FrameLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.zxn.netease.nimsdk.common.ui.recyclerview.animation.*
+import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder
+import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.LoadMoreView
+import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.SimpleLoadMoreView
+import com.zxn.netease.nimsdk.common.ui.recyclerview.util.RecyclerViewUtil
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 消息适配器基类.
  *
  * @param <T>
  * @param <K> ViewHolder
- */
-public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
-        extends RecyclerView.Adapter<K>
-        implements IRecyclerView, IAnimationType {
+</K></T> */
+abstract class BaseFetchLoadAdapter<T, K : BaseViewHolder?>(
+    recyclerView: RecyclerView,
+    layoutResId: Int,
+    data: List<T>?
+) : RecyclerView.Adapter<K>(), IRecyclerView, IAnimationType {
 
     /**
      * 获取条目的总数量
      *
      * @return
      */
-    @Override
-    public int getItemCount() {
-        int count;
-        if (getEmptyViewCount() == 1) {
-            count = 1;
+    override fun getItemCount(): Int {
+        return if (emptyViewCount == 1) {
+            1
         } else {
-            count = getFetchMoreViewCount() + mData.size() + getLoadMoreViewCount();
+            fetchMoreViewCount + mData.size + loadMoreViewCount
         }
-        return count;
     }
 
     /**
@@ -64,29 +52,28 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param position
      * @return
      */
-    @Override
-    public int getItemViewType(int position) {
-        if (getEmptyViewCount() == 1) {
-            return EMPTY_VIEW;
+    override fun getItemViewType(position: Int): Int {
+        if (emptyViewCount == 1) {
+            return IRecyclerView.EMPTY_VIEW
         }
 
         // fetch
-        autoRequestFetchMoreData(position);
+        autoRequestFetchMoreData(position)
         // load
-        autoRequestLoadMoreData(position);
-        int fetchMoreCount = getFetchMoreViewCount();
-        if (position < fetchMoreCount) {
-            Log.d(TAG, "FETCH pos=" + position);
-            return FETCHING_VIEW;
+        autoRequestLoadMoreData(position)
+        val fetchMoreCount = fetchMoreViewCount
+        return if (position < fetchMoreCount) {
+            Log.d(TAG, "FETCH pos=$position")
+            IRecyclerView.FETCHING_VIEW
         } else {
-            int adjPosition = position - fetchMoreCount;
-            int adapterCount = mData.size();
+            val adjPosition = position - fetchMoreCount
+            val adapterCount = mData.size
             if (adjPosition < adapterCount) {
-                Log.d(TAG, "DATA pos=" + position);
-                return getDefItemViewType(adjPosition);
+                Log.d(TAG, "DATA pos=$position")
+                getDefItemViewType(adjPosition)
             } else {
-                Log.d(TAG, "LOAD pos=" + position);
-                return LOADING_VIEW;
+                Log.d(TAG, "LOAD pos=$position")
+                IRecyclerView.LOADING_VIEW
             }
         }
     }
@@ -98,25 +85,15 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param viewType
      * @return
      */
-    @Override
-    public K onCreateViewHolder(ViewGroup parent, int viewType) {
-        K baseViewHolder;
-        this.mContext = parent.getContext();
-        this.mLayoutInflater = LayoutInflater.from(mContext);
-        switch (viewType) {
-            case FETCHING_VIEW:
-                baseViewHolder = getFetchingView(parent);
-                break;
-            case LOADING_VIEW:
-                baseViewHolder = getLoadingView(parent);
-                break;
-            case EMPTY_VIEW:
-                baseViewHolder = createBaseViewHolder(mEmptyView);
-                break;
-            default:
-                baseViewHolder = onCreateDefViewHolder(parent, viewType);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): K {
+        mContext = parent.context
+        mLayoutInflater = LayoutInflater.from(mContext)
+        return when (viewType) {
+            IRecyclerView.FETCHING_VIEW -> getFetchingView(parent)
+            IRecyclerView.LOADING_VIEW -> getLoadingView(parent)
+            IRecyclerView.EMPTY_VIEW -> createBaseViewHolder(mEmptyView)
+            else -> onCreateDefViewHolder(parent, viewType)
         }
-        return baseViewHolder;
     }
 
     /**
@@ -125,142 +102,140 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param holder
      * @param positions
-     * @see #getDefItemViewType(int)
+     * @see .getDefItemViewType
      */
-    @Override
-    public void onBindViewHolder(K holder, int positions) {
-        int viewType = holder.getItemViewType();
-        switch (viewType) {
-            case LOADING_VIEW:
-                mLoadMoreView.convert(holder);
-                break;
-            case FETCHING_VIEW:
-                mFetchMoreView.convert(holder);
-                break;
-            case EMPTY_VIEW:
-            case HEADER_VIEW:
-                break;
-            default:
-                convert(holder, mData.get(holder.getLayoutPosition() - getFetchMoreViewCount()), positions, isScrolling);
-                break;
+    override fun onBindViewHolder(holder: K, positions: Int) {
+        when (holder!!.itemViewType) {
+            IRecyclerView.LOADING_VIEW -> mLoadMoreView.convert(holder)
+            IRecyclerView.FETCHING_VIEW -> mFetchMoreView.convert(holder)
+            IRecyclerView.EMPTY_VIEW, IRecyclerView.HEADER_VIEW -> {
+            }
+            else -> convert(
+                holder,
+                mData[holder.layoutPosition - fetchMoreViewCount],
+                positions,
+                isScrolling
+            )
         }
     }
 
     /**
      * 当此适配器创建的视图已附加到窗口时调用。
      * 简单解决项目将使用所有布局
-     * {@link #setFullSpan(RecyclerView.ViewHolder)}
+     * [.setFullSpan]
      *
      * @param holder
      */
-    @Override
-    public void onViewAttachedToWindow(K holder) {
-        super.onViewAttachedToWindow(holder);
-        int type = holder.getItemViewType();
-        if (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) {
-            setFullSpan(holder);
+    override fun onViewAttachedToWindow(holder: K) {
+        super.onViewAttachedToWindow(holder)
+        val type = holder!!.itemViewType
+        if (type == IRecyclerView.EMPTY_VIEW || type == IRecyclerView.LOADING_VIEW || type == IRecyclerView.FETCHING_VIEW) {
+            setFullSpan(holder)
         } else {
-            addAnimation(holder);
+            addAnimation(holder)
         }
     }
 
     /**
-     *当RecyclerView开始观察此适配器时调用。
+     * 当RecyclerView开始观察此适配器时调用。
      * @param recyclerView
      */
-    @Override
-    public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
-        if (manager instanceof GridLayoutManager) {
-            final GridLayoutManager gridManager = ((GridLayoutManager) manager);
-            gridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    int type = getItemViewType(position);
-                    if (mSpanSizeLookup == null) {
-                        return (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) ? gridManager.getSpanCount() : 1;
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        val manager = recyclerView.layoutManager
+        if (manager is GridLayoutManager) {
+            val gridManager = manager
+            gridManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    val type = getItemViewType(position)
+                    return if (mSpanSizeLookup == null) {
+                        if (type == IRecyclerView.EMPTY_VIEW || type == IRecyclerView.LOADING_VIEW || type == IRecyclerView.FETCHING_VIEW) gridManager.spanCount else 1
                     } else {
-                        return (type == EMPTY_VIEW || type == LOADING_VIEW || type == FETCHING_VIEW) ? gridManager
-                                .getSpanCount() : mSpanSizeLookup.getSpanSize(gridManager, position - getFetchMoreViewCount());
+                        if (type == IRecyclerView.EMPTY_VIEW || type == IRecyclerView.LOADING_VIEW || type == IRecyclerView.FETCHING_VIEW) gridManager
+                            .spanCount else mSpanSizeLookup.getSpanSize(
+                            gridManager,
+                            position - fetchMoreViewCount
+                        )
                     }
                 }
-            });
+            }
         }
     }
-
-    private static final String TAG = BaseFetchLoadAdapter.class.getSimpleName();
 
     /**
      * fetch more:获取更多的监听.
      */
-    public interface RequestFetchMoreListener {
-        void onFetchMoreRequested();
+    interface RequestFetchMoreListener {
+        fun onFetchMoreRequested()
     }
 
-    protected RecyclerView mRecyclerView;
+    protected var mRecyclerView: RecyclerView?
+    private var mFetching = false
+    private var mFetchMoreEnable = false
+    private var mNextFetchEnable = false
+    private var mFirstFetchSuccess = true
 
-    private boolean mFetching = false;
-
-    private boolean mFetchMoreEnable = false;
-
-    private boolean mNextFetchEnable = false;
-
-    private boolean mFirstFetchSuccess = true;
     /**
      * 距离顶部多少条就开始拉取数据了
      */
-    private int mAutoFetchMoreSize = 1;
-
-    private RequestFetchMoreListener mRequestFetchMoreListener;
-
-    private LoadMoreView mFetchMoreView = new SimpleLoadMoreView();
+    private var mAutoFetchMoreSize = 1
+    private var mRequestFetchMoreListener: RequestFetchMoreListener? = null
+    private var mFetchMoreView: LoadMoreView = SimpleLoadMoreView()
 
     /**
      * load more:加载更多的监听.
      */
-    public interface RequestLoadMoreListener {
-        void onLoadMoreRequested();
+    interface RequestLoadMoreListener {
+        fun onLoadMoreRequested()
     }
 
-    private boolean mLoading = false;
-    private boolean mNextLoadEnable = false;
-    private boolean mLoadMoreEnable = false;
-    private boolean mFirstLoadSuccess = true;
+    private var mLoading = false
+    private var mNextLoadEnable = false
+
+    /**
+     * Returns the enabled status for load more.
+     *
+     * @return True if load more is enabled, false otherwise.
+     */
+    var isLoadMoreEnable = false
+        private set
+    private var mFirstLoadSuccess = true
+
     /**
      * 距离底部多少条就开始加载数据了
      */
-    private int mAutoLoadMoreSize = 1;
-    private RequestLoadMoreListener mRequestLoadMoreListener;
-    private LoadMoreView mLoadMoreView = new SimpleLoadMoreView();
+    private var mAutoLoadMoreSize = 1
+    private var mRequestLoadMoreListener: RequestLoadMoreListener? = null
+    private var mLoadMoreView: LoadMoreView = SimpleLoadMoreView()
 
     /**
      * animation:动画.
      */
-    private boolean mAnimationShowFirstOnly = true;
-    private boolean mOpenAnimationEnable = false;
-    private Interpolator mInterpolator = new LinearInterpolator();
-    private int mAnimationDuration = 200;
-    private int mLastPosition = -1;
+    private var mAnimationShowFirstOnly = true
+    private var mOpenAnimationEnable = false
+    private val mInterpolator: Interpolator = LinearInterpolator()
+    private var mAnimationDuration = 200
+    private var mLastPosition = -1
 
     /**
      * AnimationType:动画类型.
      */
-    private BaseAnimation mCustomAnimation;
-    private BaseAnimation mSelectAnimation = new AlphaInAnimation();
+    private var mCustomAnimation: BaseAnimation? = null
+    private var mSelectAnimation: BaseAnimation? = AlphaInAnimation()
 
     /**
      * empty:空视图.
      */
-    private FrameLayout mEmptyView;
-    private boolean mIsUseEmpty = true;
+    private var mEmptyView: FrameLayout? = null
+    private var mIsUseEmpty = true
 
     // basic
-    protected Context mContext;
-    protected int mLayoutResId;
-    protected LayoutInflater mLayoutInflater;
-    protected List<T> mData;
-    private boolean isScrolling = false;
+    protected var mContext: Context? = null
+    protected var mLayoutResId = 0
+    protected var mLayoutInflater: LayoutInflater? = null
+    @JvmField
+    protected var mData: MutableList<T>
+    private var isScrolling = false
 
     /**
      * Implement this method and use the helper to adapt the view to the given item.
@@ -270,141 +245,98 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param position    the item position
      * @param isScrolling RecyclerView is scrolling
      */
-    protected abstract void convert(K helper, T item, int position, boolean isScrolling);
-
-
-    /**
-     * Same as QuickAdapter#QuickAdapter(Context,int) but with
-     * some initialization data.
-     *
-     * @param layoutResId The layout resource id of each item.
-     * @param data        A new list is created out of this one to avoid mutable list
-     */
-    public BaseFetchLoadAdapter(RecyclerView recyclerView, int layoutResId, List<T> data) {
-        this.mRecyclerView = recyclerView;
-        this.mData = data == null ? new ArrayList<T>() : data;
-        if (layoutResId != 0) {
-            this.mLayoutResId = layoutResId;
-        }
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                isScrolling = newState != RecyclerView.SCROLL_STATE_IDLE;
-            }
-        });
-
-        /**
-         * 关闭默认viewholder item动画
-         */
-        RecyclerViewUtil.changeItemAnimation(recyclerView, false);
-    }
-
-    @Override
-    public int getHeaderLayoutCount() {
-        return getFetchMoreViewCount();
-    }
+    protected abstract fun convert(helper: K, item: T, position: Int, isScrolling: Boolean)
+    override val headerLayoutCount: Int
+        get() = fetchMoreViewCount
 
     /**
      * *********************************** fetch more 顶部下拉加载 ***********************************
      */
-
-    public void setOnFetchMoreListener(RequestFetchMoreListener requestFetchMoreListener) {
-        this.mRequestFetchMoreListener = requestFetchMoreListener;
-        mNextFetchEnable = true;
-        mFetchMoreEnable = true;
-        mFetching = false;
+    fun setOnFetchMoreListener(requestFetchMoreListener: RequestFetchMoreListener?) {
+        mRequestFetchMoreListener = requestFetchMoreListener
+        mNextFetchEnable = true
+        mFetchMoreEnable = true
+        mFetching = false
     }
 
-    public void setAutoFetchMoreSize(int autoFetchMoreSize) {
+    fun setAutoFetchMoreSize(autoFetchMoreSize: Int) {
         if (autoFetchMoreSize > 1) {
-            mAutoFetchMoreSize = autoFetchMoreSize;
+            mAutoFetchMoreSize = autoFetchMoreSize
         }
     }
 
-    public void setFetchMoreView(LoadMoreView fetchMoreView) {
-        this.mFetchMoreView = fetchMoreView; // 自定义View
+    fun setFetchMoreView(fetchMoreView: LoadMoreView) {
+        mFetchMoreView = fetchMoreView // 自定义View
     }
 
-    private int getFetchMoreViewCount() {
-        if (mRequestFetchMoreListener == null || !mFetchMoreEnable) {
-            return 0;
+    private val fetchMoreViewCount: Int
+        private get() {
+            if (mRequestFetchMoreListener == null || !mFetchMoreEnable) {
+                return 0
+            }
+            return if (!mNextFetchEnable && mFetchMoreView.isLoadEndMoreGone) {
+                0
+            } else 1
         }
-        if (!mNextFetchEnable && mFetchMoreView.isLoadEndMoreGone()) {
-            return 0;
-        }
-
-        return 1;
-    }
 
     /**
      * 列表滑动时自动拉取数据
      *
      * @param position
      */
-    private void autoRequestFetchMoreData(int position) {
-        if (getFetchMoreViewCount() == 0) {
-            return;
+    private fun autoRequestFetchMoreData(position: Int) {
+        if (fetchMoreViewCount == 0) {
+            return
         }
-
         if (position > mAutoFetchMoreSize - 1) {
-            return;
+            return
         }
-
-        if (mFetchMoreView.getLoadMoreStatus() != LoadMoreView.STATUS_DEFAULT) {
-            return;
+        if (mFetchMoreView.loadMoreStatus != LoadMoreView.STATUS_DEFAULT) {
+            return
         }
-
-        if (mData.size() == 0 && mFirstFetchSuccess) {
-            return; // 都还没有数据，不自动触发加载，等外部塞入数据后再加载
+        if (mData.size == 0 && mFirstFetchSuccess) {
+            return  // 都还没有数据，不自动触发加载，等外部塞入数据后再加载
         }
-
-        Log.d(TAG, "auto fetch, pos=" + position);
-
-        mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_LOADING);
+        Log.d(TAG, "auto fetch, pos=$position")
+        mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_LOADING
         if (!mFetching) {
-            mFetching = true;
-            mRequestFetchMoreListener.onFetchMoreRequested();
+            mFetching = true
+            mRequestFetchMoreListener!!.onFetchMoreRequested()
         }
     }
 
     /**
      * fetch complete
      */
-    public void fetchMoreComplete(final List<T> newData) {
-        addFrontData(newData); // notifyItemRangeInserted从顶部向下加入View，顶部View并没有改变
-
-        if (getFetchMoreViewCount() == 0) {
-            return;
+    fun fetchMoreComplete(newData: List<T>) {
+        addFrontData(newData) // notifyItemRangeInserted从顶部向下加入View，顶部View并没有改变
+        if (fetchMoreViewCount == 0) {
+            return
         }
-
-        fetchMoreComplete(newData.size());
+        fetchMoreComplete(newData.size)
     }
 
-    public void fetchMoreComplete(int newDataSize) {
-        if (getFetchMoreViewCount() == 0) {
-            return;
+    fun fetchMoreComplete(newDataSize: Int) {
+        if (fetchMoreViewCount == 0) {
+            return
         }
-
-        mFetching = false;
-        mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
-        notifyItemChanged(0);
+        mFetching = false
+        mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
+        notifyItemChanged(0)
 
         // 定位到insert新消息前的top消息位置。必须移动，否则还在顶部，会继续fetch!!!
         if (mRecyclerView != null) {
-            RecyclerView.LayoutManager layoutManager = mRecyclerView.getLayoutManager();
+            val layoutManager = mRecyclerView!!.layoutManager
             // 只有LinearLayoutManager才有查找第一个和最后一个可见view位置的方法
-            if (layoutManager instanceof LinearLayoutManager) {
-                LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+            if (layoutManager is LinearLayoutManager) {
                 //获取第一个可见view的位置
-                int firstItemPosition = linearManager.findFirstVisibleItemPosition();
+                val firstItemPosition = layoutManager.findFirstVisibleItemPosition()
                 if (firstItemPosition == 0) {
                     // 最顶部可见的View已经是FetchMoreView了，那么add数据&局部刷新后，要进行定位到上次的最顶部消息。
-                    mRecyclerView.scrollToPosition(newDataSize + getFetchMoreViewCount());
+                    mRecyclerView!!.scrollToPosition(newDataSize + fetchMoreViewCount)
                 }
             } else {
-                mRecyclerView.scrollToPosition(newDataSize);
+                mRecyclerView!!.scrollToPosition(newDataSize)
             }
         }
     }
@@ -415,119 +347,111 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param data last load data to add
      * @param gone if true gone the fetch more view
      */
-    public void fetchMoreEnd(List<T> data, boolean gone) {
-        addFrontData(data);
-
-        if (getFetchMoreViewCount() == 0) {
-            return;
+    fun fetchMoreEnd(data: List<T>?, gone: Boolean) {
+        addFrontData(data)
+        if (fetchMoreViewCount == 0) {
+            return
         }
-        mFetching = false;
-        mNextFetchEnable = false;
-        mFetchMoreView.setLoadMoreEndGone(gone);
+        mFetching = false
+        mNextFetchEnable = false
+        mFetchMoreView.setLoadMoreEndGone(gone)
         if (gone) {
-            notifyItemRemoved(0);
+            notifyItemRemoved(0)
         } else {
-            mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_END);
-            notifyItemChanged(0);
+            mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_END
+            notifyItemChanged(0)
         }
     }
 
     /**
      * fetch failed
      */
-    public void fetchMoreFailed() {
-        if (getFetchMoreViewCount() == 0) {
-            return;
+    fun fetchMoreFailed() {
+        if (fetchMoreViewCount == 0) {
+            return
         }
-        mFetching = false;
-        if (mData.size() == 0) {
-            mFirstFetchSuccess = false; // 首次加载失败
+        mFetching = false
+        if (mData.size == 0) {
+            mFirstFetchSuccess = false // 首次加载失败
         }
-        mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_FAIL);
-
-        notifyItemChanged(0);
+        mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_FAIL
+        notifyItemChanged(0)
     }
 
     /**
      * *********************************** load more 底部上拉加载 ***********************************
      */
-
-    public void setLoadMoreView(LoadMoreView loadingView) {
-        this.mLoadMoreView = loadingView; // 自定义View
+    fun setLoadMoreView(loadingView: LoadMoreView) {
+        mLoadMoreView = loadingView // 自定义View
     }
 
-    public void setOnLoadMoreListener(RequestLoadMoreListener requestLoadMoreListener) {
-        this.mRequestLoadMoreListener = requestLoadMoreListener;
-        mNextLoadEnable = true;
-        mLoadMoreEnable = true;
-        mLoading = false;
+    fun setOnLoadMoreListener(requestLoadMoreListener: RequestLoadMoreListener?) {
+        mRequestLoadMoreListener = requestLoadMoreListener
+        mNextLoadEnable = true
+        isLoadMoreEnable = true
+        mLoading = false
     }
 
-    public void setAutoLoadMoreSize(int autoLoadMoreSize) {
+    fun setAutoLoadMoreSize(autoLoadMoreSize: Int) {
         if (autoLoadMoreSize > 1) {
-            mAutoLoadMoreSize = autoLoadMoreSize;
+            mAutoLoadMoreSize = autoLoadMoreSize
         }
     }
 
-    private int getLoadMoreViewCount() {
-        if (mRequestLoadMoreListener == null || !mLoadMoreEnable) {
-            return 0;
+    private val loadMoreViewCount: Int
+        private get() {
+            if (mRequestLoadMoreListener == null || !isLoadMoreEnable) {
+                return 0
+            }
+            if (!mNextLoadEnable && mLoadMoreView.isLoadEndMoreGone) {
+                return 0
+            }
+            return if (mData.size == 0) {
+                0
+            } else 1
         }
-        if (!mNextLoadEnable && mLoadMoreView.isLoadEndMoreGone()) {
-            return 0;
-        }
-        if (mData.size() == 0) {
-            return 0;
-        }
-        return 1;
-    }
 
     /**
      * 列表滑动时自动加载数据
      *
      * @param position
      */
-    private void autoRequestLoadMoreData(int position) {
-        if (getLoadMoreViewCount() == 0) {
-            return;
+    private fun autoRequestLoadMoreData(position: Int) {
+        if (loadMoreViewCount == 0) {
+            return
         }
-
-        if (position < getItemCount() - mAutoLoadMoreSize) {
-            return;
+        if (position < itemCount - mAutoLoadMoreSize) {
+            return
         }
-
-        if (mLoadMoreView.getLoadMoreStatus() != LoadMoreView.STATUS_DEFAULT) {
-            return;
+        if (mLoadMoreView.loadMoreStatus != LoadMoreView.STATUS_DEFAULT) {
+            return
         }
-
-        if (mData.size() == 0 && mFirstLoadSuccess) {
-            return; // 都还没有数据，不自动触发加载，等外部塞入数据后再加载
+        if (mData.size == 0 && mFirstLoadSuccess) {
+            return  // 都还没有数据，不自动触发加载，等外部塞入数据后再加载
         }
-
-        Log.d(TAG, "auto load, pos=" + position);
-        mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_LOADING);
+        Log.d(TAG, "auto load, pos=$position")
+        mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_LOADING
         if (!mLoading) {
-            mLoading = true;
-            mRequestLoadMoreListener.onLoadMoreRequested();
+            mLoading = true
+            mRequestLoadMoreListener!!.onLoadMoreRequested()
         }
     }
 
     /**
      * load complete
      */
-    public void loadMoreComplete(final List<T> newData) {
-        appendData(newData);
-
-        loadMoreComplete();
+    fun loadMoreComplete(newData: List<T>?) {
+        appendData(newData)
+        loadMoreComplete()
     }
 
-    public void loadMoreComplete() {
-        if (getLoadMoreViewCount() == 0) {
-            return;
+    fun loadMoreComplete() {
+        if (loadMoreViewCount == 0) {
+            return
         }
-        mLoading = false;
-        mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
-        notifyItemChanged(getFetchMoreViewCount() + mData.size());
+        mLoading = false
+        mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
+        notifyItemChanged(fetchMoreViewCount + mData.size)
     }
 
     /**
@@ -536,116 +460,100 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param data last data to append
      * @param gone if true gone the load more view
      */
-    public void loadMoreEnd(List<T> data, boolean gone) {
-        appendData(data);
-
-        if (getLoadMoreViewCount() == 0) {
-            return;
+    fun loadMoreEnd(data: List<T>?, gone: Boolean) {
+        appendData(data)
+        if (loadMoreViewCount == 0) {
+            return
         }
-        mLoading = false;
-        mNextLoadEnable = false;
-        mLoadMoreView.setLoadMoreEndGone(gone);
+        mLoading = false
+        mNextLoadEnable = false
+        mLoadMoreView.setLoadMoreEndGone(gone)
         if (gone) {
-            notifyItemRemoved(getFetchMoreViewCount() + mData.size());
+            notifyItemRemoved(fetchMoreViewCount + mData.size)
         } else {
-            mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_END);
-            notifyItemChanged(getFetchMoreViewCount() + mData.size());
+            mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_END
+            notifyItemChanged(fetchMoreViewCount + mData.size)
         }
     }
 
     /**
      * load failed
      */
-    public void loadMoreFail() {
-        if (getLoadMoreViewCount() == 0) {
-            return;
+    fun loadMoreFail() {
+        if (loadMoreViewCount == 0) {
+            return
         }
-        mLoading = false;
-        if (mData.size() == 0) {
-            mFirstLoadSuccess = false; // 首次加载失败
+        mLoading = false
+        if (mData.size == 0) {
+            mFirstLoadSuccess = false // 首次加载失败
         }
-        mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_FAIL);
-        notifyItemChanged(getFetchMoreViewCount() + mData.size());
+        mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_FAIL
+        notifyItemChanged(fetchMoreViewCount + mData.size)
     }
-
 
     /**
      * Set the enabled state of load more.
      *
      * @param enable True if load more is enabled, false otherwise.
      */
-    public void setEnableLoadMore(boolean enable) {
-        int oldLoadMoreCount = getLoadMoreViewCount();
-        mLoadMoreEnable = enable;
-        int newLoadMoreCount = getLoadMoreViewCount();
-
+    fun setEnableLoadMore(enable: Boolean) {
+        val oldLoadMoreCount = loadMoreViewCount
+        isLoadMoreEnable = enable
+        val newLoadMoreCount = loadMoreViewCount
         if (oldLoadMoreCount == 1) {
             if (newLoadMoreCount == 0) {
-                notifyItemRemoved(getFetchMoreViewCount() + mData.size());
+                notifyItemRemoved(fetchMoreViewCount + mData.size)
             }
         } else {
             if (newLoadMoreCount == 1) {
-                mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
-                notifyItemInserted(getFetchMoreViewCount() + mData.size());
+                mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
+                notifyItemInserted(fetchMoreViewCount + mData.size)
             }
         }
     }
-
-    /**
-     * Returns the enabled status for load more.
-     *
-     * @return True if load more is enabled, false otherwise.
-     */
-    public boolean isLoadMoreEnable() {
-        return mLoadMoreEnable;
-    }
-
     /**
      * *********************************** 数据源管理 ***********************************
      */
-
     /**
      * setting up a new instance to data;
      *
      * @param data
      */
-    public void setNewData(List<T> data) {
-        this.mData = data == null ? new ArrayList<T>() : data;
+    fun setNewData(data: List<T>?) {
+        mData = ((data ?: ArrayList()) as MutableList<T>?)!!
         if (mRequestLoadMoreListener != null) {
-            mNextLoadEnable = true;
-            mLoadMoreEnable = true;
-            mLoading = false;
-            mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+            mNextLoadEnable = true
+            isLoadMoreEnable = true
+            mLoading = false
+            mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
         }
         if (mRequestFetchMoreListener != null) {
-            mNextFetchEnable = true;
-            mFetchMoreEnable = true;
-            mFetching = false;
-            mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+            mNextFetchEnable = true
+            mFetchMoreEnable = true
+            mFetching = false
+            mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
         }
-
-        mLastPosition = -1;
-        notifyDataSetChanged();
+        mLastPosition = -1
+        notifyDataSetChanged()
     }
 
     /**
      * clear data before reload
      */
-    public void clearData() {
-        this.mData.clear();
+    fun clearData() {
+        mData.clear()
         if (mRequestLoadMoreListener != null) {
-            mNextLoadEnable = true;
-            mLoading = false;
-            mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+            mNextLoadEnable = true
+            mLoading = false
+            mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
         }
         if (mRequestFetchMoreListener != null) {
-            mNextFetchEnable = true;
-            mFetching = false;
-            mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+            mNextFetchEnable = true
+            mFetching = false
+            mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
         }
-
-        mLastPosition = -1;
-        notifyDataSetChanged();
+        mLastPosition = -1
+        notifyDataSetChanged()
     }
 
     /**
@@ -654,9 +562,9 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param position
      * @param item
      */
-    public void add(int position, T item) {
-        mData.add(position, item);
-        notifyItemInserted(position + getFetchMoreViewCount());
+    fun add(position: Int, item: T) {
+        mData.add(position, item)
+        notifyItemInserted(position + fetchMoreViewCount)
     }
 
     /**
@@ -664,12 +572,12 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param position
      */
-    public void addData(int position, List<T> data) {
-        if (0 <= position && position < mData.size()) {
-            mData.addAll(position, data);
-            notifyItemRangeInserted(getFetchMoreViewCount() + position, data.size());
+    fun addData(position: Int, data: List<T>) {
+        if (0 <= position && position < mData.size) {
+            mData.addAll(position, data)
+            notifyItemRangeInserted(fetchMoreViewCount + position, data.size)
         } else {
-            throw new ArrayIndexOutOfBoundsException("inserted position most greater than 0 and less than data size");
+            throw ArrayIndexOutOfBoundsException("inserted position most greater than 0 and less than data size")
         }
     }
 
@@ -678,27 +586,27 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param position
      */
-    public void remove(int position) {
-        final T item = mData.get(position);
-        mData.remove(position);
-        notifyItemRemoved(position + getHeaderLayoutCount());
-        onRemove(item);
+    fun remove(position: Int) {
+        val item = mData[position]
+        mData.removeAt(position)
+        notifyItemRemoved(position + headerLayoutCount)
+        onRemove(item)
     }
 
-    protected void onRemove(T item) {
-
-    }
+    protected open fun onRemove(item: T) {}
 
     /**
      * add new data to head location
      */
-    public void addFrontData(List<T> data) {
+    fun addFrontData(data: List<T>?) {
         if (data == null || data.isEmpty()) {
-            return;
+            return
         }
-
-        mData.addAll(0, data);
-        notifyItemRangeInserted(getFetchMoreViewCount(), data.size()); // add到FetchMoreView之下，保持FetchMoreView在顶部
+        mData.addAll(0, data)
+        notifyItemRangeInserted(
+            fetchMoreViewCount,
+            data.size
+        ) // add到FetchMoreView之下，保持FetchMoreView在顶部
     }
 
     /**
@@ -706,19 +614,18 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param newData
      */
-    public void appendData(List<T> newData) {
+    fun appendData(newData: List<T>?) {
         if (newData == null || newData.isEmpty()) {
-            return;
+            return
         }
-
-        this.mData.addAll(newData);
-        notifyItemRangeInserted(mData.size() - newData.size() + getFetchMoreViewCount(), newData.size());
+        mData.addAll(newData)
+        notifyItemRangeInserted(mData.size - newData.size + fetchMoreViewCount, newData.size)
     }
 
-    public void appendData(T newData) {
-        List<T> data = new ArrayList<>(1);
-        data.add(newData);
-        appendData(data);
+    fun appendData(newData: T) {
+        val data: MutableList<T> = ArrayList(1)
+        data.add(newData)
+        appendData(data)
     }
 
     /**
@@ -726,54 +633,49 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @return
      */
-    public List<T> getData() {
-        return mData;
-    }
+    val data: List<T>
+        get() = mData
 
     /**
      * Get the data item associated with the specified position in the data set.
      *
      * @param position Position of the item whose data we want within the adapter's
-     *                 data set.
+     * data set.
      * @return The data at the specified position.
      */
-    public T getItem(int position) {
-        return mData.get(position);
+    fun getItem(position: Int): T {
+        return mData[position]
     }
 
-    public int getDataSize() {
-        return mData == null ? 0 : mData.size();
-    }
+    val dataSize: Int
+        get() = mData.size
+    val bottomDataPosition: Int
+        get() = headerLayoutCount + mData.size - 1
 
-    public int getBottomDataPosition() {
-        return getHeaderLayoutCount() + mData.size() - 1;
-    }
-
-    public void notifyDataItemChanged(int dataIndex) {
-        notifyItemChanged(getHeaderLayoutCount() + dataIndex);
+    fun notifyDataItemChanged(dataIndex: Int) {
+        notifyItemChanged(headerLayoutCount + dataIndex)
     }
 
     /**
      * *********************************** ViewHolder/ViewType ***********************************
      */
-
-    protected K onCreateDefViewHolder(ViewGroup parent, int viewType) {
-        return createBaseViewHolder(parent, mLayoutResId);
+    protected open fun onCreateDefViewHolder(parent: ViewGroup?, viewType: Int): K {
+        return createBaseViewHolder(parent, mLayoutResId)
     }
 
-    protected K createBaseViewHolder(ViewGroup parent, int layoutResId) {
-        return createBaseViewHolder(getItemView(layoutResId, parent));
+    protected fun createBaseViewHolder(parent: ViewGroup?, layoutResId: Int): K {
+        return createBaseViewHolder(getItemView(layoutResId, parent))
     }
 
     /**
      * @param layoutResId ID for an XML layout resource to load
      * @param parent      Optional view to be the parent of the generated hierarchy or else simply an object that
-     *                    provides a set of LayoutParams values for root of the returned
-     *                    hierarchy
+     * provides a set of LayoutParams values for root of the returned
+     * hierarchy
      * @return view will be return
      */
-    protected View getItemView(int layoutResId, ViewGroup parent) {
-        return mLayoutInflater.inflate(layoutResId, parent, false);
+    protected fun getItemView(layoutResId: Int, parent: ViewGroup?): View {
+        return mLayoutInflater!!.inflate(layoutResId, parent, false)
     }
 
     /**
@@ -783,105 +685,95 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param view view
      * @return new ViewHolder
      */
-    protected K createBaseViewHolder(View view) {
-        return (K) new BaseViewHolder(view);
+    protected fun createBaseViewHolder(view: View?): K {
+        return BaseViewHolder(view) as K
     }
 
-    protected int getDefItemViewType(int position) {
-        return super.getItemViewType(position);
+    protected open fun getDefItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
-
-    private K getLoadingView(ViewGroup parent) {
-        View view = getItemView(mLoadMoreView.getLayoutId(), parent);
-        K holder = createBaseViewHolder(view);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mLoadMoreView.getLoadMoreStatus() == LoadMoreView.STATUS_FAIL) {
-                    mLoadMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
-                    notifyItemChanged(getFetchMoreViewCount() + mData.size());
-                }
+    private fun getLoadingView(parent: ViewGroup): K {
+        val view = getItemView(mLoadMoreView.layoutId, parent)
+        val holder = createBaseViewHolder(view)
+        holder!!.itemView.setOnClickListener {
+            if (mLoadMoreView.loadMoreStatus == LoadMoreView.STATUS_FAIL) {
+                mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
+                notifyItemChanged(fetchMoreViewCount + mData.size)
             }
-        });
-        return holder;
+        }
+        return holder
     }
 
-    private K getFetchingView(ViewGroup parent) {
-        View view = getItemView(mFetchMoreView.getLayoutId(), parent);
-        K holder = createBaseViewHolder(view);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mFetchMoreView.getLoadMoreStatus() == LoadMoreView.STATUS_FAIL) {
-                    mFetchMoreView.setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
-                    notifyItemChanged(0);
-                }
+    private fun getFetchingView(parent: ViewGroup): K {
+        val view = getItemView(mFetchMoreView.layoutId, parent)
+        val holder = createBaseViewHolder(view)
+        holder!!.itemView.setOnClickListener {
+            if (mFetchMoreView.loadMoreStatus == LoadMoreView.STATUS_FAIL) {
+                mFetchMoreView.loadMoreStatus = LoadMoreView.STATUS_DEFAULT
+                notifyItemChanged(0)
             }
-        });
-        return holder;
+        }
+        return holder
     }
-
-
 
     /**
      * 当设置为true时, 条目将使用所有跨度区域进行布局. 这意味着, 如果定向
-     *  是垂直的, 视图将有全宽度; 如果方向是水平的, 视图将
+     * 是垂直的, 视图将有全宽度; 如果方向是水平的, 视图将
      * 有完整的高度
      * 如果保持视图使用交错网格布局管理器，则应使用所有跨度区域
      *
      * @param holder 如果此项应遍历所有跨度
      */
-    protected void setFullSpan(RecyclerView.ViewHolder holder) {
-        if (holder.itemView.getLayoutParams() instanceof StaggeredGridLayoutManager.LayoutParams) {
-            StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
-            params.setFullSpan(true);
+    protected fun setFullSpan(holder: RecyclerView.ViewHolder) {
+        if (holder.itemView.layoutParams is StaggeredGridLayoutManager.LayoutParams) {
+            val params = holder.itemView.layoutParams as StaggeredGridLayoutManager.LayoutParams
+            params.isFullSpan = true
         }
     }
 
+    private val mSpanSizeLookup: SpanSizeLookup? = null
 
-
-    private SpanSizeLookup mSpanSizeLookup;
-
-    public interface SpanSizeLookup {
-        int getSpanSize(GridLayoutManager gridLayoutManager, int position);
+    interface SpanSizeLookup {
+        fun getSpanSize(gridLayoutManager: GridLayoutManager?, position: Int): Int
     }
-
     /**
      * *********************************** EmptyView ***********************************
      */
-
     /**
      * if mEmptyView will be return 1 or not will be return 0
      *
      * @return
      */
-    public int getEmptyViewCount() {
-        if (mEmptyView == null || mEmptyView.getChildCount() == 0) {
-            return 0;
+    val emptyViewCount: Int
+        get() {
+            if (mEmptyView == null || mEmptyView!!.childCount == 0) {
+                return 0
+            }
+            if (!mIsUseEmpty) {
+                return 0
+            }
+            return if (mData.size != 0) {
+                0
+            } else 1
         }
-        if (!mIsUseEmpty) {
-            return 0;
-        }
-        if (mData.size() != 0) {
-            return 0;
-        }
-        return 1;
-    }
 
-    public void setEmptyView(View emptyView) {
-        boolean insert = false;
+    fun setEmptyView(emptyView: View) {
+        var insert = false
         if (mEmptyView == null) {
-            mEmptyView = new FrameLayout(emptyView.getContext());
-            mEmptyView.setLayoutParams(new LayoutParams(MATCH_PARENT, MATCH_PARENT));
-            insert = true;
+            mEmptyView = FrameLayout(emptyView.context)
+            mEmptyView!!.layoutParams = RecyclerView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            insert = true
         }
-        mEmptyView.removeAllViews();
-        mEmptyView.addView(emptyView);
-        mIsUseEmpty = true;
+        mEmptyView!!.removeAllViews()
+        mEmptyView!!.addView(emptyView)
+        mIsUseEmpty = true
         if (insert) {
-            if (getEmptyViewCount() == 1) {
-                notifyItemInserted(0);
+            if (emptyViewCount == 1) {
+                notifyItemInserted(0)
             }
         }
     }
@@ -891,8 +783,8 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param isUseEmpty
      */
-    public void isUseEmpty(boolean isUseEmpty) {
-        mIsUseEmpty = isUseEmpty;
+    fun isUseEmpty(isUseEmpty: Boolean) {
+        mIsUseEmpty = isUseEmpty
     }
 
     /**
@@ -902,40 +794,27 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @return The view to show if the adapter is empty.
      */
-    public View getEmptyView() {
-        return mEmptyView;
-    }
-
+    val emptyView: View?
+        get() = mEmptyView
     /**
      * *********************************** 动画 ***********************************
      */
-
     /**
      * Set the view animation type.
      *
-     * @param animationType One of {@link #ALPHAIN}, {@link #SCALEIN}, {@link #SLIDEIN_BOTTOM}, {@link #SLIDEIN_LEFT}, {@link #SLIDEIN_RIGHT}.
+     * @param animationType One of [.ALPHAIN], [.SCALEIN], [.SLIDEIN_BOTTOM], [.SLIDEIN_LEFT], [.SLIDEIN_RIGHT].
      */
-    public void openLoadAnimation(@AnimationType int animationType) {
-        this.mOpenAnimationEnable = true;
-        mCustomAnimation = null;
-        switch (animationType) {
-            case ALPHAIN:
-                mSelectAnimation = new AlphaInAnimation();
-                break;
-            case SCALEIN:
-                mSelectAnimation = new ScaleInAnimation();
-                break;
-            case SLIDEIN_BOTTOM:
-                mSelectAnimation = new SlideInBottomAnimation();
-                break;
-            case SLIDEIN_LEFT:
-                mSelectAnimation = new SlideInLeftAnimation();
-                break;
-            case SLIDEIN_RIGHT:
-                mSelectAnimation = new SlideInRightAnimation();
-                break;
-            default:
-                break;
+    fun openLoadAnimation(@AnimationType animationType: Int) {
+        mOpenAnimationEnable = true
+        mCustomAnimation = null
+        when (animationType) {
+            IAnimationType.ALPHAIN -> mSelectAnimation = AlphaInAnimation()
+            IAnimationType.SCALEIN -> mSelectAnimation = ScaleInAnimation()
+            IAnimationType.SLIDEIN_BOTTOM -> mSelectAnimation = SlideInBottomAnimation()
+            IAnimationType.SLIDEIN_LEFT -> mSelectAnimation = SlideInLeftAnimation()
+            IAnimationType.SLIDEIN_RIGHT -> mSelectAnimation = SlideInRightAnimation()
+            else -> {
+            }
         }
     }
 
@@ -944,35 +823,35 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param animation ObjectAnimator
      */
-    public void openLoadAnimation(BaseAnimation animation) {
-        this.mOpenAnimationEnable = true;
-        this.mCustomAnimation = animation;
+    fun openLoadAnimation(animation: BaseAnimation?) {
+        mOpenAnimationEnable = true
+        mCustomAnimation = animation
     }
 
     /**
      * To open the animation when loading
      */
-    public void openLoadAnimation() {
-        this.mOpenAnimationEnable = true;
+    fun openLoadAnimation() {
+        mOpenAnimationEnable = true
     }
 
     /**
      * To close the animation when loading
      */
-    public void closeLoadAnimation() {
-        this.mOpenAnimationEnable = false;
-        this.mSelectAnimation = null;
-        this.mCustomAnimation = null;
-        this.mAnimationDuration = 0;
+    fun closeLoadAnimation() {
+        mOpenAnimationEnable = false
+        mSelectAnimation = null
+        mCustomAnimation = null
+        mAnimationDuration = 0
     }
 
     /**
-     * {@link #addAnimation(RecyclerView.ViewHolder)}
+     * [.addAnimation]
      *
      * @param firstOnly true just show anim when first loading false show anim when load the data every time
      */
-    public void setAnimationShowFirstOnly(boolean firstOnly) {
-        this.mAnimationShowFirstOnly = firstOnly;
+    fun setAnimationShowFirstOnly(firstOnly: Boolean) {
+        mAnimationShowFirstOnly = firstOnly
     }
 
     /**
@@ -980,8 +859,8 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param duration The length of the animation, in milliseconds.
      */
-    public void setAnimationDuration(int duration) {
-        mAnimationDuration = duration;
+    fun setAnimationDuration(duration: Int) {
+        mAnimationDuration = duration
     }
 
     /**
@@ -989,19 +868,19 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      *
      * @param holder
      */
-    private void addAnimation(RecyclerView.ViewHolder holder) {
+    private fun addAnimation(holder: RecyclerView.ViewHolder) {
         if (mOpenAnimationEnable) {
-            if (!mAnimationShowFirstOnly || holder.getLayoutPosition() > mLastPosition) {
-                BaseAnimation animation;
-                if (mCustomAnimation != null) {
-                    animation = mCustomAnimation;
+            if (!mAnimationShowFirstOnly || holder.layoutPosition > mLastPosition) {
+                val animation: BaseAnimation?
+                animation = if (mCustomAnimation != null) {
+                    mCustomAnimation
                 } else {
-                    animation = mSelectAnimation;
+                    mSelectAnimation
                 }
-                for (Animator anim : animation.getAnimators(holder.itemView)) {
-                    startAnim(anim, holder.getLayoutPosition());
+                for (anim in animation!!.getAnimators(holder.itemView)) {
+                    startAnim(anim, holder.layoutPosition)
                 }
-                mLastPosition = holder.getLayoutPosition();
+                mLastPosition = holder.layoutPosition
             }
         }
     }
@@ -1012,8 +891,38 @@ public abstract class BaseFetchLoadAdapter<T, K extends BaseViewHolder>
      * @param anim
      * @param index
      */
-    protected void startAnim(Animator anim, int index) {
-        anim.setDuration(mAnimationDuration).start();
-        anim.setInterpolator(mInterpolator);
+    protected fun startAnim(anim: Animator, index: Int) {
+        anim.setDuration(mAnimationDuration.toLong()).start()
+        anim.interpolator = mInterpolator
     }
+
+    companion object {
+        private val TAG = BaseFetchLoadAdapter::class.java.simpleName
+    }
+
+    /**
+     * Same as QuickAdapter#QuickAdapter(Context,int) but with
+     * some initialization data.
+     *
+     * @param layoutResId The layout resource id of each item.
+     * @param data        A new list is created out of this one to avoid mutable list
+     */
+    init {
+        mRecyclerView = recyclerView
+        mData = ((data ?: ArrayList()) as MutableList<T>?)!!
+        if (layoutResId != 0) {
+            mLayoutResId = layoutResId
+        }
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                isScrolling = newState != RecyclerView.SCROLL_STATE_IDLE
+            }
+        })
+        /**
+         * 关闭默认viewholder item动画
+         */
+        RecyclerViewUtil.changeItemAnimation(recyclerView, false)
+    }
+
 }
