@@ -13,6 +13,14 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".msg.MsgActivity"></activity>
 
+        <service
+            android:name="com.netease.nimlib.mixpush.hw.HWPushService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="${AMAP_KEY}" />

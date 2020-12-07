@@ -38,6 +38,11 @@ class NimApplication : Application() {
      */
     override fun onCreate() {
         super.onCreate()
+        /*if (NIMUtil.isMainProcess(this)) {
+            // 在此处添加以下代码
+            com.huawei.hms.support.common.ActivityMgr.INST.init(this);
+        }*/
+
         UIUtils.init(this)
         setContext(this)
 
@@ -45,6 +50,7 @@ class NimApplication : Application() {
         val sdkOptions = NimSDKOptionConfig.getSDKOptions(this)
         //sdkOptions.appKey = "40b5f5ff9dc3e53d5568bfd5531ba085";
         sdkOptions.appKey = "45c6af3c98409b18a84451215d0bdd6e"
+
         NIMClient.init(this, loginInfo, sdkOptions)
 
         // crash handler
