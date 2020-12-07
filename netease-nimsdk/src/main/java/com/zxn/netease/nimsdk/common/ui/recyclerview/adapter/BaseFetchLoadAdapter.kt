@@ -98,9 +98,15 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
         when (holder.itemViewType) {
             IRecyclerView.LOADING_VIEW -> mLoadMoreView.convert(holder)
             IRecyclerView.FETCHING_VIEW -> mFetchMoreView.convert(holder)
-            IRecyclerView.EMPTY_VIEW, IRecyclerView.HEADER_VIEW -> {}
+            IRecyclerView.EMPTY_VIEW, IRecyclerView.HEADER_VIEW -> {
+            }
             //else -> convert(holder, data[holder.layoutPosition - fetchMoreViewCount], position, isScrolling)
-            else -> convert(holder, data[holder.layoutPosition - headerLayoutCount], position, isScrolling)
+            else -> convert(
+                holder,
+                data[holder.layoutPosition - headerLayoutCount],
+                position,
+                isScrolling
+            )
         }
     }
 
@@ -161,7 +167,9 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
     /**
      * 距离顶部多少条就开始拉取数据了
      */
-    private var mAutoFetchMoreSize = 1
+    //private var mAutoFetchMoreSize = 1
+    //private var mAutoFetchMoreSize = 2
+    private var mAutoFetchMoreSize = if (hasHeaderLayout()) 2 else 1
     private var mRequestFetchMoreListener: RequestFetchMoreListener? = null
     private var mFetchMoreView: LoadMoreView = SimpleLoadMoreView()
 

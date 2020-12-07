@@ -90,13 +90,15 @@ abstract class BaseMessageActivity : UI() {
         sessionId = intent.getStringExtra(Extras.EXTRA_ACCOUNT)
         customization =
             intent.getSerializableExtra(Extras.EXTRA_CUSTOMIZATION) as SessionCustomization?
-        if (customization != null) {
-            addRightCustomViewOnActionBar(this, customization!!.buttons)
+        customization?.let {
+            it.buttons?.let {
+                addRightCustomViewOnActionBar(this, it)
+            }
         }
     }
 
     // 添加action bar的右侧按钮及响应事件
-    private fun addRightCustomViewOnActionBar(activity: UI, buttons: List<OptionsButton?>) {
+    private fun addRightCustomViewOnActionBar(activity: UI, buttons: MutableList<OptionsButton>) {
         if (isEmpty(buttons)) {
             return
         }
@@ -110,7 +112,7 @@ abstract class BaseMessageActivity : UI() {
         )
         for (button in buttons) {
             val imageView = ImageView(activity)
-            imageView.setImageResource(button!!.iconId)
+            imageView.setImageResource(button.iconId)
             //imageView.setBackgroundResource(R.drawable.nim_nim_action_bar_button_selector);
             imageView.setPadding(ScreenUtil.dip2px(10f), 0, ScreenUtil.dip2px(10f), 0)
             imageView.setOnClickListener { v: View? ->

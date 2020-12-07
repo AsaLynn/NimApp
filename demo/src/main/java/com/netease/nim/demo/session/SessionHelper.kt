@@ -40,7 +40,7 @@ object SessionHelper {
 
         this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
 
-        //this.loadMoreView = YinYuLoadMoreView()
+        this.headerLayoutId = R.layout.msg_notice_header//
 
         this.actions = ArrayList<BaseAction>().apply {
             add(SelectImageAction())
@@ -49,7 +49,7 @@ object SessionHelper {
 
         this.buttons = ArrayList<OptionsButton>().apply {
             val cloudMsgButton: OptionsButton = object : OptionsButton() {
-                override fun onClick(context: Context, view: View, sessionId: String) {}
+                override fun onClick(context: Context, view: View?, sessionId: String?) {}
             }.apply {
                 iconId = R.drawable.nim_ic_messge_history
             }
@@ -61,7 +61,7 @@ object SessionHelper {
         this.withSticker = true
         val buttons = ArrayList<OptionsButton>()
         val cloudMsgButton: OptionsButton = object : OptionsButton() {
-            override fun onClick(context: Context, view: View, sessionId: String) {}
+            override fun onClick(context: Context, view: View?, sessionId: String?) {}
         }
         cloudMsgButton.iconId = R.drawable.nim_ic_messge_history
         buttons.add(cloudMsgButton)
@@ -71,8 +71,7 @@ object SessionHelper {
     private var recentCustomization: RecentCustomization? = null
         private get() {
             if (field == null) {
-                field = object : DefaultRecentCustomization() {
-                }
+                field = object : DefaultRecentCustomization() {}
             }
             return field
         }
@@ -135,8 +134,7 @@ object SessionHelper {
             }
             0 -> {
             }
-            else -> {
-            }
+            else -> {}
         }
         return true
     }

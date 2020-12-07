@@ -1,52 +1,55 @@
-package com.zxn.netease.nimsdk.api.model.session;
+package com.zxn.netease.nimsdk.api.model.session
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.view.View;
-
-import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.zxn.netease.nimsdk.business.session.actions.BaseAction;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.loadmore.LoadMoreView;
-
-import java.io.Serializable;
-import java.util.ArrayList;
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.view.View
+import com.netease.nimlib.sdk.msg.attachment.MsgAttachment
+import com.netease.nimlib.sdk.msg.model.IMMessage
+import com.zxn.netease.nimsdk.business.session.actions.BaseAction
+import java.io.Serializable
+import java.util.*
 
 /**
- * 聊天界面定制化参数。 可定制：<br>
- * 1. 聊天背景 <br>
- * 2. 加号展开后的按钮和动作 <br>
+ * 聊天界面定制化参数。 可定制：<br></br>
+ * 1. 聊天背景 <br></br>
+ * 2. 加号展开后的按钮和动作 <br></br>
  * 3. ActionBar右侧按钮。
  * 4.聊天列表顶部温馨提示内容
  */
-public class SessionCustomization implements Serializable {
+open class SessionCustomization : Serializable {
 
     /**
-     * 聊天背景。优先使用uri，如果没有提供uri，使用color。如果没有color，使用默认。uri暂时支持以下格式：<br>
+     * 顶部布局提示内容
+     */
+    var headerLayoutId = 0
+
+    /**
+     * 聊天背景。优先使用uri，如果没有提供uri，使用color。如果没有color，使用默认。uri暂时支持以下格式：<br></br>
      * drawable: android.resource://包名/drawable/资源名
      * assets: file:///android_asset/{asset文件路径}
      * file: file:///文件绝对路径
      */
-    public String backgroundUri;
+    var backgroundUri: String? = null
+
     /**
      * 聊天背景颜色的资源
      */
-    public int backgroundColor;
+    var backgroundColor = 0
 
     // UIKit
-    public boolean withSticker;
+    @JvmField
+    var withSticker = false
 
     /**
      * 加号展开后的action list。
      */
-    public ArrayList<BaseAction> actions;
+    var actions: ArrayList<BaseAction>? = null
 
     /**
      * ActionBar标题右侧可定制按钮。默认为空。
      */
-    public ArrayList<OptionsButton> buttons;
-
+    var buttons: MutableList<OptionsButton>? = null
 
     /**
      * 如果OptionsButton的点击响应中需要startActivityForResult，可在此函数中处理结果。
@@ -57,28 +60,32 @@ public class SessionCustomization implements Serializable {
      * @param resultCode  结果码
      * @param data        返回的结果数据
      */
-    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+    open fun onActivityResult(
+        activity: Activity?,
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
     }
 
-    public boolean isAllowSendMessage(IMMessage message) {
-        return true;
+    fun isAllowSendMessage(message: IMMessage?): Boolean {
+        return true
     }
 
     // uikit内建了对贴图消息的输入和管理展示，并和emoji表情整合在了一起，但贴图消息的附件定义开发者需要根据自己的扩展
-    public MsgAttachment createStickerAttachment(String category, String item) {
-        return null;
+    open fun createStickerAttachment(category: String?, item: String?): MsgAttachment? {
+        return null
     }
 
     /**
      * ActionBar 右侧按钮，可定制icon和点击事件
      */
-    public static abstract class OptionsButton implements Serializable {
-
+    abstract class OptionsButton : Serializable {
         // 图标drawable id
-        public int iconId;
+        var iconId = 0
 
         // 响应事件
-        public abstract void onClick(Context context, View view, String sessionId);
+        abstract fun onClick(context: Context, view: View?, sessionId: String?)
     }
 
     /**
@@ -86,7 +93,7 @@ public class SessionCustomization implements Serializable {
      *
      * @return 消息的简述
      */
-    public String getMessageDigest(IMMessage message) {
-        return message == null ? "" : message.getContent();
+    fun getMessageDigest(message: IMMessage?): String {
+        return if (message == null) "" else message.content
     }
 }

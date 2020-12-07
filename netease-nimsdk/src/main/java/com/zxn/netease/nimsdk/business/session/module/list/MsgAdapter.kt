@@ -117,7 +117,7 @@ class MsgAdapter(recyclerView: RecyclerView?, data: List<IMMessage?>?, container
         }
     }
 
-    fun getProgress(message: IMMessage): Float?  = progresses[message.uuid]
+    fun getProgress(message: IMMessage): Float = progresses[message.uuid] ?: 0F
 
 
     fun putProgress(message: IMMessage, progress: Float) {

@@ -63,6 +63,8 @@ class MsgActivity : BaseActivity<Nothing>() {
 
         this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
 
+        this.headerLayoutId = R.layout.msg_notice_header
+
         this.actions = ArrayList<BaseAction>().apply {
             add(SelectImageAction())
             add(TakePictureAction())

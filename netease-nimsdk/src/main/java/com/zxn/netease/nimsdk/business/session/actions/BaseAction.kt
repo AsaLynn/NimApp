@@ -27,11 +27,11 @@ abstract class BaseAction
     // Container持有activity ， 防止内存泄露
     @Transient
     private var containerRef: WeakReference<Container>? = null
-    val activity: Activity
+    val activity: Activity?
         get() = container.activity
-    val account: String
+    val account: String?
         get() = container.account
-    val sessionType: SessionTypeEnum
+    val sessionType: SessionTypeEnum?
         get() = container.sessionType
     var container: Container
         get() = containerRef!!.get()

@@ -43,7 +43,9 @@ abstract class PickImageAction protected constructor(
      */
     private fun onPickImageActivityResult(requestCode: Int, data: Intent?) {
         if (data == null) {
-            showToastLong(activity, R.string.picker_image_error)
+            activity?.let {
+                showToastLong(it, R.string.picker_image_error)
+            }
             return
         }
         sendImageAfterSelfImagePicker(data)

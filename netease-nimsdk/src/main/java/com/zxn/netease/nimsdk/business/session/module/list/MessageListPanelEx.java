@@ -1,7 +1,6 @@
 package com.zxn.netease.nimsdk.business.session.module.list;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -38,9 +37,6 @@ import com.netease.nimlib.sdk.msg.model.RevokeMsgNotification;
 import com.netease.nimlib.sdk.msg.model.SessionMsgDeleteOption;
 import com.netease.nimlib.sdk.msg.model.TeamMessageReceipt;
 import com.netease.nimlib.sdk.robot.model.RobotAttachment;
-import com.netease.nimlib.sdk.robot.model.RobotMsgType;
-import com.netease.nimlib.sdk.team.constant.TeamMemberType;
-import com.netease.nimlib.sdk.team.model.TeamMember;
 import com.zxn.netease.nimsdk.R;
 import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.api.model.main.CustomPushContentProvider;
@@ -243,7 +239,13 @@ public class MessageListPanelEx {
         // adapter
         items = new ArrayList<>();
         adapter = new MsgAdapter(messageListView, items, container);
-        adapter.addHeaderView(View.inflate(container.activity,R.layout.msg_notice_header_temp,null));
+
+        if (customization != null) {
+            if (customization.getHeaderLayoutId() != 0) {
+                //R.layout.msg_notice_header_temp
+                adapter.addHeaderView(View.inflate(container.activity, customization.getHeaderLayoutId(), null));
+            }
+        }
 
         adapter.setFetchMoreView(new MsgListFetchLoadMoreView());
         adapter.setLoadMoreView(new MsgListFetchLoadMoreView());

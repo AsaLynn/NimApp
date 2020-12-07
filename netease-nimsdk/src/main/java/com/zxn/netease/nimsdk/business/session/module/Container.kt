@@ -1,38 +1,41 @@
-package com.zxn.netease.nimsdk.business.session.module;
+package com.zxn.netease.nimsdk.business.session.module
 
-import android.app.Activity;
+import android.app.Activity
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
 
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
+class Container {
+    @JvmField
+    val activity: Activity?
+    @JvmField
+    val account: String?
+    @JvmField
+    val sessionType: SessionTypeEnum?
+    @JvmField
+    val proxy: ModuleProxy
+    @JvmField
+    val proxySend: Boolean
 
-/**
- * Created by zhoujianghua on 2015/7/6.
- */
-public class Container {
-
-    public final Activity activity;
-
-    public final String account;
-
-    public final SessionTypeEnum sessionType;
-
-    public final ModuleProxy proxy;
-
-    public final boolean proxySend;
-
-    public Container(Activity activity, String account, SessionTypeEnum sessionType, ModuleProxy proxy) {
-        this.activity = activity;
-        this.account = account;
-        this.sessionType = sessionType;
-        this.proxy = proxy;
-        this.proxySend = false;
+    constructor(
+        activity: Activity,
+        account: String,
+        sessionType: SessionTypeEnum,
+        proxy: ModuleProxy
+    ) {
+        this.activity = activity
+        this.account = account
+        this.sessionType = sessionType
+        this.proxy = proxy
+        proxySend = false
     }
 
-    public Container(Activity activity, String account, SessionTypeEnum sessionType, ModuleProxy proxy,
-                     boolean proxySend) {
-        this.activity = activity;
-        this.account = account;
-        this.sessionType = sessionType;
-        this.proxy = proxy;
-        this.proxySend = proxySend;
+    constructor(
+        activity: Activity?, account: String?, sessionType: SessionTypeEnum?, proxy: ModuleProxy,
+        proxySend: Boolean
+    ) {
+        this.activity = activity
+        this.account = account
+        this.sessionType = sessionType
+        this.proxy = proxy
+        this.proxySend = proxySend
     }
 }

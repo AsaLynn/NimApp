@@ -37,7 +37,6 @@ import com.zxn.netease.nimsdk.common.CommonUtil.isEmpty
 import com.zxn.netease.nimsdk.common.fragment.TFragment
 import com.zxn.netease.nimsdk.impl.NimUIKitImpl
 import com.zxn.utils.UIUtils
-import java.util.*
 
 /**
  * 聊天界面基类
@@ -365,12 +364,13 @@ open class MessageFragment : TFragment(), ModuleProxy {
     // 操作面板集合
     private val actionList: List<BaseAction>
         get() {
-            val actions: MutableList<BaseAction> = ArrayList()
-            if (customization != null && customization!!.actions != null) {
-                actions.addAll(customization!!.actions)
-            } else {
-                actions.add(SelectImageAction())
-                actions.add(TakePictureAction())
+            val actions: MutableList<BaseAction> =
+                mutableListOf(SelectImageAction(), TakePictureAction())
+            customization?.let {
+                it.actions?.let { actionList ->
+                    actions.clear()
+                    actions.addAll(actionList)
+                }
             }
             return actions
         }
@@ -378,7 +378,11 @@ open class MessageFragment : TFragment(), ModuleProxy {
     companion object {
         protected const val TAG = "MessageActivity"
 
-        fun newInstance(account: String?, type: SessionTypeEnum?,customization: SessionCustomization?): MessageFragment =
+        fun newInstance(
+            account: String?,
+            type: SessionTypeEnum?,
+            customization: SessionCustomization?
+        ): MessageFragment =
             MessageFragment().apply {
                 arguments = Bundle().apply {
                     putString(Extras.EXTRA_ACCOUNT, account)
