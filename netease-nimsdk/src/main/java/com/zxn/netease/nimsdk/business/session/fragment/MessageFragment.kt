@@ -79,7 +79,7 @@ open class MessageFragment : TFragment(), ModuleProxy {
         super.onPause()
         NIMClient.getService(MsgService::class.java)
             .setChattingAccount(MsgService.MSG_CHATTING_ACCOUNT_NONE, SessionTypeEnum.None)
-        inputPanel!!.onPause()
+        inputPanel?.onPause()
         messageListPanel!!.onPause()
     }
 
@@ -94,16 +94,14 @@ open class MessageFragment : TFragment(), ModuleProxy {
         super.onDestroy()
         messageListPanel!!.onDestroy()
         registerObservers(false)
-        if (inputPanel != null) {
-            inputPanel!!.onDestroy()
-        }
+        inputPanel?.onDestroy()
         if (aitManager != null) {
             aitManager!!.reset()
         }
     }
 
     fun onBackPressed(): Boolean {
-        return inputPanel!!.collapse(true)
+        return inputPanel?.collapse(true) ?: false
     }
 
     fun refreshMessageList() {
@@ -128,8 +126,8 @@ open class MessageFragment : TFragment(), ModuleProxy {
             messageListPanel!!.reload(container, anchor)
         }
         if (inputPanel == null) {
-            inputPanel = InputPanel(container, rootView, actionList)
-            inputPanel!!.setCustomization(customization)
+            inputPanel = InputPanel(container, rootView, actionList, true, customization)
+            //inputPanel!!.setCustomization(customization)
         } else {
             inputPanel!!.reload(container, customization)
         }
@@ -361,8 +359,8 @@ open class MessageFragment : TFragment(), ModuleProxy {
         messageListPanel!!.onActivityResult(requestCode, resultCode, data)
     }
 
-    // 操作面板集合
-    private val actionList: List<BaseAction>
+    // 操作+号的面板集合
+    private val actionList: MutableList<BaseAction>
         get() {
             val actions: MutableList<BaseAction> =
                 mutableListOf(SelectImageAction(), TakePictureAction())

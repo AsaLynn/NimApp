@@ -65,7 +65,7 @@ dependencies {
 
 //    api 'com.netease.nimlib:push:8.1.2'
 
-    implementation 'com.zxn.mvvm:jetpackmvvm:1.0.9'
+    api 'com.zxn.mvvm:jetpackmvvm:1.0.9'
 }
 
 def siteUrl = 'https://github.com/zhang721688/NimApp'

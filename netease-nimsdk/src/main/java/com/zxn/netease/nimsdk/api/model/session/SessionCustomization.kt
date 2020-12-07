@@ -7,6 +7,7 @@ import android.view.View
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment
 import com.netease.nimlib.sdk.msg.model.IMMessage
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
+import com.zxn.netease.nimsdk.business.session.module.input.InputPanel
 import java.io.Serializable
 import java.util.*
 
@@ -18,6 +19,11 @@ import java.util.*
  * 4.聊天列表顶部温馨提示内容
  */
 open class SessionCustomization : Serializable {
+
+    /**
+     *底部输入框右侧可定制按钮。默认为空。
+     */
+    var bottomButtonList: MutableList<InputButton>? = null
 
     /**
      * 顶部布局提示内容
@@ -78,22 +84,42 @@ open class SessionCustomization : Serializable {
     }
 
     /**
-     * ActionBar 右侧按钮，可定制icon和点击事件
-     */
-    abstract class OptionsButton : Serializable {
-        // 图标drawable id
-        var iconId = 0
-
-        // 响应事件
-        abstract fun onClick(context: Context, view: View?, sessionId: String?)
-    }
-
-    /**
      * 获取消息的简述
      *
      * @return 消息的简述
      */
     fun getMessageDigest(message: IMMessage?): String {
         return if (message == null) "" else message.content
+    }
+
+    /**
+     * ActionBar 右侧按钮，可定制icon和点击事件
+     */
+    abstract class OptionsButton(// 图标drawable id
+        var iconId: Int = 0
+    ) : Serializable {
+
+        // 响应事件
+        abstract fun onClick(context: Context, view: View?, sessionId: String?)
+    }
+
+    /**
+     *底部输入框右侧的按钮.
+     */
+    abstract class InputButton(var backIconId: Int = 0) {
+
+        /**
+         * 点击的按钮的事件类型
+         * 0:+号按钮扩展,1:表情按钮,2:礼物按钮.
+         */
+        abstract var buttonType: Int
+
+        /**
+         * 按钮点击事件
+         * view:被点击的按钮
+         * inputPanel:输入框
+         * sessionId:回话id.
+         */
+        abstract fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?)
     }
 }

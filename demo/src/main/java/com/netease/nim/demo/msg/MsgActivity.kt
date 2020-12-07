@@ -7,6 +7,7 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import com.netease.nim.demo.R
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
@@ -17,6 +18,7 @@ import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction
 import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction
 import com.zxn.netease.nimsdk.business.session.constant.Extras
 import com.zxn.netease.nimsdk.business.session.fragment.MessageFragment
+import com.zxn.netease.nimsdk.business.session.module.input.InputPanel
 import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper
 import com.zxn.netease.nimsdk.common.ToastHelper
 import com.zxn.time.StampUtils
@@ -24,7 +26,6 @@ import com.zxn.time.TimeUnitPattern
 import com.zxn.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_msg.*
 import java.text.DecimalFormat
-import java.util.*
 
 /**
  *自定义点对点单聊消息页面.
@@ -68,6 +69,31 @@ class MsgActivity : BaseActivity<Nothing>() {
         this.actions = ArrayList<BaseAction>().apply {
             add(SelectImageAction())
             add(TakePictureAction())
+        }
+
+        this.bottomButtonList = mutableListOf<SessionCustomization.InputButton>().apply {
+            add(object :
+                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_gift_selector) {
+
+                override var buttonType: Int = 2
+
+                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
+                    Log.i("TAG", "sessionId: $sessionId")
+                    //点击礼物发送
+                    showToast("点击礼物发送弹窗")
+                }
+            })
+            add(object :
+                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_emoji_selector) {
+
+                override var buttonType: Int = 1
+
+                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
+                    Log.i("TAG", "sessionId: $sessionId")
+                    //点击表情包
+                    inputPanel.toggleEmojiLayout()
+                }
+            })
         }
 
     }
@@ -132,7 +158,7 @@ class MsgActivity : BaseActivity<Nothing>() {
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (:: mMessageFragment.isInitialized){
+        if (::mMessageFragment.isInitialized) {
             mMessageFragment.onActivityResult(requestCode, resultCode, data)
         }
     }

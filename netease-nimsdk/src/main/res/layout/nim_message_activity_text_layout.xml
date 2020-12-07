@@ -86,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/bottom_component_margin_horizontal"
-        android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
+        android:layout_marginRight="@dimen/dp_15"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/sendLayout"
@@ -108,7 +108,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginRight="@dimen/bottom_component_margin_horizontal"
             android:background="@drawable/nim_message_button_bottom_emoji_selector"
             android:contentDescription="@string/empty"
             android:scaleType="center" />
