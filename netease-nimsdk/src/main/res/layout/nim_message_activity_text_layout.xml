@@ -93,6 +93,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_gift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:background="@drawable/nim_message_button_bottom_emoji_selector"
+            android:contentDescription="@string/empty"
+            android:scaleType="center" />
+
+
+        <ImageView
             android:id="@+id/emoji_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

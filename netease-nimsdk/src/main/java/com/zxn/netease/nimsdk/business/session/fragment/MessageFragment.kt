@@ -57,9 +57,9 @@ open class MessageFragment : TFragment(), ModuleProxy {
     protected var sessionType: SessionTypeEnum? = null
 
     // modules
-    protected var inputPanel: InputPanel? = null
+    private var inputPanel: InputPanel? = null
     protected var messageListPanel: MessageListPanelEx? = null
-    protected var aitManager: AitManager? = null
+    private var aitManager: AitManager? = null
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         parseIntent()
