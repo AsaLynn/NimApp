@@ -1,6 +1,5 @@
 package com.netease.nim.demo.session.viewholder;
 
-import android.app.Activity;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;

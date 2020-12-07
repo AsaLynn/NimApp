@@ -30,6 +30,7 @@ import java.text.DecimalFormat
 /**
  *自定义点对点单聊消息页面.
  */
+
 class MsgActivity : BaseActivity<Nothing>() {
 
     companion object {
