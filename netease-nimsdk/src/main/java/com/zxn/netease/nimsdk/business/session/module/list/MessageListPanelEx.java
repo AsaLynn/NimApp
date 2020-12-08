@@ -245,6 +245,7 @@ public class MessageListPanelEx {
                 //R.layout.msg_notice_header_temp
                 //adapter.addHeaderView(View.inflate(container.activity, customization.getHeaderLayoutId(), null));
                 adapter.setEmptyView(View.inflate(container.activity, customization.getHeaderLayoutId(), null));
+                adapter.setNoticeView(View.inflate(container.activity, customization.getHeaderLayoutId(), null));
             }
         }
 
@@ -952,12 +953,16 @@ public class MessageListPanelEx {
 
         // 长按菜单项 -- 音频转文字
         private void longClickItemVoidToText(final IMMessage item, CustomAlertDialog alertDialog, MsgTypeEnum msgType) {
-            if (msgType != MsgTypeEnum.audio) return;
+            if (msgType != MsgTypeEnum.audio) {
+                return;
+            }
 
-            if (item.getDirect() == MsgDirectionEnum.In && item.getAttachStatus() != AttachStatusEnum.transferred)
+            if (item.getDirect() == MsgDirectionEnum.In && item.getAttachStatus() != AttachStatusEnum.transferred) {
                 return;
-            if (item.getDirect() == MsgDirectionEnum.Out && item.getAttachStatus() != AttachStatusEnum.transferred)
+            }
+            if (item.getDirect() == MsgDirectionEnum.Out && item.getAttachStatus() != AttachStatusEnum.transferred) {
                 return;
+            }
 
             alertDialog.addItem(container.activity.getString(R.string.voice_to_text), new CustomAlertDialog.onSeparateItemClickListener() {
 

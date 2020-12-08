@@ -301,8 +301,10 @@ class MsgAdapter(recyclerView: RecyclerView?, data: List<IMMessage?>?, container
 
     override fun onCreateDefViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
         val tempDefViewHolder = super.onCreateDefViewHolder(parent, viewType)
-        tempDefViewHolder?.noticeView = emptyView
+        tempDefViewHolder?.noticeView = this.noticeView
         return tempDefViewHolder
     }
+
+    var noticeView: View? = null
 
 }
