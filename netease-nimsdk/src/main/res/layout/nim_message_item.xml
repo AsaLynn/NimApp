@@ -5,10 +5,20 @@
     android:orientation="vertical"
     android:padding="6dp">
 
+    <LinearLayout
+        android:id="@+id/llNoticeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/message_item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/llNoticeContainer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/bubble_time_layout_margin_top"
         android:layout_marginBottom="@dimen/bubble_time_layout_margin_bottom"
@@ -138,13 +148,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_reply_tip_above_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/reply_with_message"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
 
                 <FrameLayout
                     android:id="@+id/message_item_content"
@@ -175,7 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/nim_uikit_icon_pin"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/message_item_reply"
@@ -183,7 +193,18 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/nim_uikit_icon_reply"
                 android:text="@string/reply_has_blank"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
     </FrameLayout>
 </RelativeLayout>
+
+    <!--
+    <TextView
+            android:id="@+id/tv_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="温馨提示：禁止出现商业广告、微信、QQ以及色情、暴力和具有 侮辱性的内容，文明聊天谨防诈骗，违规封号处理"
+            android:textColor="#6A6A86"
+            android:textSize="@dimen/sp_15"
+            android:visibility="gone" />
+    -->

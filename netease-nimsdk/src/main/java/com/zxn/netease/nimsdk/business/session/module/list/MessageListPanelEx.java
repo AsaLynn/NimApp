@@ -243,7 +243,8 @@ public class MessageListPanelEx {
         if (customization != null) {
             if (customization.getHeaderLayoutId() != 0) {
                 //R.layout.msg_notice_header_temp
-                adapter.addHeaderView(View.inflate(container.activity, customization.getHeaderLayoutId(), null));
+                //adapter.addHeaderView(View.inflate(container.activity, customization.getHeaderLayoutId(), null));
+                adapter.setEmptyView(View.inflate(container.activity, customization.getHeaderLayoutId(), null));
             }
         }
 

@@ -1,6 +1,7 @@
 package com.zxn.netease.nimsdk.business.session.module.list
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
@@ -73,7 +74,7 @@ class MsgAdapter(recyclerView: RecyclerView?, data: List<IMMessage?>?, container
             }
             ++index
         }
-        if (!deleteIndexList.isEmpty()) {
+        if (deleteIndexList.isNotEmpty()) {
             if (isRelocateTime) {
                 var toDeleteMsg: IMMessage?
                 for (i in deleteIndexList.indices.reversed()) {
@@ -118,7 +119,6 @@ class MsgAdapter(recyclerView: RecyclerView?, data: List<IMMessage?>?, container
     }
 
     fun getProgress(message: IMMessage): Float = progresses[message.uuid] ?: 0F
-
 
     fun putProgress(message: IMMessage, progress: Float) {
         progresses[message.uuid] = progress
@@ -298,4 +298,11 @@ class MsgAdapter(recyclerView: RecyclerView?, data: List<IMMessage?>?, container
         }
         this.container = container
     }
+
+    override fun onCreateDefViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
+        val tempDefViewHolder = super.onCreateDefViewHolder(parent, viewType)
+        tempDefViewHolder?.noticeView = emptyView
+        return tempDefViewHolder
+    }
+
 }

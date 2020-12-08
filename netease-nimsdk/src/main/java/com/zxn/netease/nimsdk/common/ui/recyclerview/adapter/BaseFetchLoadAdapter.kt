@@ -167,7 +167,7 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
     /**
      * 距离顶部多少条就开始拉取数据了
      */
-    //private var mAutoFetchMoreSize = 1
+//    private var mAutoFetchMoreSize = 1
     //private var mAutoFetchMoreSize = 2
     private var mAutoFetchMoreSize = if (hasHeaderLayout()) 2 else 1
     private var mRequestFetchMoreListener: RequestFetchMoreListener? = null
@@ -406,7 +406,7 @@ abstract class BaseFetchLoadAdapter<T, VH : BaseViewHolder>(
         mLoadMoreView.loadMoreStatus = LoadMoreView.STATUS_LOADING
         if (!mLoading) {
             mLoading = true
-            mRequestLoadMoreListener!!.onLoadMoreRequested()
+            mRequestLoadMoreListener?.onLoadMoreRequested()
         }
     }
 

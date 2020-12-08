@@ -14,6 +14,16 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.NIMSDK;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.msg.MsgService;
+import com.netease.nimlib.sdk.msg.attachment.FileAttachment;
+import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
+import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.netease.nimlib.sdk.msg.model.MsgThreadOption;
 import com.zxn.netease.nimsdk.R;
 import com.zxn.netease.nimsdk.api.NimUIKit;
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization;
@@ -27,16 +37,6 @@ import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.RecyclerViewHolder;
 import com.zxn.netease.nimsdk.common.util.log.sdk.wrapper.NimLog;
 import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
 import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.NIMSDK;
-import com.netease.nimlib.sdk.RequestCallback;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.attachment.FileAttachment;
-import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
-import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
-import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.netease.nimlib.sdk.msg.model.MsgThreadOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +47,11 @@ import java.util.List;
  */
 public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItemFetchLoadAdapter, BaseViewHolder, IMMessage> {
 
+    private ViewGroup llNoticeContainer;
+
     public MsgViewHolderBase(BaseMultiItemFetchLoadAdapter adapter) {
         super(adapter);
         this.adapter = adapter;
-
     }
 
     // basic
@@ -259,6 +260,15 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
 
         inflate();
         refresh();
+        if (position == 0) {
+            View noticeView = holder.getNoticeView();
+            if (noticeView != null) {
+                llNoticeContainer.addView(noticeView);
+            }
+        } else {
+            llNoticeContainer.removeAllViews();
+        }
+        //tvNotice.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         bindHolder(holder);
     }
 
@@ -267,7 +277,6 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
         this.context = context;
         message = data;
         layoutPosition = position;
-
 
         timeTextView = new TextView(context);
         avatarLeft = new HeadImageView(context);
@@ -286,6 +295,7 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
     }
 
     protected final void inflate() {
+        llNoticeContainer = findViewById(R.id.llNoticeContainer);
         timeTextView = findViewById(R.id.message_item_time);
         avatarLeft = findViewById(R.id.message_item_portrait_left);
         avatarRight = findViewById(R.id.message_item_portrait_right);

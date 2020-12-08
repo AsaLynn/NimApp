@@ -23,6 +23,7 @@ import java.util.*
  * ViewHolder基类.
  */
 open class BaseViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
+
     /**
      * Views indexed with their IDs
      */
@@ -472,5 +473,8 @@ open class BaseViewHolder(view: View?) : RecyclerView.ViewHolder(view!!) {
             null
         } else convertView!!.context
 
+//    var noticeViewId: Int = 0
+
+    var noticeView: View? = null
 
 }

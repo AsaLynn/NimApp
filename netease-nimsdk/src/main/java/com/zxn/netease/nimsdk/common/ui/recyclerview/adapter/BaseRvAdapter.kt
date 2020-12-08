@@ -204,7 +204,7 @@ abstract class BaseRvAdapter<T, VH : BaseViewHolder>
 
     fun setEmptyView(emptyView: View) {
         var insert = false
-        if (::mEmptyView.isInitialized) {
+        if (!::mEmptyView.isInitialized) {
             mEmptyView = FrameLayout(emptyView.context)
             mEmptyView.layoutParams = RecyclerView.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
