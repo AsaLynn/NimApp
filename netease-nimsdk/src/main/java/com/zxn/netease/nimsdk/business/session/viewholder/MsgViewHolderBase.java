@@ -262,12 +262,16 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
         refresh();
         if (position == 0) {
             View noticeView = holder.getNoticeView();
-            if (noticeView != null) {
-                llNoticeContainer.removeAllViews();
-                llNoticeContainer.addView(noticeView);
+            if (llNoticeContainer.getChildCount() == 0) {
+                if (noticeView != null) {
+                    llNoticeContainer.addView(noticeView);
+                }
+            }else {
+                llNoticeContainer.setVisibility(View.VISIBLE);
             }
         } else {
-            llNoticeContainer.removeAllViews();
+            llNoticeContainer.setVisibility(View.GONE);
+            //llNoticeContainer.removeAllViews();
         }
         //tvNotice.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         bindHolder(holder);
