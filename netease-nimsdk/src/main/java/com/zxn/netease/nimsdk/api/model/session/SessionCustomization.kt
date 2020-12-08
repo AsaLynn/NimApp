@@ -23,12 +23,12 @@ open class SessionCustomization : Serializable {
     /**
      *底部输入框右侧可定制按钮。默认为空。
      */
-    var bottomButtonList: MutableList<InputButton>? = null
+    var bottomButtonList: ArrayList<InputButton>? = null
 
     /**
      * 顶部布局提示内容
      */
-    var headerLayoutId = 0
+    var headerLayoutId:Int = 0
 
     /**
      * 聊天背景。优先使用uri，如果没有提供uri，使用color。如果没有color，使用默认。uri暂时支持以下格式：<br></br>
@@ -41,7 +41,7 @@ open class SessionCustomization : Serializable {
     /**
      * 聊天背景颜色的资源
      */
-    var backgroundColor = 0
+    var backgroundColor:Int = 0
 
     // UIKit
     @JvmField
@@ -55,7 +55,7 @@ open class SessionCustomization : Serializable {
     /**
      * ActionBar标题右侧可定制按钮。默认为空。
      */
-    var buttons: MutableList<OptionsButton>? = null
+    var buttons: ArrayList<OptionsButton>? = null
 
     /**
      * 如果OptionsButton的点击响应中需要startActivityForResult，可在此函数中处理结果。
@@ -106,7 +106,7 @@ open class SessionCustomization : Serializable {
     /**
      *底部输入框右侧的按钮.
      */
-    abstract class InputButton(var backIconId: Int = 0) {
+    abstract class InputButton(var backIconId: Int = 0) : Serializable {
 
         /**
          * 点击的按钮的事件类型
@@ -122,4 +122,5 @@ open class SessionCustomization : Serializable {
          */
         abstract fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?)
     }
+
 }

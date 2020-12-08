@@ -47,6 +47,7 @@ import com.zxn.netease.nimsdk.common.util.string.StringUtil
 import com.zxn.netease.nimsdk.impl.NimUIKitImpl
 import com.zxn.utils.UIUtils
 import java.io.File
+import java.io.Serializable
 
 /**
  * 底部文本编辑，语音等模块
