@@ -1,18 +1,9 @@
-package com.zxn.netease.nimsdk.common.ui.recyclerview.holder;
+package com.zxn.netease.nimsdk.common.ui.recyclerview.holder
 
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView
 
+abstract class RecyclerViewHolder<T : RecyclerView.Adapter<*>, V : BaseViewHolder, K>(open val adapter: T) {
 
-public abstract class RecyclerViewHolder<T extends RecyclerView.Adapter, V extends BaseViewHolder, K> {
-    final private T adapter;
+    abstract fun convert(holder: V, data: K, position: Int, isScrolling: Boolean)
 
-    public RecyclerViewHolder(T adapter) {
-        this.adapter = adapter;
-    }
-
-    public T getAdapter() {
-        return adapter;
-    }
-
-    public abstract void convert(V holder, K data, int position, boolean isScrolling);
 }

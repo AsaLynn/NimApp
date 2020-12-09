@@ -11,30 +11,33 @@ import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase
 import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderThumbBase
 import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter
 
-class MsgViewHolderSticker(adapter: BaseMultiItemFetchLoadAdapter<*, *>?) :
+class MsgViewHolderSticker(adapter: BaseMultiItemFetchLoadAdapter<*, *>) :
     MsgViewHolderBase(adapter) {
     private var baseView: ImageView? = null
-    override fun getContentResId(): Int {
-        return R.layout.nim_message_item_sticker
-    }
+
+    override val contentResId: Int = R.layout.nim_message_item_sticker
+
 
     override fun inflateContentView() {
         baseView = findViewById(R.id.message_item_sticker_image)
-        baseView?.setMaxWidth(MsgViewHolderThumbBase.getImageMaxEdge())
+        baseView?.setMaxWidth(MsgViewHolderThumbBase.imageMaxEdge)
     }
 
     override fun bindContentView() {
-        val attachment = message.attachment as StickerAttachment ?: return
-        Glide.with(context)
-            .load(
-                StickerManager.getInstance().getStickerUri(attachment.catalog, attachment.chartlet)
-            )
-            .apply(
-                RequestOptions()
-                    .error(R.drawable.nim_default_img_failed)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-            )
-            .into(baseView!!)
+        message?.let { message ->
+            val attachment = message.attachment as StickerAttachment ?: return
+            Glide.with(context!!)
+                .load(
+                    StickerManager.getInstance()
+                        .getStickerUri(attachment.catalog, attachment.chartlet)
+                )
+                .apply(
+                    RequestOptions()
+                        .error(R.drawable.nim_default_img_failed)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                )
+                .into(baseView!!)
+        }
     }
 
     override fun leftBackground(): Int {

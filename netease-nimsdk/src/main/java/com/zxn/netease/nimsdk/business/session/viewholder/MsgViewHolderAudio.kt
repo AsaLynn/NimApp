@@ -1,305 +1,285 @@
-package com.zxn.netease.nimsdk.business.session.viewholder;
+package com.zxn.netease.nimsdk.business.session.viewholder
 
-import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.business.session.audio.MessageAudioControl;
-import com.zxn.netease.nimsdk.common.media.audioplayer.Playable;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
-import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
-import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
-import com.zxn.netease.nimsdk.impl.NimUIKitImpl;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.attachment.AudioAttachment;
-import com.netease.nimlib.sdk.msg.constant.AttachStatusEnum;
-import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
-import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-
+import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
+import android.text.TextUtils
+import android.view.Gravity
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.msg.MsgService
+import com.netease.nimlib.sdk.msg.attachment.AudioAttachment
+import com.netease.nimlib.sdk.msg.constant.AttachStatusEnum
+import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum
+import com.netease.nimlib.sdk.msg.model.IMMessage
+import com.zxn.netease.nimsdk.R
+import com.zxn.netease.nimsdk.business.session.audio.MessageAudioControl
+import com.zxn.netease.nimsdk.common.media.audioplayer.BaseAudioControl.AudioControlListener
+import com.zxn.netease.nimsdk.common.media.audioplayer.Playable
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter
+import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil
+import com.zxn.netease.nimsdk.common.util.sys.TimeUtil
+import com.zxn.netease.nimsdk.impl.NimUIKitImpl
 
 /**
  * 语音消息展示
  */
-public class MsgViewHolderAudio extends MsgViewHolderBase {
+class MsgViewHolderAudio(adapter: BaseMultiItemFetchLoadAdapter<*, *>) :
+    MsgViewHolderBase(adapter) {
 
-    public MsgViewHolderAudio(BaseMultiItemFetchLoadAdapter adapter) {
-        super(adapter);
+    private lateinit var durationLabel: TextView
+    private var containerView: View? = null
+    private var unreadIndicator: View? = null
+    private lateinit var animationView: ImageView
+    private var audioControl: MessageAudioControl? = null
+
+    override val contentResId: Int = R.layout.nim_message_item_audio
+
+    override fun inflateContentView() {
+        durationLabel = findViewById(R.id.message_item_audio_duration)
+        containerView = findViewById(R.id.message_item_audio_container)
+        unreadIndicator = findViewById(R.id.message_item_audio_unread_indicator)
+        animationView = findViewById(R.id.message_item_audio_playing_animation)
+        animationView?.setBackgroundResource(0)
+        audioControl = MessageAudioControl.getInstance(context)
     }
 
-    public static final int CLICK_TO_PLAY_AUDIO_DELAY = 500;
-
-    private TextView durationLabel;
-    private View containerView;
-    private View unreadIndicator;
-    private ImageView animationView;
-
-    private MessageAudioControl audioControl;
-
-    @Override
-    public int getContentResId() {
-        return R.layout.nim_message_item_audio;
+    override fun bindContentView() {
+        layoutByDirection()
+        refreshStatus()
+        controlPlaying()
     }
 
-    @Override
-    public void inflateContentView() {
-        durationLabel = findViewById(R.id.message_item_audio_duration);
-        containerView = findViewById(R.id.message_item_audio_container);
-        unreadIndicator = findViewById(R.id.message_item_audio_unread_indicator);
-        animationView = findViewById(R.id.message_item_audio_playing_animation);
-        animationView.setBackgroundResource(0);
-        audioControl = MessageAudioControl.getInstance(context);
-    }
-
-    @Override
-    public void bindContentView() {
-        layoutByDirection();
-
-        refreshStatus();
-
-        controlPlaying();
-    }
-
-    @Override
-    public void onItemClick() {
+    override fun onItemClick() {
         if (audioControl != null) {
-            if (message.getDirect() == MsgDirectionEnum.In && message.getAttachStatus() != AttachStatusEnum.transferred) {
-                if (message.getAttachStatus() == AttachStatusEnum.fail || message.getAttachStatus() == AttachStatusEnum.def) {
-                    NIMClient.getService(MsgService.class).downloadAttachment(message, false);
+            var message = this.message!!
+            if (message.direct == MsgDirectionEnum.In && message.attachStatus != AttachStatusEnum.transferred) {
+                if (message.attachStatus == AttachStatusEnum.fail || message.attachStatus == AttachStatusEnum.def) {
+                    NIMClient.getService(MsgService::class.java).downloadAttachment(message, false)
                 }
-                return;
+                return
             }
-
-            if (message.getStatus() != MsgStatusEnum.read) {
+            if (message.status != MsgStatusEnum.read) {
                 // 将未读标识去掉,更新数据库
-                unreadIndicator.setVisibility(View.GONE);
+                unreadIndicator!!.visibility = View.GONE
             }
-
-            initPlayAnim(); // 设置语音播放动画
-
-            audioControl.startPlayAudioDelay(CLICK_TO_PLAY_AUDIO_DELAY, message, onPlayListener);
-
-            audioControl.setPlayNext(!NimUIKitImpl.getOptions().disableAutoPlayNextAudio, adapter, message);
+            initPlayAnim() // 设置语音播放动画
+            audioControl!!.startPlayAudioDelay(
+                CLICK_TO_PLAY_AUDIO_DELAY.toLong(),
+                message,
+                onPlayListener
+            )
+            audioControl!!.setPlayNext(
+                !NimUIKitImpl.getOptions().disableAutoPlayNextAudio,
+                adapter,
+                message
+            )
         }
     }
 
-    private void layoutByDirection() {
-        if (isReceivedMessage()) {
-            setGravity(animationView, Gravity.LEFT | Gravity.CENTER_VERTICAL);
-            setGravity(durationLabel, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-
-            containerView.setBackgroundResource(NimUIKitImpl.getOptions().messageLeftBackground);
-            containerView.setPadding(ScreenUtil.dip2px(15), ScreenUtil.dip2px(8), ScreenUtil.dip2px(10), ScreenUtil.dip2px(8));
-            animationView.setBackgroundResource(R.drawable.nim_audio_animation_list_left);
-            durationLabel.setTextColor(Color.WHITE);
-
+    private fun layoutByDirection() {
+        if (isReceivedMessage) {
+            setGravity(animationView, Gravity.LEFT or Gravity.CENTER_VERTICAL)
+            setGravity(durationLabel, Gravity.RIGHT or Gravity.CENTER_VERTICAL)
+            containerView!!.setBackgroundResource(NimUIKitImpl.getOptions().messageLeftBackground)
+            containerView!!.setPadding(
+                ScreenUtil.dip2px(15f),
+                ScreenUtil.dip2px(8f),
+                ScreenUtil.dip2px(10f),
+                ScreenUtil.dip2px(8f)
+            )
+            animationView!!.setBackgroundResource(R.drawable.nim_audio_animation_list_left)
+            durationLabel!!.setTextColor(Color.WHITE)
         } else {
-            setGravity(animationView, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-            setGravity(durationLabel, Gravity.LEFT | Gravity.CENTER_VERTICAL);
-            unreadIndicator.setVisibility(View.GONE);
-
-            containerView.setBackgroundResource(NimUIKitImpl.getOptions().messageRightBackground);
-            containerView.setPadding(ScreenUtil.dip2px(10), ScreenUtil.dip2px(8), ScreenUtil.dip2px(15), ScreenUtil.dip2px(8));
-            animationView.setBackgroundResource(R.drawable.nim_audio_animation_list_right);
-            durationLabel.setTextColor(Color.WHITE);
+            setGravity(animationView, Gravity.RIGHT or Gravity.CENTER_VERTICAL)
+            setGravity(durationLabel, Gravity.LEFT or Gravity.CENTER_VERTICAL)
+            unreadIndicator!!.visibility = View.GONE
+            containerView!!.setBackgroundResource(NimUIKitImpl.getOptions().messageRightBackground)
+            containerView!!.setPadding(
+                ScreenUtil.dip2px(10f),
+                ScreenUtil.dip2px(8f),
+                ScreenUtil.dip2px(15f),
+                ScreenUtil.dip2px(8f)
+            )
+            animationView!!.setBackgroundResource(R.drawable.nim_audio_animation_list_right)
+            durationLabel!!.setTextColor(Color.WHITE)
         }
     }
 
-    private void refreshStatus() {// 消息状态
-        AudioAttachment attachment = (AudioAttachment) message.getAttachment();
-        MsgStatusEnum status = message.getStatus();
-        AttachStatusEnum attachStatus = message.getAttachStatus();
+    private fun refreshStatus() { // 消息状态
+        var message = this.message!!
+        val attachment = message.attachment as AudioAttachment
+        val status = message.status
+        val attachStatus = message.attachStatus
 
         // alert button
-        if (TextUtils.isEmpty(attachment.getPath())) {
+        if (TextUtils.isEmpty(attachment.path)) {
             if (attachStatus == AttachStatusEnum.fail || status == MsgStatusEnum.fail) {
-                alertButton.setVisibility(View.VISIBLE);
+                alertButton.visibility = View.VISIBLE
             } else {
-                alertButton.setVisibility(View.GONE);
+                alertButton.visibility = View.GONE
             }
         }
 
         // progress bar indicator
         if (status == MsgStatusEnum.sending || attachStatus == AttachStatusEnum.transferring) {
-            progressBar.setVisibility(View.VISIBLE);
+            progressBar?.visibility = View.VISIBLE
         } else {
-            progressBar.setVisibility(View.GONE);
+            progressBar?.visibility = View.GONE
         }
 
         // unread indicator
         if (!NimUIKitImpl.getOptions().disableAudioPlayedStatusIcon
-                && isReceivedMessage()
-                && attachStatus == AttachStatusEnum.transferred
-                && status != MsgStatusEnum.read) {
-            unreadIndicator.setVisibility(View.VISIBLE);
+            && isReceivedMessage
+            && attachStatus == AttachStatusEnum.transferred && status != MsgStatusEnum.read
+        ) {
+            unreadIndicator!!.visibility = View.VISIBLE
         } else {
-            unreadIndicator.setVisibility(View.GONE);
+            unreadIndicator!!.visibility = View.GONE
         }
     }
 
-    private void controlPlaying() {
-        final AudioAttachment msgAttachment = (AudioAttachment) message.getAttachment();
-        long duration = msgAttachment.getDuration();
-        setAudioBubbleWidth(duration);
-
-        durationLabel.setTag(message.getUuid());
-
+    private fun controlPlaying() {
+        var message = this.message!!
+        val msgAttachment = message.attachment as AudioAttachment
+        val duration = msgAttachment.duration
+        setAudioBubbleWidth(duration)
+        durationLabel!!.tag = message.uuid
         if (!isMessagePlaying(audioControl, message)) {
-            if (audioControl.getAudioControlListener() != null &&
-                    audioControl.getAudioControlListener().equals(onPlayListener)) {
-                audioControl.changeAudioControlListener(null);
+            if (audioControl!!.audioControlListener != null && audioControl!!.audioControlListener == onPlayListener) {
+                audioControl!!.changeAudioControlListener(null)
             }
-
-            updateTime(duration);
-            stop();
+            updateTime(duration)
+            stop()
         } else {
-            audioControl.changeAudioControlListener(onPlayListener);
-            play();
+            audioControl!!.changeAudioControlListener(onPlayListener)
+            play()
         }
     }
 
-    public static int getAudioMaxEdge() {
-        return (int) (0.6 * ScreenUtil.screenMin);
+    private fun setAudioBubbleWidth(milliseconds: Long) {
+        val seconds = TimeUtil.getSecondsByMilliseconds(milliseconds)
+        val currentBubbleWidth =
+            calculateBubbleWidth(seconds, NimUIKitImpl.getOptions().audioRecordMaxTime)
+        val layoutParams = containerView!!.layoutParams
+        layoutParams.width = currentBubbleWidth
+        containerView!!.layoutParams = layoutParams
     }
 
-    public static int getAudioMinEdge() {
-        return (int) (0.1875 * ScreenUtil.screenMin);
-    }
-
-    private void setAudioBubbleWidth(long milliseconds) {
-        long seconds = TimeUtil.getSecondsByMilliseconds(milliseconds);
-
-        int currentBubbleWidth = calculateBubbleWidth(seconds, NimUIKitImpl.getOptions().audioRecordMaxTime);
-        ViewGroup.LayoutParams layoutParams = containerView.getLayoutParams();
-        layoutParams.width = currentBubbleWidth;
-        containerView.setLayoutParams(layoutParams);
-    }
-
-    private int calculateBubbleWidth(long seconds, int MAX_TIME) {
-        int maxAudioBubbleWidth = getAudioMaxEdge();
-        int minAudioBubbleWidth = getAudioMinEdge();
-
-        int currentBubbleWidth;
-        if (seconds <= 0) {
-            currentBubbleWidth = minAudioBubbleWidth;
+    private fun calculateBubbleWidth(seconds: Long, MAX_TIME: Int): Int {
+        val maxAudioBubbleWidth = audioMaxEdge
+        val minAudioBubbleWidth = audioMinEdge
+        var currentBubbleWidth: Int
+        currentBubbleWidth = if (seconds <= 0) {
+            minAudioBubbleWidth
         } else if (seconds > 0 && seconds <= MAX_TIME) {
-            currentBubbleWidth = (int) ((maxAudioBubbleWidth - minAudioBubbleWidth) * (2.0 / Math.PI)
-                    * Math.atan(seconds / 10.0) + minAudioBubbleWidth);
+            (((maxAudioBubbleWidth - minAudioBubbleWidth) * (2.0 / Math.PI)
+                    * Math.atan(seconds / 10.0)) + minAudioBubbleWidth).toInt()
         } else {
-            currentBubbleWidth = maxAudioBubbleWidth;
+            maxAudioBubbleWidth
         }
-
         if (currentBubbleWidth < minAudioBubbleWidth) {
-            currentBubbleWidth = minAudioBubbleWidth;
+            currentBubbleWidth = minAudioBubbleWidth
         } else if (currentBubbleWidth > maxAudioBubbleWidth) {
-            currentBubbleWidth = maxAudioBubbleWidth;
+            currentBubbleWidth = maxAudioBubbleWidth
         }
-
-        return currentBubbleWidth;
+        return currentBubbleWidth
     }
 
-    private void updateTime(long milliseconds) {
-        long seconds = TimeUtil.getSecondsByMilliseconds(milliseconds);
-
+    private fun updateTime(milliseconds: Long) {
+        val seconds = TimeUtil.getSecondsByMilliseconds(milliseconds)
         if (seconds >= 0) {
-            durationLabel.setText(seconds + "\"");
+            durationLabel!!.text = seconds.toString() + "\""
         } else {
-            durationLabel.setText("");
+            durationLabel!!.text = ""
         }
     }
 
-    protected boolean isMessagePlaying(MessageAudioControl audioControl, IMMessage message) {
-        return audioControl.getPlayingAudio() != null && audioControl.getPlayingAudio().isTheSame(message);
+    protected fun isMessagePlaying(
+        audioControl: MessageAudioControl?,
+        message: IMMessage?
+    ): Boolean {
+        return audioControl!!.playingAudio != null && audioControl.playingAudio.isTheSame(message)
     }
 
-    private final MessageAudioControl.AudioControlListener onPlayListener = new MessageAudioControl.AudioControlListener() {
-
-        @Override
-        public void updatePlayingProgress(Playable playable, long curPosition) {
-            if (!isTheSame(message.getUuid())) {
-                return;
+    private val onPlayListener: AudioControlListener = object : AudioControlListener {
+        override fun updatePlayingProgress(playable: Playable, curPosition: Long) {
+            if (!isTheSame(message!!.uuid)) {
+                return
             }
-
-            if (curPosition > playable.getDuration()) {
-                return;
+            if (curPosition > playable.duration) {
+                return
             }
-            updateTime(curPosition);
+            updateTime(curPosition)
         }
 
-        @Override
-        public void onAudioControllerReady(Playable playable) {
-            if (!isTheSame(message.getUuid())) {
-                return;
+        override fun onAudioControllerReady(playable: Playable) {
+            if (!isTheSame(message!!.uuid)) {
+                return
             }
-
-            play();
+            play()
         }
 
-        @Override
-        public void onEndPlay(Playable playable) {
-            if (!isTheSame(message.getUuid())) {
-                return;
+        override fun onEndPlay(playable: Playable) {
+            if (!isTheSame(message!!.uuid)) {
+                return
             }
-
-            updateTime(playable.getDuration());
-
-            stop();
-        }
-
-
-    };
-
-    private void play() {
-        if (animationView.getBackground() instanceof AnimationDrawable) {
-            AnimationDrawable animation = (AnimationDrawable) animationView.getBackground();
-            animation.start();
+            updateTime(playable.duration)
+            stop()
         }
     }
 
-    private void stop() {
-        if (animationView.getBackground() instanceof AnimationDrawable) {
-            AnimationDrawable animation = (AnimationDrawable) animationView.getBackground();
-            animation.stop();
-
-            endPlayAnim();
+    private fun play() {
+        if (animationView!!.background is AnimationDrawable) {
+            val animation = animationView!!.background as AnimationDrawable
+            animation.start()
         }
     }
 
-    private void initPlayAnim() {
-        if (isReceivedMessage()) {
-            animationView.setBackgroundResource(R.drawable.nim_audio_animation_list_left);
+    private fun stop() {
+        if (animationView!!.background is AnimationDrawable) {
+            val animation = animationView!!.background as AnimationDrawable
+            animation.stop()
+            endPlayAnim()
+        }
+    }
+
+    private fun initPlayAnim() {
+        if (isReceivedMessage) {
+            animationView!!.setBackgroundResource(R.drawable.nim_audio_animation_list_left)
         } else {
-            animationView.setBackgroundResource(R.drawable.nim_audio_animation_list_right);
+            animationView!!.setBackgroundResource(R.drawable.nim_audio_animation_list_right)
         }
     }
 
-    private void endPlayAnim() {
-        if (isReceivedMessage()) {
-            animationView.setBackgroundResource(R.mipmap.nim_audio_animation_list_left_1);
+    private fun endPlayAnim() {
+        if (isReceivedMessage) {
+            animationView!!.setBackgroundResource(R.mipmap.nim_audio_animation_list_left_1)
         } else {
-            animationView.setBackgroundResource(R.mipmap.nim_audio_animation_list_left_1);
+            animationView!!.setBackgroundResource(R.mipmap.nim_audio_animation_list_left_1)
         }
     }
 
-    private boolean isTheSame(String uuid) {
-        String current = durationLabel.getTag().toString();
-        return !TextUtils.isEmpty(uuid) && uuid.equals(current);
+    private fun isTheSame(uuid: String): Boolean {
+        val current = durationLabel!!.tag.toString()
+        return !TextUtils.isEmpty(uuid) && uuid == current
     }
 
-    @Override
-    protected int leftBackground() {
-        return R.drawable.nim_message_left_white_bg;
+    override fun leftBackground(): Int {
+        return R.drawable.nim_message_left_white_bg
     }
 
-    @Override
-    protected int rightBackground() {
-        return R.drawable.nim_message_right_blue_bg;
+    override fun rightBackground(): Int {
+        return R.drawable.nim_message_right_blue_bg
+    }
+
+    companion object {
+        const val CLICK_TO_PLAY_AUDIO_DELAY = 500
+        val audioMaxEdge: Int
+            get() = (0.6 * ScreenUtil.screenMin).toInt()
+        val audioMinEdge: Int
+            get() = (0.1875 * ScreenUtil.screenMin).toInt()
     }
 }

@@ -299,11 +299,11 @@ class MsgAdapter(recyclerView: RecyclerView?, data: List<IMMessage?>?, container
         this.container = container
     }
 
-    override fun onCreateDefViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
+    /*override fun onCreateDefViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
         val tempDefViewHolder = super.onCreateDefViewHolder(parent, viewType)
         tempDefViewHolder?.noticeView = this.noticeView
         return tempDefViewHolder
-    }
+    }*/
 
     var noticeView: View? = null
 

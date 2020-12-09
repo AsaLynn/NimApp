@@ -30,7 +30,7 @@ import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.netease.nimlib.sdk.superteam.SuperTeam;
 import com.netease.nimlib.sdk.team.model.Team;
 
-public abstract class RecentViewHolder extends RecyclerViewHolder<BaseQuickAdapter, BaseViewHolder, RecentContact> {
+public abstract class RecentViewHolder extends RecyclerViewHolder<BaseQuickAdapter<?,?>, BaseViewHolder, RecentContact> {
 
     public RecentViewHolder(BaseQuickAdapter adapter) {
         super(adapter);

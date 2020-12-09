@@ -1,36 +1,32 @@
-package com.zxn.netease.nimsdk.business.ait.selector.holder;
+package com.zxn.netease.nimsdk.business.ait.selector.holder
 
-import android.widget.TextView;
+import android.widget.TextView
+import com.zxn.netease.nimsdk.R
+import com.zxn.netease.nimsdk.business.ait.selector.model.AitContactItem
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseQuickAdapter
+import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder
+import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.RecyclerViewHolder
 
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.business.ait.selector.model.AitContactItem;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseQuickAdapter;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.BaseViewHolder;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.holder.RecyclerViewHolder;
+class SimpleLabelViewHolder(adapter: BaseQuickAdapter<*, *>) :
+    RecyclerViewHolder<BaseQuickAdapter<*, *>, BaseViewHolder, AitContactItem<String>>(adapter) {
 
-/**
- * Created by hzchenkang on 2017/6/21.
- */
+    private var textView: TextView? = null
 
-public class SimpleLabelViewHolder extends RecyclerViewHolder<BaseQuickAdapter, BaseViewHolder, AitContactItem<String>> {
-
-    private TextView textView;
-
-    public SimpleLabelViewHolder(BaseQuickAdapter adapter) {
-        super(adapter);
+    override fun convert(
+        holder: BaseViewHolder,
+        data: AitContactItem<String>,
+        position: Int,
+        isScrolling: Boolean
+    ) {
+        inflate(holder)
+        refresh(data.model)
     }
 
-    @Override
-    public void convert(BaseViewHolder holder, AitContactItem<String> data, int position, boolean isScrolling) {
-        inflate(holder);
-        refresh(data.getModel());
+    fun inflate(holder: BaseViewHolder) {
+        textView = holder.getView<TextView>(R.id.tv_label)
     }
 
-    public void inflate(BaseViewHolder holder) {
-        textView = holder.getView(R.id.tv_label);
-    }
-
-    public void refresh(String label) {
-        textView.setText(label);
+    fun refresh(label: String?) {
+        textView!!.text = label
     }
 }

@@ -1,30 +1,21 @@
-package com.zxn.netease.nimsdk.business.session.viewholder;
+package com.zxn.netease.nimsdk.business.session.viewholder
 
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.business.session.activity.WatchMessagePictureActivity;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
+import com.zxn.netease.nimsdk.R
+import com.zxn.netease.nimsdk.business.session.activity.WatchMessagePictureActivity
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter
 
 /**
- * Created by zhoujianghua on 2015/8/4.
+ * 图片消息展示.
  */
-public class MsgViewHolderPicture extends MsgViewHolderThumbBase {
+class MsgViewHolderPicture(adapter: BaseMultiItemFetchLoadAdapter<*, *>) :
+    MsgViewHolderThumbBase(adapter) {
 
-    public MsgViewHolderPicture(BaseMultiItemFetchLoadAdapter adapter) {
-        super(adapter);
+    override fun thumbFromSourceFile(path: String?): String? = path
+
+    override val contentResId: Int = R.layout.nim_message_item_picture
+
+    override fun onItemClick() {
+        WatchMessagePictureActivity.start(context, message)
     }
 
-    @Override
-    public int getContentResId() {
-        return R.layout.nim_message_item_picture;
-    }
-
-    @Override
-    public void onItemClick() {
-        WatchMessagePictureActivity.start(context, message);
-    }
-
-    @Override
-    protected String thumbFromSourceFile(String path) {
-        return path;
-    }
 }

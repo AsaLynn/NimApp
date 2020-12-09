@@ -1,148 +1,149 @@
-package com.zxn.netease.nimsdk.business.session.viewholder;
+package com.zxn.netease.nimsdk.business.session.viewholder
 
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-
-import com.zxn.netease.nimsdk.R;
-import com.zxn.netease.nimsdk.common.ui.imageview.MsgThumbImageView;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
-import com.zxn.netease.nimsdk.common.util.media.BitmapDecoder;
-import com.zxn.netease.nimsdk.common.util.media.ImageUtil;
-import com.zxn.netease.nimsdk.common.util.string.StringUtil;
-import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil;
-import com.netease.nimlib.sdk.RequestCallback;
-import com.netease.nimlib.sdk.msg.attachment.FileAttachment;
-import com.netease.nimlib.sdk.msg.attachment.ImageAttachment;
-import com.netease.nimlib.sdk.msg.attachment.VideoAttachment;
-import com.netease.nimlib.sdk.msg.constant.AttachStatusEnum;
-import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
-import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
-
-import java.io.File;
+import android.text.TextUtils
+import android.view.View
+import android.widget.TextView
+import com.netease.nimlib.sdk.RequestCallback
+import com.netease.nimlib.sdk.msg.attachment.FileAttachment
+import com.netease.nimlib.sdk.msg.attachment.ImageAttachment
+import com.netease.nimlib.sdk.msg.attachment.VideoAttachment
+import com.netease.nimlib.sdk.msg.constant.AttachStatusEnum
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum
+import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
+import com.zxn.netease.nimsdk.R
+import com.zxn.netease.nimsdk.common.ui.imageview.MsgThumbImageView
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter
+import com.zxn.netease.nimsdk.common.util.media.BitmapDecoder
+import com.zxn.netease.nimsdk.common.util.media.ImageUtil
+import com.zxn.netease.nimsdk.common.util.string.StringUtil
+import com.zxn.netease.nimsdk.common.util.sys.ScreenUtil
+import java.io.File
 
 /**
- * Created by zhoujianghua on 2015/8/4.
+ *adapter: BaseMultiItemFetchLoadAdapter<*, *>
  */
-public abstract class MsgViewHolderThumbBase extends MsgViewHolderBase {
+abstract class MsgViewHolderThumbBase(adapter: BaseMultiItemFetchLoadAdapter<*, *>) :
+    MsgViewHolderBase(adapter) {
 
-    public MsgViewHolderThumbBase(BaseMultiItemFetchLoadAdapter adapter) {
-        super(adapter);
+    protected var thumbnail: MsgThumbImageView? = null
+    protected var progressCover: View? = null
+    protected var progressLabel: TextView? = null
+    override fun inflateContentView() {
+        thumbnail = findViewById(R.id.message_item_thumb_thumbnail)
+        progressBar = findViewById(R.id.message_item_thumb_progress_bar) // 覆盖掉
+        progressCover = findViewById(R.id.message_item_thumb_progress_cover)
+        progressLabel = findViewById(R.id.message_item_thumb_progress_text)
     }
 
-    protected MsgThumbImageView thumbnail;
-    protected View progressCover;
-    protected TextView progressLabel;
-
-    @Override
-    public void inflateContentView() {
-        thumbnail = findViewById(R.id.message_item_thumb_thumbnail);
-        progressBar = findViewById(R.id.message_item_thumb_progress_bar); // 覆盖掉
-        progressCover = findViewById(R.id.message_item_thumb_progress_cover);
-        progressLabel = findViewById(R.id.message_item_thumb_progress_text);
-    }
-
-    @Override
-    public void bindContentView() {
-        FileAttachment msgAttachment = (FileAttachment) message.getAttachment();
-        String path = msgAttachment.getPath();
-        String thumbPath = msgAttachment.getThumbPath();
-        if (!TextUtils.isEmpty(thumbPath)) {
-            loadThumbnailImage(thumbPath, false, msgAttachment.getExtension());
-        } else if (!TextUtils.isEmpty(path)) {
-            loadThumbnailImage(thumbFromSourceFile(path), true, msgAttachment.getExtension());
-        } else {
-            loadThumbnailImage(null, false, msgAttachment.getExtension());
-            if (message.getAttachStatus() == AttachStatusEnum.transferred
-                    || message.getAttachStatus() == AttachStatusEnum.def) {
-                downloadAttachment(new RequestCallback<Void>() {
-                    @Override
-                    public void onSuccess(Void param) {
-                        loadThumbnailImage(msgAttachment.getThumbPath(), false, msgAttachment.getExtension());
-                        refreshStatus();
-                    }
-
-                    @Override
-                    public void onFailed(int code) {
-
-                    }
-
-                    @Override
-                    public void onException(Throwable exception) {
-
-                    }
-                });
-            }
-        }
-        refreshStatus();
-
-    }
-
-    private void refreshStatus() {
-        FileAttachment attachment = (FileAttachment) message.getAttachment();
-        if (TextUtils.isEmpty(attachment.getPath()) && TextUtils.isEmpty(attachment.getThumbPath())) {
-            if (message.getAttachStatus() == AttachStatusEnum.fail || message.getStatus() == MsgStatusEnum.fail) {
-                alertButton.setVisibility(View.VISIBLE);
+    override fun bindContentView() {
+        message?.let { message ->
+            val msgAttachment = message.attachment as FileAttachment
+            val path = msgAttachment.path
+            val thumbPath = msgAttachment.thumbPath
+            if (!TextUtils.isEmpty(thumbPath)) {
+                loadThumbnailImage(thumbPath, false, msgAttachment.extension)
+            } else if (!TextUtils.isEmpty(path)) {
+                loadThumbnailImage(thumbFromSourceFile(path), true, msgAttachment.extension)
             } else {
-                alertButton.setVisibility(View.GONE);
+                loadThumbnailImage(null, false, msgAttachment.extension)
+                if (message.attachStatus == AttachStatusEnum.transferred
+                    || message.attachStatus == AttachStatusEnum.def
+                ) {
+                    downloadAttachment(object : RequestCallback<Void?> {
+                        override fun onSuccess(param: Void?) {
+                            loadThumbnailImage(
+                                msgAttachment.thumbPath,
+                                false,
+                                msgAttachment.extension
+                            )
+                            refreshStatus()
+                        }
+
+                        override fun onFailed(code: Int) {}
+                        override fun onException(exception: Throwable) {}
+                    })
+                }
             }
+            refreshStatus()
         }
 
-        if (message.getStatus() == MsgStatusEnum.sending
-                || (isReceivedMessage() && message.getAttachStatus() == AttachStatusEnum.transferring)) {
-            progressCover.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
-            progressLabel.setVisibility(View.VISIBLE);
-            progressLabel.setText(StringUtil.getPercentString(getMsgAdapter().getProgress(message)));
-        } else {
-            progressCover.setVisibility(View.GONE);
-            progressBar.setVisibility(View.GONE);
-            progressLabel.setVisibility(View.GONE);
+    }
+
+    private fun refreshStatus() {
+        message?.let { message ->
+            val attachment = message.attachment as FileAttachment
+            if (TextUtils.isEmpty(attachment.path) && TextUtils.isEmpty(attachment.thumbPath)) {
+                if (message.attachStatus == AttachStatusEnum.fail || message.status == MsgStatusEnum.fail) {
+                    alertButton.visibility = View.VISIBLE
+                } else {
+                    alertButton.visibility = View.GONE
+                }
+            }
+            if (message.status == MsgStatusEnum.sending
+                || isReceivedMessage && message.attachStatus == AttachStatusEnum.transferring
+            ) {
+                progressCover!!.visibility = View.VISIBLE
+                progressBar?.visibility = View.VISIBLE
+                progressLabel!!.visibility = View.VISIBLE
+                progressLabel!!.text = StringUtil.getPercentString(msgAdapter.getProgress(message))
+            } else {
+                progressCover!!.visibility = View.GONE
+                progressBar?.visibility = View.GONE
+                progressLabel!!.visibility = View.GONE
+            }
         }
     }
 
-    private void loadThumbnailImage(String path, boolean isOriginal, String ext) {
-        setImageSize(path);
+    private fun loadThumbnailImage(path: String?, isOriginal: Boolean, ext: String) {
+        setImageSize(path)
         if (path != null) {
             //thumbnail.loadAsPath(thumbPath, getImageMaxEdge(), getImageMaxEdge(), maskBg());
-            thumbnail.loadAsPath(path, getImageMaxEdge(), getImageMaxEdge(), maskBg(), ext);
+            thumbnail!!.loadAsPath(path, imageMaxEdge, imageMaxEdge, maskBg(), ext)
         } else {
-            thumbnail.loadAsResource(R.drawable.nim_image_default, maskBg());
+            thumbnail!!.loadAsResource(R.drawable.nim_image_default, maskBg())
         }
     }
 
-    private void setImageSize(String thumbPath) {
-        int[] bounds = null;
-        if (thumbPath != null) {
-            bounds = BitmapDecoder.decodeBound(new File(thumbPath));
-        }
-        if (bounds == null) {
-            if (message.getMsgType() == MsgTypeEnum.image) {
-                ImageAttachment attachment = (ImageAttachment) message.getAttachment();
-                bounds = new int[]{attachment.getWidth(), attachment.getHeight()};
-            } else if (message.getMsgType() == MsgTypeEnum.video) {
-                VideoAttachment attachment = (VideoAttachment) message.getAttachment();
-                bounds = new int[]{attachment.getWidth(), attachment.getHeight()};
+    private fun setImageSize(thumbPath: String?) {
+        message?.let { message ->
+            var bounds: IntArray? = null
+            if (thumbPath != null) {
+                bounds = BitmapDecoder.decodeBound(File(thumbPath))
+            }
+            if (bounds == null) {
+                if (message.msgType == MsgTypeEnum.image) {
+                    val attachment = message.attachment as ImageAttachment
+                    bounds = intArrayOf(attachment.width, attachment.height)
+                } else if (message.msgType == MsgTypeEnum.video) {
+                    val attachment = message.attachment as VideoAttachment
+                    bounds = intArrayOf(attachment.width, attachment.height)
+                }
+            }
+            if (bounds != null) {
+                val imageSize = ImageUtil.getThumbnailDisplaySize(
+                    bounds[0].toFloat(),
+                    bounds[1].toFloat(),
+                    imageMaxEdge.toFloat(),
+                    imageMinEdge.toFloat()
+                )
+                setLayoutParams(imageSize.width, imageSize.height, thumbnail!!)
             }
         }
-
-        if (bounds != null) {
-            ImageUtil.ImageSize imageSize = ImageUtil.getThumbnailDisplaySize(bounds[0], bounds[1], getImageMaxEdge(), getImageMinEdge());
-            setLayoutParams(imageSize.width, imageSize.height, thumbnail);
-        }
     }
 
-    private int maskBg() {
-        return R.drawable.nim_message_item_round_bg;
+    private fun maskBg(): Int {
+        return R.drawable.nim_message_item_round_bg
     }
 
-    public static int getImageMaxEdge() {
-        return (int) (165.0 / 320.0 * ScreenUtil.screenWidth);
-    }
+    protected abstract fun thumbFromSourceFile(path: String?): String?
 
-    public static int getImageMinEdge() {
-        return (int) (76.0 / 320.0 * ScreenUtil.screenWidth);
-    }
+    companion object {
+        @JvmStatic
+        val imageMaxEdge: Int
+            get() = (165.0 / 320.0 * ScreenUtil.screenWidth).toInt()
 
-    protected abstract String thumbFromSourceFile(String path);
+        @JvmStatic
+        val imageMinEdge: Int
+            get() = (76.0 / 320.0 * ScreenUtil.screenWidth).toInt()
+    }
 }

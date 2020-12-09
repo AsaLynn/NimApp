@@ -1,21 +1,18 @@
-package com.zxn.netease.nimsdk.business.session.viewholder.media;
+package com.zxn.netease.nimsdk.business.session.viewholder.media
 
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
-import android.widget.TextView;
-
-import com.zxn.netease.nimsdk.R;
+import android.view.View
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.zxn.netease.nimsdk.R
 
 /**
- * Created by winnie on 2017/9/18.
+ * 日期.
  */
+class DateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    @JvmField
+    var dateText: TextView
 
-public class DateViewHolder extends RecyclerView.ViewHolder {
-
-    public TextView dateText;
-
-    public DateViewHolder(View itemView) {
-        super(itemView);
-        dateText = itemView.findViewById(R.id.date_tip);
+    init {
+        dateText = itemView.findViewById(R.id.date_tip)
     }
 }

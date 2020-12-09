@@ -33,7 +33,7 @@ internal object NimSDKOptionConfig {
         // 配置是否需要预下载附件缩略图
         options.preloadAttach = true
         // 配置附件缩略图的尺寸大小
-        options.thumbnailSize = MsgViewHolderThumbBase.getImageMaxEdge()
+        options.thumbnailSize = MsgViewHolderThumbBase.imageMaxEdge
         // 通知栏显示用户昵称和头像
         options.userInfoProvider = NimUserInfoProvider(DemoCache.context)
         // 定制通知栏提醒文案（可选，如果不定制将采用SDK默认文案）
