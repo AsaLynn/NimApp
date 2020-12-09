@@ -1,10 +1,8 @@
-package com.netease.nim.demo.session.extension;
+package com.netease.nim.demo.session.extension
 
-
-import android.text.TextUtils;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import android.text.TextUtils
+import com.alibaba.fastjson.JSONArray
+import com.alibaba.fastjson.JSONObject
 
 /*
 {
@@ -28,236 +26,120 @@ import com.alibaba.fastjson.JSONObject;
 ]
 }
 */
-public class MultiRetweetAttachment extends CustomAttachment {
-    private static final String KEY_SESSION_ID = "sessionID";
-    private static final String KEY_SESSION_NAME = "sessionName";
-    private static final String KEY_URL = "url";
-    private static final String KEY_MD5 = "md5";
-    private static final String KEY_COMPRESSED = "compressed";
-    private static final String KEY_ENCRYPTED = "encrypted";
-    private static final String KEY_PASSWORD = "password";
-    private static final String KEY_MESSAGE_ABSTRACT = "messageAbstract";
-    private static final String KEY_SENDER = "sender";
-    private static final String KEY_MESSAGE = "message";
+class MultiRetweetAttachment : CustomAttachment {
+    var sessionID: String? = null
+    var sessionName: String? = null
 
-    private String sessionID;
-    private String sessionName;
-    /** nos文件存储地址 */
-    private String url;
-    private String md5;
-    private boolean compressed;
-    private boolean encrypted;
-    private String password;
-    /** 第一条消息的发送者ID */
-    private String sender1;
-    /** 第一条消息在合并转发消息中的展示文案 */
-    private String message1;
-    /** 第二条消息的发送者ID */
-    private String sender2;
-    /** 第二条消息在合并转发消息中的展示文案 */
-    private String message2;
+    /** nos文件存储地址  */
+    var url: String? = null
+    var md5: String? = null
+    var isCompressed = false
+    var isEncrypted = false
+    var password: String? = null
 
-    public MultiRetweetAttachment() {
-        super(CustomAttachmentType.MultiRetweet);
+    /** 第一条消息的发送者ID  */
+    var sender1: String? = null
+
+    /** 第一条消息在合并转发消息中的展示文案  */
+    var message1: String? = null
+
+    /** 第二条消息的发送者ID  */
+    var sender2: String? = null
+
+    /** 第二条消息在合并转发消息中的展示文案  */
+    var message2: String? = null
+
+    constructor() : super(CustomAttachmentType.MultiRetweet)
+    constructor(
+        sessionID: String?,
+        sessionName: String?,
+        url: String?,
+        md5: String?,
+        compressed: Boolean,
+        encrypted: Boolean,
+        password: String?,
+        sender1: String?,
+        message1: String?,
+        sender2: String?,
+        message2: String?
+    ) : super(CustomAttachmentType.MultiRetweet) {
+        this.sessionID = sessionID
+        this.sessionName = sessionName
+        this.url = url
+        this.md5 = md5
+        isCompressed = compressed
+        isEncrypted = encrypted
+        this.password = password
+        this.sender1 = sender1
+        this.message1 = message1
+        this.sender2 = sender2
+        this.message2 = message2
     }
 
-    public MultiRetweetAttachment(String sessionID, String sessionName, String url, String md5, boolean compressed, boolean encrypted, String password, String sender1, String message1, String sender2, String message2) {
-        super(CustomAttachmentType.MultiRetweet);
-        this.sessionID = sessionID;
-        this.sessionName = sessionName;
-        this.url = url;
-        this.md5 = md5;
-        this.compressed = compressed;
-        this.encrypted = encrypted;
-        this.password = password;
-        this.sender1 = sender1;
-        this.message1 = message1;
-        this.sender2 = sender2;
-        this.message2 = message2;
-    }
-
-    @Override
-    protected void parseData(JSONObject data) {
+    override fun parseData(data: JSONObject?) {
         //如果Json格式包含外层部分，则先进入内层
-        if (data.containsKey("data")) {
-            data = data.getJSONObject("data");
+        var data = data
+        if (data!!.containsKey("data")) {
+            data = data.getJSONObject("data")
         }
         try {
-            sessionID = data.getString(KEY_SESSION_ID);
-            sessionName = data.getString(KEY_SESSION_NAME);
-            url = data.getString(KEY_URL);
-            md5 = data.getString(KEY_MD5);
-            compressed = data.getBooleanValue(KEY_COMPRESSED);
-            encrypted = data.getBooleanValue(KEY_ENCRYPTED);
-            password = data.getString(KEY_PASSWORD);
-
-            JSONArray msgAbs = data.getJSONArray(KEY_MESSAGE_ABSTRACT);
-            JSONObject obj1 = msgAbs.getJSONObject(0);
-            sender1 = obj1.getString(KEY_SENDER);
-            message1 = obj1.getString(KEY_MESSAGE);
-            if (msgAbs.size()>1){
-                JSONObject obj2 = msgAbs.getJSONObject(1);
-                sender2 = obj2.getString(KEY_SENDER);
-                message2 = obj2.getString(KEY_MESSAGE);
+            sessionID = data!!.getString(keySessionId)
+            sessionName = data.getString(keySessionName)
+            url = data.getString(keyUrl)
+            md5 = data.getString(keyMd5)
+            isCompressed = data.getBooleanValue(keyCompressed)
+            isEncrypted = data.getBooleanValue(keyEncrypted)
+            password = data.getString(keyPassword)
+            val msgAbs = data.getJSONArray(keyMessageAbstract)
+            val obj1 = msgAbs.getJSONObject(0)
+            sender1 = obj1.getString(keySender)
+            message1 = obj1.getString(keyMessage)
+            if (msgAbs.size > 1) {
+                val obj2 = msgAbs.getJSONObject(1)
+                sender2 = obj2.getString(keySender)
+                message2 = obj2.getString(keyMessage)
             }
-        } catch (Exception e) {
+        } catch (e: Exception) {
             //转化失败，条目显示null字符
-            e.printStackTrace();
+            e.printStackTrace()
         }
     }
 
-    @Override
-    protected JSONObject packData() {
-        JSONObject data = new JSONObject();
-        data.put(KEY_SESSION_ID, sessionID);
-        data.put(KEY_SESSION_NAME, sessionName);
-        data.put(KEY_URL, url);
-        data.put(KEY_MD5, md5);
-        data.put(KEY_COMPRESSED, compressed);
-        data.put(KEY_ENCRYPTED, encrypted);
-        data.put(KEY_PASSWORD, password);
-
-        JSONArray messageAbstract = new JSONArray();
-        JSONObject obj1 = new JSONObject();
-        obj1.put(KEY_SENDER, sender1);
-        obj1.put(KEY_MESSAGE, message1);
-        messageAbstract.add(obj1);
+    override fun packData(): JSONObject? {
+        val data = JSONObject()
+        data[keySessionId] = sessionID
+        data[keySessionName] = sessionName
+        data[keyUrl] = url
+        data[keyMd5] = md5
+        data[keyCompressed] = isCompressed
+        data[keyEncrypted] = isEncrypted
+        data[keyPassword] = password
+        val messageAbstract = JSONArray()
+        val obj1 = JSONObject()
+        obj1[keySender] = sender1
+        obj1[keyMessage] = message1
+        messageAbstract.add(obj1)
         //只有一条消息时，不传递第二组的字段
         if (!TextUtils.isEmpty(sender2)) {
-            JSONObject obj2 = new JSONObject();
-            obj2.put(KEY_SENDER, sender2);
-            obj2.put(KEY_MESSAGE, message2);
-            messageAbstract.add(obj2);
+            val obj2 = JSONObject()
+            obj2[keySender] = sender2
+            obj2[keyMessage] = message2
+            messageAbstract.add(obj2)
         }
-        data.put(KEY_MESSAGE_ABSTRACT, messageAbstract);
-        return data;
+        data[keyMessageAbstract] = messageAbstract
+        return data
     }
 
-    public static String getKeySessionId() {
-        return KEY_SESSION_ID;
-    }
-
-    public static String getKeySessionName() {
-        return KEY_SESSION_NAME;
-    }
-
-    public static String getKeyUrl() {
-        return KEY_URL;
-    }
-
-    public static String getKeyMd5() {
-        return KEY_MD5;
-    }
-
-    public static String getKeyCompressed() {
-        return KEY_COMPRESSED;
-    }
-
-    public static String getKeyEncrypted() {
-        return KEY_ENCRYPTED;
-    }
-
-    public static String getKeyPassword() {
-        return KEY_PASSWORD;
-    }
-
-    public static String getKeyMessageAbstract() {
-        return KEY_MESSAGE_ABSTRACT;
-    }
-
-    public static String getKeySender() {
-        return KEY_SENDER;
-    }
-
-    public static String getKeyMessage() {
-        return KEY_MESSAGE;
-    }
-
-    public String getSessionID() {
-        return sessionID;
-    }
-
-    public void setSessionID(String sessionID) {
-        this.sessionID = sessionID;
-    }
-
-    public String getSessionName() {
-        return sessionName;
-    }
-
-    public void setSessionName(String sessionName) {
-        this.sessionName = sessionName;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getMd5() {
-        return md5;
-    }
-
-    public void setMd5(String md5) {
-        this.md5 = md5;
-    }
-
-    public boolean isCompressed() {
-        return compressed;
-    }
-
-    public void setCompressed(boolean compressed) {
-        this.compressed = compressed;
-    }
-
-    public boolean isEncrypted() {
-        return encrypted;
-    }
-
-    public void setEncrypted(boolean encrypted) {
-        this.encrypted = encrypted;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSender1() {
-        return sender1;
-    }
-
-    public void setSender1(String sender1) {
-        this.sender1 = sender1;
-    }
-
-    public String getMessage1() {
-        return message1;
-    }
-
-    public void setMessage1(String message1) {
-        this.message1 = message1;
-    }
-
-    public String getSender2() {
-        return sender2;
-    }
-
-    public void setSender2(String sender2) {
-        this.sender2 = sender2;
-    }
-
-    public String getMessage2() {
-        return message2;
-    }
-
-    public void setMessage2(String message2) {
-        this.message2 = message2;
+    companion object {
+        const val keySessionId = "sessionID"
+        const val keySessionName = "sessionName"
+        const val keyUrl = "url"
+        const val keyMd5 = "md5"
+        const val keyCompressed = "compressed"
+        const val keyEncrypted = "encrypted"
+        const val keyPassword = "password"
+        const val keyMessageAbstract = "messageAbstract"
+        const val keySender = "sender"
+        const val keyMessage = "message"
     }
 }

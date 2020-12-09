@@ -1,65 +1,47 @@
-package com.netease.nim.demo.session.extension;
+package com.netease.nim.demo.session.extension
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
-import com.netease.nimlib.sdk.msg.attachment.MsgAttachmentParser;
+import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONObject
+import com.netease.nimlib.sdk.msg.attachment.MsgAttachment
+import com.netease.nimlib.sdk.msg.attachment.MsgAttachmentParser
 
 /**
- * Created by zhoujianghua on 2015/4/9.
+ * 自定义消息解析器.
  */
-public class CustomAttachParser implements MsgAttachmentParser {
+class CustomAttachParser : MsgAttachmentParser {
 
-    private static final String KEY_TYPE = "type";
-    private static final String KEY_DATA = "data";
-
-    @Override
-    public MsgAttachment parse(String json) {
-        CustomAttachment attachment = null;
+    override fun parse(json: String): MsgAttachment {
+        var attachment: CustomAttachment? = null
         try {
-            JSONObject object = JSON.parseObject(json);
-            int type = object.getInteger(KEY_TYPE);
-            JSONObject data = object.getJSONObject(KEY_DATA);
-            switch (type) {
-                case CustomAttachmentType.Guess:
-                    attachment = new GuessAttachment();
-                    break;
-                case CustomAttachmentType.SnapChat:
-                    return new SnapChatAttachment(data);
-                case CustomAttachmentType.Sticker:
-                    attachment = new StickerAttachment();
-                    break;
-                case CustomAttachmentType.RedPacket:
-                    attachment = new RedPacketAttachment();
-                    break;
-                case CustomAttachmentType.OpenedRedPacket:
-                    attachment = new RedPacketOpenedAttachment();
-                    break;
-                case CustomAttachmentType.MultiRetweet:
-                    attachment = new MultiRetweetAttachment();
-                    break;
-                default:
-                    attachment = new DefaultCustomAttachment();
-                    break;
+            val `object` = JSON.parseObject(json)
+            val type = `object`.getInteger(KEY_TYPE)
+            val data = `object`.getJSONObject(KEY_DATA)
+            attachment = when (type) {
+                CustomAttachmentType.Guess -> GuessAttachment()
+                CustomAttachmentType.SnapChat -> return SnapChatAttachment(data)
+                CustomAttachmentType.Sticker -> StickerAttachment()
+                CustomAttachmentType.RedPacket -> RedPacketAttachment()
+                CustomAttachmentType.OpenedRedPacket -> RedPacketOpenedAttachment()
+                CustomAttachmentType.MultiRetweet -> MultiRetweetAttachment()
+                else -> DefaultCustomAttachment()
             }
-
-            if (attachment != null) {
-                attachment.fromJson(data);
-            }
-        } catch (Exception e) {
-
+            attachment.fromJson(data)
+        } catch (e: Exception) {
         }
-
-        return attachment;
+        return attachment!!
     }
 
-    public static String packData(int type, JSONObject data) {
-        JSONObject object = new JSONObject();
-        object.put(KEY_TYPE, type);
-        if (data != null) {
-            object.put(KEY_DATA, data);
+    companion object {
+        private const val KEY_TYPE = "type"
+        private const val KEY_DATA = "data"
+        @JvmStatic
+        fun packData(type: Int, data: JSONObject?): String {
+            val `object` = JSONObject()
+            `object`[KEY_TYPE] = type
+            if (data != null) {
+                `object`[KEY_DATA] = data
+            }
+            return `object`.toJSONString()
         }
-
-        return object.toJSONString();
     }
 }

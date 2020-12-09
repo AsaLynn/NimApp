@@ -19,9 +19,7 @@ import com.zxn.netease.nimsdk.common.util.sys.TimeUtil;
 
 import java.util.List;
 
-/**
- * Created by vincent on 7/30/14.
- */
+
 public class SearchMessageAdapter extends BaseAdapter {
 
     private final Context context;

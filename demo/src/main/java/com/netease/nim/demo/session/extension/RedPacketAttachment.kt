@@ -1,59 +1,32 @@
-package com.netease.nim.demo.session.extension;
+package com.netease.nim.demo.session.extension
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONObject
 
-public class RedPacketAttachment extends CustomAttachment {
+class RedPacketAttachment : CustomAttachment(CustomAttachmentType.RedPacket) {
+    var rpContent //  消息文本内容
+            : String? = null
+    var rpId //  红包id
+            : String? = null
+    var rpTitle // 红包名称
+            : String? = null
 
-    private String content;//  消息文本内容
-    private String redPacketId;//  红包id
-    private String title;// 红包名称
-
-    private static final String KEY_CONTENT = "content";
-    private static final String KEY_ID = "redPacketId";
-    private static final String KEY_TITLE = "title";
-
-    public RedPacketAttachment() {
-        super(CustomAttachmentType.RedPacket);
+    override fun parseData(data: JSONObject?) {
+        rpContent = data!!.getString(KEY_CONTENT)
+        rpId = data.getString(KEY_ID)
+        rpTitle = data.getString(KEY_TITLE)
     }
 
-    @Override
-    protected void parseData(JSONObject data) {
-        content = data.getString(KEY_CONTENT);
-        redPacketId = data.getString(KEY_ID);
-        title = data.getString(KEY_TITLE);
+    override fun packData(): JSONObject? {
+        val data = JSONObject()
+        data[KEY_CONTENT] = rpContent
+        data[KEY_ID] = rpId
+        data[KEY_TITLE] = rpTitle
+        return data
     }
 
-    @Override
-    protected JSONObject packData() {
-        JSONObject data = new JSONObject();
-        data.put(KEY_CONTENT, content);
-        data.put(KEY_ID, redPacketId);
-        data.put(KEY_TITLE, title);
-        return data;
-    }
-
-    public String getRpContent() {
-        return content;
-    }
-
-    public String getRpId() {
-        return redPacketId;
-    }
-
-    public String getRpTitle() {
-        return title;
-    }
-
-
-    public void setRpContent(String content) {
-        this.content = content;
-    }
-
-    public void setRpId(String briberyID) {
-        this.redPacketId = briberyID;
-    }
-
-    public void setRpTitle(String briberyName) {
-        this.title = briberyName;
+    companion object {
+        private const val KEY_CONTENT = "content"
+        private const val KEY_ID = "redPacketId"
+        private const val KEY_TITLE = "title"
     }
 }

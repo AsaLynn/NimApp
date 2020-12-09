@@ -73,7 +73,7 @@ class NimApplication : Application() {
             //关闭撤回消息提醒
 //            NIMClient.toggleRevokeMessageNotification(false);
             // 云信sdk相关业务初始化
-            NIMInitManager.getInstance().init(true)
+            NIMInitManager.instance.init(true)
         }
         //初始化融合 SDK 中的七鱼业务关业务
         initMixSdk()

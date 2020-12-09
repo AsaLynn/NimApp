@@ -1,70 +1,45 @@
-package com.netease.nim.demo.session.extension;
+package com.netease.nim.demo.session.extension
 
-import com.alibaba.fastjson.JSONObject;
-
-import java.util.Random;
+import com.alibaba.fastjson.JSONObject
+import java.util.*
 
 /**
- * Created by zhoujianghua on 2015/4/9.
+ * 猜拳的消息附件
  */
-public class GuessAttachment extends CustomAttachment {
+class GuessAttachment : CustomAttachment(CustomAttachmentType.Guess) {
 
-    public enum Guess {
-        Shitou(1, "石头"),
-        Jiandao(2, "剪刀"),
-        Bu(3, "布"),;
-
-        private final int value;
-        private final String desc;
-
-        Guess(int value, String desc) {
-            this.value = value;
-            this.desc = desc;
-        }
-
-        static Guess enumOfValue(int value) {
-            for (Guess direction : values()) {
-                if (direction.getValue() == value) {
-                    return direction;
+    enum class Guess(val value: Int, val desc: String) {
+        Shitou(1, "石头"), Jiandao(2, "剪刀"), Bu(3, "布");
+        companion object {
+            fun enumOfValue(value: Int): Guess {
+                for (direction in values()) {
+                    if (direction.value == value) {
+                        return direction
+                    }
                 }
+                return Shitou
             }
-            return Shitou;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public String getDesc() {
-            return desc;
         }
     }
 
-    private Guess value;
+    lateinit var value: Guess
 
-    public GuessAttachment() {
-        super(CustomAttachmentType.Guess);
-        random();
+    override fun parseData(data: JSONObject?) {
+        value = Guess.enumOfValue(data!!.getIntValue("value"))
     }
 
-    @Override
-    protected void parseData(JSONObject data) {
-        value = Guess.enumOfValue(data.getIntValue("value"));
+    override fun packData(): JSONObject {
+        val data = JSONObject()
+        data["value"] = value.value
+        return data
     }
 
-    @Override
-    protected JSONObject packData() {
-        JSONObject data = new JSONObject();
-        data.put("value", value.getValue());
-        return data;
+    private fun random() {
+        val value = Random().nextInt(3) + 1
+        this.value = Guess.enumOfValue(value)
     }
 
-    private void random() {
-        int value = new Random().nextInt(3) + 1;
-        this.value = Guess.enumOfValue(value);
-    }
-
-    public Guess getValue() {
-        return value;
+    init {
+        random()
     }
 }

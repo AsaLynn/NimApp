@@ -1,53 +1,43 @@
-package com.netease.nim.demo.session.extension;
+package com.netease.nim.demo.session.extension
 
-import android.text.TextUtils;
+import android.text.TextUtils
+import com.alibaba.fastjson.JSONObject
+import com.netease.nim.demo.session.extension.CustomAttachParser.Companion.packData
+import com.netease.nimlib.sdk.msg.attachment.FileAttachment
 
-import com.alibaba.fastjson.JSONObject;
-import com.netease.nimlib.sdk.msg.attachment.FileAttachment;
-
-/**
- * Created by zhoujianghua on 2015/7/8.
- */
-public class SnapChatAttachment extends FileAttachment {
-
-    private static final String KEY_PATH = "path";
-    private static final String KEY_SIZE = "size";
-    private static final String KEY_MD5 = "md5";
-    private static final String KEY_URL = "url";
-
-    public SnapChatAttachment() {
-        super();
+class SnapChatAttachment : FileAttachment {
+    constructor(data: JSONObject) {
+        load(data)
     }
 
-    public SnapChatAttachment(JSONObject data) {
-        load(data);
-    }
-
-    @Override
-    public String toJson(boolean send) {
-        JSONObject data = new JSONObject();
+    override fun toJson(send: Boolean): String {
+        val data = JSONObject()
         try {
             if (!send && !TextUtils.isEmpty(path)) {
-                data.put(KEY_PATH, path);
+                data[KEY_PATH] = path
             }
-
             if (!TextUtils.isEmpty(md5)) {
-                data.put(KEY_MD5, md5);
+                data[KEY_MD5] = md5
             }
-
-            data.put(KEY_URL, url);
-            data.put(KEY_SIZE, size);
-        } catch (Exception e) {
-            e.printStackTrace();
+            data[KEY_URL] = url
+            data[KEY_SIZE] = size
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-
-        return CustomAttachParser.packData(CustomAttachmentType.SnapChat, data);
+        return packData(CustomAttachmentType.SnapChat, data)
     }
 
-    private void load(JSONObject data) {
-        path = data.getString(KEY_PATH);
-        md5 = data.getString(KEY_MD5);
-        url = data.getString(KEY_URL);
-        size = data.containsKey(KEY_SIZE) ? data.getLong(KEY_SIZE) : 0;
+    private fun load(data: JSONObject) {
+        path = data.getString(KEY_PATH)
+        md5 = data.getString(KEY_MD5)
+        url = data.getString(KEY_URL)
+        size = if (data.containsKey(KEY_SIZE)) data.getLong(KEY_SIZE) else 0
+    }
+
+    companion object {
+        private const val KEY_PATH = "path"
+        private const val KEY_SIZE = "size"
+        private const val KEY_MD5 = "md5"
+        private const val KEY_URL = "url"
     }
 }

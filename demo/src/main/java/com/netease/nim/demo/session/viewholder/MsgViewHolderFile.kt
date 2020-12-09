@@ -1,123 +1,104 @@
-package com.netease.nim.demo.session.viewholder;
+package com.netease.nim.demo.session.viewholder
 
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.file.FileIcons;
-import com.netease.nim.demo.session.activity.FileDownloadActivity;
-import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
-import com.zxn.netease.nimsdk.common.util.file.AttachmentStore;
-import com.zxn.netease.nimsdk.common.util.file.FileUtil;
-import com.netease.nimlib.sdk.msg.attachment.FileAttachment;
-import com.netease.nimlib.sdk.msg.constant.AttachStatusEnum;
+import android.text.TextUtils
+import android.view.View
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import com.netease.nim.demo.R
+import com.netease.nim.demo.file.FileIcons
+import com.netease.nim.demo.session.activity.FileDownloadActivity
+import com.netease.nimlib.sdk.msg.attachment.FileAttachment
+import com.netease.nimlib.sdk.msg.constant.AttachStatusEnum
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter
+import com.zxn.netease.nimsdk.common.util.file.AttachmentStore
+import com.zxn.netease.nimsdk.common.util.file.FileUtil
 
 /**
  * Created by zhoujianghua on 2015/8/6.
  */
-public class MsgViewHolderFile extends MsgViewHolderBase {
-    private ImageView fileIcon;
-    private TextView fileNameLabel;
-    private TextView fileStatusLabel;
-    private ProgressBar progressBar;
-
-    private FileAttachment msgAttachment;
-
-    public MsgViewHolderFile(BaseMultiItemFetchLoadAdapter adapter) {
-        super(adapter);
+class MsgViewHolderFile(adapter: BaseMultiItemFetchLoadAdapter<*, *>?) :
+    MsgViewHolderBase(adapter) {
+    private var fileIcon: ImageView? = null
+    private var fileNameLabel: TextView? = null
+    private var fileStatusLabel: TextView? = null
+    private val progressBar: ProgressBar? = null
+    private var msgAttachment: FileAttachment? = null
+    override fun getContentResId(): Int {
+        return R.layout.nim_message_item_file
     }
 
-    @Override
-    public int getContentResId() {
-        return R.layout.nim_message_item_file;
+    override fun inflateContentView() {
+        fileIcon = view.findViewById(R.id.message_item_file_icon_image)
+        fileNameLabel = view.findViewById(R.id.message_item_file_name_label)
+        fileStatusLabel = view.findViewById(R.id.message_item_file_status_label)
+        progressBar = view.findViewById(R.id.message_item_file_transfer_progress_bar)
     }
 
-    @Override
-    public void inflateContentView() {
-        fileIcon = view.findViewById(R.id.message_item_file_icon_image);
-        fileNameLabel = view.findViewById(R.id.message_item_file_name_label);
-        fileStatusLabel = view.findViewById(R.id.message_item_file_status_label);
-        progressBar = view.findViewById(R.id.message_item_file_transfer_progress_bar);
-    }
-
-    @Override
-    public void bindContentView() {
-        msgAttachment = (FileAttachment) message.getAttachment();
-        String path = msgAttachment.getPath();
-        initDisplay();
-
+    override fun bindContentView() {
+        msgAttachment = message.attachment as FileAttachment
+        val path = msgAttachment!!.path
+        initDisplay()
         if (!TextUtils.isEmpty(path)) {
-            loadImageView();
+            loadImageView()
         } else {
-            AttachStatusEnum status = message.getAttachStatus();
-            switch (status) {
-                case def:
-                    updateFileStatusLabel();
-                    break;
-                case transferring:
-                    fileStatusLabel.setVisibility(View.GONE);
-                    progressBar.setVisibility(View.VISIBLE);
-                    int percent = (int) (getMsgAdapter().getProgress(message) * 100);
-                    progressBar.setProgress(percent);
-                    break;
-                case transferred:
-                case fail:
-                    updateFileStatusLabel();
-                    break;
+            val status = message.attachStatus
+            when (status) {
+                AttachStatusEnum.def -> updateFileStatusLabel()
+                AttachStatusEnum.transferring -> {
+                    fileStatusLabel!!.visibility = View.GONE
+                    progressBar.visibility = View.VISIBLE
+                    val percent = (msgAdapter.getProgress(message) * 100).toInt()
+                    progressBar.progress = percent
+                }
+                AttachStatusEnum.transferred, AttachStatusEnum.fail -> updateFileStatusLabel()
             }
         }
     }
 
-    private void loadImageView() {
-        fileStatusLabel.setVisibility(View.VISIBLE);
+    private fun loadImageView() {
+        fileStatusLabel!!.visibility = View.VISIBLE
         // 文件长度
-        StringBuilder sb = new StringBuilder();
-        sb.append(FileUtil.formatFileSize(msgAttachment.getSize()));
-        fileStatusLabel.setText(sb.toString());
-
-        progressBar.setVisibility(View.GONE);
+        val sb = StringBuilder()
+        sb.append(FileUtil.formatFileSize(msgAttachment!!.size))
+        fileStatusLabel!!.text = sb.toString()
+        progressBar.visibility = View.GONE
     }
 
-    private void initDisplay() {
-        int iconResId = FileIcons.smallIcon(msgAttachment.getDisplayName());
-        fileIcon.setImageResource(iconResId);
-        fileNameLabel.setText(msgAttachment.getDisplayName());
+    private fun initDisplay() {
+        val iconResId = FileIcons.smallIcon(msgAttachment!!.displayName)
+        fileIcon!!.setImageResource(iconResId)
+        fileNameLabel!!.text = msgAttachment!!.displayName
     }
 
-    private void updateFileStatusLabel() {
-        fileStatusLabel.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
+    private fun updateFileStatusLabel() {
+        fileStatusLabel!!.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
 
         // 文件长度
-        StringBuilder sb = new StringBuilder();
-        sb.append(FileUtil.formatFileSize(msgAttachment.getSize()));
-        sb.append("  ");
+        val sb = StringBuilder()
+        sb.append(FileUtil.formatFileSize(msgAttachment!!.size))
+        sb.append("  ")
         // 下载状态
-        String path = msgAttachment.getPathForSave();
+        val path = msgAttachment!!.pathForSave
         if (AttachmentStore.isFileExist(path)) {
-            sb.append(context.getString(R.string.file_transfer_state_downloaded));
+            sb.append(context.getString(R.string.file_transfer_state_downloaded))
         } else {
-            sb.append(context.getString(R.string.file_transfer_state_undownload));
+            sb.append(context.getString(R.string.file_transfer_state_undownload))
         }
-        fileStatusLabel.setText(sb.toString());
+        fileStatusLabel!!.text = sb.toString()
     }
 
-    @Override
-    public void onItemClick() {
-        FileDownloadActivity.start(context, message);
+    override fun onItemClick() {
+        FileDownloadActivity.start(context, message)
     }
 
-    @Override
-    protected int leftBackground() {
-        return R.drawable.nim_message_left_white_bg;
+    override fun leftBackground(): Int {
+        return R.drawable.nim_message_left_white_bg
     }
 
-    @Override
-    protected int rightBackground() {
-        return R.drawable.nim_message_right_blue_bg;
+    override fun rightBackground(): Int {
+        return R.drawable.nim_message_right_blue_bg
     }
 }

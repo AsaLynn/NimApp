@@ -1,35 +1,22 @@
-package com.netease.nim.demo.session.extension;
+package com.netease.nim.demo.session.extension
 
-import com.alibaba.fastjson.JSONObject;
-import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
-
+import com.alibaba.fastjson.JSONObject
+import com.netease.nimlib.sdk.msg.attachment.MsgAttachment
 /**
- * Created by zhoujianghua on 2015/4/9.
+ *  自定义消息附件基类
+ *  Created by zxn on 2020/12/9.
  */
-public abstract class CustomAttachment implements MsgAttachment {
+abstract class CustomAttachment internal constructor(var type: Int) : MsgAttachment {
 
-    protected int type;
-
-    CustomAttachment(int type) {
-        this.type = type;
+    fun fromJson(data: JSONObject?) {
+        data?.let { parseData(it) }
     }
 
-    public void fromJson(JSONObject data) {
-        if (data != null) {
-            parseData(data);
-        }
+    override fun toJson(send: Boolean): String {
+        return CustomAttachParser.packData(type, packData())
     }
 
-    @Override
-    public String toJson(boolean send) {
-        return CustomAttachParser.packData(type, packData());
-    }
+    protected abstract fun parseData(data: JSONObject?)
 
-    public int getType() {
-        return type;
-    }
-
-    protected abstract void parseData(JSONObject data);
-
-    protected abstract JSONObject packData();
+    protected abstract fun packData(): JSONObject?
 }

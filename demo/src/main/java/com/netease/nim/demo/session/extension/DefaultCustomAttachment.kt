@@ -1,35 +1,24 @@
-package com.netease.nim.demo.session.extension;
+package com.netease.nim.demo.session.extension
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONObject
 
 /**
- * Created by zhoujianghua on 2015/4/10.
+ * 默认的自定义消息附件解析器
  */
-public class DefaultCustomAttachment extends CustomAttachment {
+class DefaultCustomAttachment : CustomAttachment(0) {
+    var content: String? = null
+        private set
 
-    private String content;
-
-    public DefaultCustomAttachment() {
-        super(0);
+    override fun parseData(data: JSONObject?) {
+        content = data!!.toJSONString()
     }
 
-    @Override
-    protected void parseData(JSONObject data) {
-        content = data.toJSONString();
-    }
-
-    @Override
-    protected JSONObject packData() {
-        JSONObject data = null;
+    override fun packData(): JSONObject? {
+        var data: JSONObject? = null
         try {
-            data = JSONObject.parseObject(content);
-        } catch (Exception e) {
-
+            data = JSONObject.parseObject(content)
+        } catch (e: Exception) {
         }
-        return data;
-    }
-
-    public String getContent() {
-        return content;
+        return data
     }
 }

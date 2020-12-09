@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.netease.nim.demo.R
+import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
 import com.zxn.mvvm.view.BaseActivity
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
@@ -30,7 +31,6 @@ import java.text.DecimalFormat
 /**
  *自定义点对点单聊消息页面.
  */
-
 class MsgActivity : BaseActivity<Nothing>() {
 
     companion object {
@@ -60,6 +60,7 @@ class MsgActivity : BaseActivity<Nothing>() {
                         ) {
                             Log.i("TAG", "sessionId: $sessionId")
                             //点击礼物发送
+
                         }
                     })
                     add(object :
@@ -78,6 +79,12 @@ class MsgActivity : BaseActivity<Nothing>() {
                         }
                     })
                 }
+
+            this.actions = java.util.ArrayList<BaseAction>().apply {
+                add(SelectImageAction())
+                add(TakePictureAction())
+                add(GuessAction())
+            }
         }
 
         @JvmStatic
@@ -106,50 +113,10 @@ class MsgActivity : BaseActivity<Nothing>() {
         }
     }
 
-    /*private var mCustomization: SessionCustomization = SessionCustomization().apply {
-
-        this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
-
-        this.headerLayoutId = R.layout.msg_notice_header
-
-        this.actions = ArrayList<BaseAction>().apply {
-            add(SelectImageAction())
-            add(TakePictureAction())
-        }
-
-        this.bottomButtonList = java.util.ArrayList<SessionCustomization.InputButton>().apply {
-            add(object :
-                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_gift_selector) {
-
-                override var buttonType: Int = 2
-
-                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
-                    Log.i("TAG", "sessionId: $sessionId")
-                    //点击礼物发送
-                    showToast("点击礼物发送弹窗")
-                }
-            })
-            add(object :
-                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_emoji_selector) {
-
-                override var buttonType: Int = 1
-
-                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
-                    Log.i("TAG", "sessionId: $sessionId")
-                    //点击表情包
-                    inputPanel.toggleEmojiLayout()
-                }
-            })
-        }
-
-    }*/
-
     private lateinit var mMessageFragment: MessageFragment
 
     override fun onInitView() {
         onInitTitle()
-
-
 
         onJumpTo(intent) { account, customization ->
             titleView.titleText = UserInfoHelper.getUserTitleName(account, SessionTypeEnum.P2P)
@@ -213,3 +180,44 @@ class MsgActivity : BaseActivity<Nothing>() {
     }
 
 }
+
+
+
+
+/*private var mCustomization: SessionCustomization = SessionCustomization().apply {
+
+        this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
+
+        this.headerLayoutId = R.layout.msg_notice_header
+
+        this.actions = ArrayList<BaseAction>().apply {
+            add(SelectImageAction())
+            add(TakePictureAction())
+        }
+
+        this.bottomButtonList = java.util.ArrayList<SessionCustomization.InputButton>().apply {
+            add(object :
+                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_gift_selector) {
+
+                override var buttonType: Int = 2
+
+                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
+                    Log.i("TAG", "sessionId: $sessionId")
+                    //点击礼物发送
+                    showToast("点击礼物发送弹窗")
+                }
+            })
+            add(object :
+                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_emoji_selector) {
+
+                override var buttonType: Int = 1
+
+                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
+                    Log.i("TAG", "sessionId: $sessionId")
+                    //点击表情包
+                    inputPanel.toggleEmojiLayout()
+                }
+            })
+        }
+
+}*/

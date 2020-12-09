@@ -27,12 +27,16 @@ abstract class BaseAction
     // Container持有activity ， 防止内存泄露
     @Transient
     private var containerRef: WeakReference<Container>? = null
+
     val activity: Activity?
         get() = container.activity
+
     val account: String?
         get() = container.account
+
     val sessionType: SessionTypeEnum?
         get() = container.sessionType
+
     var container: Container
         get() = containerRef!!.get()
             ?: throw RuntimeException("container be recycled by vm ")
@@ -41,7 +45,9 @@ abstract class BaseAction
         }
 
     abstract fun onClick()
+
     open fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {}
+
     protected fun sendMessage(message: IMMessage?) {
         container.proxy.sendMessage(message)
     }
@@ -54,4 +60,5 @@ abstract class BaseAction
     fun setIndex(index: Int) {
         this.index = index
     }
+
 }

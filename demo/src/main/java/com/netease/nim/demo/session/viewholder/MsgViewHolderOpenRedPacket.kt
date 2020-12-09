@@ -1,157 +1,137 @@
-package com.netease.nim.demo.session.viewholder;
+package com.netease.nim.demo.session.viewholder
 
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
+import com.netease.nim.demo.DemoCache.getAccount
+import com.netease.nim.demo.R
+import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment
+import com.netease.nimlib.sdk.uinfo.model.NimUserInfo
+import com.zxn.netease.nimsdk.api.NimUIKit
+import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase
+import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter
 
-import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
-import com.zxn.netease.nimsdk.api.NimUIKit;
-import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderBase;
-import com.zxn.netease.nimsdk.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
-import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
-
-
-public class MsgViewHolderOpenRedPacket extends MsgViewHolderBase {
-
-    private TextView packetMessageText;
-
-    private RedPacketOpenedAttachment attachment;
-
-    private LinearLayout linearLayout;
-
-    private final NimUserInfo userInfo;
-
-    public MsgViewHolderOpenRedPacket(BaseMultiItemFetchLoadAdapter adapter) {
-        super(adapter);
-        userInfo = (NimUserInfo) NimUIKit.getUserInfoProvider().getUserInfo(DemoCache.getAccount());
+class MsgViewHolderOpenRedPacket(adapter: BaseMultiItemFetchLoadAdapter<*, *>?) :
+    MsgViewHolderBase(adapter) {
+    private var packetMessageText: TextView? = null
+    private var attachment: RedPacketOpenedAttachment? = null
+    private var linearLayout: LinearLayout? = null
+    private val userInfo: NimUserInfo
+    override fun getContentResId(): Int {
+        return R.layout.red_packet_open_item
     }
 
-    @Override
-    public int getContentResId() {
-        return R.layout.red_packet_open_item;
+    override fun inflateContentView() {
+        linearLayout = findViewById(R.id.packet_ll)
+        packetMessageText = findViewById(R.id.packet_message)
     }
 
-    @Override
-    public void inflateContentView() {
-        linearLayout = findViewById(R.id.packet_ll);
-        packetMessageText = findViewById(R.id.packet_message);
-    }
-
-    @Override
-    public void bindContentView() {
-        attachment = (RedPacketOpenedAttachment) message.getAttachment();
-        if (attachment == null || !validAttachment(attachment) || !belongToMe(attachment)) {
-            setLayoutParams(0, 0, linearLayout);
-            return;
+    override fun bindContentView() {
+        attachment = message.attachment as RedPacketOpenedAttachment
+        if (attachment == null || !validAttachment(attachment!!) || !belongToMe(attachment!!)) {
+            setLayoutParams(0, 0, linearLayout)
+            return
         }
-
-        if (userInfo.getAccount().equals(attachment.getOpenAccount())) {
-            openedRp(userInfo.getAccount().equals(attachment.getSendAccount()));
-        } else if (userInfo.getAccount().equals(attachment.getSendAccount())) {
-            othersOpenedRp();
+        if (userInfo.account == attachment!!.openAccount) {
+            openedRp(userInfo.account == attachment!!.sendAccount)
+        } else if (userInfo.account == attachment!!.sendAccount) {
+            othersOpenedRp()
         }
     }
 
-    @Override
-    protected boolean shouldDisplayReceipt() {
-        return false;
+    override fun shouldDisplayReceipt(): Boolean {
+        return false
     }
 
-    private void openedRp(boolean myself) {
-        String content;
-        if (myself) {
-            if (attachment.isRpGetDone()) {
+    private fun openedRp(myself: Boolean) {
+        val content: String
+        content = if (myself) {
+            if (attachment!!.isRpGetDone) {
                 // 最后一个红包
-                content = "你领取了自己的红包，你的红包已被领完";
+                "你领取了自己的红包，你的红包已被领完"
             } else {
                 // 不是最后一个红包
-                content = "你领取了自己的红包";
+                "你领取了自己的红包"
             }
         } else {
             // 拆别人的红包
-            String targetName = attachment.getSendNickName(message.getSessionType(), message.getSessionId());
-            content = "你领取了" + targetName + "的红包";
+            val targetName = attachment!!.getSendNickName(message.sessionType, message.sessionId)
+            "你领取了" + targetName + "的红包"
         }
-        setSpannableText(content, content.length() - 2, content.length());
+        setSpannableText(content, content.length - 2, content.length)
     }
 
-    private void othersOpenedRp() {
-        String content;
-        if (attachment.isRpGetDone()) {
+    private fun othersOpenedRp() {
+        val content: String
+        if (attachment!!.isRpGetDone) {
             // 最后一个红包
-            content = attachment.getOpenNickName(message.getSessionType(), message.getSessionId()) + "领取了你的红包，你的红包已被领完";
-            setSpannableText(content, content.length() - 11, content.length() - 9);
+            content = attachment!!.getOpenNickName(
+                message.sessionType,
+                message.sessionId
+            ) + "领取了你的红包，你的红包已被领完"
+            setSpannableText(content, content.length - 11, content.length - 9)
         } else {
             // 不是最后一个红包
-            content = attachment.getOpenNickName(message.getSessionType(), message.getSessionId()) + "领取了你的红包";
-            setSpannableText(content, content.length() - 2, content.length());
+            content =
+                attachment!!.getOpenNickName(message.sessionType, message.sessionId) + "领取了你的红包"
+            setSpannableText(content, content.length - 2, content.length)
         }
     }
 
-    private boolean validAttachment(RedPacketOpenedAttachment attachment) {
-        return !TextUtils.isEmpty(attachment.getOpenAccount()) && !TextUtils.isEmpty(attachment.getSendAccount());
+    private fun validAttachment(attachment: RedPacketOpenedAttachment): Boolean {
+        return !TextUtils.isEmpty(attachment.openAccount) && !TextUtils.isEmpty(attachment.sendAccount)
     }
 
     // 我发的红包或者是我打开的红包
-    private boolean belongToMe(RedPacketOpenedAttachment attachment) {
-        return attachment.belongTo(userInfo.getAccount());
+    private fun belongToMe(attachment: RedPacketOpenedAttachment): Boolean {
+        return attachment.belongTo(userInfo.account)
     }
 
-    private void setSpannableText(String content, int start, int end) {
-        SpannableString tSS = new SpannableString(content);
-        RpDetailClickableSpan clickableSpan = new RpDetailClickableSpan();
-        tSS.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        packetMessageText.setMovementMethod(LinkMovementMethod.getInstance());
-        packetMessageText.setText(tSS);
+    private fun setSpannableText(content: String, start: Int, end: Int) {
+        val tSS = SpannableString(content)
+        val clickableSpan = RpDetailClickableSpan()
+        tSS.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        packetMessageText!!.movementMethod = LinkMovementMethod.getInstance()
+        packetMessageText!!.text = tSS
     }
 
-    private class RpDetailClickableSpan extends ClickableSpan {
-        @Override
-        public void onClick(View v) {
-        }
-
-        @Override
-        public void updateDrawState(TextPaint ds) {
-            super.updateDrawState(ds);
-            ds.setColor(context.getResources().getColor(R.color.color_238fea));
-            ds.setUnderlineText(false);
+    private inner class RpDetailClickableSpan : ClickableSpan() {
+        override fun onClick(v: View) {}
+        override fun updateDrawState(ds: TextPaint) {
+            super.updateDrawState(ds)
+            ds.color = context.resources.getColor(R.color.color_238fea)
+            ds.isUnderlineText = false
         }
     }
 
     /**
      * ------------------------------显示样式-------------------------
      */
-
-    @Override
-    protected boolean isMiddleItem() {
-        return true;
+    override fun isMiddleItem(): Boolean {
+        return true
     }
 
-    @Override
-    protected boolean isShowBubble() {
-        return false;
+    override fun isShowBubble(): Boolean {
+        return false
     }
 
-    @Override
-    protected boolean isShowHeadImage() {
-        return false;
+    override fun isShowHeadImage(): Boolean {
+        return false
     }
 
-    @Override
-    protected boolean onItemLongClick() {
-        return true;
+    override fun onItemLongClick(): Boolean {
+        return true
     }
 
-    @Override
-    public void onItemClick() {
+    override fun onItemClick() {}
 
+    init {
+        userInfo = NimUIKit.getUserInfoProvider().getUserInfo(getAccount()) as NimUserInfo
     }
 }

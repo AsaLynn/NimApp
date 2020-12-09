@@ -5,6 +5,7 @@ import android.view.View
 import com.netease.nim.demo.DemoCache.getAccount
 import com.netease.nim.demo.R
 import com.netease.nim.demo.contact.activity.UserProfileActivity
+import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nim.demo.session.extension.*
 import com.netease.nim.demo.session.viewholder.*
 import com.netease.nimlib.sdk.NIMClient
@@ -45,6 +46,7 @@ object SessionHelper {
         this.actions = ArrayList<BaseAction>().apply {
             add(SelectImageAction())
             add(TakePictureAction())
+            add(GuessAction())
         }
 
         this.buttons = ArrayList<OptionsButton>().apply {
@@ -158,6 +160,9 @@ object SessionHelper {
         }
     }
 
+    /**
+     * 注册各种扩展消息类型的显示ViewHolder
+     */
     private fun registerViewHolders() {
         NimUIKit.registerMsgItemViewHolder(
             FileAttachment::class.java,
