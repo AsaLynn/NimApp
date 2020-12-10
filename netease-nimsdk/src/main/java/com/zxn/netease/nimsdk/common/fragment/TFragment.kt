@@ -1,117 +1,97 @@
-package com.zxn.netease.nimsdk.common.fragment;
+package com.zxn.netease.nimsdk.common.fragment
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.content.Context
+import android.os.Bundle
+import android.os.Handler
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
+import com.zxn.netease.nimsdk.common.activity.UI
+import com.zxn.netease.nimsdk.common.util.log.LogUtil
 
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.zxn.netease.nimsdk.common.util.log.LogUtil;
+/**
+ * 基类.
+ */
+abstract class TFragment : Fragment() {
+    var containerId = 0
+    protected var isDestroyed = false
+        private set
 
-import androidx.fragment.app.Fragment;
-
-public abstract class TFragment extends Fragment {
-
-    private static final Handler handler = new Handler();
-
-    private int containerId;
-
-    private boolean destroyed;
-
-    protected final boolean isDestroyed() {
-        return destroyed;
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        LogUtil.ui("fragment: " + javaClass.simpleName + " onActivityCreated()")
+        isDestroyed = false
     }
 
-    public int getContainerId() {
-        return containerId;
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtil.ui("fragment: " + javaClass.simpleName + " onDestroy()")
+        isDestroyed = true
     }
 
-    public void setContainerId(int containerId) {
-        this.containerId = containerId;
+    protected val handler: Handler
+        protected get() = Companion.handler
+
+    protected fun postRunnable(runnable: Runnable) {
+        postDelayed(runnable, 0)
     }
 
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        LogUtil.ui("fragment: " + getClass().getSimpleName() + " onActivityCreated()");
-        destroyed = false;
-    }
+    protected fun postDelayed(runnable: Runnable, delay: Long) {
+        Companion.handler.postDelayed({
 
-    public void onDestroy() {
-        super.onDestroy();
-        LogUtil.ui("fragment: " + getClass().getSimpleName() + " onDestroy()");
-        destroyed = true;
-    }
-
-    protected final Handler getHandler() {
-        return handler;
-    }
-
-    protected final void postRunnable(final Runnable runnable) {
-        postDelayed(runnable, 0);
-    }
-
-    protected final void postDelayed(final Runnable runnable, long delay) {
-        handler.postDelayed(() -> {
             // validate
-            if (!isAdded()) {
-                return;
+            if (!isAdded) {
+                return@postDelayed
             }
             // run
-            runnable.run();
-        }, delay);
+            runnable.run()
+        }, delay)
     }
 
-    protected void showKeyboard(boolean isShow) {
-        Activity activity = getActivity();
-        if (activity == null) {
-            return;
-        }
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm == null) {
-            return;
-        }
+    protected fun showKeyboard(isShow: Boolean) {
+        val activity = activity ?: return
+        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            ?: return
         if (isShow) {
-            if (activity.getCurrentFocus() == null) {
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            if (activity.currentFocus == null) {
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
             } else {
-                imm.showSoftInput(activity.getCurrentFocus(), 0);
+                imm.showSoftInput(activity.currentFocus, 0)
             }
         } else {
-            if (activity.getCurrentFocus() != null) {
-                imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),
-                                            InputMethodManager.HIDE_NOT_ALWAYS);
+            if (activity.currentFocus != null) {
+                imm.hideSoftInputFromWindow(
+                    activity.currentFocus!!.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS
+                )
             }
-
         }
     }
 
-    protected void hideKeyboard(View view) {
-        Activity activity = getActivity();
-        if (activity == null) {
-            return;
-        }
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm == null) {
-            return;
-        }
-        imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    protected fun hideKeyboard(view: View) {
+        val activity = activity ?: return
+        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            ?: return
+        imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
-    protected <T extends View> T findView(int resId) {
-        return (T) (getView().findViewById(resId));
+    protected fun <T : View?> findView(resId: Int): T {
+        return view!!.findViewById<View>(resId) as T
     }
 
-    protected void setToolBar(int toolbarId, int titleId, int logoId) {
-        if (getActivity() != null && getActivity() instanceof UI) {
-            ((UI) getActivity()).setToolBar(toolbarId, titleId);
+    protected fun setToolBar(toolbarId: Int, titleId: Int, logoId: Int) {
+        if (activity != null && activity is UI) {
+            (activity as UI?)!!.setToolBar(toolbarId, titleId)
         }
     }
 
-    protected void setTitle(int titleId) {
-        if (getActivity() != null && getActivity() instanceof UI) {
-            getActivity().setTitle(titleId);
+    protected fun setTitle(titleId: Int) {
+        if (activity != null && activity is UI) {
+            activity!!.setTitle(titleId)
         }
+    }
+
+    companion object {
+        private val handler = Handler()
     }
 }

@@ -43,7 +43,18 @@ import com.zxn.utils.UIUtils
  */
 open class MessageFragment : TFragment(), ModuleProxy {
 
+    private var mContainer: Container? = null
+
+    /**
+     *
+     */
+    var anchor: IMMessage? = null
+
     private var rootView: View? = null
+
+    /**
+     * 自定义扩展功能.
+     */
     private var customization: SessionCustomization? = null
 
     /**
@@ -56,15 +67,47 @@ open class MessageFragment : TFragment(), ModuleProxy {
      */
     protected var sessionType: SessionTypeEnum? = null
 
-    // modules
+    /**
+     * 输入模块
+     */
     private var inputPanel: InputPanel? = null
+
+    /**
+     * 消息展示模块
+     */
     protected var messageListPanel: MessageListPanelEx? = null
+
+    /**
+     *文本变化监听.
+     */
     private var aitManager: AitManager? = null
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        parseIntent()
         UIUtils.init(context)
+        onArguments(arguments) { account, sessionType, anchor, customization ->
+            this.sessionId = account
+            this.sessionType = sessionType
+            this.anchor = anchor
+            this.customization = customization
+
+            mContainer = Container(activity, sessionId, sessionType, this, true)
+
+            msgReload()
+
+            initAitManager()
+
+            registerObservers(true)
+
+            customization?.let {
+                messageListPanel?.setChattingBackground(
+                    it.backgroundUri,
+                    it.backgroundColor
+                )
+            }
+        }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,14 +123,14 @@ open class MessageFragment : TFragment(), ModuleProxy {
         NIMClient.getService(MsgService::class.java)
             .setChattingAccount(MsgService.MSG_CHATTING_ACCOUNT_NONE, SessionTypeEnum.None)
         inputPanel?.onPause()
-        messageListPanel!!.onPause()
+        messageListPanel?.onPause()
     }
 
     override fun onResume() {
         super.onResume()
-        messageListPanel!!.onResume()
+        messageListPanel?.onResume()
         NIMClient.getService(MsgService::class.java).setChattingAccount(sessionId, sessionType)
-        activity!!.volumeControlStream = AudioManager.STREAM_VOICE_CALL // 默认使用听筒播放
+        activity?.volumeControlStream = AudioManager.STREAM_VOICE_CALL // 默认使用听筒播放
     }
 
     override fun onDestroy() {
@@ -104,40 +147,33 @@ open class MessageFragment : TFragment(), ModuleProxy {
         return inputPanel?.collapse(true) ?: false
     }
 
+    /**
+     * 刷新消息列表UI.
+     */
     fun refreshMessageList() {
-        messageListPanel!!.refreshMessageList()
+        messageListPanel?.refreshMessageList()
     }
 
-    private fun parseIntent() {
-        var anchor: IMMessage? = null
-        arguments?.let {
-            sessionId = it.getString(Extras.EXTRA_ACCOUNT)
-            sessionType = it.getSerializable(Extras.EXTRA_TYPE) as SessionTypeEnum?
-            anchor = it.getSerializable(Extras.EXTRA_ANCHOR) as IMMessage?
-            customization =
-                it.getSerializable(Extras.EXTRA_CUSTOMIZATION) as SessionCustomization?
-        }
 
-        val container = Container(activity, sessionId, sessionType, this, true)
-        if (messageListPanel == null) {
-            messageListPanel =
-                MessageListPanelEx(container, rootView, anchor, false, false, customization)
-        } else {
-            messageListPanel!!.reload(container, anchor)
-        }
-        if (inputPanel == null) {
-            inputPanel = InputPanel(container, rootView, actionList, true, customization)
-            //inputPanel!!.setCustomization(customization)
-        } else {
-            inputPanel!!.reload(container, customization)
-        }
-        initAitManager()
-        registerObservers(true)
-        if (customization != null) {
-            messageListPanel!!.setChattingBackground(
-                customization!!.backgroundUri,
-                customization!!.backgroundColor
-            )
+
+
+    /**
+     * 重新加载消息列表
+     */
+    fun msgReload() {
+        mContainer?.let {
+            if (messageListPanel == null) {
+                messageListPanel =
+                    MessageListPanelEx(it, rootView, anchor, false, false, customization)
+            } else {
+                messageListPanel?.reload(it, anchor)
+            }
+
+            if (inputPanel == null) {
+                inputPanel = InputPanel(it, rootView, actionList, true, customization)
+            } else {
+                inputPanel?.reload(it, customization)
+            }
         }
     }
 
@@ -149,8 +185,8 @@ open class MessageFragment : TFragment(), ModuleProxy {
                 if (options.aitTeamMember && sessionType == SessionTypeEnum.Team) sessionId else null,
                 options.aitIMRobot
             )
-            inputPanel!!.addAitTextWatcher(aitManager)
-            aitManager!!.setTextChangeListener(inputPanel)
+            inputPanel?.addAitTextWatcher(aitManager)
+            aitManager?.setTextChangeListener(inputPanel)
         }
     }
 
@@ -374,8 +410,15 @@ open class MessageFragment : TFragment(), ModuleProxy {
         }
 
     companion object {
+
         protected const val TAG = "MessageActivity"
 
+        /**
+         * account:账号
+         * type:回话类型
+         * customization:自定义属性.
+         */
+        @JvmStatic
         fun newInstance(
             account: String?,
             type: SessionTypeEnum?,
@@ -388,5 +431,25 @@ open class MessageFragment : TFragment(), ModuleProxy {
                     putSerializable(Extras.EXTRA_CUSTOMIZATION, customization)
                 }
             }
+
+        /**
+         * 解析数据
+         */
+        @JvmStatic
+        fun onArguments(
+            arguments: Bundle?,
+            block: (String?, SessionTypeEnum?, IMMessage?, SessionCustomization?) -> Unit
+        ) {
+            arguments?.let {
+                block(
+                    it.getString(Extras.EXTRA_ACCOUNT),
+                    it.getSerializable(Extras.EXTRA_TYPE) as SessionTypeEnum?,
+                    it.getSerializable(Extras.EXTRA_ANCHOR) as IMMessage?,
+                    it.getSerializable(Extras.EXTRA_CUSTOMIZATION) as SessionCustomization?
+                )
+            }
+        }
     }
+
+
 }

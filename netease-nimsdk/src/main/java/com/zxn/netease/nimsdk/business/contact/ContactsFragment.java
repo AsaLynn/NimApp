@@ -44,8 +44,6 @@ import java.util.Set;
 
 /**
  * 通讯录Fragment
- * <p/>
- * Created by huangjun on 2015/9/7.
  */
 public class ContactsFragment extends TFragment {
 

@@ -14,10 +14,6 @@ import com.netease.nimlib.sdk.team.model.TeamMember;
 
 import java.util.List;
 
-/**
- * Created by hzchenkang on 2017/7/10.
- */
-
 public class AitManager implements TextWatcher {
 
     private final Context context;

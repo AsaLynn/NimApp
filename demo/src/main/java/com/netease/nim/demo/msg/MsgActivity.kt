@@ -11,6 +11,8 @@ import android.view.View
 import android.widget.ImageView
 import com.netease.nim.demo.R
 import com.netease.nim.demo.session.action.GuessAction
+import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
 import com.zxn.mvvm.view.BaseActivity
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
@@ -156,7 +158,12 @@ class MsgActivity : BaseActivity<Nothing>() {
         tvOnlineTime.text = spannableString
         titleView.addRightView(ImageView(mContext).apply {
             setOnClickListener {
-                showToast("titleView")
+                showToast("删除聊天记录成功!")
+                onJumpTo(intent) { account, _ ->
+                    account?.let {
+                        clearChattingHistory(it)
+                    }
+                }
             }
             setImageResource(R.mipmap.more_icon)
         })
@@ -179,9 +186,16 @@ class MsgActivity : BaseActivity<Nothing>() {
         }
     }
 
+    /**
+     * 清除与指定用户的所有消息记录，且不在数据库记录此次操作
+     */
+    private fun clearChattingHistory(account: String) {
+        NIMClient.getService(MsgService::class.java)
+            .clearChattingHistory(account, SessionTypeEnum.P2P)
+        mMessageFragment.msgReload()
+    }
+
 }
-
-
 
 
 /*private var mCustomization: SessionCustomization = SessionCustomization().apply {
