@@ -1,17 +1,13 @@
-package com.zxn.netease.nimsdk.api.model.user;
-
-import java.util.List;
+package com.zxn.netease.nimsdk.api.model.user
 
 /**
  * UIKit 与 app 好友关系变化监听接口
  */
-
-public interface UserInfoObserver {
-
+interface UserInfoObserver {
     /**
      * 用户信息变更
      *
      * @param accounts 账号列表
      */
-    void onUserInfoChanged(List<String> accounts);
+    fun onUserInfoChanged(accounts: List<String>?)
 }

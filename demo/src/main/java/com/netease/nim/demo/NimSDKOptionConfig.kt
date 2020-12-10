@@ -34,8 +34,11 @@ internal object NimSDKOptionConfig {
         options.preloadAttach = true
         // 配置附件缩略图的尺寸大小
         options.thumbnailSize = MsgViewHolderThumbBase.imageMaxEdge
+
         // 通知栏显示用户昵称和头像
-        options.userInfoProvider = NimUserInfoProvider(DemoCache.context)
+        DemoCache.context?.let {
+            options.userInfoProvider = NimUserInfoProvider(it)
+        }
         // 定制通知栏提醒文案（可选，如果不定制将采用SDK默认文案）
         options.messageNotifierCustomization = messageNotifierCustomization
         // 在线多端同步未读数

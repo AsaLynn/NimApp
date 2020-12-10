@@ -23,9 +23,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by hzchenkang on 2016/12/5.
- */
 
 public class TeamMemberAitHelper {
 

@@ -1,42 +1,37 @@
-package com.zxn.netease.nimsdk.api.model.user;
+package com.zxn.netease.nimsdk.api.model.user
 
-import android.content.Context;
-import android.os.Handler;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context
+import android.os.Handler
+import java.util.*
 
 /**
  * 用户资料变动观察者管理
  */
-public class UserInfoObservable {
-
-    private final List<UserInfoObserver> observers = new ArrayList<>();
-    private final Handler uiHandler;
-
-    public UserInfoObservable(Context context) {
-        uiHandler = new Handler(context.getMainLooper());
-    }
-
-    synchronized public void registerObserver(UserInfoObserver observer, boolean register) {
+class UserInfoObservable(context: Context) {
+    private val observers: MutableList<UserInfoObserver> = ArrayList()
+    private val uiHandler: Handler
+    @Synchronized
+    fun registerObserver(observer: UserInfoObserver?, register: Boolean) {
         if (observer == null) {
-            return;
+            return
         }
         if (register) {
-            observers.add(observer);
+            observers.add(observer)
         } else {
-            observers.remove(observer);
+            observers.remove(observer)
         }
     }
 
-    synchronized public void notifyUserInfoChanged(final List<String> accounts) {
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (UserInfoObserver observer : observers) {
-                    observer.onUserInfoChanged(accounts);
-                }
+    @Synchronized
+    fun notifyUserInfoChanged(accounts: List<String>?) {
+        uiHandler.post {
+            for (observer in observers) {
+                observer.onUserInfoChanged(accounts)
             }
-        });
+        }
+    }
+
+    init {
+        uiHandler = Handler(context.mainLooper)
     }
 }

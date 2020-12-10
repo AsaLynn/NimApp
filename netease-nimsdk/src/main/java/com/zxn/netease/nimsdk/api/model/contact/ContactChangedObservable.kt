@@ -1,76 +1,65 @@
-package com.zxn.netease.nimsdk.api.model.contact;
+package com.zxn.netease.nimsdk.api.model.contact
 
-import android.content.Context;
-import android.os.Handler;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context
+import android.os.Handler
+import java.util.*
 
 /**
  * 好友关系变动观察者管理
  */
+class ContactChangedObservable(context: Context) {
+    private val observers: MutableList<ContactChangedObserver> = ArrayList()
+    private val uiHandler: Handler
 
-public class ContactChangedObservable {
-
-    private final List<ContactChangedObserver> observers = new ArrayList<>();
-    private final Handler uiHandler;
-
-    public ContactChangedObservable(Context context) {
-        uiHandler = new Handler(context.getMainLooper());
-    }
-
-    public synchronized void registerObserver(ContactChangedObserver observer, boolean register) {
+    @Synchronized
+    fun registerObserver(observer: ContactChangedObserver?, register: Boolean) {
         if (observer == null) {
-            return;
+            return
         }
         if (register) {
-            observers.add(observer);
+            observers.add(observer)
         } else {
-            observers.remove(observer);
+            observers.remove(observer)
         }
     }
 
-    public synchronized void notifyAddedOrUpdated(final List<String> accounts) {
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (ContactChangedObserver observer : observers) {
-                    observer.onAddedOrUpdatedFriends(accounts);
-                }
+    @Synchronized
+    fun notifyAddedOrUpdated(accounts: List<String?>?) {
+        uiHandler.post {
+            for (observer in observers) {
+                observer.onAddedOrUpdatedFriends(accounts)
             }
-        });
+        }
     }
 
-    public synchronized void notifyDelete(final List<String> accounts) {
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (ContactChangedObserver observer : observers) {
-                    observer.onDeletedFriends(accounts);
-                }
+    @Synchronized
+    fun notifyDelete(accounts: List<String?>?) {
+        uiHandler.post {
+            for (observer in observers) {
+                observer.onDeletedFriends(accounts)
             }
-        });
+        }
     }
 
-    public synchronized void notifyAddToBlackList(final List<String> accounts) {
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (ContactChangedObserver observer : observers) {
-                    observer.onAddUserToBlackList(accounts);
-                }
+    @Synchronized
+    fun notifyAddToBlackList(accounts: List<String?>?) {
+        uiHandler.post {
+            for (observer in observers) {
+                observer.onAddUserToBlackList(accounts)
             }
-        });
+        }
     }
 
-    public synchronized void notifyRemoveFromBlackList(final List<String> accounts) {
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                for (ContactChangedObserver observer : observers) {
-                    observer.onRemoveUserFromBlackList(accounts);
-                }
+    @Synchronized
+    fun notifyRemoveFromBlackList(accounts: List<String?>?) {
+        uiHandler.post {
+            for (observer in observers) {
+                observer.onRemoveUserFromBlackList(accounts)
             }
-        });
+        }
+    }
+
+    init {
+        uiHandler = Handler(context.mainLooper)
     }
 }

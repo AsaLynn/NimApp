@@ -106,7 +106,7 @@ class MainActivity : UI(), OnPageChangeListener, UnreadNumChangedCallback {
     }
 
     private fun observerSyncDataComplete() {
-        val syncCompleted = LoginSyncDataStatusObserver.getInstance()
+        val syncCompleted = LoginSyncDataStatusObserver.instance
             .observeSyncDataCompletedEvent(
                 Observer { v: Void? ->
                     DialogMaker
