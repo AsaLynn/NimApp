@@ -34,6 +34,7 @@ import com.zxn.netease.nimsdk.api.NimUIKit
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
 import com.zxn.netease.nimsdk.business.ait.AitTextChangeListener
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
+import com.zxn.netease.nimsdk.business.session.buttons.ButtonType
 import com.zxn.netease.nimsdk.business.session.emoji.EmoticonPickerView
 import com.zxn.netease.nimsdk.business.session.emoji.IEmoticonSelectedListener
 import com.zxn.netease.nimsdk.business.session.emoji.MoonUtil
@@ -47,53 +48,101 @@ import com.zxn.netease.nimsdk.common.util.string.StringUtil
 import com.zxn.netease.nimsdk.impl.NimUIKitImpl
 import com.zxn.utils.UIUtils
 import java.io.File
-import java.io.Serializable
 
 /**
  * 底部文本编辑，语音等模块
- * adapter.
  */
 open class InputPanel @JvmOverloads constructor(
     protected var container: Container,
     protected var view: View?,
     private var actions: MutableList<BaseAction>,
-    isTextAudioSwitchShow: Boolean = true, private var customization: SessionCustomization? = null
+    isTextAudioSwitchShow: Boolean = true,
+    private var customization: SessionCustomization? = null
 ) : IEmoticonSelectedListener, IAudioRecordCallback, AitTextChangeListener {
 
-    protected var uiHandler: Handler
-    protected var actionPanelBottomLayout // 更多布局
+    private var uiHandler: Handler
+
+    private var actionPanelBottomLayout // 更多布局
             : View? = null
-    protected var messageActivityBottomLayout: LinearLayout? = null
-    protected var messageEditText // 文本消息编辑框
+
+    private var messageActivityBottomLayout: LinearLayout? = null
+
+    /**
+     * 文本消息编辑框
+     */
+    protected var messageEditText
             : EditText? = null
-    protected var audioRecordBtn // 录音按钮
+
+    /**
+     * 录音按钮
+     */
+    private var audioRecordBtn
             : Button? = null
-    protected var audioAnimLayout // 录音动画布局
+
+    /**
+     * 录音动画布局
+     */
+    private var audioAnimLayout
             : View? = null
-    protected var textAudioSwitchLayout // 切换文本，语音按钮布局
+
+    /**
+     * 切换文本，语音按钮布局
+     */
+    private var textAudioSwitchLayout
             : FrameLayout? = null
 
-    // 文本消息选择按钮
-    protected var switchToTextButtonInInputBar: View? = null
+    /**
+     * 文本消息选择按钮
+     */
+    private var switchToTextButtonInInputBar: View? = null
 
-    protected var switchToAudioButtonInInputBar // 语音消息选择按钮
+    /**
+     * 语音消息选择按钮
+     */
+    private var switchToAudioButtonInInputBar
             : View? = null
-    protected var moreFuntionButtonInInputBar // 更多消息选择按钮
+
+    /***
+     * 更多消息发送选择按钮
+     */
+    private var moreFuntionButtonInInputBar
             : View? = null
-    protected var sendMessageButtonInInputBar // 发送消息按钮
+
+    /**
+     * 发送消息按钮
+     */
+    private var sendMessageButtonInInputBar
             : View? = null
-    private var emojiButtonInInputBar // emoji选择按钮
+
+    /**
+     * emoji选择按钮
+     */
+    private var emojiButtonInInputBar
             : View? = null
-    protected var messageInputBar: View? = null
-    protected var replyInfoTv // 被回复消息信息
+
+    /**
+     *
+     */
+    private var messageInputBar: View? = null
+
+    /**
+     * 被回复消息信息
+     */
+    protected var replyInfoTv
             : TextView? = null
-    protected var replyLayout: View? = null
-    protected var cancelReplyImg // 取消回复消息的按钮
-            : ImageView? = null
-//    private var customization: SessionCustomization? = null
 
-    // 表情
-    protected var emoticonPickerView // 贴图表情控件
+    protected var replyLayout: View? = null
+
+    /**
+     * 取消回复消息的按钮
+     */
+    protected var cancelReplyImg
+            : ImageView? = null
+
+    /**
+     *  贴图表情控件
+     */
+    private var emoticonPickerView
             : EmoticonPickerView? = null
 
     // 语音
@@ -143,6 +192,9 @@ open class InputPanel @JvmOverloads constructor(
         aitTextWatcher = watcher
     }
 
+    /**
+     * 初始化.
+     */
     private fun init() {
         initViews()
         initInputBarListener()
@@ -182,40 +234,8 @@ open class InputPanel @JvmOverloads constructor(
 
     private fun initViews() {
         // input bar
-        view?.let {
 
-            val mInputBtnContainer: LinearLayout = it.findViewById(R.id.llInputBtnContainer)
-            customization?.let { sessionCustomization ->
-                mInputBtnContainer.removeAllViews()
-                sessionCustomization.bottomButtonList?.let { buttonList ->
-                    for (button in buttonList) {
-                        val layoutParams = LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT
-                        )
-                        layoutParams.leftMargin = UIUtils.getDimensionPixelSize(R.dimen.dp_15)
-                        mInputBtnContainer.addView(
-                            ImageView(container.activity).apply {
-                                if (button.backIconId != 0) {
-                                    setBackgroundResource(button.backIconId)
-                                    setOnClickListener { buttonView ->
-                                        when(button.buttonType){
-                                            //1 -> hideEmojiLayout()
-                                            2 -> hideEmojiLayout()
-                                        }
-                                        hideActionPanelLayout()
-                                        button.onClick(
-                                            buttonView,
-                                            this@InputPanel,
-                                            container.account
-                                        )
-                                    }
-                                }
-                            }, layoutParams
-                        )
-                    }
-                }
-            }
+        view?.let {
 
             messageActivityBottomLayout = it.findViewById(R.id.messageActivityBottomLayout)
             messageInputBar = it.findViewById(R.id.textMessageLayout)
@@ -246,18 +266,76 @@ open class InputPanel @JvmOverloads constructor(
             switchToAudioButtonInInputBar!!.visibility = View.VISIBLE
 
             // 文本录音按钮切换布局
-            textAudioSwitchLayout = it.findViewById(R.id.switchLayout)
+            textAudioSwitchLayout = it.findViewById(R.id.flSwitchLayout)
             if (isTextAudioSwitchShow) {
                 textAudioSwitchLayout!!.visibility = View.VISIBLE
             } else {
                 textAudioSwitchLayout?.visibility = View.GONE
             }
+
+            switchToTextButtonInInputBar!!.setOnClickListener(clickListener)
+            switchToAudioButtonInInputBar!!.setOnClickListener(clickListener)
+
+
+            val mInputBtnContainer: LinearLayout = it.findViewById(R.id.llInputBtnContainer)
+            customization?.let { sessionCustomization ->
+                mInputBtnContainer.removeAllViews()
+                sessionCustomization.bottomButtonList?.let { buttonList ->
+                    for (button in buttonList) {
+                        when (button.buttonType) {
+                            ButtonType.AUDIO -> {
+                                //音频点击切换操作:
+                                //textAudioSwitchLayout?.removeAllViews()
+                                //textAudioSwitchLayout?.removeView(switchToAudioButtonInInputBar)
+                                if (button.backIconId != 0) {
+                                    switchToAudioButtonInInputBar?.setBackgroundResource(button.backIconId)
+                                    switchToAudioButtonInInputBar?.setOnClickListener { v ->
+                                        button.onClick(
+                                            v,
+                                            this@InputPanel,
+                                            container.account
+                                        )
+                                    }
+                                }
+                            }
+                            else -> {
+                                val layoutParams = LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT
+                                )
+                                layoutParams.leftMargin =
+                                    UIUtils.getDimensionPixelSize(R.dimen.dp_15)
+                                mInputBtnContainer.addView(
+                                    ImageView(container.activity).apply {
+                                        if (button.backIconId != 0) {
+                                            setBackgroundResource(button.backIconId)
+                                            setOnClickListener { buttonView ->
+                                                when (button.buttonType) {
+                                                    //1 -> hideEmojiLayout()
+                                                    2 -> hideEmojiLayout()
+                                                }
+                                                hideActionPanelLayout()
+                                                button.onClick(
+                                                    buttonView,
+                                                    this@InputPanel,
+                                                    container.account
+                                                )
+                                            }
+                                        }
+                                    }, layoutParams
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
+
         }
     }
 
     private fun initInputBarListener() {
-        switchToTextButtonInInputBar!!.setOnClickListener(clickListener)
-        switchToAudioButtonInInputBar!!.setOnClickListener(clickListener)
+
         emojiButtonInInputBar?.setOnClickListener(clickListener)
         sendMessageButtonInInputBar!!.setOnClickListener(clickListener)
         moreFuntionButtonInInputBar!!.setOnClickListener(clickListener)
@@ -344,20 +422,39 @@ open class InputPanel @JvmOverloads constructor(
     /**
      * ************************* 键盘布局切换 *******************************
      */
+    /**
+     * 底部可输入部分的点击
+     */
     private val clickListener = View.OnClickListener { v ->
-        if (v === switchToTextButtonInInputBar) {
-            switchToTextLayout(true) // 显示文本发送的布局
-        } else if (v === sendMessageButtonInInputBar) {
-            onTextMessageSendButtonPressed()
-        } else if (v === switchToAudioButtonInInputBar) {
-            switchToAudioLayout()
-            requestRecordAudioPermission(v.context)
-        } else if (v === moreFuntionButtonInInputBar) {
-            toggleActionPanelLayout()
-        } else if (v === emojiButtonInInputBar) {
-            toggleEmojiLayout()
-        } else if (v === cancelReplyImg) {
-            cancelReply()
+        when {
+            v === switchToTextButtonInInputBar -> {
+                switchToTextLayout(true) // 显示文本发送的布局
+            }
+            v === sendMessageButtonInInputBar -> {
+                onTextMessageSendButtonPressed()
+            }
+            v === switchToAudioButtonInInputBar -> {
+                switchToAudio()
+            }
+            v === moreFuntionButtonInInputBar -> {
+                toggleActionPanelLayout()
+            }
+            v === emojiButtonInInputBar -> {
+                toggleEmojiLayout()
+            }
+            v === cancelReplyImg -> {
+                cancelReply()
+            }
+        }
+    }
+
+    /**
+     * 切换可以录音状态
+     */
+    fun switchToAudio() {
+        switchToAudioLayout()
+        view?.let {
+            requestRecordAudioPermission(it.context)
         }
     }
 
@@ -386,7 +483,9 @@ open class InputPanel @JvmOverloads constructor(
             })
     }
 
-    // 点击edittext，切换键盘和更多布局
+    /**
+     * 点击edittext，切换键盘和更多布局
+     */
     private fun switchToTextLayout(needShowInput: Boolean) {
         hideEmojiLayout()
         hideActionPanelLayout()
@@ -411,7 +510,7 @@ open class InputPanel @JvmOverloads constructor(
         }
     }
 
-    protected fun createTextMessage(text: String?): IMMessage {
+    private fun createTextMessage(text: String?): IMMessage {
         return MessageBuilder.createTextMessage(container.account, container.sessionType, text)
     }
 
@@ -426,7 +525,9 @@ open class InputPanel @JvmOverloads constructor(
         switchToTextButtonInInputBar!!.visibility = View.VISIBLE
     }
 
-    // 点击“+”号按钮，切换更多布局和键盘
+    /**
+     * // 点击“+”号按钮，切换更多布局和键盘
+     */
     private fun toggleActionPanelLayout() {
         if (actionPanelBottomLayout == null || actionPanelBottomLayout!!.visibility == View.GONE) {
             showActionPanelLayout()
@@ -435,7 +536,9 @@ open class InputPanel @JvmOverloads constructor(
         }
     }
 
-    // 点击表情，切换到表情布局
+    /**
+     * 点击表情，切换到表情布局
+     */
     fun toggleEmojiLayout() {
         emoticonPickerView?.let {
             if (it.visibility == View.GONE) {
@@ -470,7 +573,9 @@ open class InputPanel @JvmOverloads constructor(
         }
     }
 
-    // 隐藏键盘布局
+    /**
+     * // 隐藏键盘布局
+     */
     private fun hideInputMethod() {
         isKeyboardShowed = false
         uiHandler.removeCallbacks(showTextRunnable)
@@ -480,7 +585,9 @@ open class InputPanel @JvmOverloads constructor(
         messageEditText!!.clearFocus()
     }
 
-    // 隐藏语音布局
+    /**
+     * // 隐藏语音布局
+     */
     private fun hideAudioLayout() {
         audioRecordBtn!!.visibility = View.GONE
         messageEditText!!.visibility = View.VISIBLE
@@ -488,7 +595,9 @@ open class InputPanel @JvmOverloads constructor(
         switchToAudioButtonInInputBar!!.visibility = View.GONE
     }
 
-    // 显示表情布局
+    /**
+     * // 显示表情布局
+     */
     private fun showEmojiLayout() {
         hideInputMethod()
         hideActionPanelLayout()
@@ -500,7 +609,9 @@ open class InputPanel @JvmOverloads constructor(
         container.proxy.onInputPanelExpand()
     }
 
-    // 初始化更多布局
+    /**
+     * // 初始化更多布局
+     */
     private fun addActionPanelLayout() {
         if (actionPanelBottomLayout == null) {
             View.inflate(
@@ -516,7 +627,9 @@ open class InputPanel @JvmOverloads constructor(
         initActionPanelLayout()
     }
 
-    // 显示键盘布局
+    /**
+     * // 显示键盘布局
+     */
     private fun showInputMethod(editTextMessage: EditText?) {
         editTextMessage!!.requestFocus()
         //如果已经显示,则继续操作时不需要把光标定位到最后
@@ -530,7 +643,9 @@ open class InputPanel @JvmOverloads constructor(
         container.proxy.onInputPanelExpand()
     }
 
-    // 显示更多布局
+    /**
+     * // 显示更多布局
+     */
     private fun showActionPanelLayout() {
         addActionPanelLayout()
         hideEmojiLayout()
@@ -539,7 +654,9 @@ open class InputPanel @JvmOverloads constructor(
         container.proxy.onInputPanelExpand()
     }
 
-    // 显示回复消息信息
+    /**
+     * // 显示回复消息信息
+     */
     private fun refreshReplyMsgLayout() {
         if (replyMessage == null) {
             replyLayout!!.visibility = View.GONE
@@ -789,6 +906,7 @@ open class InputPanel @JvmOverloads constructor(
 
     // 录音状态回调
     override fun onRecordReady() {}
+
     override fun onRecordStart(audioFile: File, recordType: RecordType) {
         started = true
         if (!touched) {
@@ -817,6 +935,7 @@ open class InputPanel @JvmOverloads constructor(
     }
 
     override fun onRecordCancel() {}
+
     override fun onRecordReachedMaxTime(maxTime: Int) {
         stopAudioRecordAnim()
         EasyAlertDialogHelper.createOkCancelDiolag(container.activity,
@@ -848,24 +967,7 @@ open class InputPanel @JvmOverloads constructor(
                 return
             }
             val action = actions[index]
-            if (action != null) {
-                action.onActivityResult(requestCode and 0xff, resultCode, data)
-            }
-        }
-    }
-
-    fun switchRobotMode(isRobot: Boolean) {
-        isRobotSession = isRobot
-        if (isRobot) {
-            textAudioSwitchLayout!!.visibility = View.GONE
-            emojiButtonInInputBar!!.visibility = View.GONE
-            sendMessageButtonInInputBar!!.visibility = View.VISIBLE
-            moreFuntionButtonInInputBar!!.visibility = View.GONE
-        } else {
-            textAudioSwitchLayout!!.visibility = View.VISIBLE
-            emojiButtonInInputBar!!.visibility = View.VISIBLE
-            sendMessageButtonInInputBar!!.visibility = View.GONE
-            moreFuntionButtonInInputBar!!.visibility = View.VISIBLE
+            action.onActivityResult(requestCode and 0xff, resultCode, data)
         }
     }
 
@@ -882,7 +984,7 @@ open class InputPanel @JvmOverloads constructor(
     }
 
     init {
-        uiHandler = Handler()
+        this.uiHandler = Handler()
         this.isTextAudioSwitchShow = isTextAudioSwitchShow
         init()
     }

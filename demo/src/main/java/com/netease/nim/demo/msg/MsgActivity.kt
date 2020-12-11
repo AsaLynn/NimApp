@@ -11,6 +11,8 @@ import android.view.View
 import android.widget.ImageView
 import com.netease.nim.demo.R
 import com.netease.nim.demo.session.action.GuessAction
+import com.netease.nim.demo.session.action.SelectImageAction
+import com.netease.nim.demo.session.action.TakePictureAction
 import com.netease.nimlib.sdk.NIMClient
 import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
@@ -19,8 +21,8 @@ import com.netease.nimlib.sdk.msg.model.IMMessage
 import com.zxn.mvvm.view.BaseActivity
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
-import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction
-import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction
+import com.zxn.netease.nimsdk.business.session.buttons.ButtonType
+import com.zxn.netease.nimsdk.business.session.buttons.InputButton
 import com.zxn.netease.nimsdk.business.session.constant.Extras
 import com.zxn.netease.nimsdk.business.session.fragment.MessageFragment
 import com.zxn.netease.nimsdk.business.session.module.input.InputPanel
@@ -39,6 +41,7 @@ class MsgActivity : BaseActivity<Nothing>() {
 
     companion object {
 
+        var mCpValue = 0
         val mCustomization: SessionCustomization = SessionCustomization().apply {
 
             this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
@@ -51,9 +54,9 @@ class MsgActivity : BaseActivity<Nothing>() {
             }
 
             bottomButtonList =
-                java.util.ArrayList<SessionCustomization.InputButton>().apply {
+                ArrayList<InputButton>().apply {
                     add(object :
-                        SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_gift_selector) {
+                        InputButton(R.drawable.nim_message_button_bottom_gift_selector) {
 
                         override var buttonType: Int = 2
 
@@ -68,7 +71,7 @@ class MsgActivity : BaseActivity<Nothing>() {
                         }
                     })
                     add(object :
-                        SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_emoji_selector) {
+                        InputButton(R.drawable.nim_message_button_bottom_emoji_selector) {
 
                         override var buttonType: Int = 1
 
@@ -82,11 +85,47 @@ class MsgActivity : BaseActivity<Nothing>() {
                             inputPanel.toggleEmojiLayout()
                         }
                     })
+                    add(object :
+                        InputButton(R.drawable.nim_message_button_bottom_audio_selector) {
+
+                        override var buttonType: Int = ButtonType.AUDIO
+
+                        override fun onClick(
+                            view: View?,
+                            inputPanel: InputPanel,
+                            sessionId: String?
+                        ) {
+                            Log.i("TAG", "sessionId: $sessionId")
+                            if (mCpValue < 100) {
+                                UIUtils.toast("mCpValue( $mCpValue )")
+                                return
+                            }
+                            //点击录音按钮
+                            inputPanel.switchToAudio()
+                        }
+                    })
                 }
 
-            this.actions = java.util.ArrayList<BaseAction>().apply {
-                add(SelectImageAction())
-                add(TakePictureAction())
+            this.actions = ArrayList<BaseAction>().apply {
+                add(object : SelectImageAction() {
+                    override fun onClick() {
+                        Log.i("TAG", "onClick: mCpValue( $mCpValue )")
+                        if (mCpValue < 100) {
+                            UIUtils.toast("mCpValue( $mCpValue )")
+                            return
+                        }
+                        super.onClick()
+                    }
+                })
+                add(object : TakePictureAction() {
+                    override fun onClick() {
+                        if (mCpValue < 100) {
+                            UIUtils.toast("mCpValue( $mCpValue )")
+                            return
+                        }
+                        super.onClick()
+                    }
+                })
                 add(GuessAction())
             }
         }
@@ -106,6 +145,7 @@ class MsgActivity : BaseActivity<Nothing>() {
             })
         }
 
+        @JvmStatic
         private fun onJumpTo(intent: Intent, block: (String?, SessionCustomization?) -> Unit) {
             val account = intent.getStringExtra("account")
             Log.i("MsgActivity", "onJumpTo: $account")
@@ -120,6 +160,8 @@ class MsgActivity : BaseActivity<Nothing>() {
     private lateinit var mMessageFragment: MessageFragment
 
     override fun onInitView() {
+
+        mCpValue = 90
 
         onInitTitle()
 

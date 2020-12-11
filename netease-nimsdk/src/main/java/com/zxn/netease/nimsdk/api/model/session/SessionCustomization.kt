@@ -7,7 +7,7 @@ import android.view.View
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment
 import com.netease.nimlib.sdk.msg.model.IMMessage
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
-import com.zxn.netease.nimsdk.business.session.module.input.InputPanel
+import com.zxn.netease.nimsdk.business.session.buttons.InputButton
 import java.io.Serializable
 import java.util.*
 
@@ -28,7 +28,7 @@ open class SessionCustomization : Serializable {
     /**
      * 顶部布局提示内容
      */
-    var headerLayoutId:Int = 0
+    var headerLayoutId: Int = 0
 
     /**
      * 聊天背景。优先使用uri，如果没有提供uri，使用color。如果没有color，使用默认。uri暂时支持以下格式：<br></br>
@@ -41,7 +41,7 @@ open class SessionCustomization : Serializable {
     /**
      * 聊天背景颜色的资源
      */
-    var backgroundColor:Int = 0
+    var backgroundColor: Int = 0
 
     // UIKit
     @JvmField
@@ -102,25 +102,4 @@ open class SessionCustomization : Serializable {
         // 响应事件
         abstract fun onClick(context: Context, view: View?, sessionId: String?)
     }
-
-    /**
-     *底部输入框右侧的按钮.
-     */
-    abstract class InputButton(var backIconId: Int = 0) : Serializable {
-
-        /**
-         * 点击的按钮的事件类型
-         * 0:+号按钮扩展,1:表情按钮,2:礼物按钮.
-         */
-        abstract var buttonType: Int
-
-        /**
-         * 按钮点击事件
-         * view:被点击的按钮
-         * inputPanel:输入框
-         * sessionId:回话id.
-         */
-        abstract fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?)
-    }
-
 }

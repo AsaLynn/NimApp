@@ -23,8 +23,7 @@ import com.zxn.netease.nimsdk.R
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
 import com.zxn.netease.nimsdk.business.ait.AitManager
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
-import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction
-import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction
+import com.zxn.netease.nimsdk.business.session.actions.ImageAction
 import com.zxn.netease.nimsdk.business.session.constant.Extras
 import com.zxn.netease.nimsdk.business.session.module.Container
 import com.zxn.netease.nimsdk.business.session.module.ModuleProxy
@@ -89,7 +88,7 @@ open class MessageFragment : TFragment(), ModuleProxy {
     private val actionList: MutableList<BaseAction>
         get() {
             val actions: MutableList<BaseAction> =
-                mutableListOf(SelectImageAction(), TakePictureAction())
+                mutableListOf(ImageAction())
             customization?.let {
                 it.actions?.let { actionList ->
                     actions.clear()

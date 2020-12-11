@@ -24,8 +24,8 @@ import com.zxn.netease.nimsdk.api.model.session.SessionCustomization.OptionsButt
 import com.zxn.netease.nimsdk.api.model.session.SessionEventListener
 import com.zxn.netease.nimsdk.api.wrapper.NimMessageRevokeObserver
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
-import com.zxn.netease.nimsdk.business.session.actions.SelectImageAction
-import com.zxn.netease.nimsdk.business.session.actions.TakePictureAction
+import com.netease.nim.demo.session.action.SelectImageAction
+import com.netease.nim.demo.session.action.TakePictureAction
 import com.zxn.netease.nimsdk.business.session.module.MsgRevokeFilter
 import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderUnknown
 import com.zxn.netease.nimsdk.impl.customization.DefaultRecentCustomization
