@@ -15,13 +15,10 @@ import com.netease.nimlib.sdk.msg.MessageBuilder
 import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.MsgServiceObserve
 import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum
-import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
 import com.netease.nimlib.sdk.msg.model.CustomMessageConfig
 import com.netease.nimlib.sdk.msg.model.IMMessage
-import com.netease.nimlib.sdk.msg.model.MemberPushOption
 import com.netease.nimlib.sdk.msg.model.MessageReceipt
-import com.netease.nimlib.sdk.robot.model.RobotMsgType
 import com.zxn.netease.nimsdk.R
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
 import com.zxn.netease.nimsdk.business.ait.AitManager
@@ -33,7 +30,6 @@ import com.zxn.netease.nimsdk.business.session.module.Container
 import com.zxn.netease.nimsdk.business.session.module.ModuleProxy
 import com.zxn.netease.nimsdk.business.session.module.input.InputPanel
 import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx
-import com.zxn.netease.nimsdk.common.CommonUtil.isEmpty
 import com.zxn.netease.nimsdk.common.fragment.TFragment
 import com.zxn.netease.nimsdk.impl.NimUIKitImpl
 import com.zxn.utils.UIUtils
@@ -42,6 +38,11 @@ import com.zxn.utils.UIUtils
  * 聊天界面基类
  */
 open class MessageFragment : TFragment(), ModuleProxy {
+
+    /**
+     * 消息收发监听
+     */
+    var mOnMsgPassedListener: OnMsgPassedListener? = null
 
     private var mContainer: Container? = null
 
@@ -82,6 +83,31 @@ open class MessageFragment : TFragment(), ModuleProxy {
      */
     private var aitManager: AitManager? = null
 
+    /**
+     * 操作+号的面板集合
+     */
+    private val actionList: MutableList<BaseAction>
+        get() {
+            val actions: MutableList<BaseAction> =
+                mutableListOf(SelectImageAction(), TakePictureAction())
+            customization?.let {
+                it.actions?.let { actionList ->
+                    actions.clear()
+                    actions.addAll(actionList)
+                }
+            }
+            return actions
+        }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        rootView = inflater.inflate(R.layout.nim_message_fragment, container, false)
+        return rootView
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         UIUtils.init(context)
@@ -91,7 +117,7 @@ open class MessageFragment : TFragment(), ModuleProxy {
             this.anchor = anchor
             this.customization = customization
 
-            mContainer = Container(activity, sessionId, sessionType, this, true)
+            mContainer = Container(activity, account, sessionType, this, true)
 
             msgReload()
 
@@ -108,14 +134,11 @@ open class MessageFragment : TFragment(), ModuleProxy {
         }
     }
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        rootView = inflater.inflate(R.layout.nim_message_fragment, container, false)
-        return rootView
+    override fun onResume() {
+        super.onResume()
+        messageListPanel?.onResume()
+        NIMClient.getService(MsgService::class.java).setChattingAccount(sessionId, sessionType)
+        activity?.volumeControlStream = AudioManager.STREAM_VOICE_CALL // 默认使用听筒播放
     }
 
     override fun onPause() {
@@ -124,13 +147,6 @@ open class MessageFragment : TFragment(), ModuleProxy {
             .setChattingAccount(MsgService.MSG_CHATTING_ACCOUNT_NONE, SessionTypeEnum.None)
         inputPanel?.onPause()
         messageListPanel?.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        messageListPanel?.onResume()
-        NIMClient.getService(MsgService::class.java).setChattingAccount(sessionId, sessionType)
-        activity?.volumeControlStream = AudioManager.STREAM_VOICE_CALL // 默认使用听筒播放
     }
 
     override fun onDestroy() {
@@ -153,8 +169,6 @@ open class MessageFragment : TFragment(), ModuleProxy {
     fun refreshMessageList() {
         messageListPanel?.refreshMessageList()
     }
-
-
 
 
     /**
@@ -193,8 +207,10 @@ open class MessageFragment : TFragment(), ModuleProxy {
     /**
      * ************************* 消息收发 **********************************
      */
-    // 是否允许发送消息
-    protected fun isAllowSendMessage(message: IMMessage?): Boolean {
+    /**
+     * 是否允许发送消息
+     */
+    private fun isAllowSendMessage(message: IMMessage?): Boolean {
         customization?.let {
             return it.isAllowSendMessage(message)
         }
@@ -202,29 +218,24 @@ open class MessageFragment : TFragment(), ModuleProxy {
     }
 
     private fun registerObservers(register: Boolean) {
-        val service = NIMClient.getService(
-            MsgServiceObserve::class.java
-        )
-        service.observeReceiveMessage(incomingMessageObserver, register)
+        val mMsgServiceObserve = NIMClient.getService(MsgServiceObserve::class.java)
+        mMsgServiceObserve.observeReceiveMessage(mMsgComeInObserver, register)
         // 已读回执监听
         if (NimUIKitImpl.getOptions().shouldHandleReceipt) {
-            service.observeMessageReceipt(messageReceiptObserver, register)
+            mMsgServiceObserve.observeMessageReceipt(messageReceiptObserver, register)
         }
     }
 
     /**
-     * 消息接收观察者
+     *  消息接收观察者
      */
-    var incomingMessageObserver =
-        Observer { messages: List<IMMessage?> -> onMessageIncoming(messages) } as Observer<List<IMMessage?>>
-
-    private fun onMessageIncoming(messages: List<IMMessage?>) {
-        if (isEmpty(messages)) {
-            return
+    private var mMsgComeInObserver = Observer<List<IMMessage>> {
+        if (it.isNotEmpty()) {
+            messageListPanel?.onIncomingMessage(it)
+            // 发送已读回执
+            messageListPanel?.sendReceipt()
+            mOnMsgPassedListener?.onMsgPassed(it)
         }
-        messageListPanel!!.onIncomingMessage(messages)
-        // 发送已读回执
-        messageListPanel!!.sendReceipt()
     }
 
     /**
@@ -238,22 +249,30 @@ open class MessageFragment : TFragment(), ModuleProxy {
     /**
      * ********************** implements ModuleProxy *********************
      */
-    override fun sendMessage(message: IMMessage?): Boolean {
-        var message = message
-        if (isAllowSendMessage(message)) {
-            appendTeamMemberPush(message)
-            message = changeToRobotMsg(message)
-            appendPushConfigAndSend(message)
-        } else {
-            // 替换成tip
-            message = MessageBuilder.createTipMessage(message!!.sessionId, message.sessionType)
-            message.content = "该消息无法发送"
-            message.status = MsgStatusEnum.success
-            NIMClient.getService(MsgService::class.java).saveMessageToLocal(message, false)
-        }
-        messageListPanel!!.onMsgSend(message)
-        if (aitManager != null) {
-            aitManager!!.reset()
+
+    /**
+     * 发送IM消息.
+     */
+    override fun sendMessage(msg: IMMessage?): Boolean {
+        msg?.let {
+            if (isAllowSendMessage(msg)) {
+                appendPushConfigAndSend(msg)
+            } else {
+                // 替换成tip
+                NIMClient.getService(MsgService::class.java)
+                    .saveMessageToLocal(
+                        MessageBuilder.createTipMessage(
+                            msg.sessionId,
+                            msg.sessionType
+                        ).apply {
+                            this.content = "该消息无法发送"
+                            this.status = MsgStatusEnum.success
+                        }, false
+                    )
+            }
+            messageListPanel?.onMsgSend(msg)
+            aitManager?.reset()
+            mOnMsgPassedListener?.onMsgPassed(mutableListOf(msg))
         }
         return true
     }
@@ -290,7 +309,9 @@ open class MessageFragment : TFragment(), ModuleProxy {
         inputPanel!!.resetReplyMessage()
     }
 
-    // 被对方拉入黑名单后，发消息失败的交互处理
+    /**
+     * 被对方拉入黑名单后，发消息失败的交互处理
+     */
     private fun sendFailWithBlackList(code: Int, msg: IMMessage?) {
         if (code == ResponseCode.RES_IN_BLACK_LIST.toInt()) {
             // 如果被对方拉入黑名单，发送的消息前不显示重发红点
@@ -308,73 +329,29 @@ open class MessageFragment : TFragment(), ModuleProxy {
         }
     }
 
-    private fun appendTeamMemberPush(message: IMMessage?) {
-        if (aitManager == null) {
-            return
-        }
-        if (sessionType == SessionTypeEnum.Team) {
-            val pushList = aitManager!!.aitTeamMember
-            if (pushList == null || pushList.isEmpty()) {
-                return
-            }
-            val memberPushOption = MemberPushOption()
-            memberPushOption.isForcePush = true
-            memberPushOption.forcePushContent = message!!.content
-            memberPushOption.forcePushList = pushList
-            message.memberPushOption = memberPushOption
-        }
-    }
-
-    private fun changeToRobotMsg(message: IMMessage?): IMMessage? {
-        var message = message
-        if (aitManager == null) {
-            return message
-        }
-        if (message!!.msgType == MsgTypeEnum.robot) {
-            return message
-        }
-        val robotAccount = aitManager!!.aitRobot
-        if (TextUtils.isEmpty(robotAccount)) {
-            return message
-        }
-        val text = message.content
-        var content = aitManager!!.removeRobotAitString(text, robotAccount)
-        content = if (content == "") " " else content
-        message = MessageBuilder.createRobotMessage(
-            message.sessionId,
-            message.sessionType,
-            robotAccount,
-            text,
-            RobotMsgType.TEXT,
-            content,
-            null,
-            null
-        )
-        return message
-    }
 
     private fun appendPushConfig(message: IMMessage?) {
         val customConfig = NimUIKitImpl.getCustomPushContentProvider() ?: return
         val content = customConfig.getPushContent(message)
         val payload = customConfig.getPushPayload(message)
         if (!TextUtils.isEmpty(content)) {
-            message!!.pushContent = content
+            message?.pushContent = content
         }
         if (payload != null) {
-            message!!.pushPayload = payload
+            message?.pushPayload = payload
         }
     }
 
     override fun onInputPanelExpand() {
-        messageListPanel!!.scrollToBottom()
+        messageListPanel?.scrollToBottom()
     }
 
     override fun shouldCollapseInputPanel() {
-        inputPanel!!.collapse(false)
+        inputPanel?.collapse(false)
     }
 
-    override val isLongClickEnabled: Boolean
-        get() = !inputPanel!!.isRecording
+    override val isLongClickEnabled: Boolean =
+        if (inputPanel == null) false else !(inputPanel!!.isRecording)
 
     override fun onItemFooterClick(message: IMMessage?) {
         if (aitManager == null) {
@@ -383,7 +360,7 @@ open class MessageFragment : TFragment(), ModuleProxy {
     }
 
     override fun onReplyMessage(message: IMMessage?) {
-        inputPanel!!.replyMessage = message
+        inputPanel?.replyMessage = message
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -391,23 +368,16 @@ open class MessageFragment : TFragment(), ModuleProxy {
         if (aitManager != null) {
             aitManager!!.onActivityResult(requestCode, resultCode, data)
         }
-        inputPanel!!.onActivityResult(requestCode, resultCode, data)
-        messageListPanel!!.onActivityResult(requestCode, resultCode, data)
+        inputPanel?.onActivityResult(requestCode, resultCode, data)
+        messageListPanel?.onActivityResult(requestCode, resultCode, data)
     }
 
-    // 操作+号的面板集合
-    private val actionList: MutableList<BaseAction>
-        get() {
-            val actions: MutableList<BaseAction> =
-                mutableListOf(SelectImageAction(), TakePictureAction())
-            customization?.let {
-                it.actions?.let { actionList ->
-                    actions.clear()
-                    actions.addAll(actionList)
-                }
-            }
-            return actions
-        }
+    /**
+     * 消息进出监听.
+     */
+    interface OnMsgPassedListener {
+        fun onMsgPassed(msgList: List<IMMessage>)
+    }
 
     companion object {
 
@@ -451,5 +421,49 @@ open class MessageFragment : TFragment(), ModuleProxy {
         }
     }
 
-
 }
+
+/*private fun appendTeamMemberPush(message: IMMessage?) {
+        if (aitManager == null) {
+            return
+        }
+        if (sessionType == SessionTypeEnum.Team) {
+            val pushList = aitManager!!.aitTeamMember
+            if (pushList == null || pushList.isEmpty()) {
+                return
+            }
+            val memberPushOption = MemberPushOption()
+            memberPushOption.isForcePush = true
+            memberPushOption.forcePushContent = message!!.content
+            memberPushOption.forcePushList = pushList
+            message.memberPushOption = memberPushOption
+        }
+    }*/
+
+/*private fun changeToRobotMsg(message: IMMessage?): IMMessage? {
+    var message = message
+    if (aitManager == null) {
+        return message
+    }
+    if (message!!.msgType == MsgTypeEnum.robot) {
+        return message
+    }
+    val robotAccount = aitManager!!.aitRobot
+    if (TextUtils.isEmpty(robotAccount)) {
+        return message
+    }
+    val text = message.content
+    var content = aitManager!!.removeRobotAitString(text, robotAccount)
+    content = if (content == "") " " else content
+    message = MessageBuilder.createRobotMessage(
+        message.sessionId,
+        message.sessionType,
+        robotAccount,
+        text,
+        RobotMsgType.TEXT,
+        content,
+        null,
+        null
+    )
+    return message
+}*/

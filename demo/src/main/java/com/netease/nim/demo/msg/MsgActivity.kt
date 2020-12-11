@@ -13,7 +13,9 @@ import com.netease.nim.demo.R
 import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nimlib.sdk.NIMClient
 import com.netease.nimlib.sdk.msg.MsgService
+import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
+import com.netease.nimlib.sdk.msg.model.IMMessage
 import com.zxn.mvvm.view.BaseActivity
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
@@ -118,6 +120,7 @@ class MsgActivity : BaseActivity<Nothing>() {
     private lateinit var mMessageFragment: MessageFragment
 
     override fun onInitView() {
+
         onInitTitle()
 
         onJumpTo(intent) { account, customization ->
@@ -126,7 +129,18 @@ class MsgActivity : BaseActivity<Nothing>() {
                 account,
                 SessionTypeEnum.P2P,
                 customization ?: mCustomization
-            )
+            ).apply {
+                this.mOnMsgPassedListener = object : MessageFragment.OnMsgPassedListener {
+
+                    override fun onMsgPassed(msgList: List<IMMessage>) {
+                        for (msg in msgList) {
+                            if (msg.msgType == MsgTypeEnum.text) {
+                                showToast(msg.content)
+                            }
+                        }
+                    }
+                }
+            }
             supportFragmentManager.beginTransaction()
                 .add(
                     R.id.fl_container, mMessageFragment

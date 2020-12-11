@@ -29,6 +29,7 @@ interface ModuleProxy {
      * @return 是否正在录音
      */
     val isLongClickEnabled: Boolean
+
     fun onItemFooterClick(message: IMMessage?)
 
     /**

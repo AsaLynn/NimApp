@@ -43,7 +43,7 @@ class NimUserInfoProvider(private val context: Context) : UserInfoProvider {
         NIMClient.getService(NosService::class.java).getOriginUrlFromShortUrl(originUrl[0])
             .setCallback(
                 object : RequestCallbackWrapper<String?>() {
-                    override fun onResult(code: Int, result: String?, exception: Throwable) {
+                    override fun onResult(code: Int, result: String?, exception: Throwable?) {
                         originUrl[0] = result
                         countDownLatch.countDown()
                     }
