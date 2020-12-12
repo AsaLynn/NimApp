@@ -1,15 +1,13 @@
-package com.zxn.netease.nimsdk.common.fragment;
+package com.zxn.netease.nimsdk.common.fragment
 
-public abstract class TabFragment extends TFragment {
-
-    public interface State {
-        boolean isCurrent(TabFragment fragment);
+abstract class TabFragment : TFragment() {
+    interface State {
+        fun isCurrent(fragment: TabFragment?): Boolean
     }
 
-    private State state;
-
-    public void setState(State state) {
-        this.state = state;
+    private var state: State? = null
+    fun setState(state: State?) {
+        this.state = state
     }
 
     /**
@@ -17,36 +15,33 @@ public abstract class TabFragment extends TFragment {
      *
      * @return
      */
-    protected final boolean isCurrent() {
-        return state.isCurrent(this);
-    }
+    protected val isCurrent: Boolean
+        protected get() = state!!.isCurrent(this)
 
     /**
      * notify current
      */
-    public void onCurrent() {
+    open fun onCurrent() {
         // NO OP
     }
 
     /**
      * leave current page
      */
-    public void onLeave() {
-
-    }
+    fun onLeave() {}
 
     /**
      * notify current scrolled
      */
-    public void onCurrentScrolled() {
+    fun onCurrentScrolled() {
         // NO OP
     }
 
-    public void onCurrentTabClicked() {
+    open fun onCurrentTabClicked() {
         // NO OP
     }
 
-    public void onCurrentTabDoubleTap() {
+    fun onCurrentTabDoubleTap() {
         // NO OP
     }
 }

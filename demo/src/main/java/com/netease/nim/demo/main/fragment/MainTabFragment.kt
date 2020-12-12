@@ -1,57 +1,55 @@
-package com.netease.nim.demo.main.fragment;
+package com.netease.nim.demo.main.fragment
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.netease.nim.demo.R
+import com.netease.nim.demo.main.model.MainTab
+import com.zxn.netease.nimsdk.common.fragment.TabFragment
 
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.main.model.MainTab;
-import com.zxn.netease.nimsdk.common.fragment.TabFragment;
+abstract class MainTabFragment : TabFragment() {
 
+    private var loaded = false
 
-public abstract class MainTabFragment extends TabFragment {
+    private var tabData: MainTab? = null
 
-    private boolean loaded = false;
+    protected abstract fun onInit()
 
-    private MainTab tabData;
-
-    protected abstract void onInit();
-
-    protected boolean inited() {
-        return loaded;
+    protected fun inited(): Boolean {
+        return loaded
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_tab_fragment_container, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.main_tab_fragment_container, container, false)
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
     }
 
-    public void attachTabData(MainTab tabData) {
-        this.tabData = tabData;
+    fun attachTabData(tabData: MainTab?) {
+        this.tabData = tabData
     }
 
-    @Override
-    public void onCurrent() {
-        super.onCurrent();
-
+    override fun onCurrent() {
+        super.onCurrent()
         if (!loaded && loadRealLayout()) {
-            loaded = true;
-            onInit();
+            loaded = true
+            onInit()
         }
     }
 
-    private boolean loadRealLayout() {
-        ViewGroup root = (ViewGroup) getView();
+    private fun loadRealLayout(): Boolean {
+        val root = view as ViewGroup?
         if (root != null) {
-            root.removeAllViewsInLayout();
-            View.inflate(root.getContext(), tabData.layoutId, root);
+            root.removeAllViewsInLayout()
+            View.inflate(root.context, tabData!!.layoutId, root)
         }
-        return root != null;
+        return root != null
     }
 }

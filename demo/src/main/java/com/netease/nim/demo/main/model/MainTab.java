@@ -3,12 +3,13 @@ package com.netease.nim.demo.main.model;
 import com.netease.nim.demo.R;
 import com.netease.nim.demo.main.fragment.ContactListFragment;
 import com.netease.nim.demo.main.fragment.MainTabFragment;
+import com.netease.nim.demo.main.fragment.SessionListFragment;
 import com.netease.nim.demo.main.reminder.ReminderId;
 
 public enum MainTab {
-    //RECENT_CONTACTS(0, ReminderId.SESSION, SessionListFragment.class, R.string.main_tab_session, R.layout.session_list),
+    RECENT_CONTACTS(0, ReminderId.SESSION, SessionListFragment.class, R.string.main_tab_session, R.layout.session_list),
 
-    CONTACT(0, ReminderId.CONTACT, ContactListFragment.class, R.string.main_tab_contact, R.layout.contacts_list);
+    CONTACT(1, ReminderId.CONTACT, ContactListFragment.class, R.string.main_tab_contact, R.layout.contacts_list);
 
 
     public final int tabIndex;

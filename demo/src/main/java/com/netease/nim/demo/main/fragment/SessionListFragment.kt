@@ -1,275 +1,240 @@
-package com.netease.nim.demo.main.fragment;
+package com.netease.nim.demo.main.fragment
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.TextView
+import com.netease.nim.demo.R
+import com.netease.nim.demo.config.preference.Preferences
+import com.netease.nim.demo.login.LoginActivity.Companion.start
+import com.netease.nim.demo.login.LogoutHelper.logout
+import com.netease.nim.demo.main.activity.MultiportActivity
+import com.netease.nim.demo.main.fragment.SessionListFragment
+import com.netease.nim.demo.main.model.MainTab
+import com.netease.nim.demo.main.reminder.ReminderManager
+import com.netease.nim.demo.session.SessionHelper.startP2PSession
+import com.netease.nim.demo.session.extension.*
+import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.Observer
+import com.netease.nimlib.sdk.StatusCode
+import com.netease.nimlib.sdk.auth.AuthServiceObserver
+import com.netease.nimlib.sdk.auth.ClientType
+import com.netease.nimlib.sdk.auth.OnlineClient
+import com.netease.nimlib.sdk.msg.MsgService
+import com.netease.nimlib.sdk.msg.attachment.MsgAttachment
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
+import com.netease.nimlib.sdk.msg.model.RecentContact
+import com.zxn.netease.nimsdk.business.recent.RecentContactsCallback
+import com.zxn.netease.nimsdk.business.recent.RecentContactsFragment
+import com.zxn.netease.nimsdk.common.ToastHelper.showToast
+import com.zxn.netease.nimsdk.common.activity.UI
+import com.zxn.netease.nimsdk.common.util.log.LogUtil
+import com.zxn.netease.nimsdk.common.util.log.sdk.wrapper.NimLog
+import java.util.*
 
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.config.preference.Preferences;
-import com.netease.nim.demo.login.LoginActivity;
-import com.netease.nim.demo.login.LogoutHelper;
-import com.netease.nim.demo.main.activity.MultiportActivity;
-import com.netease.nim.demo.main.model.MainTab;
-import com.netease.nim.demo.main.reminder.ReminderManager;
-import com.netease.nim.demo.session.SessionHelper;
-import com.netease.nim.demo.session.extension.GuessAttachment;
-import com.netease.nim.demo.session.extension.MultiRetweetAttachment;
-import com.netease.nim.demo.session.extension.RedPacketAttachment;
-import com.netease.nim.demo.session.extension.RedPacketOpenedAttachment;
-import com.netease.nim.demo.session.extension.SnapChatAttachment;
-import com.netease.nim.demo.session.extension.StickerAttachment;
-import com.zxn.netease.nimsdk.business.recent.RecentContactsCallback;
-import com.zxn.netease.nimsdk.business.recent.RecentContactsFragment;
-import com.zxn.netease.nimsdk.common.ToastHelper;
-import com.zxn.netease.nimsdk.common.activity.UI;
-import com.zxn.netease.nimsdk.common.util.log.LogUtil;
-import com.zxn.netease.nimsdk.common.util.log.sdk.wrapper.NimLog;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.Observer;
-import com.netease.nimlib.sdk.StatusCode;
-import com.netease.nimlib.sdk.auth.AuthServiceObserver;
-import com.netease.nimlib.sdk.auth.ClientType;
-import com.netease.nimlib.sdk.auth.OnlineClient;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
-import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.netease.nimlib.sdk.msg.model.RecentContact;
-//import com.qiyukf.unicorn.ysfkit.unicorn.api.Unicorn;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-public class SessionListFragment extends MainTabFragment {
-
-    private static final String TAG = SessionListFragment.class.getSimpleName();
-    private View notifyBar;
-
-    private TextView notifyBarText;
+class SessionListFragment : MainTabFragment() {
+    private var notifyBar: View? = null
+    private var notifyBarText: TextView? = null
 
     // 同时在线的其他端的信息
-    private List<OnlineClient> onlineClients;
-
-    private View multiportBar;
-
-    private RecentContactsFragment fragment;
-
-    public SessionListFragment() {
-        //this.setContainerId(MainTab.RECENT_CONTACTS.fragmentId);
+    private var onlineClients: List<OnlineClient>? = null
+    private var multiportBar: View? = null
+    private var fragment: RecentContactsFragment? = null
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        onCurrent()
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        onCurrent();
+    override fun onDestroy() {
+        registerObservers(false)
+        super.onDestroy()
     }
 
-    @Override
-    public void onDestroy() {
-        registerObservers(false);
-        super.onDestroy();
+    override fun onInit() {
+        findViews()
+        registerObservers(true)
+        addRecentContactsFragment()
     }
 
-    @Override
-    protected void onInit() {
-        findViews();
-        registerObservers(true);
-
-        addRecentContactsFragment();
+    private fun registerObservers(register: Boolean) {
+        NIMClient.getService(AuthServiceObserver::class.java)
+            .observeOtherClients(clientsObserver, register)
+        NIMClient.getService(AuthServiceObserver::class.java)
+            .observeOnlineStatus(userStatusObserver, register)
     }
 
-    private void registerObservers(boolean register) {
-        NIMClient.getService(AuthServiceObserver.class).observeOtherClients(clientsObserver, register);
-        NIMClient.getService(AuthServiceObserver.class).observeOnlineStatus(userStatusObserver, register);
-    }
-
-    private void findViews() {
-        notifyBar = getView().findViewById(R.id.status_notify_bar);
-        notifyBarText = getView().findViewById(R.id.status_desc_label);
-        notifyBar.setVisibility(View.GONE);
-
-        multiportBar = getView().findViewById(R.id.multiport_notify_bar);
-        multiportBar.setVisibility(View.GONE);
-        multiportBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MultiportActivity.startActivity(getActivity(), onlineClients);
-            }
-        });
+    private fun findViews() {
+        notifyBar = view!!.findViewById(R.id.status_notify_bar)
+        notifyBarText = view!!.findViewById(R.id.status_desc_label)
+        notifyBar?.visibility = View.GONE
+        multiportBar = view!!.findViewById(R.id.multiport_notify_bar)
+        multiportBar?.visibility = View.GONE
+        multiportBar?.setOnClickListener {
+            MultiportActivity.startActivity(
+                activity, onlineClients
+            )
+        }
     }
 
     /**
      * 用户状态变化
      */
-    Observer<StatusCode> userStatusObserver = new Observer<StatusCode>() {
-
-        @Override
-        public void onEvent(StatusCode code) {
-            if (code.wontAutoLogin()) {
-                kickOut(code);
-                NimLog.i(TAG, "kick out desc: " + code.getDesc());
+    var userStatusObserver = Observer<StatusCode> { code ->
+        if (code.wontAutoLogin()) {
+            kickOut(code)
+            NimLog.i(TAG, "kick out desc: " + code.desc)
+        } else {
+            if (code == StatusCode.NET_BROKEN) {
+                notifyBar!!.visibility = View.VISIBLE
+                notifyBarText!!.setText(R.string.net_broken)
+            } else if (code == StatusCode.UNLOGIN) {
+                notifyBar!!.visibility = View.VISIBLE
+                notifyBarText!!.setText(R.string.nim_status_unlogin)
+            } else if (code == StatusCode.CONNECTING) {
+                notifyBar!!.visibility = View.VISIBLE
+                notifyBarText!!.setText(R.string.nim_status_connecting)
+            } else if (code == StatusCode.LOGINING) {
+                notifyBar!!.visibility = View.VISIBLE
+                notifyBarText!!.setText(R.string.nim_status_logining)
             } else {
-                if (code == StatusCode.NET_BROKEN) {
-                    notifyBar.setVisibility(View.VISIBLE);
-                    notifyBarText.setText(R.string.net_broken);
-                } else if (code == StatusCode.UNLOGIN) {
-                    notifyBar.setVisibility(View.VISIBLE);
-                    notifyBarText.setText(R.string.nim_status_unlogin);
-                } else if (code == StatusCode.CONNECTING) {
-                    notifyBar.setVisibility(View.VISIBLE);
-                    notifyBarText.setText(R.string.nim_status_connecting);
-                } else if (code == StatusCode.LOGINING) {
-                    notifyBar.setVisibility(View.VISIBLE);
-                    notifyBarText.setText(R.string.nim_status_logining);
-                } else {
-                    notifyBar.setVisibility(View.GONE);
-                }
+                notifyBar!!.visibility = View.GONE
             }
         }
-    };
-
-    Observer<List<OnlineClient>> clientsObserver = new Observer<List<OnlineClient>>() {
-        @Override
-        public void onEvent(List<OnlineClient> onlineClients) {
-            SessionListFragment.this.onlineClients = onlineClients;
-            if (onlineClients == null || onlineClients.size() == 0) {
-                multiportBar.setVisibility(View.GONE);
-            } else {
-                multiportBar.setVisibility(View.VISIBLE);
-                TextView status = multiportBar.findViewById(R.id.multiport_desc_label);
-                OnlineClient client = onlineClients.get(0);
-
-                for (OnlineClient temp : onlineClients) {
-                    Log.d(TAG, "type : " + temp.getClientType() + " , customTag : " + temp.getCustomTag());
-                }
-
-                switch (client.getClientType()) {
-                    case ClientType.Windows:
-                    case ClientType.MAC:
-                        status.setText(getString(R.string.multiport_logging) + getString(R.string.computer_version));
-                        break;
-                    case ClientType.Web:
-                        status.setText(getString(R.string.multiport_logging) + getString(R.string.web_version));
-                        break;
-                    case ClientType.iOS:
-                    case ClientType.Android:
-                        status.setText(getString(R.string.multiport_logging) + getString(R.string.mobile_version));
-                        break;
-                    default:
-                        multiportBar.setVisibility(View.GONE);
-                        break;
-                }
+    }
+    var clientsObserver: Observer<List<OnlineClient>> = Observer { onlineClients ->
+        this@SessionListFragment.onlineClients = onlineClients
+        if (onlineClients == null || onlineClients.size == 0) {
+            multiportBar!!.visibility = View.GONE
+        } else {
+            multiportBar!!.visibility = View.VISIBLE
+            val status = multiportBar!!.findViewById<TextView>(R.id.multiport_desc_label)
+            val client = onlineClients[0]
+            for (temp in onlineClients) {
+                Log.d(TAG, "type : " + temp.clientType + " , customTag : " + temp.customTag)
+            }
+            when (client.clientType) {
+                ClientType.Windows, ClientType.MAC -> status.text = getString(
+                    R.string.multiport_logging
+                ) + getString(R.string.computer_version)
+                ClientType.Web -> status.text = getString(R.string.multiport_logging) + getString(
+                    R.string.web_version
+                )
+                ClientType.iOS, ClientType.Android -> status.text =
+                    getString(R.string.multiport_logging) + getString(
+                        R.string.mobile_version
+                    )
+                else -> multiportBar!!.visibility = View.GONE
             }
         }
-    };
+    }
 
-    private void kickOut(StatusCode code) {
-        Preferences.saveUserToken("");
-
+    private fun kickOut(code: StatusCode) {
+        Preferences.saveUserToken("")
         if (code == StatusCode.PWD_ERROR) {
-            LogUtil.e("Auth", "user password error");
-            ToastHelper.showToast(getActivity(), R.string.login_failed);
+            LogUtil.e("Auth", "user password error")
+            showToast(activity!!, R.string.login_failed)
         } else {
-            LogUtil.i("Auth", "Kicked!");
+            LogUtil.i("Auth", "Kicked!")
         }
-
         if (code == StatusCode.DATA_UPGRADE) {
-            onLogout(getString(R.string.kickout_encrypt_database));
+            onLogout(getString(R.string.kickout_encrypt_database))
         } else {
-            onLogout("");
+            onLogout("")
         }
     }
 
     // 注销
-    private void onLogout(String desc) {
+    private fun onLogout(desc: String) {
         // 清理缓存&注销监听&清除状态
-        LogoutHelper.logout();
-
-        LoginActivity.start(getActivity(), true, desc);
-        getActivity().finish();
+        logout()
+        start(activity!!, true, desc)
+        activity!!.finish()
     }
 
     // 将最近联系人列表fragment动态集成进来。 开发者也可以使用在xml中配置的方式静态集成。
-    private void addRecentContactsFragment() {
-        fragment = new RecentContactsFragment();
-        fragment.setContainerId(R.id.messages_fragment);
-
-        final UI activity = (UI) getActivity();
+    private fun addRecentContactsFragment() {
+        fragment = RecentContactsFragment()
+        fragment!!.containerId = R.id.messages_fragment
+        val activity = activity as UI?
 
         // 如果是activity从堆栈恢复，FM中已经存在恢复而来的fragment，此时会使用恢复来的，而new出来这个会被丢弃掉
-        fragment = (RecentContactsFragment) activity.addFragment(fragment);
-
-        fragment.setCallback(new RecentContactsCallback() {
-            @Override
-            public void onRecentContactsLoaded() {
+        fragment = activity!!.addFragment(fragment!!) as RecentContactsFragment?
+        fragment!!.setCallback(object : RecentContactsCallback {
+            override fun onRecentContactsLoaded() {
                 // 最近联系人列表加载完毕
             }
 
-            @Override
-            public void onUnreadCountChange(int unreadCount) {
-                ReminderManager.getInstance().updateSessionUnreadNum(unreadCount);
+            override fun onUnreadCountChange(unreadCount: Int) {
+                ReminderManager.getInstance().updateSessionUnreadNum(unreadCount)
             }
 
-            @Override
-            public void onItemClick(RecentContact recent) {
+            override fun onItemClick(recent: RecentContact?) {
                 // 回调函数，以供打开会话窗口时传入定制化参数，或者做其他动作
-                switch (recent.getSessionType()) {
-                    case P2P:
-                        SessionHelper.startP2PSession(getActivity(), recent.getContactId());
-                        break;
-                    case Team:
-                        //SessionHelper.startTeamSession(getActivity(), recent.getContactId());
-                        break;
-                    case SUPER_TEAM:
-                        ToastHelper.showToast(getActivity(), "超大群开发者按需实现");
-                        break;
-                    case Ysf:
-                        //Unicorn.openServiceActivity(getContext(), "七鱼测试", null);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public String getDigestOfAttachment(RecentContact recentContact, MsgAttachment attachment) {
-                // 设置自定义消息的摘要消息，展示在最近联系人列表的消息缩略栏上
-                // 当然，你也可以自定义一些内建消息的缩略语，例如图片，语音，音视频会话等，自定义的缩略语会被优先使用。
-                if (attachment instanceof GuessAttachment) {
-                    GuessAttachment guess = (GuessAttachment) attachment;
-                    return guess.getValue().getDesc();
-                }  else if (attachment instanceof StickerAttachment) {
-                    return "[贴图]";
-                } else if (attachment instanceof SnapChatAttachment) {
-                    return "[阅后即焚]";
-                } else if (attachment instanceof RedPacketAttachment) {
-                    return "[红包]";
-                } else if (attachment instanceof RedPacketOpenedAttachment) {
-                    return ((RedPacketOpenedAttachment) attachment).getDesc(recentContact.getSessionType(), recentContact.getContactId());
-                } else if (attachment instanceof MultiRetweetAttachment){
-                    return "[聊天记录]";
-                }
-
-                return null;
-            }
-
-            @Override
-            public String getDigestOfTipMsg(RecentContact recent) {
-                String msgId = recent.getRecentMessageId();
-                List<String> uuids = new ArrayList<>(1);
-                uuids.add(msgId);
-                List<IMMessage> msgs = NIMClient.getService(MsgService.class).queryMessageListByUuidBlock(uuids);
-                if (msgs != null && !msgs.isEmpty()) {
-                    IMMessage msg = msgs.get(0);
-                    Map<String, Object> content = msg.getRemoteExtension();
-                    if (content != null && !content.isEmpty()) {
-                        return (String) content.get("content");
+                when (recent!!.sessionType) {
+                    SessionTypeEnum.P2P -> startP2PSession(getActivity(), recent.contactId)
+                    SessionTypeEnum.Team -> {
+                    }
+                    SessionTypeEnum.SUPER_TEAM -> showToast(getActivity()!!, "超大群开发者按需实现")
+                    SessionTypeEnum.Ysf -> {
+                    }
+                    else -> {
                     }
                 }
-
-                return null;
             }
-        });
+
+            override fun getDigestOfAttachment(
+                recentContact: RecentContact?,
+                attachment: MsgAttachment?
+            ): String? {
+                // 设置自定义消息的摘要消息，展示在最近联系人列表的消息缩略栏上
+                // 当然，你也可以自定义一些内建消息的缩略语，例如图片，语音，音视频会话等，自定义的缩略语会被优先使用。
+                when (attachment) {
+                    is GuessAttachment -> {
+                        return attachment.value.desc
+                    }
+                    is StickerAttachment -> {
+                        return "[贴图]"
+                    }
+                    is SnapChatAttachment -> {
+                        return "[阅后即焚]"
+                    }
+                    is RedPacketAttachment -> {
+                        return "[红包]"
+                    }
+                    is RedPacketOpenedAttachment -> {
+                        return attachment.getDesc(recentContact!!.sessionType, recentContact.contactId)
+                    }
+                    is MultiRetweetAttachment -> {
+                        return "[聊天记录]"
+                    }
+                    else -> return null
+                }
+            }
+
+            override fun getDigestOfTipMsg(recent: RecentContact?): String? {
+                val msgId = recent!!.recentMessageId
+                val uuids: MutableList<String> = ArrayList(1)
+                uuids.add(msgId)
+                val msgs = NIMClient.getService(
+                    MsgService::class.java
+                ).queryMessageListByUuidBlock(uuids)
+                if (msgs != null && !msgs.isEmpty()) {
+                    val msg = msgs[0]
+                    val content = msg.remoteExtension
+                    if (content != null && !content.isEmpty()) {
+                        return content["content"] as String?
+                    }
+                }
+                return "null"
+            }
+        })
+    }
+
+    companion object {
+        private val TAG = SessionListFragment::class.java.simpleName
+    }
+
+    init {
+        containerId = MainTab.RECENT_CONTACTS.fragmentId
     }
 }

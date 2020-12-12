@@ -107,11 +107,10 @@ class MainActivity : UI(), OnPageChangeListener, UnreadNumChangedCallback {
 
     private fun observerSyncDataComplete() {
         val syncCompleted = LoginSyncDataStatusObserver.instance
-            .observeSyncDataCompletedEvent(
-                Observer { v: Void? ->
-                    DialogMaker
-                        .dismissProgressDialog()
-                })
+            .observeSyncDataCompletedEvent {
+                DialogMaker
+                    .dismissProgressDialog()
+            }
         //如果数据没有同步完成，弹个进度Dialog
         if (!syncCompleted) {
             DialogMaker.showProgressDialog(this@MainActivity, getString(R.string.prepare_data))
@@ -378,6 +377,7 @@ class MainActivity : UI(), OnPageChangeListener, UnreadNumChangedCallback {
         private const val EXTRA_APP_QUIT = "APP_QUIT"
         private const val REQUEST_CODE_NORMAL = 1
         private const val REQUEST_CODE_ADVANCED = 2
+
         @JvmOverloads
         fun start(context: Context, extras: Intent? = null) {
             val intent = Intent()
