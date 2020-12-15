@@ -12,7 +12,7 @@ import com.netease.nim.demo.main.activity.MultiportActivity
 import com.netease.nim.demo.main.fragment.SessionListFragment
 import com.netease.nim.demo.main.model.MainTab
 import com.netease.nim.demo.main.reminder.ReminderManager
-import com.netease.nim.demo.session.SessionHelper.startP2PSession
+import com.netease.nim.demo.msg.MsgActivity
 import com.netease.nim.demo.session.extension.*
 import com.netease.nimlib.sdk.NIMClient
 import com.netease.nimlib.sdk.Observer
@@ -171,7 +171,10 @@ class SessionListFragment : MainTabFragment() {
             override fun onItemClick(recent: RecentContact?) {
                 // 回调函数，以供打开会话窗口时传入定制化参数，或者做其他动作
                 when (recent!!.sessionType) {
-                    SessionTypeEnum.P2P -> startP2PSession(getActivity(), recent.contactId)
+                    SessionTypeEnum.P2P -> {
+                        //startP2PSession(getActivity(), recent.contactId)
+                        MsgActivity.jumpTo(activity, recent.contactId)
+                    }
                     SessionTypeEnum.Team -> {
                     }
                     SessionTypeEnum.SUPER_TEAM -> showToast(getActivity()!!, "超大群开发者按需实现")
@@ -202,7 +205,10 @@ class SessionListFragment : MainTabFragment() {
                         return "[红包]"
                     }
                     is RedPacketOpenedAttachment -> {
-                        return attachment.getDesc(recentContact!!.sessionType, recentContact.contactId)
+                        return attachment.getDesc(
+                            recentContact!!.sessionType,
+                            recentContact.contactId
+                        )
                     }
                     is MultiRetweetAttachment -> {
                         return "[聊天记录]"

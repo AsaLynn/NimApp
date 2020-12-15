@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.AudioManager
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,11 +33,18 @@ import com.zxn.netease.nimsdk.business.session.module.list.MessageListPanelEx
 import com.zxn.netease.nimsdk.common.fragment.TFragment
 import com.zxn.netease.nimsdk.impl.NimUIKitImpl
 import com.zxn.utils.UIUtils
+import java.io.Serializable
 
 /**
  * 聊天界面基类
  */
 open class MessageFragment : TFragment(), ModuleProxy {
+
+    /**
+     * 发送结果回调
+     */
+    var sendCallback: RequestCallback<Void?>? = null
+
 
     /**
      * 消息收发监听
@@ -150,7 +158,7 @@ open class MessageFragment : TFragment(), ModuleProxy {
 
     override fun onDestroy() {
         super.onDestroy()
-        messageListPanel!!.onDestroy()
+        messageListPanel?.onDestroy()
         registerObservers(false)
         inputPanel?.onDestroy()
         if (aitManager != null) {
@@ -242,7 +250,7 @@ open class MessageFragment : TFragment(), ModuleProxy {
      */
     private val messageReceiptObserver: Observer<List<MessageReceipt>> =
         Observer<List<MessageReceipt>> {
-            messageListPanel!!.receiveReceipt()
+            messageListPanel?.receiveReceipt()
         }
 
     /**
@@ -277,54 +285,78 @@ open class MessageFragment : TFragment(), ModuleProxy {
     }
 
     private fun appendPushConfigAndSend(message: IMMessage?) {
-        appendPushConfig(message)
-        val service = NIMClient.getService(MsgService::class.java)
-        // send message to server and save to db
-        val replyMsg = inputPanel!!.replyMessage
-        if (replyMsg == null) {
-            service.sendMessage(message, false).setCallback(object : RequestCallback<Void?> {
-                override fun onSuccess(param: Void?) {}
-                override fun onFailed(code: Int) {
-                    sendFailWithBlackList(code, message)
-                }
+        message?.let {
+            appendPushConfig(message)
+            val service = NIMClient.getService(MsgService::class.java)
+            // send message to server and save to db
+            val replyMsg = inputPanel?.replyMessage
+            if (replyMsg == null) {
+                service.sendMessage(message, false)
+                    .setCallback(object : RequestCallback<Void?> {
+                        override fun onSuccess(param: Void?) {
+                            Log.i(TAG, "onSuccess: $param")
+                            sendCallback?.onSuccess(param)
+                        }
 
-                override fun onException(exception: Throwable) {}
-            })
-        } else {
-            service.replyMessage(message, replyMsg, false)
-                .setCallback(object : RequestCallback<Void?> {
-                    override fun onSuccess(param: Void?) {
-                        val threadId = message!!.threadOption.threadMsgIdClient
-                        messageListPanel!!.refreshMessageItem(threadId)
-                    }
+                        override fun onFailed(code: Int) {
+                            Log.i(TAG, "onFailed: $code")
+                            if (code == ResponseCode.RES_IN_BLACK_LIST.toInt()) {
+                                sendFailWithBlackList(code, message)
+                            } else {
+                                it.status = MsgStatusEnum.fail
+                                NIMClient.getService(MsgService::class.java)
+                                    .updateIMMessageStatus(it)
+                            }
+                            sendCallback?.onFailed(code)
+                        }
 
-                    override fun onFailed(code: Int) {
-                        sendFailWithBlackList(code, message)
-                    }
+                        override fun onException(exception: Throwable) {
+                            Log.i(TAG, "onException: ${exception.message}")
+                            sendCallback?.onException(exception)
+                        }
+                    })
+            } else {
+                service.replyMessage(message, replyMsg, false)
+                    .setCallback(object : RequestCallback<Void?> {
+                        override fun onSuccess(param: Void?) {
+                            Log.i(TAG, "replyMessage,onSuccess: ")
+                            val threadId = message.threadOption.threadMsgIdClient
+                            messageListPanel?.refreshMessageItem(threadId)
+                        }
 
-                    override fun onException(exception: Throwable) {}
-                })
+                        override fun onFailed(code: Int) {
+                            Log.i(TAG, "replyMessage,onFailed: $code")
+                            sendFailWithBlackList(code, message)
+                        }
+
+                        override fun onException(exception: Throwable) {
+                            Log.i(TAG, "replyMessage,onFailed: ${exception.message}")
+                        }
+                    })
+            }
+            inputPanel?.resetReplyMessage()
         }
-        inputPanel!!.resetReplyMessage()
     }
 
     /**
      * 被对方拉入黑名单后，发消息失败的交互处理
      */
     private fun sendFailWithBlackList(code: Int, msg: IMMessage?) {
-        if (code == ResponseCode.RES_IN_BLACK_LIST.toInt()) {
-            // 如果被对方拉入黑名单，发送的消息前不显示重发红点
-            msg!!.status = MsgStatusEnum.success
-            NIMClient.getService(MsgService::class.java).updateIMMessageStatus(msg)
-            messageListPanel!!.refreshMessageList()
-            // 同时，本地插入被对方拒收的tip消息
-            val tip = MessageBuilder.createTipMessage(msg.sessionId, msg.sessionType)
-            tip.content = activity!!.getString(R.string.black_list_send_tip)
-            tip.status = MsgStatusEnum.success
-            val config = CustomMessageConfig()
-            config.enableUnreadCount = false
-            tip.config = config
-            NIMClient.getService(MsgService::class.java).saveMessageToLocal(tip, true)
+        msg?.let {
+            if (code == ResponseCode.RES_IN_BLACK_LIST.toInt()) {
+                // 如果被对方拉入黑名单，发送的消息前不显示重发红点
+                it.status = MsgStatusEnum.success
+                NIMClient.getService(MsgService::class.java).updateIMMessageStatus(it)
+                messageListPanel?.refreshMessageList()
+                // 同时，本地插入被对方拒收的tip消息
+                val tip = MessageBuilder.createTipMessage(it.sessionId, it.sessionType)
+                tip.content = activity?.getString(R.string.black_list_send_tip)
+                tip.status = MsgStatusEnum.success
+                val config = CustomMessageConfig()
+                config.enableUnreadCount = false
+                tip.config = config
+                NIMClient.getService(MsgService::class.java).saveMessageToLocal(tip, true)
+            }
         }
     }
 
@@ -374,13 +406,16 @@ open class MessageFragment : TFragment(), ModuleProxy {
     /**
      * 消息进出监听.
      */
-    interface OnMsgPassedListener {
+    interface OnMsgPassedListener : Serializable {
         fun onMsgPassed(msgList: List<IMMessage>)
+
+
+//        fun onFailed(code: Int)
     }
 
     companion object {
 
-        protected const val TAG = "MessageActivity"
+        protected const val TAG = "MessageFragment"
 
         /**
          * account:账号

@@ -14,6 +14,7 @@ import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nim.demo.session.action.SelectImageAction
 import com.netease.nim.demo.session.action.TakePictureAction
 import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.RequestCallback
 import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
@@ -37,10 +38,10 @@ import java.text.DecimalFormat
 /**
  *自定义点对点单聊消息页面.
  */
-class MsgActivity : BaseActivity<Nothing>() {
+class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
 
     companion object {
-
+        private const val TAG = "MsgActivity"
         var mCpValue = 0
         val mCustomization: SessionCustomization = SessionCustomization().apply {
 
@@ -172,6 +173,7 @@ class MsgActivity : BaseActivity<Nothing>() {
                 SessionTypeEnum.P2P,
                 customization ?: mCustomization
             ).apply {
+
                 this.mOnMsgPassedListener = object : MessageFragment.OnMsgPassedListener {
 
                     override fun onMsgPassed(msgList: List<IMMessage>) {
@@ -182,13 +184,33 @@ class MsgActivity : BaseActivity<Nothing>() {
                         }
                     }
                 }
+
+                this.sendCallback = object : RequestCallback<Void?> {
+                    override fun onSuccess(param: Void?) {
+                        Log.i(TAG, "onSuccess: $param")
+                    }
+
+                    override fun onFailed(code: Int) {
+                        Log.i(TAG, "onFailed: $code")
+                    }
+
+                    override fun onException(exception: Throwable?) {
+                        Log.i(TAG, "onException: ${exception?.message}")
+                    }
+                }
             }
             supportFragmentManager.beginTransaction()
                 .add(
                     R.id.fl_container, mMessageFragment
                 ).commitAllowingStateLoss()
         }
+
+
+
+
+        mMessageFragment.sendCallback = this
     }
+
 
     override fun registerEventBus(isRegister: Boolean) {
 
@@ -249,6 +271,18 @@ class MsgActivity : BaseActivity<Nothing>() {
         NIMClient.getService(MsgService::class.java)
             .clearChattingHistory(account, SessionTypeEnum.P2P)
         mMessageFragment.msgReload()
+    }
+
+    override fun onSuccess(param: Void?) {
+        Log.i(TAG, "onSuccess: $param")
+    }
+
+    override fun onFailed(code: Int) {
+        Log.i(TAG, "onFailed: $code")
+    }
+
+    override fun onException(exception: Throwable?) {
+        Log.i(TAG, "onException: ${exception?.message}")
     }
 
 }

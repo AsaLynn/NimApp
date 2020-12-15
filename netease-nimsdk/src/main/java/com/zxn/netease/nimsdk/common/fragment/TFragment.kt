@@ -13,7 +13,9 @@ import com.zxn.netease.nimsdk.common.util.log.LogUtil
  * 基类.
  */
 abstract class TFragment : Fragment() {
+
     var containerId = 0
+
     protected var isDestroyed = false
         private set
 
@@ -30,7 +32,7 @@ abstract class TFragment : Fragment() {
     }
 
     protected val handler: Handler
-        protected get() = Companion.handler
+        get() = Companion.handler
 
     protected fun postRunnable(runnable: Runnable) {
         postDelayed(runnable, 0)
@@ -38,7 +40,6 @@ abstract class TFragment : Fragment() {
 
     protected fun postDelayed(runnable: Runnable, delay: Long) {
         Companion.handler.postDelayed({
-
             // validate
             if (!isAdded) {
                 return@postDelayed
@@ -49,30 +50,31 @@ abstract class TFragment : Fragment() {
     }
 
     protected fun showKeyboard(isShow: Boolean) {
-        val activity = activity ?: return
-        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            ?: return
-        if (isShow) {
-            if (activity.currentFocus == null) {
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        activity?.let {
+            val inputMethodManager =
+                it.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            if (isShow) {
+                if (it.currentFocus == null) {
+                    inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+                } else {
+                    inputMethodManager.showSoftInput(it.currentFocus, 0)
+                }
             } else {
-                imm.showSoftInput(activity.currentFocus, 0)
-            }
-        } else {
-            if (activity.currentFocus != null) {
-                imm.hideSoftInputFromWindow(
-                    activity.currentFocus!!.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS
-                )
+                it.currentFocus?.let { currentView ->
+                    inputMethodManager.hideSoftInputFromWindow(
+                        currentView.windowToken,
+                        InputMethodManager.HIDE_NOT_ALWAYS
+                    )
+                }
             }
         }
     }
 
     protected fun hideKeyboard(view: View) {
-        val activity = activity ?: return
-        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            ?: return
-        imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        activity?.let {
+            val imm = it.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 
     protected fun <T : View?> findView(resId: Int): T {
@@ -80,14 +82,19 @@ abstract class TFragment : Fragment() {
     }
 
     protected fun setToolBar(toolbarId: Int, titleId: Int, logoId: Int) {
-        if (activity != null && activity is UI) {
-            (activity as UI?)!!.setToolBar(toolbarId, titleId)
+        activity?.let {
+            if (it is UI) {
+                it.setToolBar(toolbarId, titleId)
+            }
         }
+
     }
 
     protected fun setTitle(titleId: Int) {
-        if (activity != null && activity is UI) {
-            activity!!.setTitle(titleId)
+        activity?.let {
+            if (it is UI) {
+                it.setTitle(titleId)
+            }
         }
     }
 
