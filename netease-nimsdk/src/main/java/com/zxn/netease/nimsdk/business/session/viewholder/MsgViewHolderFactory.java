@@ -36,6 +36,8 @@ public class MsgViewHolderFactory {
     public static Class<? extends MsgViewHolderBase> getViewHolderByType(IMMessage message) {
         if (message.getMsgType() == MsgTypeEnum.text) {
             return MsgViewHolderText.class;
+        } else if (message.getMsgType() == MsgTypeEnum.tip) {
+            return tipMsgViewHolder == null ? MsgViewHolderUnknown.class : tipMsgViewHolder;
         } else {
             Class<? extends MsgViewHolderBase> viewHolder = null;
             if (message.getAttachment() != null) {
@@ -49,10 +51,6 @@ public class MsgViewHolderFactory {
             }
             return viewHolder == null ? MsgViewHolderUnknown.class : viewHolder;
         }
-
-        /*else if (message.getMsgType() == MsgTypeEnum.tip) {
-            return tipMsgViewHolder == null ? MsgViewHolderUnknown.class : tipMsgViewHolder;
-        }*/
     }
 
     private static Class<? extends MsgAttachment> getSuperClass(Class<? extends MsgAttachment> derived) {
