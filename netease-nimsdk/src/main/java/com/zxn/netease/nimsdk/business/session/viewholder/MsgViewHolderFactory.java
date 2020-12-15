@@ -2,13 +2,9 @@ package com.zxn.netease.nimsdk.business.session.viewholder;
 
 import com.netease.nimlib.sdk.msg.attachment.AudioAttachment;
 import com.netease.nimlib.sdk.msg.attachment.ImageAttachment;
-import com.netease.nimlib.sdk.msg.attachment.LocationAttachment;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
-import com.netease.nimlib.sdk.msg.attachment.NotificationAttachment;
-import com.netease.nimlib.sdk.msg.attachment.VideoAttachment;
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
-import com.netease.nimlib.sdk.robot.model.RobotAttachment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,8 +36,6 @@ public class MsgViewHolderFactory {
     public static Class<? extends MsgViewHolderBase> getViewHolderByType(IMMessage message) {
         if (message.getMsgType() == MsgTypeEnum.text) {
             return MsgViewHolderText.class;
-        } else if (message.getMsgType() == MsgTypeEnum.tip) {
-            return tipMsgViewHolder == null ? MsgViewHolderUnknown.class : tipMsgViewHolder;
         } else {
             Class<? extends MsgViewHolderBase> viewHolder = null;
             if (message.getAttachment() != null) {
@@ -55,6 +49,10 @@ public class MsgViewHolderFactory {
             }
             return viewHolder == null ? MsgViewHolderUnknown.class : viewHolder;
         }
+
+        /*else if (message.getMsgType() == MsgTypeEnum.tip) {
+            return tipMsgViewHolder == null ? MsgViewHolderUnknown.class : tipMsgViewHolder;
+        }*/
     }
 
     private static Class<? extends MsgAttachment> getSuperClass(Class<? extends MsgAttachment> derived) {
