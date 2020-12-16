@@ -120,7 +120,7 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
                 })
                 add(object : TakePictureAction() {
                     override fun onClick() {
-                        if (mCpValue < 100) {
+                        if (mCpValue < 0) {
                             UIUtils.toast("mCpValue( $mCpValue )")
                             return
                         }
@@ -286,42 +286,3 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
     }
 
 }
-
-
-/*private var mCustomization: SessionCustomization = SessionCustomization().apply {
-
-        this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
-
-        this.headerLayoutId = R.layout.msg_notice_header
-
-        this.actions = ArrayList<BaseAction>().apply {
-            add(SelectImageAction())
-            add(TakePictureAction())
-        }
-
-        this.bottomButtonList = java.util.ArrayList<SessionCustomization.InputButton>().apply {
-            add(object :
-                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_gift_selector) {
-
-                override var buttonType: Int = 2
-
-                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
-                    Log.i("TAG", "sessionId: $sessionId")
-                    //点击礼物发送
-                    showToast("点击礼物发送弹窗")
-                }
-            })
-            add(object :
-                SessionCustomization.InputButton(R.drawable.nim_message_button_bottom_emoji_selector) {
-
-                override var buttonType: Int = 1
-
-                override fun onClick(view: View?, inputPanel: InputPanel, sessionId: String?) {
-                    Log.i("TAG", "sessionId: $sessionId")
-                    //点击表情包
-                    inputPanel.toggleEmojiLayout()
-                }
-            })
-        }
-
-}*/

@@ -16,7 +16,7 @@ import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.alibaba.fastjson.JSONObject
-import com.hjq.permissions.OnPermission
+import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.netease.nimlib.sdk.NIMClient
@@ -462,8 +462,9 @@ open class InputPanel @JvmOverloads constructor(
         XXPermissions.with(context)
             .permission(Permission.RECORD_AUDIO)
             .permission(*Permission.Group.STORAGE)
-            .request(object : OnPermission {
-                override fun hasPermission(granted: List<String>, all: Boolean) {
+            .request(object : OnPermissionCallback {
+
+                override fun onGranted(permissions: MutableList<String>?, all: Boolean) {
                     if (all) {
                         toast("获取录音权限成功")
                     } else {
@@ -471,11 +472,11 @@ open class InputPanel @JvmOverloads constructor(
                     }
                 }
 
-                override fun noPermission(denied: List<String>, never: Boolean) {
+                override fun onDenied(permissions: MutableList<String>?, never: Boolean) {
                     if (never) {
                         toast("被拒绝授权，请手动授予录音")
                         // 如果是被永久拒绝就跳转到应用权限系统设置页面
-                        XXPermissions.startPermissionActivity(context, denied)
+                        XXPermissions.startPermissionActivity(context, permissions)
                     } else {
                         toast("获取录音权限失败")
                     }
