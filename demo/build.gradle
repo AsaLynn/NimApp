@@ -29,15 +29,17 @@ android {
     }
 
     signingConfigs {
-        debug {
-            //storeFile file("debug.keystore")
-        }
-
         release {
-            /*storeFile file('release.keystore')
-            storePassword 'thisiskeystorepassword'
-            keyAlias 'nim_demo'
-            keyPassword 'thisiskeypassword'*/
+            storeFile file('yinyu.jks')
+            storePassword "zhuli888888"
+            keyAlias "yinyu.keystore"
+            keyPassword "zhuli888888"
+        }
+        debug {
+            storeFile file('yinyu.jks')
+            storePassword "zhuli888888"
+            keyAlias "yinyu.keystore"
+            keyPassword "zhuli888888"
         }
     }
 
@@ -95,8 +97,6 @@ android {
         sourceCompatibility rootProject.ext.appSourceCompatibility
         targetCompatibility rootProject.ext.appTargetCompatibility
     }
-
-
 
 }
 
