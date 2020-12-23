@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.netease.nim.demo.R
+import com.netease.nim.demo.session.action.AVChatAction
 import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nim.demo.session.action.SelectImageAction
 import com.netease.nim.demo.session.action.TakePictureAction
@@ -128,6 +129,7 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
                     }
                 })
                 add(GuessAction())
+                add(AVChatAction())
             }
         }
 

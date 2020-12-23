@@ -62,10 +62,11 @@ dependencies {
     api 'com.zxn.popup:easy-popup:1.0.7'
     // 基础功能 (必需)
     api 'com.netease.nimlib:basesdk:8.1.2'
-//    api 'com.netease.nimlib:basesdk:8.0.0'
-//    api 'com.netease.nimlib:basesdk:8.0.1'
     api 'com.zxn.mvvm:jetpackmvvm:1.0.9'
     api 'net.zetetic:android-database-sqlcipher:3.5.9'
+//    api 'com.netease.nimlib:avchat:8.1.2'
+//    api 'com.netease.nimlib:nrtc:8.1.2'
+    api project(path: ':avchatkit')
 }
 
 def siteUrl = 'https://github.com/zhang721688/NimApp'

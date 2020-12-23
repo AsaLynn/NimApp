@@ -8,21 +8,31 @@ import android.text.TextUtils
 import android.webkit.WebView
 import androidx.multidex.MultiDex
 import com.heytap.msp.push.HeytapPushManager
+import com.netease.nim.avchatkit.AVChatKit
+import com.netease.nim.avchatkit.ActivityMgr
+import com.netease.nim.avchatkit.config.AVChatOptions
+import com.netease.nim.avchatkit.model.ITeamDataProvider
+import com.netease.nim.avchatkit.model.IUserInfoProvider
 import com.netease.nim.demo.DemoCache.setAccount
 import com.netease.nim.demo.DemoCache.setContext
+import com.netease.nim.demo.common.util.LogHelper
 import com.netease.nim.demo.common.util.crash.AppCrashHandler
 import com.netease.nim.demo.config.preference.Preferences
 import com.netease.nim.demo.config.preference.UserPreferences
 import com.netease.nim.demo.contact.ContactHelper
 import com.netease.nim.demo.event.DemoOnlineStateContentProvider
+import com.netease.nim.demo.main.activity.MainActivity.Companion.logout
+import com.netease.nim.demo.main.activity.WelcomeActivity
 import com.netease.nim.demo.mixpush.DemoPushContentProvider
 import com.netease.nim.demo.session.SessionHelper
 import com.netease.nimlib.sdk.NIMClient
 import com.netease.nimlib.sdk.auth.LoginInfo
+import com.netease.nimlib.sdk.uinfo.model.UserInfo
 import com.netease.nimlib.sdk.util.NIMUtil
 import com.zxn.netease.nimsdk.api.NimUIKit
 import com.zxn.netease.nimsdk.api.UIKitOptions
 import com.zxn.netease.nimsdk.business.contact.core.query.PinYin
+import com.zxn.netease.nimsdk.business.uinfo.UserInfoHelper
 import com.zxn.utils.UIUtils
 
 class NimApplication : Application() {
@@ -74,12 +84,16 @@ class NimApplication : Application() {
 //            NIMClient.toggleRevokeMessageNotification(false);
             // 云信sdk相关业务初始化
             NIMInitManager.instance.init(true)
+
+            // 初始化音视频模块
+            initAVChatKit()
         }
         //初始化融合 SDK 中的七鱼业务关业务
         initMixSdk()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             WebView.setDataDirectorySuffix(Process.myPid().toString() + "")
         }
+
     }
 
     private fun initMixSdk() {
@@ -150,5 +164,40 @@ class NimApplication : Application() {
         options.messageLeftBackground = R.drawable.nim_message_item_left_selector
         options.messageRightBackground = R.drawable.nim_message_item_right_selector
         return options
+    }
+
+    private fun initAVChatKit() {
+        val avChatOptions: AVChatOptions = object : AVChatOptions() {
+            override fun logout(context: Context) {
+                logout(context, true)
+            }
+        }
+        avChatOptions.entranceActivity = WelcomeActivity::class.java
+        avChatOptions.notificationIconRes = R.drawable.ic_stat_notify_msg
+        ActivityMgr.INST.init(this)
+        AVChatKit.init(avChatOptions)
+
+        // 初始化日志系统
+        LogHelper.init()
+        // 设置用户相关资料提供者
+        AVChatKit.setUserInfoProvider(object : IUserInfoProvider() {
+            override fun getUserInfo(account: String): UserInfo {
+                return NimUIKit.getUserInfoProvider().getUserInfo(account)!!
+            }
+
+            override fun getUserDisplayName(account: String): String {
+                return UserInfoHelper.getUserDisplayName(account)
+            }
+        })
+        /*// 设置群组数据提供者
+        AVChatKit.setTeamDataProvider(object : ITeamDataProvider() {
+            override fun getDisplayNameWithoutMe(teamId: String, account: String): String {
+                return TeamHelper.getDisplayNameWithoutMe(teamId, account)
+            }
+
+            override fun getTeamMemberDisplayName(teamId: String, account: String): String {
+                return TeamHelper.getTeamMemberDisplayName(teamId, account)
+            }
+        })*/
     }
 }

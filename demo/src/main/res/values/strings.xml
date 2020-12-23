@@ -273,5 +273,10 @@
     <string name="text_chat_notice">温馨提示：禁止出现商业广告、微信、QQ以及色情、暴力和具有 侮辱性的内容，文明聊天谨防诈骗，违规封号处理</string>
     <string name="file_transfer_state_downloaded">file_transfer_state_downloaded</string>
     <string name="file_transfer_state_undownload">file_transfer_state_undownload</string>
+    <string name="avchat_no_pick_up">未接听</string>
+    <string name="avchat_has_hangup">已挂断</string>
+    <string name="avchat_has_reject">已拒绝</string>
+    <string name="avchat_be_rejected">被拒绝</string>
+    <string name="avchat_cancel">已取消</string>
 
 </resources>

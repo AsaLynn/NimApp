@@ -6,9 +6,12 @@ import com.netease.nim.demo.DemoCache.getAccount
 import com.netease.nim.demo.R
 import com.netease.nim.demo.contact.activity.UserProfileActivity
 import com.netease.nim.demo.session.action.GuessAction
+import com.netease.nim.demo.session.action.SelectImageAction
+import com.netease.nim.demo.session.action.TakePictureAction
 import com.netease.nim.demo.session.extension.*
 import com.netease.nim.demo.session.viewholder.*
 import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.avchat.model.AVChatAttachment
 import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.MsgServiceObserve
 import com.netease.nimlib.sdk.msg.attachment.FileAttachment
@@ -24,8 +27,6 @@ import com.zxn.netease.nimsdk.api.model.session.SessionCustomization.OptionsButt
 import com.zxn.netease.nimsdk.api.model.session.SessionEventListener
 import com.zxn.netease.nimsdk.api.wrapper.NimMessageRevokeObserver
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
-import com.netease.nim.demo.session.action.SelectImageAction
-import com.netease.nim.demo.session.action.TakePictureAction
 import com.zxn.netease.nimsdk.business.session.module.MsgRevokeFilter
 import com.zxn.netease.nimsdk.business.session.viewholder.MsgViewHolderUnknown
 import com.zxn.netease.nimsdk.impl.customization.DefaultRecentCustomization
@@ -164,6 +165,10 @@ object SessionHelper {
      * 注册各种扩展消息类型的显示ViewHolder
      */
     private fun registerViewHolders() {
+        NimUIKit.registerMsgItemViewHolder(
+            AVChatAttachment::class.java,
+            MsgViewHolderAVChat::class.java
+        )
         NimUIKit.registerMsgItemViewHolder(
             FileAttachment::class.java,
             MsgViewHolderFile::class.java
