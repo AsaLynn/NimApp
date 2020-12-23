@@ -3,6 +3,7 @@ package com.netease.nim.demo.session;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import com.netease.nim.avchatkit.TeamAVChatProfile;
@@ -12,9 +13,11 @@ import com.netease.nim.demo.contact.activity.RobotProfileActivity;
 import com.netease.nim.demo.contact.activity.UserProfileActivity;
 import com.netease.nim.demo.main.helper.MessageHelper;
 import com.netease.nim.demo.redpacket.NIMRedPacketClient;
+import com.netease.nim.demo.session.action.AVChatAction;
 import com.netease.nim.demo.session.action.AckMessageAction;
 import com.netease.nim.demo.session.action.FileAction;
 import com.netease.nim.demo.session.action.GuessAction;
+import com.netease.nim.demo.session.action.RTSAction;
 import com.netease.nim.demo.session.action.RedPacketAction;
 import com.netease.nim.demo.session.action.SnapChatAction;
 import com.netease.nim.demo.session.action.TeamAVChatAction;
@@ -208,18 +211,18 @@ public class SessionHelper {
             //            p2pCustomization.backgroundUri = "android.resource://com.netease.nim.demo/drawable/bk"
             // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
             ArrayList<BaseAction> actions = new ArrayList<>();
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//                actions.add(new AVChatAction(AVChatType.AUDIO));
-//                actions.add(new AVChatAction(AVChatType.VIDEO));
-//            }
-//            actions.add(new RTSAction());
-//            actions.add(new SnapChatAction());
-//            actions.add(new GuessAction());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                actions.add(new AVChatAction(AVChatType.AUDIO));
+                actions.add(new AVChatAction(AVChatType.VIDEO));
+            }
+            actions.add(new RTSAction());
+            actions.add(new SnapChatAction());
+            actions.add(new GuessAction());
 //            actions.add(new FileAction());
-//            actions.add(new TipAction());
-//            if (NIMRedPacketClient.isEnable()) {
-//                actions.add(new RedPacketAction());
-//            }
+            actions.add(new TipAction());
+            if (NIMRedPacketClient.isEnable()) {
+                actions.add(new RedPacketAction());
+            }
             actions.add(new SelectImageAction());
             actions.add(new TakePictureAction());
             p2pCustomization.actions = actions;
