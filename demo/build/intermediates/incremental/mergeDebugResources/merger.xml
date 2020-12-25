@@ -5884,182 +5884,7 @@
   </style><style name="Widget.MaterialComponents.PopupMenu.ListPopupWindow" parent="Base.Widget.MaterialComponents.PopupMenu.ListPopupWindow">
     <item name="android:popupBackground">?attr/popupMenuBackground</item>
     <item name="android:popupElevation">8dp</item>
-  </style></file><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\63cdbf81b9a58cb760cd13249c445b7d\material-1.2.1\res\values-v28\values-v28.xml" qualifiers="v28"><item format="float" name="mtrl_high_ripple_default_alpha" type="dimen">0.24</item><item format="float" name="mtrl_high_ripple_focused_alpha" type="dimen">0.40</item><item format="float" name="mtrl_high_ripple_hovered_alpha" type="dimen">0.40</item><item format="float" name="mtrl_high_ripple_pressed_alpha" type="dimen">0.24</item><item format="float" name="mtrl_low_ripple_default_alpha" type="dimen">0.12</item><item format="float" name="mtrl_low_ripple_focused_alpha" type="dimen">0.20</item><item format="float" name="mtrl_low_ripple_hovered_alpha" type="dimen">0.20</item><item format="float" name="mtrl_low_ripple_pressed_alpha" type="dimen">0.12</item></file><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\63cdbf81b9a58cb760cd13249c445b7d\material-1.2.1\res\values-w360dp-port-v13\values-w360dp-port-v13.xml" qualifiers="w360dp-port-v13"><dimen name="mtrl_calendar_bottom_padding">4dp</dimen><dimen name="mtrl_calendar_day_corner">18dp</dimen><dimen name="mtrl_calendar_day_height">40dp</dimen><dimen name="mtrl_calendar_day_horizontal_padding">2dp</dimen><dimen name="mtrl_calendar_day_vertical_padding">2dp</dimen><dimen name="mtrl_calendar_day_width">40dp</dimen><dimen name="mtrl_calendar_days_of_week_height">40dp</dimen><dimen name="mtrl_calendar_month_horizontal_padding">4dp</dimen></file><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\63cdbf81b9a58cb760cd13249c445b7d\material-1.2.1\res\values-w480dp-port-v13\values-w480dp-port-v13.xml" qualifiers="w480dp-port-v13"><dimen name="mtrl_calendar_bottom_padding">0dp</dimen><dimen name="mtrl_calendar_day_corner">22dp</dimen><dimen name="mtrl_calendar_day_height">48dp</dimen><dimen name="mtrl_calendar_day_horizontal_padding">2dp</dimen><dimen name="mtrl_calendar_day_vertical_padding">2dp</dimen><dimen name="mtrl_calendar_day_width">48dp</dimen><dimen name="mtrl_calendar_days_of_week_height">48dp</dimen><dimen name="mtrl_calendar_month_horizontal_padding">0dp</dimen></file></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config=":faceunity$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\GitHub\repositories\nimsdk_p2p\NimApp\faceunity\build\intermediates\packaged_res\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config=":faceunity" from-dependency="true" generated-set=":faceunity$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\GitHub\repositories\nimsdk_p2p\NimApp\faceunity\build\intermediates\packaged_res\debug"><file path="D:\GitHub\repositories\nimsdk_p2p\NimApp\faceunity\build\intermediates\packaged_res\debug\values\values.xml" qualifiers=""><color name="almondColor">#c48e48</color><color name="antiqueWhiteColor">#faebd7</color><color name="babyBlueColor">#bedce6</color><color name="bananaColor">#e5e33a</color><color name="beigeColor">#f5f5dc</color><color name="black">#000000</color><color name="black25PercentColor">#404040</color><color name="black50PercentColor">#808080</color><color name="black75PercentColor">#c0c0c0</color><color name="blueberryColor">#5971ad</color><color name="brickRedColor">#971b10</color><color name="burntOrangeColor">#b86625</color><color name="burntSiennaColor">#8a360f</color><color name="buttermilkColor">#fef1b5</color><color name="c66000000">#66000000</color><color name="c80000000">#80000000</color><color name="cactusGreenColor">#636f57</color><color name="camera_line_gray">#4dffffff</color><color name="cantaloupeColor">#fa9a4f</color><color name="cardTableColor">#57796b</color><color name="carrotColor">#ed9121</color><color name="cb2000000">#b2000000</color><color name="charcoalColor">#222222</color><color name="chartreuseColor">#458b00</color><color name="chiliPowderColor">#c73f17</color><color name="chocolateColor">#5e2605</color><color name="cinnamonColor">#7b3f09</color><color name="coffeeColor">#8d3c0f</color><color name="colorAccent">#FF4081</color><color name="colorPrimary">#3F51B5</color><color name="colorPrimaryDark">#303F9F</color><color name="colorTranslucent">#00000000</color><color name="colorWhite">#ffffffff</color><color name="coolGrayColor">#767a85</color><color name="coolPurpleColor">#8c5de4</color><color name="coralColor">#f08080</color><color name="cornflowerColor">#6495ed</color><color name="creamColor">#f0e2bb</color><color name="crimsonColor">#bb1224</color><color name="dangerColor">#e5000f</color><color name="denimColor">#4372aa</color><color name="dsb_disabled_color">#66939393</color><color name="dsb_progress_color">#ff009688</color><color name="dsb_ripple_color_focused">#99999999</color><color name="dsb_ripple_color_pressed">#77939393</color><color name="dsb_track_color">#ff939393</color><color name="dustColor">#ecd6c5</color><color name="easterPinkColor">#f1a7a2</color><color name="eggplantColor">#690562</color><color name="eggshellColor">#fce6c9</color><color name="emeraldColor">#019875</color><color name="faceunityGreen">#2ddbb1</color><color name="faceunityYellow">#ffcb15</color><color name="fadedBlueColor">#17899b</color><color name="fuschiaColor">#ff1493</color><color name="ghostWhiteColor">#f8f8ff</color><color name="goldColor">#8b7512</color><color name="goldenrodColor">#d7aa33</color><color name="grapeColor">#360b58</color><color name="grapefruitColor">#e41f36</color><color name="grassColor">#63d64a</color><color name="hollyGreenColor">#20570e</color><color name="honeydewColor">#d8ffe7</color><color name="icebergColor">#c8d5db</color><color name="indianRedColor">#cd5c5c</color><color name="indigoColor">#0d4f8b</color><color name="infoBlueColor">#2f70e1</color><color name="ivoryColor">#fffff0</color><color name="lavenderColor">#cc99cc</color><color name="lightCreamColor">#f0eed7</color><color name="limeColor">#38ed38</color><color name="linenColor">#faf0e6</color><color name="mandarinColor">#f79137</color><color name="maroonColor">#50041c</color><color name="midnightBlueColor">#0d1a23</color><color name="moneyGreenColor">#86c67c</color><color name="mudColor">#462d1d</color><color name="mustardColor">#cdab2d</color><color name="oldLaceColor">#fdf5e6</color><color name="oliveColor">#5b7222</color><color name="oliveDrabColor">#6b8e23</color><color name="orchidColor">#da70d6</color><color name="paleGreenColor">#b0e2ac</color><color name="palePurpleColor">#e5b4eb</color><color name="paleRoseColor">#ffe4e1</color><color name="pastelBlueColor">#63a1f7</color><color name="pastelGreenColor">#7ef27c</color><color name="pastelOrangeColor">#f8c58f</color><color name="pastelPurpleColor">#cf64eb</color><color name="peachColor">#f2bb61</color><color name="percent15translucentBlack">#26000000</color><color name="percent30translucentBlack">#4D000000</color><color name="percent60translucentBlack">#99000000</color><color name="periwinkleColor">#879fed</color><color name="pinkColor">#ff5f9a</color><color name="pinkLipstickColor">#ff69b4</color><color name="plumColor">#8b668b</color><color name="raspberryColor">#872657</color><color name="robinEggColor">#8ddaf7</color><color name="salmonColor">#e9575f</color><color name="sandColor">#deb697</color><color name="seafoamColor">#4de28c</color><color name="seashellColor">#fff5ee</color><color name="siennaColor">#a0522d</color><color name="skyBlueColor">#00b2ee</color><color name="snowColor">#fffafa</color><color name="steelBlueColor">#6799aa</color><color name="strawberryColor">#be2625</color><color name="successColor">#53d76a</color><color name="tealColor">#1ca0aa</color><color name="tomatoColor">#ff6347</color><color name="turquoiseColor">#70dbdb</color><color name="unselect_gray">#48ffffff</color><color name="violetColor">#bf5fff</color><color name="warmGrayColor">#857570</color><color name="warningColor">#ddaa3b</color><color name="watermelonColor">#f2473f</color><color name="waveColor">#66a9fb</color><color name="wheatColor">#f0eed7</color><color name="white">#ffffff</color><color name="yellowGreenColor">#c0f227</color><dimen name="activity_horizontal_margin">16dp</dimen><dimen name="activity_vertical_margin">16dp</dimen><dimen name="big_space">11dp</dimen><dimen name="blur_circle_size">40dp</dimen><dimen name="max_space">10dp</dimen><dimen name="min_space">5dp</dimen><dimen name="nano_space">3dp</dimen><dimen name="normal_space">8dp</dimen><string name="app_name">faceunity</string><style name="AppTheme" parent="android:Theme.DeviceDefault.Light">
-        
-    </style><style name="FullScreenTheme" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-        
-    </style><style name="Widget.DiscreteIndicatorTextAppearance" parent="android:TextAppearance.Small">
-        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
-        <item name="android:padding">6dp</item>
-    </style><style name="Widget.DiscreteSeekBar" parent="android:Widget">
-        <item name="dsb_indicatorTextAppearance">@style/Widget.DiscreteIndicatorTextAppearance</item>
-        <item name="dsb_progressColor">@drawable/dsb_progress_color_list</item>
-        <item name="dsb_trackColor">@drawable/dsb_track_color_list</item>
-        <item name="dsb_rippleColor">@drawable/dsb_ripple_color_list</item>
-        <item name="dsb_indicatorColor">@color/dsb_progress_color</item>
-        <item name="dsb_indicatorElevation">4dp</item>
-        <item name="dsb_mirrorForRtl">true</item>
-    </style><declare-styleable name="DiscreteSeekBar">
-        <attr format="integer|dimension" name="dsb_min"/>
-        <attr format="integer|dimension" name="dsb_max"/>
-        <attr format="integer|dimension" name="dsb_value"/>
-        <attr format="boolean" name="dsb_mirrorForRtl"/>
-        <attr format="boolean" name="dsb_allowTrackClickToDrag"/>
-        <attr format="color|reference" name="dsb_progressColor"/>
-        <attr format="color|reference" name="dsb_trackColor"/>
-        <attr format="reference" name="dsb_indicatorTextAppearance"/>
-        <attr format="color|reference" name="dsb_indicatorColor"/>
-        <attr format="dimension" name="dsb_indicatorElevation"/>
-        <attr format="string|reference" name="dsb_indicatorFormatter"/>
-        <attr format="color|reference" name="dsb_rippleColor"/>
-        <attr format="boolean" name="dsb_indicatorPopupEnabled"/>
-        <attr format="integer|dimension" name="dsb_trackHeight"/>
-        <attr format="integer|dimension" name="dsb_scrubberHeight"/>
-        <attr format="integer|dimension" name="dsb_thumbSize"/>
-        <attr format="integer|dimension" name="dsb_indicatorSeparation"/>
-    </declare-styleable><declare-styleable name="Theme">
-        <attr format="reference" name="discreteSeekBarStyle"/>
-    </declare-styleable></file><file path="D:\GitHub\repositories\nimsdk_p2p\NimApp\faceunity\build\intermediates\packaged_res\debug\values-w820dp-v13\values-w820dp-v13.xml" qualifiers="w820dp-v13"><dimen name="activity_horizontal_margin">64dp</dimen></file></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config=":avchatkit$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\GitHub\repositories\nimsdk_p2p\NimApp\avchatkit\build\intermediates\packaged_res\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config=":avchatkit" from-dependency="true" generated-set=":avchatkit$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\GitHub\repositories\nimsdk_p2p\NimApp\avchatkit\build\intermediates\packaged_res\debug"><file path="D:\GitHub\repositories\nimsdk_p2p\NimApp\avchatkit\build\intermediates\packaged_res\debug\values\values.xml" qualifiers=""><string-array name="nrtc_setting_other_device_rotation_entries">
-        <item>0</item>
-        <item>90</item>
-        <item>180</item>
-        <item>270</item>
-    </string-array><string-array name="nrtc_setting_other_device_rotation_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array><string-array name="nrtc_setting_vie_crop_ratio_entries">
-        <item>原始比例</item>
-        <item>16:9</item>
-        <item>4:3</item>
-        <item>3:2</item>
-        <item>1:1</item>
-    </string-array><string-array name="nrtc_setting_vie_crop_ratio_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array><string-array name="nrtc_setting_vie_hw_decoder_entries">
-        <item>自动</item>
-        <item>禁用</item>
-        <item>强制</item>
-    </string-array><string-array name="nrtc_setting_vie_hw_decoder_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array><string-array name="nrtc_setting_vie_hw_encoder_entries">
-        <item>自动</item>
-        <item>禁用</item>
-        <item>强制</item>
-    </string-array><string-array name="nrtc_setting_vie_hw_encoder_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array><string-array name="nrtc_setting_vie_quality_entries">
-        <item>Default</item>
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
-        <item>480P</item>
-        <item>720P</item>
-    </string-array><string-array name="nrtc_setting_vie_quality_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-    </string-array><string-array name="nrtc_setting_voe_audio_effect_entries">
-        <item>Disable</item>
-        <item>SDK Built-In</item>
-        <item>Platform Built-In</item>
-    </string-array><string-array name="nrtc_setting_voe_audio_effect_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array><color name="black">#000000</color><color name="color_activity_blue_bg">#f7389fff</color><color name="color_b3b3b3">#b3b3b3</color><color name="color_black_333333">#333333</color><color name="color_blue_0888ff">#0888ff</color><color name="color_c2364b">#C2364B</color><color name="color_f2f7fc">#F2F7FC</color><color name="color_f5455e">#F5455E</color><color name="color_gray_alpha40">#66000000</color><color name="color_gray_d9d9d9">#d9d9d9</color><color name="color_grey_999999">#999999</color><color name="color_grey_d0d0d0">#d0d0d0</color><color name="color_red_f04c62">#f04c62</color><color name="split_line_grey_color_d9d9d9">#d9d9d9</color><color name="t_av_chat_setting_bar">#3C4149</color><color name="transparent">#00000000</color><color name="video_call_peer_close_cameral_text_color">#f1f1f1</color><color name="video_call_peer_close_cameral_text_shadow">#484848</color><color name="white">#ffffff</color><dimen name="action_bar_height">48dip</dimen><dimen name="avatar_max_size">60dip</dimen><dimen name="avatar_notification_size">48dip</dimen><dimen name="avatar_size_default">50dip</dimen><dimen name="avatar_size_in_contact">30dip</dimen><dimen name="avatar_size_in_profile">60dip</dimen><dimen name="avatar_size_in_session">40dip</dimen><dimen name="avatar_size_robot">40dip</dimen><dimen name="big_text_size">17sp</dimen><dimen name="bubble_margin_top">2dip</dimen><dimen name="bubble_padding_bottom">12dip</dimen><dimen name="bubble_padding_left">16dip</dimen><dimen name="bubble_padding_right">14dip</dimen><dimen name="bubble_padding_top">10dip</dimen><dimen name="custom_dialog_padding_vertical">15dip</dimen><dimen name="dark_line_size">3px</dimen><dimen name="dialog_padding_vertical">20dip</dimen><dimen name="dialog_text_margin_horizontal">15dip</dimen><dimen name="light_line_size">1px</dimen><dimen name="normal_text_size">16sp</dimen><dimen name="t_avchat_setting_margin">10dip</dimen><dimen name="thick_line_size">2px</dimen><dimen name="very_samll_text_size">9sp</dimen><string name="app_name">avchatkit</string><string name="avchat_audio_call_request">请求通话</string><string name="avchat_audio_call_wifi_unavailable_tip">当前非WiFi环境，每分钟将产生约0.5M的流量</string><string name="avchat_audio_to_video_invitation">对方邀请你开启视频聊天…</string><string name="avchat_audio_to_video_wait">正在等待对方开启摄像头…</string><string name="avchat_be_rejected">被拒绝</string><string name="avchat_call">网络通话</string><string name="avchat_call_failed">发起通话失败</string><string name="avchat_call_finish">通话结束</string><string name="avchat_call_reject">被对方拒绝</string><string name="avchat_cancel">已取消</string><string name="avchat_connecting">连接中…</string><string name="avchat_hangup">结束通话</string><string name="avchat_has_hangup">已挂断</string><string name="avchat_has_reject">已拒绝</string><string name="avchat_in_switch">请耐心等待！</string><string name="avchat_incoming_call">你有新的来电，请查看</string><string name="avchat_invalid_channel_id">对方已挂断</string><string name="avchat_local_call_busy">本地通话中，无法使用易信进行通话。</string><string name="avchat_local_close_camera">你关闭了摄像头</string><string name="avchat_local_protocol_low_version">版本过低，请升级后使用</string><string name="avchat_net_error_then_quit">网络异常，通话结束</string><string name="avchat_network_grade_0">网络通畅：</string><string name="avchat_network_grade_1">网络正常：</string><string name="avchat_network_grade_2">网络一般：</string><string name="avchat_network_grade_3">网络较差：</string><string name="avchat_network_unstable_notificaton">当前网络不稳定</string><string name="avchat_no_permission">暂无权限，请开通音视频服务</string><string name="avchat_no_pick_up">未接听</string><string name="avchat_no_pickup_call">未接听</string><string name="avchat_notification">正在与%1$s通话中，点击继续</string><string name="avchat_peer_busy">对方正在通话中，请稍后再拨。</string><string name="avchat_peer_close_camera">对方关闭了摄像头</string><string name="avchat_peer_protocol_low_version">对方版本过低，请提示对方升级</string><string name="avchat_pickup">接听</string><string name="avchat_receive">开启</string><string name="avchat_refuse">拒绝</string><string name="avchat_switch_to_audio">切换语音</string><string name="avchat_switch_to_video">切换视频</string><string name="avchat_switch_video_reject">对方不同意音频切换为视频！</string><string name="avchat_video_call_request">请求视频聊天…</string><string name="avchat_wait_recieve">等待对方接听…</string><string name="cancel">取消</string><string name="empty">""</string><string name="load_end">没有更多数据</string><string name="load_failed">加载失败，请点我重试</string><string name="loading">正在加载中...</string><string name="network_is_not_available">网络连接失败，请检查你的网络设置</string><string name="nrtc_setting_other">其它</string><string name="nrtc_setting_other_device_default_rotation">设备默认旋转角度(特殊设备使用)</string><string name="nrtc_setting_other_device_default_rotation_key">nrtc_setting_other_device_default_rotation_key</string><string name="nrtc_setting_other_device_rotation_fixed_offset">设备旋转角度修正偏移量(特殊设备使用)</string><string name="nrtc_setting_other_device_rotation_fixed_offset_key">nrtc_setting_other_device_rotation_fixed_offset_key</string><string name="nrtc_setting_other_server_record_audio">音频服务器录制</string><string name="nrtc_setting_other_server_record_audio_key">nrtc_setting_other_server_record_audio_key</string><string name="nrtc_setting_other_server_record_video">视频服务器录制</string><string name="nrtc_setting_other_server_record_video_key">nrtc_setting_other_server_record_video_key</string><string name="nrtc_setting_vie">视频通话</string><string name="nrtc_setting_vie_crop_ratio">画面裁剪比例</string><string name="nrtc_setting_vie_crop_ratio_key">nrtc_setting_vie_crop_ratio_key</string><string name="nrtc_setting_vie_default_front_camera">默认前置摄像头</string><string name="nrtc_setting_vie_default_front_camera_key">nrtc_setting_vie_default_front_camera_key</string><string name="nrtc_setting_vie_fps_reported">帧率汇报</string><string name="nrtc_setting_vie_fps_reported_key">nrtc_setting_vie_fps_reported_key</string><string name="nrtc_setting_vie_hw_decoder">硬件解码(仅部分设备支持)</string><string name="nrtc_setting_vie_hw_decoder_key">nrtc_setting_vie_hw_decoder_key</string><string name="nrtc_setting_vie_hw_encoder">硬件编码(仅部分设备支持)</string><string name="nrtc_setting_vie_hw_encoder_key">nrtc_setting_vie_hw_encoder_key</string><string name="nrtc_setting_vie_max_bitrate">码率(Kbps)</string><string name="nrtc_setting_vie_max_bitrate_key">nrtc_setting_vie_max_bitrate_key</string><string name="nrtc_setting_vie_quality">视频清晰度</string><string name="nrtc_setting_vie_quality_key">nrtc_setting_vie_quality_key</string><string name="nrtc_setting_vie_rotation">画面旋转</string><string name="nrtc_setting_vie_rotation_key">nrtc_setting_vie_rotation_key</string><string name="nrtc_setting_voe">语音通话</string><string name="nrtc_setting_voe_audio_aec">回音消除</string><string name="nrtc_setting_voe_audio_aec_key">nrtc_setting_voe_audio_aec_key</string><string name="nrtc_setting_voe_audio_ns">降噪</string><string name="nrtc_setting_voe_audio_ns_key">nrtc_setting_voe_audio_ns_key</string><string name="nrtc_setting_voe_call_proximity">通话期间关闭屏幕</string><string name="nrtc_setting_voe_call_proximity_key">nrtc_setting_voe_call_proximity_key</string><string name="nrtc_setting_voe_high_quality">高清语音</string><string name="nrtc_setting_voe_high_quality_key">nrtc_setting_voe_high_quality_key</string><string name="nrtc_settings">网络通话设置</string><string name="ok">确定</string><string name="online">正在直播</string><string name="save">保存</string><string name="t_avchat_create_room_fail">创建房间失败</string><string name="t_avchat_join_fail_not_exist">"加入房间失败，房间不存在"</string><string name="t_avchat_not_start_with_less_member">无法发起，人数少于2人</string><string name="t_avchat_push_content">"[网络通话]"</string><string name="t_avchat_start">发起了视频聊天</string><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/color_gray_d9d9d9</item>
-        <item name="colorAccent">@color/color_blue_0888ff</item>
-        <item name="actionBarSize">@dimen/action_bar_height</item>
-        <item name="android:textColorPrimary">@color/black</item>
-        <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
-    </style><style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:itemTextAppearance">?android:attr/actionMenuTextAppearance</item>
-    </style><style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style><style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        
-        <item name="colorPrimary">@color/color_black_333333</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/color_blue_0888ff</item>
-        <item name="actionBarSize">@dimen/action_bar_height</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style><style name="FullScreenTheme" parent="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-        
-    </style><style name="Toolbar.SubTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
-        <item name="android:textSize">10sp</item>
-    </style><style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">16sp</item>
-    </style><style name="custom_dialog_message_text_style">
-        <item name="android:textSize">@dimen/normal_text_size</item>
-        <item name="android:textColor">@color/color_black_333333</item>
-        <item name="android:paddingLeft">@dimen/dialog_text_margin_horizontal</item>
-        <item name="android:paddingRight">@dimen/dialog_text_margin_horizontal</item>
-        <item name="android:paddingTop">@dimen/custom_dialog_padding_vertical</item>
-        <item name="android:paddingBottom">@dimen/custom_dialog_padding_vertical</item>
-        <item name="android:background">@drawable/nim_list_item_selector</item>
-    </style><style name="dialog_button_text_style">
-        <item name="android:textSize">@dimen/big_text_size</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:background">@drawable/nim_list_item_selector</item>
-        <item name="android:paddingTop">@dimen/custom_dialog_padding_vertical</item>
-        <item name="android:paddingBottom">@dimen/custom_dialog_padding_vertical</item>
-    </style><style name="dialog_default_style" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@color/transparent</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
-    </style><style name="dialog_title_text_style">
-        <item name="android:textSize">@dimen/big_text_size</item>
-        <item name="android:textColor">@color/color_activity_blue_bg</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:paddingLeft">@dimen/dialog_text_margin_horizontal</item>
-        <item name="android:paddingRight">@dimen/dialog_text_margin_horizontal</item>
-        <item name="android:paddingTop">@dimen/dialog_padding_vertical</item>
-        <item name="android:paddingBottom">@dimen/dialog_padding_vertical</item>
-    </style><style name="easy_dialog_style" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        
-        <item name="android:windowIsFloating">true</item>
-        
-        <item name="android:windowIsTranslucent">true</item>
-        
-        <item name="android:windowNoTitle">true</item>
-        
-        <item name="android:windowBackground">@color/transparent</item>
-        
-        <item name="android:backgroundDimEnabled">true</item>
-        
-    </style><style name="myToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
-        <item name="android:minWidth">0dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingLeft">10dp</item>
-    </style><declare-styleable name="CircleImageView">
-        <attr format="dimension" name="civ_border_width"/>
-        <attr format="color" name="civ_border_color"/>
-        <attr format="boolean" name="civ_border_overlay"/>
-        <attr format="color" name="civ_fill_color"/>
-    </declare-styleable></file></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="com.google.android.gms:play-services-base:17.5.0$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="com.google.android.gms:play-services-base:17.5.0" from-dependency="true" generated-set="com.google.android.gms:play-services-base:17.5.0$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\res"><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\res\values\values.xml" qualifiers=""><color name="common_google_signin_btn_text_dark_default">@android:color/white</color><color name="common_google_signin_btn_text_dark_disabled">#1F000000</color><color name="common_google_signin_btn_text_dark_focused">@android:color/black</color><color name="common_google_signin_btn_text_dark_pressed">@android:color/white</color><color name="common_google_signin_btn_text_light_default">#90000000</color><color name="common_google_signin_btn_text_light_disabled">#1F000000</color><color name="common_google_signin_btn_text_light_focused">#90000000</color><color name="common_google_signin_btn_text_light_pressed">#DE000000</color><string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string><string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string><string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string><string msgid="7153882981874058840" name="common_google_play_services_install_button">Install</string><string name="common_google_play_services_install_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are missing from your device.</string><string msgid="7215213145546190223" name="common_google_play_services_install_title">Get Google Play services</string><string name="common_google_play_services_notification_channel_name">Google Play services availability</string><string name="common_google_play_services_notification_ticker">Google Play services error</string><string name="common_google_play_services_unsupported_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are not supported by your device.</string><string msgid="6556509956452265614" name="common_google_play_services_update_button">Update</string><string msgid="9053896323427875356" name="common_google_play_services_update_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run unless you update Google Play services.</string><string msgid="6006316683626838685" name="common_google_play_services_update_title">Update Google Play services</string><string name="common_google_play_services_updating_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are currently updating.</string><string name="common_google_play_services_wear_update_text">New version of Google Play services needed. It will update itself shortly.</string><string name="common_open_on_phone">Open on phone</string><string name="common_signin_button_text">Sign in</string><string name="common_signin_button_text_long">Sign in with Google</string><declare-styleable name="LoadingImageView"><attr name="imageAspectRatioAdjust">
+  </style></file><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\63cdbf81b9a58cb760cd13249c445b7d\material-1.2.1\res\values-v28\values-v28.xml" qualifiers="v28"><item format="float" name="mtrl_high_ripple_default_alpha" type="dimen">0.24</item><item format="float" name="mtrl_high_ripple_focused_alpha" type="dimen">0.40</item><item format="float" name="mtrl_high_ripple_hovered_alpha" type="dimen">0.40</item><item format="float" name="mtrl_high_ripple_pressed_alpha" type="dimen">0.24</item><item format="float" name="mtrl_low_ripple_default_alpha" type="dimen">0.12</item><item format="float" name="mtrl_low_ripple_focused_alpha" type="dimen">0.20</item><item format="float" name="mtrl_low_ripple_hovered_alpha" type="dimen">0.20</item><item format="float" name="mtrl_low_ripple_pressed_alpha" type="dimen">0.12</item></file><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\63cdbf81b9a58cb760cd13249c445b7d\material-1.2.1\res\values-w360dp-port-v13\values-w360dp-port-v13.xml" qualifiers="w360dp-port-v13"><dimen name="mtrl_calendar_bottom_padding">4dp</dimen><dimen name="mtrl_calendar_day_corner">18dp</dimen><dimen name="mtrl_calendar_day_height">40dp</dimen><dimen name="mtrl_calendar_day_horizontal_padding">2dp</dimen><dimen name="mtrl_calendar_day_vertical_padding">2dp</dimen><dimen name="mtrl_calendar_day_width">40dp</dimen><dimen name="mtrl_calendar_days_of_week_height">40dp</dimen><dimen name="mtrl_calendar_month_horizontal_padding">4dp</dimen></file><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\63cdbf81b9a58cb760cd13249c445b7d\material-1.2.1\res\values-w480dp-port-v13\values-w480dp-port-v13.xml" qualifiers="w480dp-port-v13"><dimen name="mtrl_calendar_bottom_padding">0dp</dimen><dimen name="mtrl_calendar_day_corner">22dp</dimen><dimen name="mtrl_calendar_day_height">48dp</dimen><dimen name="mtrl_calendar_day_horizontal_padding">2dp</dimen><dimen name="mtrl_calendar_day_vertical_padding">2dp</dimen><dimen name="mtrl_calendar_day_width">48dp</dimen><dimen name="mtrl_calendar_days_of_week_height">48dp</dimen><dimen name="mtrl_calendar_month_horizontal_padding">0dp</dimen></file></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="com.google.android.gms:play-services-base:17.5.0$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="com.google.android.gms:play-services-base:17.5.0" from-dependency="true" generated-set="com.google.android.gms:play-services-base:17.5.0$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\res"><file path="C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\res\values\values.xml" qualifiers=""><color name="common_google_signin_btn_text_dark_default">@android:color/white</color><color name="common_google_signin_btn_text_dark_disabled">#1F000000</color><color name="common_google_signin_btn_text_dark_focused">@android:color/black</color><color name="common_google_signin_btn_text_dark_pressed">@android:color/white</color><color name="common_google_signin_btn_text_light_default">#90000000</color><color name="common_google_signin_btn_text_light_disabled">#1F000000</color><color name="common_google_signin_btn_text_light_focused">#90000000</color><color name="common_google_signin_btn_text_light_pressed">#DE000000</color><string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string><string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string><string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string><string msgid="7153882981874058840" name="common_google_play_services_install_button">Install</string><string name="common_google_play_services_install_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are missing from your device.</string><string msgid="7215213145546190223" name="common_google_play_services_install_title">Get Google Play services</string><string name="common_google_play_services_notification_channel_name">Google Play services availability</string><string name="common_google_play_services_notification_ticker">Google Play services error</string><string name="common_google_play_services_unsupported_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are not supported by your device.</string><string msgid="6556509956452265614" name="common_google_play_services_update_button">Update</string><string msgid="9053896323427875356" name="common_google_play_services_update_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run unless you update Google Play services.</string><string msgid="6006316683626838685" name="common_google_play_services_update_title">Update Google Play services</string><string name="common_google_play_services_updating_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are currently updating.</string><string name="common_google_play_services_wear_update_text">New version of Google Play services needed. It will update itself shortly.</string><string name="common_open_on_phone">Open on phone</string><string name="common_signin_button_text">Sign in</string><string name="common_signin_button_text_long">Sign in with Google</string><declare-styleable name="LoadingImageView"><attr name="imageAspectRatioAdjust">
 <enum name="none" value="0"/>
 
 <enum name="adjust_width" value="1"/>
@@ -7038,25 +6863,7 @@
     <attr name="title"/>
     
     <attr format="integer" name="maxLines"/>
-  </declare-styleable><declare-styleable name="DiscreteSeekBar">
-        <attr format="integer|dimension" name="dsb_min"/>
-        <attr format="integer|dimension" name="dsb_max"/>
-        <attr format="integer|dimension" name="dsb_value"/>
-        <attr format="boolean" name="dsb_mirrorForRtl"/>
-        <attr format="boolean" name="dsb_allowTrackClickToDrag"/>
-        <attr format="color|reference" name="dsb_progressColor"/>
-        <attr format="color|reference" name="dsb_trackColor"/>
-        <attr format="reference" name="dsb_indicatorTextAppearance"/>
-        <attr format="color|reference" name="dsb_indicatorColor"/>
-        <attr format="dimension" name="dsb_indicatorElevation"/>
-        <attr format="string|reference" name="dsb_indicatorFormatter"/>
-        <attr format="color|reference" name="dsb_rippleColor"/>
-        <attr format="boolean" name="dsb_indicatorPopupEnabled"/>
-        <attr format="integer|dimension" name="dsb_trackHeight"/>
-        <attr format="integer|dimension" name="dsb_scrubberHeight"/>
-        <attr format="integer|dimension" name="dsb_thumbSize"/>
-        <attr format="integer|dimension" name="dsb_indicatorSeparation"/>
-    </declare-styleable><declare-styleable name="MenuView">
+  </declare-styleable><declare-styleable name="MenuView">
         
         <attr name="android:itemTextAppearance"/>
         
@@ -7735,8 +7542,6 @@
         <attr format="color|reference" name="right_ball_color"/>
         <attr format="float|reference" name="animation_speed"/>
         <attr format="boolean|reference" name="need_animation"/>
-    </declare-styleable><declare-styleable name="Theme">
-        <attr format="reference" name="discreteSeekBarStyle"/>
     </declare-styleable><declare-styleable name="PropertySet"><attr name="android:visibility"/><attr name="visibilityMode"/><attr format="float" name="android:alpha"/><attr name="motionProgress"/><attr name="layout_constraintTag"/></declare-styleable><declare-styleable name="ShapeAppearance">
     
     <attr format="dimension|fraction" name="cornerSize"/>
@@ -8019,7 +7824,12 @@
     </declare-styleable><declare-styleable name="SwipeRefreshLayout">
         
         <attr format="color" name="swipeRefreshLayoutProgressSpinnerBackgroundColor"/>
-    </declare-styleable><declare-styleable name="KeyTimeCycle"><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="curveFit"/><attr name="waveShape"/><attr name="wavePeriod"/><attr name="motionProgress"/><attr name="waveOffset"/><attr name="waveDecay"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="transitionPathRotate"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable><declare-styleable name="CircleImageView"><attr format="dimension" name="civ_border_width"/><attr format="color" name="civ_border_color"/><attr format="boolean" name="civ_border_overlay"/><attr format="color" name="civ_fill_color"/></declare-styleable><declare-styleable name="ScrollingViewBehavior_Layout">
+    </declare-styleable><declare-styleable name="KeyTimeCycle"><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="curveFit"/><attr name="waveShape"/><attr name="wavePeriod"/><attr name="motionProgress"/><attr name="waveOffset"/><attr name="waveDecay"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="transitionPathRotate"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable><declare-styleable name="CircleImageView">
+        <attr format="dimension" name="civ_border_width"/>
+        <attr format="color" name="civ_border_color"/>
+        <attr format="boolean" name="civ_border_overlay"/>
+        <attr format="color" name="civ_fill_color"/>
+    </declare-styleable><declare-styleable name="ScrollingViewBehavior_Layout">
     
     <attr format="dimension" name="behavior_overlapTop"/>
   </declare-styleable><declare-styleable name="LoadingImageView"><attr name="imageAspectRatioAdjust">

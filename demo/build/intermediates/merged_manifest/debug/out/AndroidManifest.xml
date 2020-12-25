@@ -104,7 +104,9 @@
             android:value="09fd4efd3e28e9bf1f449ecec7d34bfe" />
         <meta-data
             android:name="com.netease.nim.appKey"
-            android:value="45c6af3c98409b18a84451215d0bdd6e" /> <!-- 45c6af3c98409b18a84451215d0bdd6e -->
+            android:value="40b5f5ff9dc3e53d5568bfd5531ba085" />
+        <!-- 45c6af3c98409b18a84451215d0bdd6e -->
+        <!-- 40b5f5ff9dc3e53d5568bfd5531ba085 -->
         <!-- 40b5f5ff9dc3e53d5568bfd5531ba085 -->
         <uses-library
             android:name="com.google.android.maps"
@@ -530,27 +532,6 @@
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name="com.netease.nim.avchatkit.activity.AVChatActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreenTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- 音视频 -->
-        <activity
-            android:name="com.netease.nim.avchatkit.teamavchat.activity.TeamAVChatActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreenTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- NRTC Settings -->
-        <activity
-            android:name="com.netease.nim.avchatkit.activity.AVChatSettingsActivity"
-            android:screenOrientation="portrait" /> <!-- 申明本地电话状态（通话状态）的广播接收器，第三方APP集成时音视频模块时，如果需要在App中处理网络通话与本地电话的交互请加上此接收器 -->
-        <!-- 在Demo的示例代码中是在Application进行了网络通话与本地电话的互斥处理 -->
-        <receiver android:name="com.netease.nim.avchatkit.receiver.IncomingCallReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>
-        </receiver>
 
         <meta-data
             android:name="com.google.android.gms.version"

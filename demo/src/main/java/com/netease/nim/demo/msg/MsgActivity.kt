@@ -15,12 +15,17 @@ import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nim.demo.session.action.SelectImageAction
 import com.netease.nim.demo.session.action.TakePictureAction
 import com.netease.nimlib.sdk.NIMClient
+import com.netease.nimlib.sdk.Observer
 import com.netease.nimlib.sdk.RequestCallback
+import com.netease.nimlib.sdk.avsignalling.SignallingServiceObserver
+import com.netease.nimlib.sdk.avsignalling.constant.SignallingEventType
+import com.netease.nimlib.sdk.avsignalling.event.ChannelCommonEvent
 import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
 import com.netease.nimlib.sdk.msg.model.IMMessage
 import com.zxn.mvvm.view.BaseActivity
+import com.zxn.netease.nimsdk.api.NimUIKit
 import com.zxn.netease.nimsdk.api.model.session.SessionCustomization
 import com.zxn.netease.nimsdk.business.session.actions.BaseAction
 import com.zxn.netease.nimsdk.business.session.buttons.ButtonType
@@ -36,10 +41,11 @@ import com.zxn.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_msg.*
 import java.text.DecimalFormat
 
+
 /**
- *自定义点对点单聊消息页面.
+ *自定义点对点单聊消息页面:MsgViewModel
  */
-class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
+class MsgActivity : BaseActivity<MsgViewModel>(), RequestCallback<Void?> {
 
     companion object {
         private const val TAG = "MsgActivity"
@@ -49,11 +55,6 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
             this.backgroundColor = UIUtils.getColor(R.color.colorPrimary)
 
             this.headerLayoutId = R.layout.msg_notice_header
-
-            this.actions = ArrayList<BaseAction>().apply {
-                add(SelectImageAction())
-                add(TakePictureAction())
-            }
 
             bottomButtonList =
                 ArrayList<InputButton>().apply {
@@ -162,6 +163,8 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
 
     private lateinit var mMessageFragment: MessageFragment
 
+    var mAccount: String? = null
+
     override fun onInitView() {
 
         mCpValue = 90
@@ -169,6 +172,7 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
         onInitTitle()
 
         onJumpTo(intent) { account, customization ->
+            mAccount = account
             titleView.titleText = UserInfoHelper.getUserTitleName(account, SessionTypeEnum.P2P)
             mMessageFragment = MessageFragment.newInstance(
                 account,
@@ -211,6 +215,8 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
 
 
         mMessageFragment.sendCallback = this
+
+        observeOnlineNotification()
     }
 
 
@@ -287,4 +293,49 @@ class MsgActivity : BaseActivity<Nothing>(), RequestCallback<Void?> {
         Log.i(TAG, "onException: ${exception?.message}")
     }
 
+    fun create() {
+        mViewModel.create(mContext, "${mAccount}vs${NimUIKit.getAccount()}")
+    }
+
+    fun call() {
+        mViewModel.call(mContext, mAccount)
+    }
+
+    private fun observeOnlineNotification() {
+        NIMClient.getService(SignallingServiceObserver::class.java)
+            .observeOnlineNotification({ event ->
+                event?.let {
+                    Log.i(TAG, "eventType: ${event.eventType}")
+                    Log.i(TAG, "fromAccountId: ${event.fromAccountId}")
+                    Log.i(TAG, "channelId: ${event.channelBaseInfo.channelId}")
+                    Log.i(TAG, "channelName: ${event.channelBaseInfo.channelName}")
+                    when (it.eventType) {
+                        SignallingEventType.CLOSE -> {
+                            Log.i(TAG, "onEvent: CLOSE")
+                        }
+                        SignallingEventType.JOIN -> {
+                            Log.i(TAG, "onEvent: JOIN")
+                        }
+                        SignallingEventType.INVITE -> {
+                            Log.i(TAG, "onEvent: INVITE")
+                        }
+                        SignallingEventType.CANCEL_INVITE -> {
+                            Log.i(TAG, "onEvent: CANCEL_INVITE")
+                        }
+                        SignallingEventType.REJECT -> {
+                            Log.i(TAG, "onEvent: REJECT")
+                        }
+                        SignallingEventType.LEAVE -> {
+                            Log.i(TAG, "onEvent: LEAVE")
+                        }
+                        SignallingEventType.CONTROL -> {
+                            Log.i(TAG, "onEvent: CONTROL")
+                        }
+                        else -> {
+                            Log.i(TAG, "onEvent: else")
+                        }
+                    }
+                }
+            }, true)
+    }
 }

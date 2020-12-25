@@ -42,12 +42,9 @@ public class NimHttpClient {
                     HttpClientWrapper.post(url, headers, jsonBody) : HttpClientWrapper.get(url, headers);
 
             // do callback on ui thread
-            uiHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (callback != null) {
-                        callback.onResponse(result.obj, result.code, result.e);
-                    }
+            uiHandler.post(() -> {
+                if (callback != null) {
+                    callback.onResponse(result.obj, result.code, result.e);
                 }
             });
         }

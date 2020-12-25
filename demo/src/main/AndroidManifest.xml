@@ -20,7 +20,9 @@
             android:value="${AMAP_KEY}" />
         <meta-data
             android:name="com.netease.nim.appKey"
-            android:value="45c6af3c98409b18a84451215d0bdd6e" /> <!-- 45c6af3c98409b18a84451215d0bdd6e -->
+            android:value="40b5f5ff9dc3e53d5568bfd5531ba085" />
+        <!-- 45c6af3c98409b18a84451215d0bdd6e -->
+        <!-- 40b5f5ff9dc3e53d5568bfd5531ba085 -->
         <!-- 40b5f5ff9dc3e53d5568bfd5531ba085 -->
         <uses-library
             android:name="com.google.android.maps"

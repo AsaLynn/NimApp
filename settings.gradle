@@ -1,10 +1,3 @@
-include ':faceunity'
-include ':avchatkit'
 include ':netease-nimsdk'
 include ':demo'
 rootProject.name = "NimApp"
-
-
-
-
-

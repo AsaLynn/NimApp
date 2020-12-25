@@ -11,7 +11,7 @@ import com.netease.nim.demo.session.action.TakePictureAction
 import com.netease.nim.demo.session.extension.*
 import com.netease.nim.demo.session.viewholder.*
 import com.netease.nimlib.sdk.NIMClient
-import com.netease.nimlib.sdk.avchat.model.AVChatAttachment
+//import com.netease.nimlib.sdk.avchat.model.AVChatAttachment
 import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.MsgServiceObserve
 import com.netease.nimlib.sdk.msg.attachment.FileAttachment
@@ -165,10 +165,10 @@ object SessionHelper {
      * 注册各种扩展消息类型的显示ViewHolder
      */
     private fun registerViewHolders() {
-        NimUIKit.registerMsgItemViewHolder(
+        /*NimUIKit.registerMsgItemViewHolder(
             AVChatAttachment::class.java,
             MsgViewHolderAVChat::class.java
-        )
+        )*/
         NimUIKit.registerMsgItemViewHolder(
             FileAttachment::class.java,
             MsgViewHolderFile::class.java
