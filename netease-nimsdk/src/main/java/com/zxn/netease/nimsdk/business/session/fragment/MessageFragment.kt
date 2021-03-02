@@ -41,6 +41,11 @@ import java.io.Serializable
 open class MessageFragment : TFragment(), ModuleProxy {
 
     /**
+     * 发送按钮的点击后的回调
+     */
+    var sendClickListener: ((String) -> Boolean)? = null
+
+    /**
      * 发送结果回调
      */
     var sendCallback: RequestCallback<Void?>? = null
@@ -79,6 +84,9 @@ open class MessageFragment : TFragment(), ModuleProxy {
      * 输入模块
      */
     private var inputPanel: InputPanel? = null
+    /*private var inputPanel: InputPanel  by lazy {
+
+    }*/
 
     /**
      * 消息展示模块
@@ -192,6 +200,8 @@ open class MessageFragment : TFragment(), ModuleProxy {
 
             if (inputPanel == null) {
                 inputPanel = InputPanel(it, rootView, actionList, true, customization)
+                // TODO: 2021/3/2 校验输入框中的消息回调
+                inputPanel!!.sendClickListener = this.sendClickListener
             } else {
                 inputPanel?.reload(it, customization)
             }
@@ -412,6 +422,10 @@ open class MessageFragment : TFragment(), ModuleProxy {
 
 //        fun onFailed(code: Int)
     }
+
+    /*fun setOnInputContentSendListener(str: (String) -> Unit){
+        listener = str
+    }*/
 
     companion object {
 

@@ -60,6 +60,9 @@ open class InputPanel @JvmOverloads constructor(
     private var customization: SessionCustomization? = null
 ) : IEmoticonSelectedListener, IAudioRecordCallback, AitTextChangeListener {
 
+    // TODO: 2021/3/2 校验输入框中的消息回调
+    var sendClickListener: ((String) -> Boolean)? = null
+
     private var uiHandler: Handler
 
     private var actionPanelBottomLayout // 更多布局
@@ -502,12 +505,23 @@ open class InputPanel @JvmOverloads constructor(
         }
     }
 
+    /**
+     * 点击发送按钮对输入框文本进行校验,true代表检验通过可发送消息,false代表检验不通过进行消息拦截并处理.
+     * 默认值是true.
+     */
+    private var isCheckedPass = true
+
     // 发送文本消息
     private fun onTextMessageSendButtonPressed() {
         val text = messageEditText!!.text.toString()
-        val textMessage = createTextMessage(text)
-        if (container.proxy.sendMessage(textMessage)) {
-            restoreText(true)
+        sendClickListener?.let {
+            isCheckedPass = it.invoke(text)
+        }
+        if (isCheckedPass) {
+            val textMessage = createTextMessage(text)
+            if (container.proxy.sendMessage(textMessage)) {
+                restoreText(true)
+            }
         }
     }
 

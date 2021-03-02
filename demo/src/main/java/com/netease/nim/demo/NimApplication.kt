@@ -48,8 +48,9 @@ class NimApplication : Application() {
 
         // 4.6.0 开始，第三方推送配置入口改为 SDKOption#mixPushConfig，旧版配置方式依旧支持。
         val sdkOptions = NimSDKOptionConfig.getSDKOptions(this)
-        sdkOptions.appKey = "40b5f5ff9dc3e53d5568bfd5531ba085"
+//        sdkOptions.appKey = "40b5f5ff9dc3e53d5568bfd5531ba085"
 //        sdkOptions.appKey = "45c6af3c98409b18a84451215d0bdd6e"
+        sdkOptions.appKey = "c0e2d1ccb1a8d8653dce73a8b07597a5"
 
         NIMClient.init(this, loginInfo, sdkOptions)
 

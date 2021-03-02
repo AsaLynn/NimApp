@@ -15,11 +15,9 @@ import com.netease.nim.demo.session.action.GuessAction
 import com.netease.nim.demo.session.action.SelectImageAction
 import com.netease.nim.demo.session.action.TakePictureAction
 import com.netease.nimlib.sdk.NIMClient
-import com.netease.nimlib.sdk.Observer
 import com.netease.nimlib.sdk.RequestCallback
 import com.netease.nimlib.sdk.avsignalling.SignallingServiceObserver
 import com.netease.nimlib.sdk.avsignalling.constant.SignallingEventType
-import com.netease.nimlib.sdk.avsignalling.event.ChannelCommonEvent
 import com.netease.nimlib.sdk.msg.MsgService
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum
@@ -204,6 +202,15 @@ class MsgActivity : BaseActivity<MsgViewModel>(), RequestCallback<Void?> {
                         Log.i(TAG, "onException: ${exception?.message}")
                     }
                 }
+
+                this.sendClickListener = {
+                    var checkedPass = true
+                    if (it == "996") {
+                        showToast("消息非法,已拦截")
+                        checkedPass = false
+                    }
+                    checkedPass
+                }
             }
             supportFragmentManager.beginTransaction()
                 .add(
@@ -211,14 +218,10 @@ class MsgActivity : BaseActivity<MsgViewModel>(), RequestCallback<Void?> {
                 ).commitAllowingStateLoss()
         }
 
-
-
-
         mMessageFragment.sendCallback = this
 
         observeOnlineNotification()
     }
-
 
     override fun registerEventBus(isRegister: Boolean) {
 

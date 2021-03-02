@@ -406,9 +406,10 @@
 
         <provider
             android:name="com.netease.nimlib.ipc.NIMContentProvider"
-            android:authorities="com.zxn.netease.nimsdk.ipc.provider"
+            android:authorities="com.live.yinyu.nimsdk.ipc.provider"
             android:exported="false"
-            android:process=":core" /> <!-- 云信内部使用的进程间通信provider -->
+            android:process=":core" /> <!-- com.zxn.netease.nimsdk.ipc.provider -->
+        <!-- 云信内部使用的进程间通信provider -->
         <!--
         <provider
             android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"

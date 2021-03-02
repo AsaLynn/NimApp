@@ -12,8 +12,8 @@
 10-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml
 11
 12    <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE" /> <!-- 加入应用需要的权限 -->
-12-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:11:5-86
-12-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:11:22-83
+12-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:11:5-86
+12-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:11:22-83
 13    <!-- 网络相关 -->
 14    <uses-permission android:name="android.permission.INTERNET" />
 14-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-67
@@ -137,67 +137,67 @@
 62-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:89:5-85
 62-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:89:22-82
 63    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
-63-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\9fbe591251a68e02053a02865896df59\jetified-common-utils-1.4.7\AndroidManifest.xml:11:5-84
-63-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\9fbe591251a68e02053a02865896df59\jetified-common-utils-1.4.7\AndroidManifest.xml:11:22-81
+63-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\f6a709bf2edff9394435376b91305dcf\jetified-common-utils-1.4.7\AndroidManifest.xml:11:5-84
+63-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\f6a709bf2edff9394435376b91305dcf\jetified-common-utils-1.4.7\AndroidManifest.xml:11:22-81
 64    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- for android -->
-64-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\9fbe591251a68e02053a02865896df59\jetified-common-utils-1.4.7\AndroidManifest.xml:12:5-69
-64-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\9fbe591251a68e02053a02865896df59\jetified-common-utils-1.4.7\AndroidManifest.xml:12:22-66
+64-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\f6a709bf2edff9394435376b91305dcf\jetified-common-utils-1.4.7\AndroidManifest.xml:12:5-69
+64-->[com.zxn.utils:common-utils:1.4.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\f6a709bf2edff9394435376b91305dcf\jetified-common-utils-1.4.7\AndroidManifest.xml:12:22-66
 65    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
 66    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
 67    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
 68    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
 69    <!-- for Samsung -->
 70    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
-70-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
-70-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
+70-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
+70-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
 71    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
-71-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:5-87
-71-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:22-84
+71-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:5-87
+71-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:20:22-84
 72    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
-72-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:5-81
-72-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:22-78
+72-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:5-81
+72-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:23:22-78
 73    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
-73-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:5-83
-73-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:22-80
+73-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:5-83
+73-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:24:22-80
 74    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
-74-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:5-88
-74-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:22-85
+74-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:5-88
+74-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:27:22-85
 75    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
-75-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:5-92
-75-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:22-89
+75-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:5-92
+75-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:28:22-89
 76    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
-76-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:5-84
-76-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:22-81
+76-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:5-84
+76-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:31:22-81
 77    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
-77-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:5-83
-77-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:22-80
+77-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:5-83
+77-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:34:22-80
 78    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
-78-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:5-91
-78-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:22-88
+78-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:5-91
+78-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:37:22-88
 79    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
-79-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:5-92
-79-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:22-89
+79-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:5-92
+79-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:38:22-89
 80    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
-80-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:5-93
-80-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:22-90
+80-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:5-93
+80-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:39:22-90
 81    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
-81-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:5-73
-81-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:22-70
+81-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:5-73
+81-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:42:22-70
 82    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
-82-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:5-82
-82-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:22-79
+82-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:5-82
+82-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:45:22-79
 83    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
-83-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:5-83
-83-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:22-80
+83-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:5-83
+83-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:46:22-80
 84    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
-84-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:5-88
-84-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:22-85
+84-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:5-88
+84-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:49:22-85
 85    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
-85-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
-85-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\3facb0aac5ad59b213fc2a5e283f1c5e\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
+85-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
+85-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\21a821aa7e9dcd328d4d51408c3b3652\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
 86    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
-86-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:18:5-80
-86-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:18:22-77
+86-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:18:5-80
+86-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:18:22-77
 87
 88    <application
 88-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:7:5-291:19
@@ -206,14 +206,14 @@
 90        android:allowBackup="true"
 90-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:9:9-35
 91        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-91-->[androidx.core:core:1.5.0-alpha05] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\aedf8a35deb88a92cb897ff4617f07eb\core-1.5.0-alpha05\AndroidManifest.xml:24:18-86
+91-->[androidx.core:core:1.5.0-beta02] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\623302e887aeaa601c4c0c4fa738a65a\core-1.5.0-beta02\AndroidManifest.xml:24:18-86
 92        android:debuggable="true"
 93        android:icon="@drawable/ic_logo"
 93-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:10:9-41
 94        android:label="@string/app_name"
 94-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:11:9-41
 95        android:supportsRtl="true"
-95-->[com.netease.nimlib:jsbridge:1.3.1] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\f3043b7abf0ac1b8c7bde912ee093a0e\jetified-jsbridge-1.3.1\AndroidManifest.xml:14:9-35
+95-->[com.netease.nimlib:jsbridge:1.3.1] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\7d8c8222adcf6113291257f5d672eade\jetified-jsbridge-1.3.1\AndroidManifest.xml:14:9-35
 96        android:testOnly="true"
 97        android:theme="@style/AppTheme"
 97-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:12:9-40
@@ -730,32 +730,32 @@
 368-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:290:13-34
 369
 370        <service
-370-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:14:9-20:19
+370-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:14:9-20:19
 371            android:name="com.heytap.msp.push.service.CompatibleDataMessageCallbackService"
-371-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:15:13-92
+371-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:15:13-92
 372            android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE" >
-372-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:16:13-77
+372-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:16:13-77
 373            <intent-filter>
-373-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:17:13-19:29
+373-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:17:13-19:29
 374                <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE" />
-374-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:18:17-85
-374-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:18:25-82
+374-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:18:17-85
+374-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:18:25-82
 375            </intent-filter>
 376        </service>
 377        <service
-377-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:21:9-28:19
+377-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:21:9-28:19
 378            android:name="com.heytap.msp.push.service.DataMessageCallbackService"
-378-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:22:13-82
+378-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:22:13-82
 379            android:permission="com.heytap.mcs.permission.SEND_PUSH_MESSAGE" >
-379-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:23:13-77
+379-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:23:13-77
 380            <intent-filter>
-380-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:24:13-27:29
+380-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:24:13-27:29
 381                <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE" />
-381-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:25:17-84
-381-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:25:25-81
+381-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:25:17-84
+381-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:25:25-81
 382                <action android:name="com.heytap.msp.push.RECEIVE_MCS_MESSAGE" />
-382-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:26:17-82
-382-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\b6cf528591e747571ba1e1819f8ccb34\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:26:25-79
+382-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:26:17-82
+382-->[com.heytap.msp-push-2.1.0.aar] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\03304e21910fe6348ce60109917687ed\jetified-com.heytap.msp-push-2.1.0\AndroidManifest.xml:26:25-79
 383            </intent-filter>
 384        </service> <!-- 声明云信后台服务 -->
 385        <service
@@ -806,269 +806,270 @@
 407-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:122:9-126:39
 408            android:name="com.netease.nimlib.ipc.NIMContentProvider"
 408-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:123:13-69
-409            android:authorities="com.zxn.netease.nimsdk.ipc.provider"
-409-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:124:13-70
+409            android:authorities="com.live.yinyu.nimsdk.ipc.provider"
+409-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:124:13-69
 410            android:exported="false"
 410-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:125:13-37
-411            android:process=":core" /> <!-- 云信内部使用的进程间通信provider -->
+411            android:process=":core" /> <!-- com.zxn.netease.nimsdk.ipc.provider -->
 411-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:126:13-36
-412        <!--
-413        <provider
-414            android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
-415            android:authorities="com.netease.nim.demo.ipc.provider.preference"
-416            android:exported="false" />
-417        -->
-418        <activity android:name="com.zxn.netease.nimsdk.business.session.activity.WatchMultiRetweetPictureActivity" />
-418-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:136:9-118
-418-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:136:19-115
-419
-420        <meta-data
-420-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:138:9-140:43
-421            android:name="com.zxn.netease.nimsdk.support.glide.NIMGlideModule"
-421-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:139:13-79
-422            android:value="GlideModule" /> <!-- 会话窗口 -->
-422-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:140:13-40
-423        <!--
-424             UI组件中包含了语音选文字功能，该界面是全屏显示，为了视觉上的美观，该界面主题ActionBar使用Overlay模式。
-425             如果开发者不需要该功能或效果，使用普通主题即可。 同时，还需要将message_activity.xml这个layout中的根节点的paddingTop去掉。
-426        -->
-427        <activity
-427-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:147:9-152:70
-428            android:name="com.zxn.netease.nimsdk.business.session.activity.P2PMessageActivity"
-428-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:148:13-95
-429            android:configChanges="keyboardHidden|orientation"
-429-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:149:13-63
-430            android:screenOrientation="portrait"
-430-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:150:13-49
-431            android:theme="@style/NimAppNoActionBar"
-431-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:151:13-53
-432            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 群聊 -->
-432-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:152:13-67
-433        <!-- 联系人选择器 -->
-434        <activity
-434-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:155:9-161:67
-435            android:name="com.zxn.netease.nimsdk.business.contact.selector.activity.ContactSelectActivity"
-435-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:156:13-107
-436            android:configChanges="keyboardHidden|orientation"
-436-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:157:13-63
-437            android:label="@string/contact_selector"
-437-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:158:13-53
-438            android:screenOrientation="portrait"
-438-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:159:13-49
-439            android:theme="@style/NimAppNoActionBar"
-439-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:160:13-53
-440            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- @ 选择器 -->
-440-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:161:13-64
-441        <activity
-441-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:162:9-165:56
-442            android:name="com.zxn.netease.nimsdk.business.ait.selector.AitContactSelectorActivity"
-442-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:163:13-99
-443            android:screenOrientation="portrait"
-443-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:164:13-49
-444            android:theme="@style/NimAppNoActionBar" /> <!-- 视频 -->
-444-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:165:13-53
-445        <activity
-445-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:166:9-171:70
-446            android:name="com.zxn.netease.nimsdk.business.session.activity.CaptureVideoActivity"
-446-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:167:13-97
-447            android:configChanges="keyboardHidden|orientation"
-447-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:168:13-63
-448            android:screenOrientation="portrait"
-448-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:169:13-49
-449            android:theme="@style/NimAppNoActionBar"
-449-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:170:13-53
-450            android:windowSoftInputMode="stateHidden|adjustResize" />
-450-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:171:13-67
-451        <activity
-451-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:172:9-176:48
-452            android:name="com.zxn.netease.nimsdk.business.session.activity.WatchVideoActivity"
-452-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:173:13-95
-453            android:configChanges="keyboardHidden|orientation|screenSize"
-453-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:174:13-74
-454            android:label="@string/video_play"
-454-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:175:13-47
-455            android:theme="@style/DarkTheme" /> <!-- 查看大图 -->
-455-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:176:13-45
-456        <activity
-456-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:179:9-182:48
-457            android:name="com.zxn.netease.nimsdk.business.session.activity.WatchMessagePictureActivity"
-457-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:180:13-104
-458            android:configChanges="keyboardHidden"
-458-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:181:13-51
-459            android:theme="@style/DarkTheme" />
-459-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:182:13-45
-460        <activity
-460-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:183:9-186:48
-461            android:name="com.zxn.netease.nimsdk.business.session.activity.WatchPicAndVideoMenuActivity"
-461-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:184:13-105
-462            android:configChanges="keyboardHidden"
-462-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:185:13-51
-463            android:theme="@style/DarkTheme" /> <!-- 照片选择 -->
-463-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:186:13-45
-464        <activity
-464-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:188:9-190:54
-465            android:name="com.zxn.netease.nimsdk.business.session.activity.MsgSelectActivity"
-465-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:189:13-94
-466            android:configChanges="keyboardHidden" />
-466-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:190:13-51
-467
-468        <provider
-468-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:192:9-200:20
-469            android:name="com.zxn.netease.nimsdk.common.media.model.GenericFileProvider"
-469-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:193:13-89
-470            android:authorities="com.netease.nim.demo.generic.file.provider"
-470-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:194:13-73
-471            android:exported="false"
-471-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:195:13-37
-472            android:grantUriPermissions="true" >
-472-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:196:13-47
-473            <meta-data
-473-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:197:13-199:58
-474                android:name="android.support.FILE_PROVIDER_PATHS"
-474-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:198:17-67
-475                android:resource="@xml/provider_paths" />
-475-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:199:17-55
-476        </provider>
-477
-478        <activity
-478-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:202:9-206:53
-479            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImageGridActivity"
-479-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:203:13-96
-480            android:configChanges="orientation|screenSize"
-480-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:204:13-59
-481            android:screenOrientation="portrait"
-481-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:205:13-49
-482            android:theme="@style/LightBaseTheme" />
-482-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:206:13-50
-483        <activity
-483-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:207:9-212:70
-484            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImageCropActivity"
-484-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:208:13-96
-485            android:configChanges="orientation|screenSize"
-485-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:209:13-59
-486            android:hardwareAccelerated="false"
-486-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:210:13-48
-487            android:screenOrientation="portrait"
-487-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:211:13-49
-488            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
-488-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:212:13-67
-489        <activity
-489-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:213:9-216:70
-490            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImagePreviewActivity"
-490-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:214:13-99
-491            android:configChanges="orientation|screenSize"
-491-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:215:13-59
-492            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
-492-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:216:13-67
-493        <activity
-493-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:217:9-220:70
-494            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImagePreviewRetakeActivity"
-494-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:218:13-105
-495            android:configChanges="orientation|screenSize"
-495-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:219:13-59
-496            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
-496-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:220:13-67
-497        <activity
-497-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:221:9-225:70
-498            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImageTakeActivity"
-498-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:222:13-96
-499            android:configChanges="orientation|screenSize"
-499-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:223:13-59
-500            android:screenOrientation="portrait"
-500-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:224:13-49
-501            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
-501-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:225:13-67
-502        <activity
-502-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:226:9-230:49
-503            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.video.GLVideoActivity"
-503-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:227:13-97
-504            android:configChanges="orientation|screenSize"
-504-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:228:13-59
-505            android:screenOrientation="portrait"
-505-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:229:13-49
-506            android:theme="@style/VideoTheme" />
-506-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:230:13-46
-507        <activity
-507-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:231:9-235:49
-508            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.video.GLVideoConfirmActivity"
-508-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:232:13-104
-509            android:configChanges="orientation|screenSize"
-509-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:233:13-59
-510            android:screenOrientation="portrait"
-510-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:234:13-49
-511            android:theme="@style/VideoTheme" />
-511-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:235:13-46
-512        <activity
-512-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:236:9-239:72
-513            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.camera.CaptureActivity"
-513-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:237:13-98
-514            android:screenOrientation="portrait"
-514-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:238:13-49
-515            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-515-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:239:13-69
-516
-517        <service
-517-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:18:9-20:39
-518            android:name="com.meizu.cloud.pushsdk.NotificationService"
-518-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:19:13-71
-519            android:exported="true" />
-519-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:20:13-36
-520
-521        <receiver
-521-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:22:9-30:20
-522            android:name="com.meizu.cloud.pushsdk.SystemReceiver"
-522-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:23:13-66
-523            android:exported="false" >
-523-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:24:13-37
-524            <intent-filter>
-524-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:25:13-29:29
-525                <action android:name="com.meizu.cloud.pushservice.action.PUSH_SERVICE_START" />
-525-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:26:17-96
-525-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\8290bb33e3069dc348fe720b8fb265c5\jetified-push-internal-3.9.7\AndroidManifest.xml:26:25-93
-526
-527                <category android:name="android.intent.category.DEFAULT" />
-527-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:253:17-76
-527-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:253:27-73
-528            </intent-filter>
-529        </receiver>
-530
-531        <activity
-531-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
-532            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-532-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
-533            android:exported="false"
-533-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
-534            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-534-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\ddc8430efd0472da973e23e4371f774e\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
-535
-536        <meta-data
-536-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\87820b630c5ab0c167930900bffc159a\jetified-play-services-basement-17.5.0\AndroidManifest.xml:23:9-25:69
-537            android:name="com.google.android.gms.version"
-537-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\87820b630c5ab0c167930900bffc159a\jetified-play-services-basement-17.5.0\AndroidManifest.xml:24:13-58
-538            android:value="@integer/google_play_services_version" />
-538-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\87820b630c5ab0c167930900bffc159a\jetified-play-services-basement-17.5.0\AndroidManifest.xml:25:13-66
-539
-540        <provider
-540-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22e20db241f655c0219f720115d00fce\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-541            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-541-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22e20db241f655c0219f720115d00fce\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-542            android:authorities="com.netease.nim.demo.lifecycle-process"
-542-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22e20db241f655c0219f720115d00fce\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-543            android:exported="false"
-543-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22e20db241f655c0219f720115d00fce\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-544            android:multiprocess="true" /> <!-- 云信进程间通信service -->
-544-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22e20db241f655c0219f720115d00fce\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-545        <service android:name="com.netease.nimlib.service.ResponseService" /> <!-- 云信内部使用的进程间通信provider -->
-545-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:61:9-78
-545-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:61:18-75
-546        <provider
-546-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:64:9-67:40
-547            android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
-547-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:65:13-88
-548            android:authorities="com.netease.nim.demo.ipc.provider.preference"
-548-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:66:13-75
-549            android:exported="false" />
-549-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\cfaaf1ea46768dea55181ff22079af1c\jetified-basesdk-8.1.2\AndroidManifest.xml:67:13-37
-550    </application>
-551
-552</manifest>
+412        <!-- 云信内部使用的进程间通信provider -->
+413        <!--
+414        <provider
+415            android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
+416            android:authorities="com.netease.nim.demo.ipc.provider.preference"
+417            android:exported="false" />
+418        -->
+419        <activity android:name="com.zxn.netease.nimsdk.business.session.activity.WatchMultiRetweetPictureActivity" />
+419-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:137:9-118
+419-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:137:19-115
+420
+421        <meta-data
+421-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:139:9-141:43
+422            android:name="com.zxn.netease.nimsdk.support.glide.NIMGlideModule"
+422-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:140:13-79
+423            android:value="GlideModule" /> <!-- 会话窗口 -->
+423-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:141:13-40
+424        <!--
+425             UI组件中包含了语音选文字功能，该界面是全屏显示，为了视觉上的美观，该界面主题ActionBar使用Overlay模式。
+426             如果开发者不需要该功能或效果，使用普通主题即可。 同时，还需要将message_activity.xml这个layout中的根节点的paddingTop去掉。
+427        -->
+428        <activity
+428-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:148:9-153:70
+429            android:name="com.zxn.netease.nimsdk.business.session.activity.P2PMessageActivity"
+429-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:149:13-95
+430            android:configChanges="keyboardHidden|orientation"
+430-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:150:13-63
+431            android:screenOrientation="portrait"
+431-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:151:13-49
+432            android:theme="@style/NimAppNoActionBar"
+432-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:152:13-53
+433            android:windowSoftInputMode="stateHidden|adjustResize" /> <!-- 群聊 -->
+433-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:153:13-67
+434        <!-- 联系人选择器 -->
+435        <activity
+435-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:156:9-162:67
+436            android:name="com.zxn.netease.nimsdk.business.contact.selector.activity.ContactSelectActivity"
+436-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:157:13-107
+437            android:configChanges="keyboardHidden|orientation"
+437-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:158:13-63
+438            android:label="@string/contact_selector"
+438-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:159:13-53
+439            android:screenOrientation="portrait"
+439-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:160:13-49
+440            android:theme="@style/NimAppNoActionBar"
+440-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:161:13-53
+441            android:windowSoftInputMode="stateHidden|adjustPan" /> <!-- @ 选择器 -->
+441-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:162:13-64
+442        <activity
+442-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:163:9-166:56
+443            android:name="com.zxn.netease.nimsdk.business.ait.selector.AitContactSelectorActivity"
+443-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:164:13-99
+444            android:screenOrientation="portrait"
+444-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:165:13-49
+445            android:theme="@style/NimAppNoActionBar" /> <!-- 视频 -->
+445-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:166:13-53
+446        <activity
+446-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:167:9-172:70
+447            android:name="com.zxn.netease.nimsdk.business.session.activity.CaptureVideoActivity"
+447-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:168:13-97
+448            android:configChanges="keyboardHidden|orientation"
+448-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:169:13-63
+449            android:screenOrientation="portrait"
+449-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:170:13-49
+450            android:theme="@style/NimAppNoActionBar"
+450-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:171:13-53
+451            android:windowSoftInputMode="stateHidden|adjustResize" />
+451-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:172:13-67
+452        <activity
+452-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:173:9-177:48
+453            android:name="com.zxn.netease.nimsdk.business.session.activity.WatchVideoActivity"
+453-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:174:13-95
+454            android:configChanges="keyboardHidden|orientation|screenSize"
+454-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:175:13-74
+455            android:label="@string/video_play"
+455-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:176:13-47
+456            android:theme="@style/DarkTheme" /> <!-- 查看大图 -->
+456-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:177:13-45
+457        <activity
+457-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:180:9-183:48
+458            android:name="com.zxn.netease.nimsdk.business.session.activity.WatchMessagePictureActivity"
+458-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:181:13-104
+459            android:configChanges="keyboardHidden"
+459-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:182:13-51
+460            android:theme="@style/DarkTheme" />
+460-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:183:13-45
+461        <activity
+461-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:184:9-187:48
+462            android:name="com.zxn.netease.nimsdk.business.session.activity.WatchPicAndVideoMenuActivity"
+462-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:185:13-105
+463            android:configChanges="keyboardHidden"
+463-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:186:13-51
+464            android:theme="@style/DarkTheme" /> <!-- 照片选择 -->
+464-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:187:13-45
+465        <activity
+465-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:189:9-191:54
+466            android:name="com.zxn.netease.nimsdk.business.session.activity.MsgSelectActivity"
+466-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:190:13-94
+467            android:configChanges="keyboardHidden" />
+467-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:191:13-51
+468
+469        <provider
+469-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:193:9-201:20
+470            android:name="com.zxn.netease.nimsdk.common.media.model.GenericFileProvider"
+470-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:194:13-89
+471            android:authorities="com.netease.nim.demo.generic.file.provider"
+471-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:195:13-73
+472            android:exported="false"
+472-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:196:13-37
+473            android:grantUriPermissions="true" >
+473-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:197:13-47
+474            <meta-data
+474-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:198:13-200:58
+475                android:name="android.support.FILE_PROVIDER_PATHS"
+475-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:199:17-67
+476                android:resource="@xml/provider_paths" />
+476-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:200:17-55
+477        </provider>
+478
+479        <activity
+479-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:203:9-207:53
+480            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImageGridActivity"
+480-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:204:13-96
+481            android:configChanges="orientation|screenSize"
+481-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:205:13-59
+482            android:screenOrientation="portrait"
+482-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:206:13-49
+483            android:theme="@style/LightBaseTheme" />
+483-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:207:13-50
+484        <activity
+484-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:208:9-213:70
+485            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImageCropActivity"
+485-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:209:13-96
+486            android:configChanges="orientation|screenSize"
+486-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:210:13-59
+487            android:hardwareAccelerated="false"
+487-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:211:13-48
+488            android:screenOrientation="portrait"
+488-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:212:13-49
+489            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+489-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:213:13-67
+490        <activity
+490-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:214:9-217:70
+491            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImagePreviewActivity"
+491-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:215:13-99
+492            android:configChanges="orientation|screenSize"
+492-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:216:13-59
+493            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+493-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:217:13-67
+494        <activity
+494-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:218:9-221:70
+495            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImagePreviewRetakeActivity"
+495-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:219:13-105
+496            android:configChanges="orientation|screenSize"
+496-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:220:13-59
+497            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+497-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:221:13-67
+498        <activity
+498-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:222:9-226:70
+499            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.ui.ImageTakeActivity"
+499-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:223:13-96
+500            android:configChanges="orientation|screenSize"
+500-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:224:13-59
+501            android:screenOrientation="portrait"
+501-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:225:13-49
+502            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+502-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:226:13-67
+503        <activity
+503-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:227:9-231:49
+504            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.video.GLVideoActivity"
+504-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:228:13-97
+505            android:configChanges="orientation|screenSize"
+505-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:229:13-59
+506            android:screenOrientation="portrait"
+506-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:230:13-49
+507            android:theme="@style/VideoTheme" />
+507-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:231:13-46
+508        <activity
+508-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:232:9-236:49
+509            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.video.GLVideoConfirmActivity"
+509-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:233:13-104
+510            android:configChanges="orientation|screenSize"
+510-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:234:13-59
+511            android:screenOrientation="portrait"
+511-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:235:13-49
+512            android:theme="@style/VideoTheme" />
+512-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:236:13-46
+513        <activity
+513-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:237:9-240:72
+514            android:name="com.zxn.netease.nimsdk.common.media.imagepicker.camera.CaptureActivity"
+514-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:238:13-98
+515            android:screenOrientation="portrait"
+515-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:239:13-49
+516            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+516-->[:netease-nimsdk] D:\GitHub\repositories\nimsdk_p2p\NimApp\netease-nimsdk\build\intermediates\library_manifest\debug\AndroidManifest.xml:240:13-69
+517
+518        <service
+518-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:18:9-20:39
+519            android:name="com.meizu.cloud.pushsdk.NotificationService"
+519-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:19:13-71
+520            android:exported="true" />
+520-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:20:13-36
+521
+522        <receiver
+522-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:22:9-30:20
+523            android:name="com.meizu.cloud.pushsdk.SystemReceiver"
+523-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:23:13-66
+524            android:exported="false" >
+524-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:24:13-37
+525            <intent-filter>
+525-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:25:13-29:29
+526                <action android:name="com.meizu.cloud.pushservice.action.PUSH_SERVICE_START" />
+526-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:26:17-96
+526-->[com.meizu.flyme.internet:push-internal:3.9.7] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\22b917b5e79a4d384a6c4de1f900a188\jetified-push-internal-3.9.7\AndroidManifest.xml:26:25-93
+527
+528                <category android:name="android.intent.category.DEFAULT" />
+528-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:253:17-76
+528-->D:\GitHub\repositories\nimsdk_p2p\NimApp\demo\src\main\AndroidManifest.xml:253:27-73
+529            </intent-filter>
+530        </receiver>
+531
+532        <activity
+532-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\c081d0c8d4aff7ad256468f04d98df12\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+533            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+533-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\c081d0c8d4aff7ad256468f04d98df12\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+534            android:exported="false"
+534-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\c081d0c8d4aff7ad256468f04d98df12\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+535            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+535-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\c081d0c8d4aff7ad256468f04d98df12\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+536
+537        <meta-data
+537-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\6156349a806df7109149c955f64ce0ef\jetified-play-services-basement-17.5.0\AndroidManifest.xml:23:9-25:69
+538            android:name="com.google.android.gms.version"
+538-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\6156349a806df7109149c955f64ce0ef\jetified-play-services-basement-17.5.0\AndroidManifest.xml:24:13-58
+539            android:value="@integer/google_play_services_version" />
+539-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\6156349a806df7109149c955f64ce0ef\jetified-play-services-basement-17.5.0\AndroidManifest.xml:25:13-66
+540
+541        <provider
+541-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\bc224232f424a5459f95f62699798a76\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+542            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+542-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\bc224232f424a5459f95f62699798a76\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+543            android:authorities="com.netease.nim.demo.lifecycle-process"
+543-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\bc224232f424a5459f95f62699798a76\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+544            android:exported="false"
+544-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\bc224232f424a5459f95f62699798a76\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+545            android:multiprocess="true" /> <!-- 云信进程间通信service -->
+545-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\bc224232f424a5459f95f62699798a76\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+546        <service android:name="com.netease.nimlib.service.ResponseService" /> <!-- 云信内部使用的进程间通信provider -->
+546-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:61:9-78
+546-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:61:18-75
+547        <provider
+547-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:64:9-67:40
+548            android:name="com.netease.nimlib.ipc.cp.provider.PreferenceContentProvider"
+548-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:65:13-88
+549            android:authorities="com.netease.nim.demo.ipc.provider.preference"
+549-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:66:13-75
+550            android:exported="false" />
+550-->[com.netease.nimlib:basesdk:8.1.2] C:\Users\zxn\.gradle\caches\transforms-2\files-2.1\62a325ff2e2cac586ae24dc4175c69a6\jetified-basesdk-8.1.2\AndroidManifest.xml:67:13-37
+551    </application>
+552
+553</manifest>

@@ -4,7 +4,7 @@
             "outputFile": "D:\\GitHub\\repositories\\nimsdk_p2p\\NimApp\\demo\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zxn\\.gradle\\caches\\transforms-2\\files-2.1\\21f006db1a7645349045decc91f3d94a\\appcompat-1.2.0\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\zxn\\.gradle\\caches\\transforms-2\\files-2.1\\38fafa0349de5ce83a66faf89badfab4\\appcompat-1.2.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\zxn\\.gradle\\caches\\transforms-2\\files-2.1\\63cdbf81b9a58cb760cd13249c445b7d\\material-1.2.1\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\zxn\\.gradle\\caches\\transforms-2\\files-2.1\\b9aa2d647535f7613166018bfb7e50ed\\material-1.2.1\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,30",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

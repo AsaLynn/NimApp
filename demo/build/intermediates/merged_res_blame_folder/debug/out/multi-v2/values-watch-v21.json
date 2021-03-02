@@ -4,7 +4,7 @@
             "outputFile": "D:\\GitHub\\repositories\\nimsdk_p2p\\NimApp\\demo\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v21\\values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\zxn\\.gradle\\caches\\transforms-2\\files-2.1\\21f006db1a7645349045decc91f3d94a\\appcompat-1.2.0\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "source": "C:\\Users\\zxn\\.gradle\\caches\\transforms-2\\files-2.1\\38fafa0349de5ce83a66faf89badfab4\\appcompat-1.2.0\\res\\values-watch-v21\\values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",
