@@ -207,6 +207,7 @@ class MsgActivity : BaseActivity<MsgViewModel>(), RequestCallback<Void?> {
                     var checkedPass = true
                     if (it == "996") {
                         showToast("消息非法,已拦截")
+                        restoreText(true)
                         checkedPass = false
                     }
                     checkedPass

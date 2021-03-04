@@ -704,7 +704,11 @@ open class InputPanel @JvmOverloads constructor(
     private val showMoreFuncRunnable =
         Runnable { actionPanelBottomLayout!!.visibility = View.VISIBLE }
     private val showTextRunnable = Runnable { showInputMethod(messageEditText) }
-    private fun restoreText(clearText: Boolean) {
+
+    /**
+     * 清空输入框.
+     */
+    fun restoreText(clearText: Boolean) {
         if (clearText) {
             messageEditText!!.setText("")
         }

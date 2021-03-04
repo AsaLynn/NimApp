@@ -423,6 +423,10 @@ open class MessageFragment : TFragment(), ModuleProxy {
 //        fun onFailed(code: Int)
     }
 
+    fun restoreText(clearText: Boolean) {
+        inputPanel?.restoreText(clearText)
+    }
+
     /*fun setOnInputContentSendListener(str: (String) -> Unit){
         listener = str
     }*/
